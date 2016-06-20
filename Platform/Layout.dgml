@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DirectedGraph xmlns="http://schemas.microsoft.com/vs/2009/dgml">
+  <Nodes>
+    <Node Id="Account" Bounds="-1750.41234964069,-210.595996871965,67.3633333333332,25.8366666666667" />
+    <Node Id="AutoMapper" Bounds="-2094.99151959432,-566.406688641316,93.0133333333333,25.8366666666667" UseManualLocation="True" />
+    <Node Id="Bus" Bounds="-1761.33380552409,-455.789320907748,50,25.8366666666666" UseManualLocation="True" />
+    <Node Id="BusinessModule" Bounds="-1740.61450431218,-21.5322672770396,250.86,145.837066666667" Group="Expanded" Label="Business Module" UseManualLocation="True" />
+    <Node Id="Cache" Bounds="-1595.53434588867,-392.381147860627,54.876666666667,25.8366666666666" UseManualLocation="True" />
+    <Node Id="Cache1" Bounds="-2031.83951741536,-454.733155307983,54.876666666667,25.8366666666666" Label="Cache" UseManualLocation="True" />
+    <Node Id="Communication" Bounds="-1649.59871763346,-591.723036288362,111.46,25.8366666666666" UseManualLocation="True" />
+    <Node Id="DotPlatform" Bounds="-1728.11747821289,-523.184217928987,90.4966666666667,25.8366666666668" UseManualLocation="True" />
+    <Node Id="Infrastructure" Category="Category1" Bounds="-1781.33380552409,-631.723109586145,289.655513509115,285.178755094401" Group="Expanded" UseManualLocation="True">
+      <Category Ref="Category6" />
+    </Node>
+    <Node Id="InfrastructureModule" Bounds="-2163.93987630208,-606.406788641316,206.977025553386,197.5104" Group="Expanded" Label="Infrastructure Module" UseManualLocation="True" />
+    <Node Id="IocContainer" Bounds="-1726.84260760742,-396.396254501498,93.3066666666664,25.8366666666666" UseManualLocation="True" />
+    <Node Id="Language" Bounds="-1721.70690042194,-151.915149703997,76.3733333333334,25.8366666666667" UseManualLocation="True" />
+    <Node Id="Logging" Bounds="-1651.68570657429,-220.3876609955,67.4033333333336,25.8366666666667" UseManualLocation="True" />
+    <Node Id="Menu" Bounds="-1553.79003600137,-242.32378007509,53.3199999999997,25.8366666666667" UseManualLocation="True" />
+    <Node Id="Module" Bounds="-1770.41234964069,-282.32388007509,289.942313639322,176.24549703776" Group="Expanded" Label="Base Business Module" UseManualLocation="True" />
+    <Node Id="NPM" Bounds="-1661.48188839986,-687.559777872812,50,25.8366666666666" Label="EMP" UseManualLocation="True" />
+    <Node Id="Repository" Bounds="-1593.39495868164,-468.491560897983,81.7166666666667,25.8366666666666" UseManualLocation="True" />
+    <Node Id="Repository1" Bounds="-2143.93985292766,-478.696516316732,81.7166666666672,25.8366666666666" Label="Repository" />
+    <Node Id="SCM" Category="Comment" Bounds="-1700.61450431218,58.4679403523549,50,25.8366666666667" Label="SCM" />
+    <Node Id="SCM1" Bounds="-1720.61450431218,18.4678403523549,90,85.8368666666667" Group="Expanded" Label="SCM" />
+    <Node Id="Tenency" Bounds="-1615.33345722533,-164.550891891497,67.4766666666665,25.8366666666667" Label="Tenancy" UseManualLocation="True" />
+    <Node Id="WMS" Bounds="-1580.6145116364,58.4679327229604,50.8599999999997,25.8366666666667" />
+    <Node Id="WMS1" Bounds="-1600.6145116364,18.4678327229604,90.8599999999997,85.8368666666667" Group="Expanded" Label="WMS" />
+    <Node Id="Web" Bounds="-1573.2860760319,-524.328276156526,50,25.8366666666666" UseManualLocation="True" />
+    <Node Id="Web1" Bounds="-2032.22318626099,-510.56992197465,50,25.8366666666666" Label="Web" UseManualLocation="True" />
+  </Nodes>
+  <Links>
+    <Link Source="BusinessModule" Target="SCM1" Category="Contains" />
+    <Link Source="BusinessModule" Target="WMS1" Category="Contains" />
+    <Link Source="DotPlatform" Target="Bus" Bounds="-1720.4922572075,-497.347542028812,27.3749366980587,34.5074502235734" />
+    <Link Source="DotPlatform" Target="Cache" Bounds="-1671.53394646013,-497.347542028811,86.1668813426295,98.2014493344546" />
+    <Link Source="DotPlatform" Target="Communication" Bounds="-1666.09415865914,-560.395076512678,48.3198273694456,37.2108678172001" />
+    <Link Source="DotPlatform" Target="IocContainer" Bounds="-1682.59608428887,-497.347542028811,1.94362738824793,91.9532827309378" />
+    <Link Source="DotPlatform" Target="Repository" Bounds="-1652.08479480873,-497.347542028811,60.4649828146185,25.3735066405307" />
+    <Link Source="DotPlatform" Target="Web" Bounds="-1637.62080729167,-511.120899014296,55.3349996362281,0.470383433158247" />
+    <Link Source="Infrastructure" Target="Bus" Category="Contains" />
+    <Link Source="Infrastructure" Target="Cache" Category="Contains" />
+    <Link Source="Infrastructure" Target="Communication" Category="Contains" />
+    <Link Source="Infrastructure" Target="DotPlatform" Category="Contains" />
+    <Link Source="Infrastructure" Target="IocContainer" Category="Contains" />
+    <Link Source="Infrastructure" Target="Module" Bounds="-1631.15658614735,-346.544354491744,2.0719194879548,55.226801452982" />
+    <Link Source="Infrastructure" Target="Repository" Category="Contains" />
+    <Link Source="Infrastructure" Target="Web" Category="Contains" />
+    <Link Source="InfrastructureModule" Target="AutoMapper" Category="Contains" />
+    <Link Source="InfrastructureModule" Target="Cache1" Category="Contains" />
+    <Link Source="InfrastructureModule" Target="Repository1" Category="Contains" />
+    <Link Source="InfrastructureModule" Target="Web1" Category="Contains" />
+    <Link Source="Module" Target="Account" Category="Contains" />
+    <Link Source="Module" Target="Language" Category="Contains" />
+    <Link Source="Module" Target="Logging" Category="Contains" />
+    <Link Source="Module" Target="Menu" Category="Contains" />
+    <Link Source="Module" Target="Tenency" Category="Contains" />
+    <Link Source="NPM" Target="Infrastructure" Bounds="-1636.48940098768,-661.786281346271,0.00269185579190889,21.0044922879619" />
+    <Link Source="SCM1" Target="SCM" Category="Contains" />
+    <Link Source="WMS1" Target="WMS" Category="Contains" />
+  </Links>
+  <Categories>
+    <Category Id="Category1" Label="Category 1" Background="#FFE51400" IsTag="True" />
+    <Category Id="Category6" Label="Category 6" Background="#FFA1260D" IsTag="True" />
+    <Category Id="Comment" Label="Comment" Description="Represents a user defined comment on the diagram" CanBeDataDriven="True" IsProviderRoot="False" NavigationActionLabel="Comments" />
+    <Category Id="Contains" Label="Contains" Description="Whether the source of the link contains the target object" CanBeDataDriven="False" CanLinkedNodesBeDataDriven="True" IncomingActionLabel="Contained By" IsContainment="True" OutgoingActionLabel="Contains" />
+  </Categories>
+  <Properties>
+    <Property Id="Background" Label="Background" Description="The background color" DataType="System.Windows.Media.Brush" />
+    <Property Id="Bounds" DataType="System.Windows.Rect" />
+    <Property Id="CanBeDataDriven" Label="CanBeDataDriven" Description="CanBeDataDriven" DataType="System.Boolean" />
+    <Property Id="CanLinkedNodesBeDataDriven" Label="CanLinkedNodesBeDataDriven" Description="CanLinkedNodesBeDataDriven" DataType="System.Boolean" />
+    <Property Id="Expression" DataType="System.String" />
+    <Property Id="Group" Label="Group" Description="Display the node as a group" DataType="Microsoft.VisualStudio.GraphModel.GraphGroupStyle" />
+    <Property Id="GroupLabel" DataType="System.String" />
+    <Property Id="IncomingActionLabel" Label="IncomingActionLabel" Description="IncomingActionLabel" DataType="System.String" />
+    <Property Id="IsContainment" DataType="System.Boolean" />
+    <Property Id="IsEnabled" DataType="System.Boolean" />
+    <Property Id="IsProviderRoot" Label="IsProviderRoot" Description="IsProviderRoot" DataType="System.Boolean" />
+    <Property Id="IsTag" DataType="System.Boolean" />
+    <Property Id="Label" Label="Label" Description="Displayable label of an Annotatable object" DataType="System.String" />
+    <Property Id="NavigationActionLabel" Label="NavigationActionLabel" Description="NavigationActionLabel" DataType="System.String" />
+    <Property Id="OutgoingActionLabel" Label="OutgoingActionLabel" Description="OutgoingActionLabel" DataType="System.String" />
+    <Property Id="TargetType" DataType="System.Type" />
+    <Property Id="UseManualLocation" DataType="System.Boolean" />
+    <Property Id="Value" DataType="System.String" />
+    <Property Id="ValueLabel" DataType="System.String" />
+  </Properties>
+  <Styles>
+    <Style TargetType="Node" GroupLabel="Category 6" ValueLabel="Has category">
+      <Condition Expression="HasCategory('Category6')" />
+      <Setter Property="Background" Value="#FFA1260D" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Category 1" ValueLabel="Has category">
+      <Condition Expression="HasCategory('Category1')" />
+      <Setter Property="Background" Value="#FFE51400" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Comment" ValueLabel="Has comment">
+      <Condition Expression="HasCategory('Comment')" />
+      <Setter Property="Background" Value="#FFFFFACD" />
+      <Setter Property="Stroke" Value="#FFE5C365" />
+      <Setter Property="StrokeThickness" Value="1" />
+      <Setter Property="NodeRadius" Value="2" />
+      <Setter Property="MaxWidth" Value="250" />
+    </Style>
+  </Styles>
+</DirectedGraph>

@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<modelStoreModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="f10c19f2-a54a-4615-be4f-93e12b5a54e6"
+  name="Platform" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <profileInstances>
+    <packageHasProfileInstances
+      Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b">
+      <profileInstance
+        Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791"
+        name="StandardProfileL2" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances
+      Id="29349502-908c-4fda-9054-c48619c59ed0">
+      <profileInstance
+        Id="532ea607-fb19-44b8-8502-3351b05452be"
+        name="StandardProfileL3" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <packageHasNamedElement>
+      <class
+        Id="c28269d4-dec1-43aa-874b-19aeffe30c03"
+        name="IUnitOfWorkCompleteHandle"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="d0eb67e9-3f1a-4ca0-8d40-28501e492c5f"
+        name="IUnitOfWorkCompleteHandle"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="a4eab30a-bdf5-42ba-9d40-452fc61c19e3"
+        name="IActiveUnitOfWork"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="5d5ca987-ef6f-409d-a256-c279244131ba"
+        name="IUnitOfWork"
+        isAbstract="false"
+        isLeaf="false">
+        <generalsInternal>
+          <generalization
+            Id="2361db06-d906-4467-983b-54d6092d3b25"
+            isSubstitutable="false">
+            <interfaceMoniker
+              Id="d0eb67e9-3f1a-4ca0-8d40-28501e492c5f"
+              LastKnownName="IUnitOfWorkCompleteHandle"
+              LastKnownLocation="Platform.uml" />
+          </generalization>
+          <generalization
+            Id="54ae73e7-4942-47cd-9598-eedac3b45239"
+            isSubstitutable="false">
+            <interfaceMoniker
+              Id="a4eab30a-bdf5-42ba-9d40-452fc61c19e3"
+              LastKnownName="IActiveUnitOfWork"
+              LastKnownLocation="Platform.uml" />
+          </generalization>
+        </generalsInternal>
+      </Interface>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="9877a504-97f0-4d00-86ac-2952d19488b1"
+        name="UnitOfWork"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <suppliersInternal>
+          <interfaceRealization
+            Id="5ccaacb6-54e8-4a7e-ac89-21f481829e0c">
+            <interfaceMoniker
+              Id="5d5ca987-ef6f-409d-a256-c279244131ba"
+              LastKnownName="IUnitOfWork"
+              LastKnownLocation="Platform.uml" />
+          </interfaceRealization>
+        </suppliersInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="33abeddd-7a59-4b19-b02a-69211790a1a6"
+        name="UnitOfWorlManager"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <suppliersInternal>
+          <interfaceRealization
+            Id="59ed4350-6639-4e9e-bd61-489e00aaef1f">
+            <interfaceMoniker
+              Id="5e3926b9-865a-4dc9-bb59-dc9c74455658"
+              LastKnownName="IUnitOfWorkManager"
+              LastKnownLocation="Platform.uml" />
+          </interfaceRealization>
+        </suppliersInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="aa06d1e4-ccb1-45fb-8725-4f6afce1f03a"
+            name="Begin"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false" />
+        </ownedOperationsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="5e3926b9-865a-4dc9-bb59-dc9c74455658"
+        name="IUnitOfWorkManager"
+        isAbstract="false"
+        isLeaf="false">
+        <ownedOperations>
+          <operation
+            Id="83d84677-e82e-4b6f-af3e-14d306763689"
+            name="Begin"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="true"
+            concurrency="Sequential"
+            isQuery="false" />
+        </ownedOperations>
+      </Interface>
+    </packageHasNamedElement>
+  </packagedElements>
+  <primitiveType
+    Id="220a3521-e091-4221-bae9-3ef9018e845c"
+    name="Integer"
+    isAbstract="false"
+    isLeaf="false" />
+  <primitiveType
+    Id="8943dc84-709e-4f62-b15a-a3273aa6f165"
+    name="Boolean"
+    isAbstract="false"
+    isLeaf="false" />
+  <primitiveType
+    Id="59259974-6d55-42c6-b7bd-763d77ac8ef9"
+    name="String"
+    isAbstract="false"
+    isLeaf="false" />
+  <primitiveType
+    Id="3ab42e7d-4969-445a-b209-471f5cb8209c"
+    name="UnlimitedNatural"
+    isAbstract="false"
+    isLeaf="false" />
+</modelStoreModel>
