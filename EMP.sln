@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "[1] Infrastructure", "[1] Infrastructure", "{8962E6C9-9800-420B-9F0D-AB8503228364}"
 EndProject
@@ -33,6 +33,7 @@ Global
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{4964D0D8-492A-422A-AD2D-3EAFAE881C1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4964D0D8-492A-422A-AD2D-3EAFAE881C1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4964D0D8-492A-422A-AD2D-3EAFAE881C1A}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
 		{4964D0D8-492A-422A-AD2D-3EAFAE881C1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4964D0D8-492A-422A-AD2D-3EAFAE881C1A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F5512476-EE19-4FF7-B95C-631FD1B6F92F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -41,6 +42,7 @@ Global
 		{F5512476-EE19-4FF7-B95C-631FD1B6F92F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{09B41815-54BA-4AFA-973C-0488FB1F578F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{09B41815-54BA-4AFA-973C-0488FB1F578F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09B41815-54BA-4AFA-973C-0488FB1F578F}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
 		{09B41815-54BA-4AFA-973C-0488FB1F578F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{09B41815-54BA-4AFA-973C-0488FB1F578F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3160F70C-D985-454C-825A-68916CC3254B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU

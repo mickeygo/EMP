@@ -7,12 +7,19 @@ namespace DotPlatform.Timing
     /// </summary>
     public static class Clock
     {
+        /// <summary>
+        /// 获取或设置时间提供者，默认为 <see cref="LocalClockProvider"/>
+        /// </summary>
         public static IClockProvider Provider { get; set; }
+
+        #region Ctor
 
         static Clock()
         {
             Provider = new LocalClockProvider();
         }
+
+        #endregion
 
         /// <summary>
         /// 获取系统当前时间

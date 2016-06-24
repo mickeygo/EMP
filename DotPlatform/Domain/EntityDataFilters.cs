@@ -11,12 +11,15 @@
 
         public const string MayHaveTenant = "MayHaveTenant";
 
+        /// <summary>
+        /// 筛选器参数
+        /// </summary>
         public static class Parameters
         {
             /// <summary>
-            /// "TenantId".
+            /// "tenantId".
             /// </summary>
-            public const string TenantId = "TenantId";
+            public const string TenantId = "tenantId";
         }
     }
 }

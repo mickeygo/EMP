@@ -8,8 +8,14 @@ namespace DotPlatform.Runtime.Session
     /// <typeparam name="TKey">会话信息主体<see cref="DotPlatform.Domain.Entities.Entity"/>主键类型</typeparam>
     public interface IOwnerSession<TKey>
     {
+        /// <summary>
+        /// 获取当前登录者 Id 信息
+        /// </summary>
         TKey UserId { get; }
 
+        /// <summary>
+        /// 获取当前租户 Id 信息
+        /// </summary>
         TKey TenantId { get; }
     }
 

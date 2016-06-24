@@ -11,13 +11,14 @@ using DotPlatform.Domain.Entities;
 using DotPlatform.Domain.Entities.Auditing;
 using DotPlatform.Timing;
 using EntityFramework.DynamicFilters;
+using DotPlatform.Generators;
 
 namespace DotPlatform.EntityFramework
 {
     /// <summary>
     /// 基于 Microsoft EntityFramework 的 <see cref="DbContext"/> 的基类
     /// </summary>
-    public abstract class EfDbContext : DbContext
+    public abstract class EfDbContext : DbContext, IInitializer
     {
         #region Propertites
 
@@ -26,21 +27,35 @@ namespace DotPlatform.EntityFramework
         /// </summary>
         public IOwnerSession OwnerSession { get; set; }
 
+        /// <summary>
+        /// 获取或设置 Guid 生成器
+        /// </summary>
+        public IGuidGenerator GuidGenerator { get; set; }
+
         #endregion
 
         #region Ctor
 
+        /// <summary>
+        /// 初始化一个新的<see cref="EfDbContext"/>实例
+        /// </summary>
         protected EfDbContext()
         {
             
         }
 
+        /// <summary>
+        /// 初始化一个新的<see cref="EfDbContext"/>实例
+        /// </summary>
         protected EfDbContext(string nameOrConnectionString)
             : base(nameOrConnectionString)
         {
             
         }
 
+        /// <summary>
+        /// 初始化一个新的<see cref="EfDbContext"/>实例
+        /// </summary>
         protected EfDbContext(DbConnection existingConnection, bool contextOwnsConnection)
             : base(existingConnection, contextOwnsConnection)
         {
@@ -51,12 +66,18 @@ namespace DotPlatform.EntityFramework
 
         #region Public Methods
 
+        /// <summary>
+        /// 重写 <see cref="DbContext"/> 的 SaveChanges 方法
+        /// </summary>
         public override int SaveChanges()
         {
             this.ApplyConcepts();
             return base.SaveChanges();
         }
 
+        /// <summary>
+        /// 重写 <see cref="DbContext"/> 的 SaveChangesAsync 方法
+        /// </summary>
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken)
         {
             this.ApplyConcepts();
@@ -67,34 +88,44 @@ namespace DotPlatform.EntityFramework
 
         #region Protected Methods
 
+        /// <summary>
+        /// 重写 <see cref="DbContext"/> 的 OnModelCreating 方法
+        /// </summary>
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
-            // Todo: Set Filters
+            // Todo: Fluent API Entity
+            // Todo: Understand the filter
             modelBuilder.Filter(EntityDataFilters.SoftDelete, (ISoftDelete d) => d.IsDeleted, false);
             modelBuilder.Filter(EntityDataFilters.MustHaveTenant, (IMustHaveTenant t, Guid tenantId) => t.TenantId == tenantId, Guid.Empty);
             modelBuilder.Filter(EntityDataFilters.MayHaveTenant, (IMayHaveTenant t, Guid? tenantId) => t.TenantId == tenantId, Guid.Empty);
         }
 
+        /// <summary>
+        /// 在调用 SaveChanges / SaveChangesAsync 之前，会先此方法
+        /// </summary>
         protected virtual void ApplyConcepts()
         {
             foreach (var entry in this.ChangeTracker.Entries())
             {
                 switch (entry.State)
                 {
-                    case EntityState.Added: this.ApplyAddedConcepts(entry);
+                    case EntityState.Added:
+                        this.ApplyAddedConcepts(entry);
                         break;
                     case EntityState.Modified:
+                        this.ApplyModifiedConcepts(entry);
                         break;
                     case EntityState.Deleted:
+                        this.ApplyDeletedConcepts(entry);
                         break;
                 }
             }
         }
 
         /// <summary>
-        /// 检查实体主键，实体主键类型为<see cref="System.Guid"/>时，若不存在则设置主键.
+        /// 检查实体主键，实体主键类型为<see cref="Guid"/>时，若不存在则设置主键.
         /// </summary>
         protected virtual void CheckOrSetEntityKeyIfNull(DbEntityEntry entry)
         {
@@ -103,8 +134,7 @@ namespace DotPlatform.EntityFramework
                 var entity = entry.Entity as IEntity;
                 if (entity.IsTransient())
                 {
-                    // Todo: Set GuidGenerator
-                    entity.Id = Guid.NewGuid();
+                    entity.Id = GuidGenerator.Create();
                 }
             }
         }
@@ -157,7 +187,10 @@ namespace DotPlatform.EntityFramework
             }
         }
 
-        protected virtual void SoftDelete(DbEntityEntry entry)
+        /// <summary>
+        /// 处理软删除. 若实体实现了 <see cref="ISoftDelete"/> 接口，删除时会将 IsDeleted 设为 true.
+        /// </summary>
+        protected virtual void HandleSoftDelete(DbEntityEntry entry)
         {
             if (!(entry.Entity is ISoftDelete))
             {
@@ -173,7 +206,7 @@ namespace DotPlatform.EntityFramework
         }
 
         /// <summary>
-        /// 检查实体的必须存在的租户信息，若不存在
+        /// 检查实体的必须存在的租户信息
         /// </summary>
         protected virtual void CheckOrSetMustHaveTenantIfNull(DbEntityEntry entry)
         {
@@ -224,7 +257,8 @@ namespace DotPlatform.EntityFramework
 
             if (entity.TenantId != currentTenantId && entity.TenantId != OwnerSession.TenantId)
             {
-                throw new DbEntityValidationException("Can not set TenantId to a different value than the current filter parameter value or IOwnerSession.TenantId while MayHaveTenant filter is enabled!");
+                throw new DbEntityValidationException(
+                    "Can not set TenantId to a different value than the current filter parameter value or IOwnerSession.TenantId while MayHaveTenant filter is enabled!");
             }
         }
 
@@ -236,6 +270,17 @@ namespace DotPlatform.EntityFramework
         {
             CheckOrSetEntityKeyIfNull(entry);
             SetCreationAuditProperties(entry);
+            CheckOrSetTenantIfNull(entry);
+        }
+
+        private void ApplyModifiedConcepts(DbEntityEntry entry)
+        {
+            CheckOrSetTenantIfNull(entry);
+        }
+
+        private void ApplyDeletedConcepts(DbEntityEntry entry)
+        {
+            HandleSoftDelete(entry);
         }
 
         private void CheckOrSetTenantIfNull(DbEntityEntry entry)
@@ -248,6 +293,20 @@ namespace DotPlatform.EntityFramework
             {
                 this.CheckOrSetMayHaveTenantIfNull(entry);
             }
+        }
+
+        #endregion
+
+        #region IInitializer Members
+
+        /// <summary>
+        /// 对象实例化后自动调用该初始化方法
+        /// </summary>
+        public virtual void Initialize()
+        {
+            this.Database.Initialize(false);
+            this.SetFilterScopedParameterValue(EntityDataFilters.MustHaveTenant, EntityDataFilters.Parameters.TenantId, OwnerSession.TenantId ?? Guid.Empty);
+            this.SetFilterScopedParameterValue(EntityDataFilters.MayHaveTenant, EntityDataFilters.Parameters.TenantId, OwnerSession.TenantId);
         }
 
         #endregion

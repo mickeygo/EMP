@@ -3,7 +3,7 @@
 namespace DotPlatform.Timing
 {
     /// <summary>
-    /// 
+    /// Local 时间提供者
     /// </summary>
     public class LocalClockProvider : IClockProvider
     {

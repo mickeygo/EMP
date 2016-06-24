@@ -8,12 +8,24 @@ namespace DotPlatform.Domain.Uow
     /// </summary>
     public abstract class UnitOfWorkBase : IUnitOfWork
     {
-        #region Private Fields
+        #region Fields
 
         private bool _isCompletedOK;
         private Exception _exception;
+        private readonly IUnitOfWorkDefaultOptions _defaultOptions;
 
         #endregion
+
+        #region Ctor
+
+        protected UnitOfWorkBase(IUnitOfWorkDefaultOptions options)
+        {
+            this._defaultOptions = options;
+        }
+
+        #endregion
+
+        #region Properties
 
         /// <summary>
         /// 获取工作单元配置项
@@ -33,6 +45,8 @@ namespace DotPlatform.Domain.Uow
         public abstract void SaveChanges();
 
         public abstract Task SaveChangesAsync();
+
+        #endregion
 
         #endregion
 
@@ -159,6 +173,7 @@ namespace DotPlatform.Domain.Uow
         public void Begin(UnitOfWorkOptions options)
         {
             this.Options = options;
+            options.SetDefaultOptions(_defaultOptions);
 
             BeginUow();
         }

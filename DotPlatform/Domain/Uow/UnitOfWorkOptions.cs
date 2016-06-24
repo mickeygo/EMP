@@ -40,7 +40,7 @@ namespace DotPlatform.Domain.Uow
         #region Public Methods
 
         /// <summary>
-        /// 设置默认的工作单元配置选项
+        /// 根据给定的工作单元配置选项来对当前工作单元配置选项进行设置
         /// </summary>
         /// <param name="options">工作单元配置选项</param>
         internal void SetDefaultOptions(IUnitOfWorkDefaultOptions options)
