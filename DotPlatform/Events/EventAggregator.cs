@@ -8,7 +8,7 @@ namespace DotPlatform.Events
     /// </summary>
     public class EventAggregator : IEventAggregator
     {
-        private EventHandlerRegistrator registrator;
+        private readonly EventHandlerRegistrator registrator;
 
         /// <summary>
         /// 初始化一个新的<c>EventAggregator</c>实例
