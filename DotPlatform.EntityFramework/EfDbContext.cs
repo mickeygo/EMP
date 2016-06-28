@@ -18,7 +18,7 @@ namespace DotPlatform.EntityFramework
     /// <summary>
     /// 基于 Microsoft EntityFramework 的 <see cref="DbContext"/> 的基类
     /// </summary>
-    public abstract class EfDbContext : DbContext, IInitializer
+    public abstract class EfDbContext : DbContext
     {
         #region Propertites
 
@@ -39,18 +39,10 @@ namespace DotPlatform.EntityFramework
         /// <summary>
         /// 初始化一个新的<see cref="EfDbContext"/>实例
         /// </summary>
-        protected EfDbContext()
-        {
-            
-        }
-
-        /// <summary>
-        /// 初始化一个新的<see cref="EfDbContext"/>实例
-        /// </summary>
         protected EfDbContext(string nameOrConnectionString)
             : base(nameOrConnectionString)
         {
-            
+            Initialize();
         }
 
         /// <summary>
@@ -59,7 +51,7 @@ namespace DotPlatform.EntityFramework
         protected EfDbContext(DbConnection existingConnection, bool contextOwnsConnection)
             : base(existingConnection, contextOwnsConnection)
         {
-            
+            Initialize();
         }
 
         #endregion
@@ -96,7 +88,7 @@ namespace DotPlatform.EntityFramework
             base.OnModelCreating(modelBuilder);
 
             // Todo: Fluent API Entity
-            // Todo: Understand the filter
+            // Todo: Understandard the filter
             modelBuilder.Filter(EntityDataFilters.SoftDelete, (ISoftDelete d) => d.IsDeleted, false);
             modelBuilder.Filter(EntityDataFilters.MustHaveTenant, (IMustHaveTenant t, Guid tenantId) => t.TenantId == tenantId, Guid.Empty);
             modelBuilder.Filter(EntityDataFilters.MayHaveTenant, (IMayHaveTenant t, Guid? tenantId) => t.TenantId == tenantId, Guid.Empty);
@@ -297,12 +289,12 @@ namespace DotPlatform.EntityFramework
 
         #endregion
 
-        #region IInitializer Members
+        #region IInitializer
 
         /// <summary>
         /// 对象实例化后自动调用该初始化方法
         /// </summary>
-        public virtual void Initialize()
+        protected virtual void Initialize()
         {
             this.Database.Initialize(false);
             this.SetFilterScopedParameterValue(EntityDataFilters.MustHaveTenant, EntityDataFilters.Parameters.TenantId, OwnerSession.TenantId ?? Guid.Empty);

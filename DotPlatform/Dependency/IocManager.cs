@@ -1,5 +1,5 @@
-﻿using Autofac;
-using System;
+﻿using System;
+using Autofac;
 using DotPlatform.Dependency.Extensions;
 
 namespace DotPlatform.Dependency

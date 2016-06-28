@@ -1,4 +1,5 @@
 ﻿using Autofac.Builder;
+using System;
 
 namespace DotPlatform.Dependency.Extensions
 {
@@ -24,5 +25,57 @@ namespace DotPlatform.Dependency.Extensions
                 registration.InstancePerDependency();
         }
 
+        /// <summary>
+        /// IOC 容器注册器。若已注册，不会再重复注册.
+        /// </summary>
+        /// <param name="registrar">IOC 容器注册器</param>
+        /// <param name="type">要注册的类型</param>
+        /// <param name="Impl">要注册的类型的实例</param>
+        /// <param name="lifeStyle">生命周期</param>
+        public static void RegisterIfNot(this IIocRegistrar registrar, Type type, Type Impl, IocLifeStyle lifeStyle = IocLifeStyle.Singleton)
+        {
+            if (!registrar.IsRegistered(type))
+                registrar.Register(type, Impl, lifeStyle);
+        }
+
+        /// <summary>
+        /// IOC 容器注册器。若已注册，不会再重复注册.
+        /// </summary>
+        /// <param name="registrar">IOC 容器注册器</param>
+        /// <param name="type">要注册的类型</param>
+        /// <param name="lifeStyle">生命周期</param>
+        public static void RegisterIfNot(this IIocRegistrar registrar, Type type, IocLifeStyle lifeStyle = IocLifeStyle.Singleton)
+        {
+            if (!registrar.IsRegistered(type))
+                registrar.Register(type, lifeStyle);
+        }
+
+        /// <summary>
+        /// IOC 容器注册器。若已注册，不会再重复注册.
+        /// </summary>
+        /// <typeparam name="TType">要注册的类型</typeparam>
+        /// <typeparam name="TImpl">要注册的类型的实例</typeparam>
+        /// <param name="registrar">IOC 容器注册器</param>
+        /// <param name="lifeStyle">生命周期</param>
+        public static void Register<TType, TImpl>(this IIocRegistrar registrar, IocLifeStyle lifeStyle = IocLifeStyle.Singleton)
+         where TType : class
+         where TImpl : class, TType
+        {
+            if (!registrar.IsRegistered<TType>())
+                registrar.Register<TType, TImpl>(lifeStyle);
+        }
+
+        /// <summary>
+        /// IOC 容器注册器。若已注册，不会再重复注册.
+        /// </summary>
+        /// <typeparam name="T">要注册的类型</typeparam>
+        /// <param name="registrar">IOC 容器注册器</param>
+        /// <param name="lifeStyle">生命周期</param>
+        public static void RegisterIfNot<T>(this IIocRegistrar registrar, IocLifeStyle lifeStyle)
+            where T : class
+        {
+            if (!registrar.IsRegistered<T>())
+                registrar.Register<T>(lifeStyle);
+        }
     }
 }
