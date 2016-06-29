@@ -113,6 +113,22 @@ namespace DotPlatform.Domain.Repositories
         Task<TAggregateRoot> SingleAsync(ISpecification<TAggregateRoot> specification);
 
         /// <summary>
+        /// 获取唯一一个满足筛选条件的聚合根。
+        /// 若没有找到或找到多个聚合根，则引发异常
+        /// </summary>
+        /// <param name="id">聚合 Id</param>
+        /// <returns>TAggregateRoot</returns>
+        TAggregateRoot FirstOrDefault(TKey id);
+
+        /// <summary>
+        /// 获取唯一一个满足筛选条件的聚合根。
+        /// 若没有找到或找到多个聚合根，则引发异常
+        /// </summary>
+        /// <param name="id">聚合 Id</param>
+        /// <returns>TAggregateRoot</returns>
+        Task<TAggregateRoot> FirstOrDefaultAsync(TKey id);
+
+        /// <summary>
         /// 获取满足筛选条件的第一个聚合根，若没找到，则返回聚合根的默认值
         /// </summary>
         /// <param name="predicate">筛选条件</param>
