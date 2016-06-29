@@ -95,6 +95,16 @@ namespace DotPlatform.Domain.Repositories
             return await Task.FromResult(this.Single(specification.GetExpression()));
         }
 
+        public virtual TAggregateRoot FirstOrDefault(TKey id)
+        {
+            return this.GetAll().FirstOrDefault(CreateEqualityExpressionForId(id));
+        }
+
+        public virtual async Task<TAggregateRoot> FirstOrDefaultAsync(TKey id)
+        {
+            return await Task.FromResult(this.FirstOrDefault(id));
+        }
+
         public virtual TAggregateRoot FirstOrDefault(Expression<Func<TAggregateRoot, bool>> predicate)
         {
             return this.GetAll().FirstOrDefault(predicate);

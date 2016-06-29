@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DotPlatform.Web.SignalR</RootNamespace>
     <AssemblyName>DotPlatform.Web.SignalR</AssemblyName>
-    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -67,6 +68,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DotPlatform.Web\DotPlatform.Web.csproj">
+      <Project>{a52150d2-3b42-4a48-ae98-ec4e0f8e2531}</Project>
+      <Name>DotPlatform.Web</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DotPlatform\DotPlatform.csproj">
       <Project>{4964d0d8-492a-422a-ad2d-3eafae881c1a}</Project>
       <Name>DotPlatform</Name>

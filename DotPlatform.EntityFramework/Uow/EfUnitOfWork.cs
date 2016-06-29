@@ -59,6 +59,24 @@ namespace DotPlatform.EntityFramework.Uow
             }
         }
 
+        /// <summary>
+        /// 获取 DB 上下文，如不存在则创建
+        /// </summary>
+        /// <typeparam name="TDbContext">DB 上下文类型</typeparam>
+        /// <returns></returns>
+        public virtual TDbContext GetOrCreateDbContext<TDbContext>()
+            where TDbContext : DbContext
+        {
+            DbContext dbContext;
+            if (!_activeDbContexts.TryGetValue(typeof(TDbContext), out dbContext))
+            {
+                dbContext = _iocResolver.Resolve<TDbContext>();
+                _activeDbContexts[typeof(TDbContext)] = dbContext;
+            }
+
+            return (TDbContext)dbContext;
+        }
+
         #endregion
 
         #region Protected Methods
