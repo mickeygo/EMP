@@ -9,14 +9,14 @@ using System.Threading.Tasks;
 using DotPlatform.Domain;
 using DotPlatform.Domain.Entities;
 using DotPlatform.Domain.Entities.Auditing;
-using DotPlatform.Timing;
 using EntityFramework.DynamicFilters;
-using DotPlatform.Generators;
+using DotPlatform.Domain.Entities.Extensions;
 
 namespace DotPlatform.EntityFramework
 {
     /// <summary>
-    /// 基于 Microsoft EntityFramework 的 <see cref="DbContext"/> 的基类
+    /// 基于 Microsoft EntityFramework 的 <see cref="DbContext"/> 的基类。
+    /// 对<see cref="DbContext"/>进行了扩展，派生类用于<see cref="EfRepository"/>仓储。
     /// </summary>
     public abstract class EfDbContext : DbContext
     {
@@ -25,14 +25,9 @@ namespace DotPlatform.EntityFramework
         /// <summary>
         /// 获取或设置当前会话信息
         /// </summary>
-        public IOwnerSession OwnerSession { get; set; }
+        public IOwnerSession OwnerSession { get; protected set; }
 
-        /// <summary>
-        /// 获取或设置 Guid 生成器
-        /// </summary>
-        public IGuidGenerator GuidGenerator { get; set; }
-
-        #endregion
+         #endregion
 
         #region Ctor
 
@@ -122,13 +117,7 @@ namespace DotPlatform.EntityFramework
         protected virtual void CheckOrSetEntityKeyIfNull(DbEntityEntry entry)
         {
             if (entry.Entity is IEntity)
-            {
-                var entity = entry.Entity as IEntity;
-                if (entity.IsTransient())
-                {
-                    entity.Id = GuidGenerator.Create();
-                }
-            }
+                ((IEntity)entry.Entity).CheckOrSetEntityKeyIfNull();
         }
 
         /// <summary>
@@ -137,14 +126,10 @@ namespace DotPlatform.EntityFramework
         protected virtual void SetCreationAuditProperties(DbEntityEntry entry)
         {
             if (entry.Entity is IHasCreationTime)
-            {
-                entry.Cast<IHasCreationTime>().Entity.CreationTime = Clock.System;
-            }
+                entry.Cast<IHasCreationTime>().Entity.SetCreationTimeAuditProperty();
 
-            if (entry.Entity is ICreationAudited && this.OwnerSession.UserId.HasValue)
-            {
-                entry.Cast<ICreationAudited>().Entity.CreatorUserId = this.OwnerSession.UserId.Value;
-            }
+            if (entry.Entity is ICreationAudited)
+                entry.Cast<ICreationAudited>().Entity.SeCreationAuditProperty(this.OwnerSession);
         }
 
         /// <summary>
@@ -153,14 +138,10 @@ namespace DotPlatform.EntityFramework
         protected virtual void SetModificationAuditProperties(DbEntityEntry entry)
         {
             if (entry.Entity is IHasModificationTime)
-            {
-                entry.Cast<IHasModificationTime>().Entity.LastModificationTime = Clock.System;
-            }
+                entry.Cast<IHasModificationTime>().Entity.SetModificationTimeAuditProperty();
 
-            if (entry.Entity is IModificationAudited && this.OwnerSession.UserId.HasValue)
-            {
-                entry.Cast<IModificationAudited>().Entity.LastModifierUserId = this.OwnerSession.UserId.Value;
-            }
+            if (entry.Entity is IModificationAudited)
+                entry.Cast<IModificationAudited>().Entity.SetModificationAuditProperty(this.OwnerSession);
         }
 
         /// <summary>
@@ -169,14 +150,10 @@ namespace DotPlatform.EntityFramework
         protected virtual void SetDeletionAuditProperties(DbEntityEntry entry)
         {
             if (entry.Entity is IHasDeletionTime)
-            {
-                entry.Cast<IHasDeletionTime>().Entity.DeletionTime = Clock.System;
-            }
+                entry.Cast<IHasDeletionTime>().Entity.SetDeletionTimeAuditProperty();
 
-            if (entry.Entity is IDeletionAudited && this.OwnerSession.UserId.HasValue)
-            {
-                entry.Cast<IDeletionAudited>().Entity.DeleterUserId = this.OwnerSession.UserId.Value;
-            }
+            if (entry.Entity is IDeletionAudited)
+                entry.Cast<IDeletionAudited>().Entity.SetDeletionAuditProperty(this.OwnerSession);
         }
 
         /// <summary>
@@ -185,14 +162,11 @@ namespace DotPlatform.EntityFramework
         protected virtual void HandleSoftDelete(DbEntityEntry entry)
         {
             if (!(entry.Entity is ISoftDelete))
-            {
                 return;
-            }
 
             var softEntity = entry.Cast<ISoftDelete>();
-
             softEntity.State = EntityState.Unchanged;
-            softEntity.Entity.IsDeleted = true;
+            softEntity.Entity.SetDeleted();
 
             this.SetDeletionAuditProperties(entry);
         }
@@ -238,9 +212,7 @@ namespace DotPlatform.EntityFramework
         {
             // Filter Disabled
             if (!this.IsFilterEnabled(EntityDataFilters.MayHaveTenant))
-            {
                 return;
-            }
 
             // Filter Enabled
             var currentTenantId = (Guid?) this.GetFilterParameterValue(EntityDataFilters.MayHaveTenant, EntityDataFilters.Parameters.TenantId);
@@ -289,7 +261,7 @@ namespace DotPlatform.EntityFramework
 
         #endregion
 
-        #region IInitializer
+        #region Initialize
 
         /// <summary>
         /// 对象实例化后自动调用该初始化方法

@@ -3,7 +3,8 @@
 namespace DotPlatform.Modules
 {
     /// <summary>
-    /// 模块依赖
+    /// 模块依赖。
+    /// 应用了此特性的 Module 会被注册到 IOC 容器中
     /// </summary>
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
     public class DependsOnAttribute : Attribute

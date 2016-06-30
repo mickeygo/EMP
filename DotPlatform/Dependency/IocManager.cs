@@ -78,6 +78,16 @@ namespace DotPlatform.Dependency
             this._builder.RegisterType(type).Life(lifeStyle);
         }
 
+        public void RegisterGeneric(Type type, IocLifeStyle lifeStyle = IocLifeStyle.Singleton)
+        {
+            this._builder.RegisterGeneric(type).LifeGeneric(lifeStyle);
+        }
+
+        public void RegisterGeneric(Type type, Type Impl, IocLifeStyle lifeStyle = IocLifeStyle.Singleton)
+        {
+            this._builder.RegisterGeneric(Impl).As(type).LifeGeneric(lifeStyle);
+        }
+
         #endregion
 
         #region IIocResolver Members

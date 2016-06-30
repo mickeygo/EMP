@@ -47,6 +47,20 @@ namespace DotPlatform.Dependency
         void Register(Type type, IocLifeStyle lifeStyle = IocLifeStyle.Singleton);
 
         /// <summary>
+        /// IOC 容器注册, 泛型类型
+        /// </summary>
+        /// <param name="type">要注册的类型</param>
+        /// <param name="lifeStyle">对象生命周期</param>
+        void RegisterGeneric(Type type, IocLifeStyle lifeStyle = IocLifeStyle.Singleton);
+
+        /// <summary>
+        /// IOC 容器注册， 泛型类型
+        /// </summary>
+        /// <param name="type">要注册的类型</param>
+        /// <param name="lifeStyle">对象生命周期</param>
+        void RegisterGeneric(Type type, Type Impl, IocLifeStyle lifeStyle = IocLifeStyle.Singleton);
+
+        /// <summary>
         /// 获取一个<see cref="System.Boolean"/>值，表示类型<see cref="T"/>是否已在 IOC 容器中注册
         /// </summary>
         /// <typeparam name="T">检查的类型</typeparam>

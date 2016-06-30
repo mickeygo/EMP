@@ -54,9 +54,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EfDbContext.cs" />
+    <Compile Include="EntityFrameworkModule.cs" />
     <Compile Include="IDbContextProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\EfRepository.cs" />
+    <Compile Include="SimpleDbContextProvider.cs" />
     <Compile Include="Uow\EfUnitOfWork.cs" />
     <Compile Include="Uow\UnitOfWorkDbContextProvider.cs" />
   </ItemGroup>

@@ -26,6 +26,23 @@ namespace DotPlatform.Dependency.Extensions
         }
 
         /// <summary>
+        /// 指定泛型实例的在容器中的生命周期
+        /// </summary>
+        /// <param name="registration"><c>Autofac.Builder.IRegistrationBuilder</c></param>
+        /// <param name="lifeStyle">注册的实例的生命周期， Singleton 表示单例模式</param>
+        public static void LifeGeneric<TLimit, TScanningActivatorData, TRegistrationStyle>(
+          this IRegistrationBuilder<TLimit, TScanningActivatorData, TRegistrationStyle> registration,
+          IocLifeStyle lifeStyle)
+          where TScanningActivatorData : ReflectionActivatorData
+        {
+            if (lifeStyle == IocLifeStyle.Singleton)
+                registration.SingleInstance();
+
+            if (lifeStyle == IocLifeStyle.Transient)
+                registration.InstancePerDependency();
+        }
+
+        /// <summary>
         /// IOC 容器注册器。若已注册，不会再重复注册.
         /// </summary>
         /// <param name="registrar">IOC 容器注册器</param>
@@ -57,7 +74,7 @@ namespace DotPlatform.Dependency.Extensions
         /// <typeparam name="TImpl">要注册的类型的实例</typeparam>
         /// <param name="registrar">IOC 容器注册器</param>
         /// <param name="lifeStyle">生命周期</param>
-        public static void Register<TType, TImpl>(this IIocRegistrar registrar, IocLifeStyle lifeStyle = IocLifeStyle.Singleton)
+        public static void RegisterIfNot<TType, TImpl>(this IIocRegistrar registrar, IocLifeStyle lifeStyle = IocLifeStyle.Singleton)
          where TType : class
          where TImpl : class, TType
         {

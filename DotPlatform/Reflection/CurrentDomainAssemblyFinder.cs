@@ -8,7 +8,7 @@ namespace DotPlatform.Reflection
     /// <summary>
     /// 当前应用域中所有的程序集
     /// </summary>
-    public class CurrentDomainAssemblyFinder : IAssemblyFinder
+    internal class CurrentDomainAssemblyFinder : IAssemblyFinder
     {
         private static readonly CurrentDomainAssemblyFinder SingletonInstance = new CurrentDomainAssemblyFinder();
 

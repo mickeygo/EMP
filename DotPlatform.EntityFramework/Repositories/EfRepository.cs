@@ -1,19 +1,20 @@
 ﻿using System.Data.Entity;
 using System.Linq;
-using DotPlatform.Domain.Entities;
-using DotPlatform.Domain.Repositories;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using DotPlatform.Specifications;
 using System;
 using System.Linq.Expressions;
+using DotPlatform.Domain.Entities;
+using DotPlatform.Domain.Repositories;
+using DotPlatform.Specifications;
 
 namespace DotPlatform.EntityFramework.Repositories
 {
     /// <summary>
-    /// 基于 Microsoft EntityFramework 的仓储
+    /// 基于 Microsoft EntityFramework 的仓储。
+    /// 用于对聚合根对象进行增删改查。
     /// </summary>
-    /// <typeparam name="TDbContext">数据上下文</typeparam>
+    /// <typeparam name="TDbContext">基于<see cref="DbContext"/>的数据上下文</typeparam>
     /// <typeparam name="TAggregateRoot">聚合根类型，参见<see cref="IAggregateRoot"/></typeparam>
     /// <typeparam name="TKey">主键类型</typeparam>
     public class EfRepository<TDbContext, TAggregateRoot, TKey> : RepositoryBase<TAggregateRoot, TKey>
@@ -22,12 +23,18 @@ namespace DotPlatform.EntityFramework.Repositories
     {
         private readonly IDbContextProvider<TDbContext> _dbContextProvider;
 
+        /// <summary>
+        /// 获取上下文对象
+        /// </summary>
         public virtual TDbContext Context
         {
             get { return _dbContextProvider.DbContext; }
         }
 
-        public virtual DbSet<TAggregateRoot> AggregateRootSet
+        /// <summary>
+        /// 获取聚合根上下文对象
+        /// </summary>
+        public virtual DbSet<TAggregateRoot> AggregateRootContext
         {
             get { return Context.Set<TAggregateRoot>(); }
         }
@@ -45,42 +52,42 @@ namespace DotPlatform.EntityFramework.Repositories
 
         public override IQueryable<TAggregateRoot> GetAll()
         {
-            return AggregateRootSet;
+            return AggregateRootContext;
         }
 
         public override async Task<List<TAggregateRoot>> GetAllListAsync()
         {
-            return await AggregateRootSet.ToListAsync();
+            return await AggregateRootContext.ToListAsync();
         }
 
         public override async Task<TAggregateRoot> SingleAsync(Expression<Func<TAggregateRoot, bool>> predicate)
         {
-            return await AggregateRootSet.SingleAsync(predicate);
+            return await AggregateRootContext.SingleAsync(predicate);
         }
 
         public override async Task<TAggregateRoot> SingleAsync(ISpecification<TAggregateRoot> specification)
         {
-            return await AggregateRootSet.SingleAsync(specification.GetExpression());
+            return await AggregateRootContext.SingleAsync(specification.GetExpression());
         }
 
         public override async Task<TAggregateRoot> FirstOrDefaultAsync(TKey id)
         {
-            return await AggregateRootSet.FirstOrDefaultAsync(CreateEqualityExpressionForId(id));
+            return await AggregateRootContext.FirstOrDefaultAsync(CreateEqualityExpressionForId(id));
         }
 
         public override async Task<TAggregateRoot> FirstOrDefaultAsync(Expression<Func<TAggregateRoot, bool>> predicate)
         {
-            return await AggregateRootSet.FirstOrDefaultAsync(predicate);
+            return await AggregateRootContext.FirstOrDefaultAsync(predicate);
         }
 
         public override async Task<TAggregateRoot> FirstOrDefaultAsync(ISpecification<TAggregateRoot> specification)
         {
-            return await AggregateRootSet.FirstOrDefaultAsync(specification.GetExpression());
+            return await AggregateRootContext.FirstOrDefaultAsync(specification.GetExpression());
         }
 
         public override TAggregateRoot Add(TAggregateRoot aggregateRoot)
         {
-            return AggregateRootSet.Add(aggregateRoot);
+            return AggregateRootContext.Add(aggregateRoot);
         }
 
         public override TAggregateRoot Update(TAggregateRoot aggregateRoot)
@@ -92,7 +99,7 @@ namespace DotPlatform.EntityFramework.Repositories
 
         public override void Delete(TKey id)
         {
-            var aggregateRoot = AggregateRootSet.Local.FirstOrDefault(agg => EqualityComparer<TKey>.Default.Equals(agg.Id, id));
+            var aggregateRoot = AggregateRootContext.Local.FirstOrDefault(agg => EqualityComparer<TKey>.Default.Equals(agg.Id, id));
             if (aggregateRoot == null)
             {
                 aggregateRoot = this.FirstOrDefault(id);
@@ -114,23 +121,23 @@ namespace DotPlatform.EntityFramework.Repositories
             }
             else
             {
-                AggregateRootSet.Remove(aggregateRoot);
+                AggregateRootContext.Remove(aggregateRoot);
             }
         }
 
         public override async Task<int> CountAsync()
         {
-            return await this.AggregateRootSet.CountAsync();
+            return await this.AggregateRootContext.CountAsync();
         }
 
         public override async Task<int> CountAsync(Expression<Func<TAggregateRoot, bool>> predicate)
         {
-            return await this.AggregateRootSet.CountAsync(predicate);
+            return await this.AggregateRootContext.CountAsync(predicate);
         }
 
         public override async Task<int> CountAsync(ISpecification<TAggregateRoot> specification)
         {
-            return await this.AggregateRootSet.CountAsync(specification.GetExpression());
+            return await this.AggregateRootContext.CountAsync(specification.GetExpression());
         }
 
         #endregion
@@ -142,28 +149,12 @@ namespace DotPlatform.EntityFramework.Repositories
         /// </summary>
         protected virtual void AttachIfNot(TAggregateRoot aggregateRoot)
         {
-            if (!AggregateRootSet.Local.Contains(aggregateRoot))
+            if (!AggregateRootContext.Local.Contains(aggregateRoot))
             {
-                AggregateRootSet.Attach(aggregateRoot);
+                AggregateRootContext.Attach(aggregateRoot);
             }
         }
 
         #endregion
-    }
-
-    /// <summary>
-    /// 基于 Microsoft EntityFramework 的仓储
-    /// </summary>
-    /// <typeparam name="TDbContext">数据上下文</typeparam>
-    /// <typeparam name="TAggregateRoot">聚合根类型，参见<see cref="IAggregateRoot"/></typeparam>
-    public class EfRepository<TDbContext, TAggregateRoot> : EfRepository<TDbContext, TAggregateRoot, Guid>
-        where TAggregateRoot : class, IAggregateRoot<Guid>
-        where TDbContext : DbContext
-    {
-        public EfRepository(IDbContextProvider<TDbContext> dbContextProvider) 
-            : base(dbContextProvider)
-        {
-
-        }
     }
 }

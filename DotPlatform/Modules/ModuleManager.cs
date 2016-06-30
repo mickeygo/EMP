@@ -10,9 +10,9 @@ namespace DotPlatform.Modules
         private readonly IIocManager _iocManager;
         private readonly IModuleFinder _moduleFinder;
 
-        public ModuleManager(IIocManager iocManager, IModuleFinder moduleFinder)
+        public ModuleManager(IModuleFinder moduleFinder)
         {
-            _iocManager = iocManager;
+            _iocManager = IocManager.Instance;
             _moduleFinder = moduleFinder;
         }
 

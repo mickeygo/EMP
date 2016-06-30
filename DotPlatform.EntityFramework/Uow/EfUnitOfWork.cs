@@ -10,7 +10,8 @@ using DotPlatform.Dependency;
 namespace DotPlatform.EntityFramework.Uow
 {
     /// <summary>
-    /// 表示用于 Microsoft EntityFramework 的工作单元
+    /// 表示用于 Microsoft EntityFramework 的工作单元。
+    /// 用于将一个或多个<see cref="DbContext"/>以事务方式提交.
     /// </summary>
     public class EfUnitOfWork : UnitOfWorkBase
     {
@@ -27,10 +28,10 @@ namespace DotPlatform.EntityFramework.Uow
         /// <summary>
         /// 初始化一个新的<c>EfUnitOfWork</c>实例
         /// </summary>
-        public EfUnitOfWork(IIocResolver iocResolver, IUnitOfWorkDefaultOptions options) 
+        public EfUnitOfWork(IUnitOfWorkDefaultOptions options) 
             : base(options)
         {
-            this._iocResolver = iocResolver;
+            this._iocResolver = IocManager.Instance;
         }
        
         #endregion
@@ -57,24 +58,6 @@ namespace DotPlatform.EntityFramework.Uow
             {
                 await context.SaveChangesAsync();
             }
-        }
-
-        /// <summary>
-        /// 获取 DB 上下文，如不存在则创建
-        /// </summary>
-        /// <typeparam name="TDbContext">DB 上下文类型</typeparam>
-        /// <returns></returns>
-        public virtual TDbContext GetOrCreateDbContext<TDbContext>()
-            where TDbContext : DbContext
-        {
-            DbContext dbContext;
-            if (!_activeDbContexts.TryGetValue(typeof(TDbContext), out dbContext))
-            {
-                dbContext = _iocResolver.Resolve<TDbContext>();
-                _activeDbContexts[typeof(TDbContext)] = dbContext;
-            }
-
-            return (TDbContext)dbContext;
         }
 
         #endregion
@@ -143,5 +126,23 @@ namespace DotPlatform.EntityFramework.Uow
         }
 
         #endregion
+
+        /// <summary>
+        /// 获取 DB 上下文，如不存在则创建
+        /// </summary>
+        /// <typeparam name="TDbContext">基于<see cref="DbContext"/>的上下文类型</typeparam>
+        /// <returns>上下文对象</returns>
+        public virtual TDbContext GetOrCreateDbContext<TDbContext>()
+            where TDbContext : DbContext
+        {
+            DbContext dbContext;
+            if (!_activeDbContexts.TryGetValue(typeof(TDbContext), out dbContext))
+            {
+                dbContext = _iocResolver.Resolve<TDbContext>();
+                _activeDbContexts[typeof(TDbContext)] = dbContext;
+            }
+
+            return (TDbContext)dbContext;
+        }
     }
 }

@@ -68,7 +68,8 @@ namespace DotPlatform.Modules
             {
                 var dependsOnAttributes = moduleType.GetCustomAttributes(typeof(DependsOnAttribute), true).Cast<DependsOnAttribute>();
 
-                return dependsOnAttributes.SelectMany(s => s.DependedModuleTypes).ToList();
+                return dependsOnAttributes.Where(s => s.DependedModuleTypes != null)
+                    .SelectMany(s => s.DependedModuleTypes).ToList();
             }
 
             return new List<Type>();
