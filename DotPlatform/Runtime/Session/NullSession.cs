@@ -25,5 +25,7 @@ namespace DotPlatform.Runtime.Session
         public Guid? TenantId { get; private set; }
 
         public Guid? UserId { get; private set; }
+
+        public int? TimeDifference { get; private set; }
     }
 }

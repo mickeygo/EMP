@@ -13,7 +13,7 @@ namespace DotPlatform.Reflection
         /// </summary>
         /// <param name="predicate">类型筛选</param>
         /// <returns></returns>
-        IEnumerable<Type> Find(Predicate<Type> predicate);
+        IEnumerable<Type> Find(Func<Type, bool> predicate);
 
         /// <summary>
         /// 查找所有的类

@@ -47,6 +47,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WMS.ApplicationService", "W
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WMS.Domain.Repository", "WMS.Domain.Repository\WMS.Domain.Repository.csproj", "{F5889FF7-C6DB-438E-A007-ABE3792187EC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotPlatform.MongoDB", "DotPlatform.MongoDB\DotPlatform.MongoDB.csproj", "{63B69B12-786E-49BA-96E8-093C6227CAAD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -115,6 +117,10 @@ Global
 		{F5889FF7-C6DB-438E-A007-ABE3792187EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F5889FF7-C6DB-438E-A007-ABE3792187EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F5889FF7-C6DB-438E-A007-ABE3792187EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{63B69B12-786E-49BA-96E8-093C6227CAAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63B69B12-786E-49BA-96E8-093C6227CAAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63B69B12-786E-49BA-96E8-093C6227CAAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63B69B12-786E-49BA-96E8-093C6227CAAD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -136,5 +142,6 @@ Global
 		{1B724B11-6108-4EE2-84B8-ED934C1C2D20} = {3C89E624-78BC-4A88-A6C7-FEF273ED8637}
 		{AC035F6C-5190-4B28-90AB-D003EDD065B7} = {3C89E624-78BC-4A88-A6C7-FEF273ED8637}
 		{F5889FF7-C6DB-438E-A007-ABE3792187EC} = {3C89E624-78BC-4A88-A6C7-FEF273ED8637}
+		{63B69B12-786E-49BA-96E8-093C6227CAAD} = {8962E6C9-9800-420B-9F0D-AB8503228364}
 	EndGlobalSection
 EndGlobal

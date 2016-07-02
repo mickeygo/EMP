@@ -66,10 +66,17 @@
     <Compile Include="Commands\ICommand.cs" />
     <Compile Include="Commands\ICommandBus.cs" />
     <Compile Include="Commands\ICommandHandler.cs" />
+    <Compile Include="Configuration\Startup\Impl\AppStartupConfiguration.cs" />
+    <Compile Include="Configuration\Startup\IStartupConfiguration.cs" />
+    <Compile Include="Configuration\Startup\Impl\ModuleConfiguration.cs" />
+    <Compile Include="Configuration\Startup\Impl\ReflectionConfiguration.cs" />
+    <Compile Include="Dependency\IIocBuilder.cs" />
     <Compile Include="Dependency\Extensions\IocRegistrarExtension.cs" />
     <Compile Include="Dependency\Extensions\IocResolverExtension.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Dependency\Installers\KernelComponentInstaller.cs" />
+    <Compile Include="Dependency\Installers\IComponentInstaller.cs" />
     <Compile Include="Dependency\IocLifeStyle.cs" />
     <Compile Include="Dependency\IocManager.cs">
       <SubType>Code</SubType>
@@ -127,6 +134,7 @@
     <Compile Include="Events\IEventAggregator.cs" />
     <Compile Include="Events\IEventBus.cs" />
     <Compile Include="Events\IEventHandler.cs" />
+    <Compile Include="Extensions\NullableExtension.cs" />
     <Compile Include="Extensions\StringExtension.cs" />
     <Compile Include="Generators\IGuidGenerator.cs" />
     <Compile Include="Generators\RegularGuidGenerator.cs" />
@@ -141,6 +149,7 @@
     <Compile Include="Reflection\CurrentDomainAssemblyFinder.cs" />
     <Compile Include="Reflection\IAssemblyFinder.cs" />
     <Compile Include="Reflection\ITypeFinder.cs" />
+    <Compile Include="Reflection\TypeFinder.cs" />
     <Compile Include="Runtime\Security\OwnerClaimTypes.cs" />
     <Compile Include="Runtime\Session\ClaimsSession.cs" />
     <Compile Include="Runtime\Session\IOwnerSession.cs" />
@@ -173,9 +182,9 @@
     <Folder Include="Authorization\" />
     <Folder Include="BackgroundJobs\" />
     <Folder Include="Configuration\Fluent\" />
-    <Folder Include="Configuration\Startup\" />
     <Folder Include="Domain\Snapshots\" />
     <Folder Include="IO\" />
+    <Folder Include="Localization\" />
     <Folder Include="MultiTenancy\" />
     <Folder Include="Net\Mail\" />
     <Folder Include="RealTime\" />

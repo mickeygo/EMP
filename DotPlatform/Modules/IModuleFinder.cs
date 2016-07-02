@@ -9,7 +9,7 @@ namespace DotPlatform.Modules
     public interface IModuleFinder
     {
         /// <summary>
-        /// 查找所有的关于 DIModule 的类型集合
+        /// 查找所有的依赖模块
         /// </summary>
         /// <returns></returns>
         ICollection<Type> FindAll();

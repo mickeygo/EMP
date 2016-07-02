@@ -7,8 +7,6 @@ namespace DotPlatform.Serialization
     /// </summary>
     public static class JsonSerializationHelper
     {
-        private static JsonSerializerSettings options;
-
         /// <summary>
         /// 将对象序列化为 Json 字符串
         /// </summary>

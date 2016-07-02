@@ -1,4 +1,6 @@
 ﻿using System;
+using DotPlatform.Runtime.Session;
+using DotPlatform.Extensions;
 
 namespace DotPlatform.Timing
 {
@@ -9,12 +11,22 @@ namespace DotPlatform.Timing
     {
         public DateTime Local
         {
-            get { throw new NotImplementedException(); }
+            get { return this.GetLocalDateTime(); }
         }
 
         public DateTime System
         {
             get { return DateTime.Now; }
         }
+
+        #region Private Methods
+
+        private DateTime GetLocalDateTime()
+        {
+            var timeDiff = ClaimsSession.Instance.TimeDifference.ToStruct();
+            return DateTime.Now.AddHours(timeDiff);
+        }
+
+        #endregion
     }
 }
