@@ -1,5 +1,6 @@
 ﻿using DotPlatform.Configuration.Startup;
 using DotPlatform.Configuration.Startup.Impl;
+using DotPlatform.Localization;
 using DotPlatform.Modules;
 using DotPlatform.Reflection;
 using DotPlatform.Timing;
@@ -29,11 +30,21 @@ namespace DotPlatform.Dependency.Installers
 
         public void Install()
         {
+            // Reflection
             _iocManager.Register<ITypeFinder, TypeFinder>();
+
+            // Module
             _iocManager.Register<IModuleFinder, DefaultModuleFinder>();
             _iocManager.Register<IModuleManager, ModuleManager>();
+
+            // Timing
             _iocManager.Register<IClockProvider, LocalClockProvider>();
 
+            // Localization
+            _iocManager.Register<ILanguageProvider, DefaultLanguageProvider>();
+            _iocManager.Register<ILanguageManager, LanguageManager>();
+
+            // Configuration
             _iocManager.Register<IStartupConfiguration, AppStartupConfiguration>();
 
             // Build

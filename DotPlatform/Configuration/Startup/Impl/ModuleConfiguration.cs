@@ -3,7 +3,7 @@
     /// <summary>
     /// 模块配置信息
     /// </summary>
-    internal class ModuleConfiguration : IStartupConfiguration
+    internal class ModuleConfiguration : IModuleConfiguration
     {
        
     }

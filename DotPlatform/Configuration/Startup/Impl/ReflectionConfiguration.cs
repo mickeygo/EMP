@@ -3,8 +3,9 @@
     /// <summary>
     /// 反射配置类
     /// </summary>
-    internal class ReflectionConfiguration : IStartupConfiguration
+    internal class ReflectionConfiguration : IReflectionConfiguration
+
     {
-       
+
     }
 }

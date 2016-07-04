@@ -1,10 +1,9 @@
 ﻿namespace DotPlatform.Configuration.Startup
 {
     /// <summary>
-    /// 应用程序启动时配置信息
+    /// 基于模块的配置类
     /// </summary>
-    public interface IStartupConfiguration
+    public interface IModuleConfiguration
     {
-
     }
 }

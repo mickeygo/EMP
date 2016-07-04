@@ -1,4 +1,7 @@
-﻿using DotPlatform.Modules;
+﻿using DotPlatform.Auditing;
+using DotPlatform.Dependency;
+using DotPlatform.Modules;
+using DotPlatform.Web.Auditing;
 
 namespace DotPlatform.Web
 {
@@ -7,7 +10,9 @@ namespace DotPlatform.Web
     {
         public override void PreInitialize()
         {
-           
+            IocManager.Register<IAuditInfoProvider, WebAuditInfoProvider>(IocLifeStyle.Transient);
+
+            IocManager.Build();
         }
     }
 }
