@@ -11,6 +11,9 @@ namespace DotPlatform.Reflection
     {
         public IAssemblyFinder AssemblyFinder { get; set; }
 
+        /// <summary>
+        /// 初始化一个新的<see cref="TypeFinder"/>对象
+        /// </summary>
         public TypeFinder()
         {
             AssemblyFinder = CurrentDomainAssemblyFinder.Instance;
