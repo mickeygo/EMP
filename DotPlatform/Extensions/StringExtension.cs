@@ -44,5 +44,25 @@ namespace DotPlatform.Extensions
 
             return defaultValue;
         }
+
+        /// <summary>
+        /// 判断字符串是否是 null 或 Empty
+        /// </summary>
+        /// <param name="str">要判断的字符串</param>
+        /// <returns></returns>
+        public static bool IsNullOrEmpty(this string str)
+        {
+            return string.IsNullOrEmpty(str);
+        }
+
+        /// <summary>
+        /// 判断字符串是否是 null、Empty 或 只包含空白字符
+        /// </summary>
+        /// <param name="str">要判断的字符串</param>
+        /// <returns></returns>
+        public static bool IsNullOrWhiteSpace(this string str)
+        {
+            return string.IsNullOrWhiteSpace(str);
+        }
     }
 }

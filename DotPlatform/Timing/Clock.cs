@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DotPlatform.Dependency;
+using System;
 
 namespace DotPlatform.Timing
 {
@@ -16,7 +17,7 @@ namespace DotPlatform.Timing
 
         static Clock()
         {
-            Provider = new LocalClockProvider();
+            Provider = IocManager.Instance.Resolve<IClockProvider>();
         }
 
         #endregion

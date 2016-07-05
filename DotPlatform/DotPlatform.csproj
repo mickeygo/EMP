@@ -61,15 +61,29 @@
     <Compile Include="Algorithms\Cryptography\CryptoFactory.cs" />
     <Compile Include="Algorithms\Cryptography\DESCrypto.cs" />
     <Compile Include="Algorithms\Cryptography\MD5Crypto.cs" />
+    <Compile Include="Auditing\AuditInfo.cs" />
+    <Compile Include="Auditing\IAuditInfoProvider.cs" />
+    <Compile Include="Auditing\IAuditingStore.cs" />
     <Compile Include="Configuration\IAppInitializer.cs" />
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Commands\ICommand.cs" />
     <Compile Include="Commands\ICommandBus.cs" />
     <Compile Include="Commands\ICommandHandler.cs" />
+    <Compile Include="Configuration\Startup\IAuditingConfiguration.cs" />
+    <Compile Include="Configuration\Startup\IModuleConfiguration.cs" />
+    <Compile Include="Configuration\Startup\Impl\AppStartupConfiguration.cs" />
+    <Compile Include="Configuration\Startup\IMvcAuditingConfiguration.cs" />
+    <Compile Include="Configuration\Startup\IReflectionConfiguration.cs" />
+    <Compile Include="Configuration\Startup\IStartupConfiguration.cs" />
+    <Compile Include="Configuration\Startup\Impl\ModuleConfiguration.cs" />
+    <Compile Include="Configuration\Startup\Impl\ReflectionConfiguration.cs" />
+    <Compile Include="Dependency\IIocBuilder.cs" />
     <Compile Include="Dependency\Extensions\IocRegistrarExtension.cs" />
     <Compile Include="Dependency\Extensions\IocResolverExtension.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Dependency\Installers\KernelComponentInstaller.cs" />
+    <Compile Include="Dependency\Installers\IComponentInstaller.cs" />
     <Compile Include="Dependency\IocLifeStyle.cs" />
     <Compile Include="Dependency\IocManager.cs">
       <SubType>Code</SubType>
@@ -127,10 +141,18 @@
     <Compile Include="Events\IEventAggregator.cs" />
     <Compile Include="Events\IEventBus.cs" />
     <Compile Include="Events\IEventHandler.cs" />
+    <Compile Include="Extensions\CollectionExtension.cs" />
+    <Compile Include="Extensions\NullableExtension.cs" />
     <Compile Include="Extensions\StringExtension.cs" />
     <Compile Include="Generators\IGuidGenerator.cs" />
     <Compile Include="Generators\RegularGuidGenerator.cs" />
     <Compile Include="Generators\SequentialGuidGenerator.cs" />
+    <Compile Include="Localization\DefaultLanguageProvider.cs" />
+    <Compile Include="Localization\ILanguageManager.cs" />
+    <Compile Include="Localization\ILanguageProvider.cs" />
+    <Compile Include="Localization\ILocalizationManager.cs" />
+    <Compile Include="Localization\LanguageInfo.cs" />
+    <Compile Include="Localization\LanguageManager.cs" />
     <Compile Include="Modules\DefaultModuleFinder.cs" />
     <Compile Include="Modules\DependsOnAttribute.cs" />
     <Compile Include="Modules\IModuleFinder.cs" />
@@ -141,6 +163,15 @@
     <Compile Include="Reflection\CurrentDomainAssemblyFinder.cs" />
     <Compile Include="Reflection\IAssemblyFinder.cs" />
     <Compile Include="Reflection\ITypeFinder.cs" />
+    <Compile Include="Reflection\TypeFinder.cs" />
+    <Compile Include="Runtime\Caching\CacheBase.cs" />
+    <Compile Include="Runtime\Caching\CacheManagerBase.cs" />
+    <Compile Include="Runtime\Caching\Configurations\CacheConfiguration.cs" />
+    <Compile Include="Runtime\Caching\Configurations\CacheConfigurator.cs" />
+    <Compile Include="Runtime\Caching\Configurations\ICacheConfiguration.cs" />
+    <Compile Include="Runtime\Caching\Configurations\ICacheConfigurator.cs" />
+    <Compile Include="Runtime\Caching\ICache.cs" />
+    <Compile Include="Runtime\Caching\ICacheManager.cs" />
     <Compile Include="Runtime\Security\OwnerClaimTypes.cs" />
     <Compile Include="Runtime\Session\ClaimsSession.cs" />
     <Compile Include="Runtime\Session\IOwnerSession.cs" />
@@ -173,13 +204,11 @@
     <Folder Include="Authorization\" />
     <Folder Include="BackgroundJobs\" />
     <Folder Include="Configuration\Fluent\" />
-    <Folder Include="Configuration\Startup\" />
     <Folder Include="Domain\Snapshots\" />
     <Folder Include="IO\" />
     <Folder Include="MultiTenancy\" />
     <Folder Include="Net\Mail\" />
     <Folder Include="RealTime\" />
-    <Folder Include="Runtime\Caching\" />
     <Folder Include="Transactions\" />
     <Folder Include="Utils\" />
   </ItemGroup>

@@ -9,9 +9,9 @@ namespace DotPlatform.Dependency
     /// </summary>
     public sealed class IocManager : IIocManager
     {
-        private readonly ContainerBuilder _builder = new ContainerBuilder();
+        private ContainerBuilder _builder;
         private IContainer _container;
-
+        
         /// <summary>
         /// 获取 IOC 容器管理器（单例模式）
         /// </summary>
@@ -21,6 +21,7 @@ namespace DotPlatform.Dependency
 
         private IocManager()
         {
+            _builder = new ContainerBuilder();
         }
 
         static IocManager()
@@ -32,9 +33,21 @@ namespace DotPlatform.Dependency
 
         #region IIocManager Members
 
+        /// <summary>
+        /// 获取 IOC 容器.
+        /// 在调用 Build 方法后可获取容器对象.
+        /// </summary>
         public IContainer IocContainer
         {
-            get { return _container ?? (_container = _builder.Build()); }
+            get
+            {
+                if (this._container == null)
+                {
+                    this.Build();
+                }
+
+                return this._container;
+            }
         }
 
         public bool IsRegistered<T>()
@@ -124,5 +137,27 @@ namespace DotPlatform.Dependency
 
         #endregion
 
+
+        #region IIocBuilder Members
+
+        /// <summary>
+        /// Build 容器。
+        /// 此处设计是为了让 Autofac 容器在 Build 后可继续进行注册。
+        /// </summary>
+        public void Build()
+        {
+            if (this._container == null)
+            {
+                this._container = this._builder.Build();    // // 第一次 Build 构建容器
+            }
+            else
+            {
+                this._builder.Update(this._container);  // Update 更新容器
+            }
+
+            this._builder = new ContainerBuilder();     // 创建新的容器构建器，可再次注册对象
+        }
+
+        #endregion
     }
 }

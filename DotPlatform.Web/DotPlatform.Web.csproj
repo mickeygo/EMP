@@ -101,8 +101,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Auditing\WebAuditInfoProvider.cs" />
+    <Compile Include="Mvc\Controllers\DotPlatformController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utility\WebHelper.cs" />
     <Compile Include="WebAssemblyFinder.cs" />
+    <Compile Include="WebModule.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DotPlatform\DotPlatform.csproj">
@@ -115,7 +119,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Mvc\" />
+    <Folder Include="Mvc\Extensions\" />
     <Folder Include="WebApi\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
