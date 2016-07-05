@@ -17,6 +17,11 @@ namespace DotPlatform.Runtime.Session
         /// 获取当前租户 Id 信息
         /// </summary>
         TKey TenantId { get; }
+
+        /// <summary>
+        /// 获取当前租户的时差
+        /// </summary>
+        int? TimeDifference { get; }
     }
 
     /// <summary>

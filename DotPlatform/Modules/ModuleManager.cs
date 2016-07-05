@@ -1,4 +1,6 @@
-﻿using DotPlatform.Dependency;
+﻿using System;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace DotPlatform.Modules
 {
@@ -7,26 +9,43 @@ namespace DotPlatform.Modules
     /// </summary>
     public class ModuleManager : IModuleManager
     {
-        private readonly IIocManager _iocManager;
         private readonly IModuleFinder _moduleFinder;
+        private List<ModuleBase> _modules;
 
         public ModuleManager(IModuleFinder moduleFinder)
         {
-            _iocManager = IocManager.Instance;
             _moduleFinder = moduleFinder;
         }
 
         public void Initialize()
         {
-            
+            // Load all modules
+            var _modules = LoadAllModules();
+
+            // Execute loaded module PreInitialize, Initialize an PostInitialize function
+            _modules.ForEach(m =>
+            {
+                m.PreInitialize();
+                m.Initialize();
+                m.PostInitialize();
+            });
+        }
+
+        public void Shutdown()
+        {
+            _modules.ForEach(m =>
+            {
+                m.Shutdown();
+            });
         }
 
         #region Private Methods
 
         // 加载所有的模块
-        private void LoadAllModules()
+        private List<ModuleBase> LoadAllModules()
         {
             var moduleTypes = _moduleFinder.FindAll();
+            return moduleTypes.Select(m => Activator.CreateInstance(m)).Cast<ModuleBase>().ToList();
         }
 
         #endregion

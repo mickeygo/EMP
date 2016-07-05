@@ -6,7 +6,7 @@ namespace DotPlatform.Dependency
     /// <summary>
     /// 表示实现此接口的类为 IOC 容器管理类。用于向 IOC 容器中注册对象或从中解析对象
     /// </summary>
-    public interface IIocManager : IIocRegistrar, IIocResolver, IDisposable
+    public interface IIocManager : IIocBuilder, IIocRegistrar, IIocResolver, IDisposable
     {
         /// <summary>
         /// 获取 Autofac 的 IOC 容器

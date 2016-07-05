@@ -9,5 +9,10 @@
         /// 租户
         /// </summary>
         public const string TenantId = "https://github.com/yangganggood/EMP/identity/claims/tenantId";
+
+        /// <summary>
+        /// 时差
+        /// </summary>
+        public const string TimeDifference = "https://github.com/yangganggood/EMP/identity/claims/timeDifference";
     }
 }

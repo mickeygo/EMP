@@ -17,9 +17,13 @@ namespace DotPlatform.Modules
             _typeFinder = typeFinder;
         }
 
+        /// <summary>
+        /// 查找所有的依赖了 <see cref="ModuleBase"/> 的类型
+        /// </summary>
+        /// <returns></returns>
         public ICollection<Type> FindAll()
         {
-            return _typeFinder.Find(ModuleBase.IsDIModule).ToList();
+            return _typeFinder.Find(ModuleBase.IsDependedModule).ToList();
         }
     }
 }
