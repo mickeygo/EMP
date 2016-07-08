@@ -13,7 +13,7 @@ namespace DotPlatform.Domain.Entities
     /// <summary>
     /// 实现此接口的类为聚合对象. 聚合根实体主键为 <see cref="Guid"/>
     /// </summary>
-    public interface IAggregateRoot : IEntity
+    public interface IAggregateRoot : IEntity, IAggregateRoot<Guid>
     {
         
     }

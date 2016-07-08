@@ -1,6 +1,4 @@
-﻿using DotPlatform.Generators;
-
-namespace DotPlatform.Domain.Entities.Extensions
+﻿namespace DotPlatform.Domain.Entities.Extensions
 {
     /// <summary>
     /// <see cref="IEntity"/>实体扩展类
@@ -16,7 +14,10 @@ namespace DotPlatform.Domain.Entities.Extensions
         {
             if (entity.IsTransient())
             {
-                entity.Id = SequentialGuidGenerator.Instance.Create();
+                if (entity is Entity)
+                {
+                    (entity as Entity).GenerateNewId();
+                }
             }
         }
     }

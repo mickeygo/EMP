@@ -9,7 +9,9 @@ namespace DotPlatform.Dependency.Extensions
     public static class IocRegistrarExtension
     {
         /// <summary>
-        /// 指定实例的在容器中的生命周期
+        /// 指定实例的在容器中的生命周期。
+        /// Singleton 表示单例模式，即对某类型每次调用 Resolve() 方法返回的都是同一个实例，
+        /// Transient 表示对某类型每次调用 Resolve() 方法都会返回一个新的实例。
         /// </summary>
         /// <param name="registration"><c>Autofac.Builder.IRegistrationBuilder</c></param>
         /// <param name="lifeStyle">注册的实例的生命周期， Singleton 表示单例模式</param>
@@ -26,7 +28,9 @@ namespace DotPlatform.Dependency.Extensions
         }
 
         /// <summary>
-        /// 指定泛型实例的在容器中的生命周期
+        /// 指定泛型实例的在容器中的生命周期。
+        /// Singleton 表示单例模式，即对某类型每次调用 Resolve() 方法返回的都是同一个实例，
+        /// Transient 表示对某类型每次调用 Resolve() 方法都会返回一个新的实例。
         /// </summary>
         /// <param name="registration"><c>Autofac.Builder.IRegistrationBuilder</c></param>
         /// <param name="lifeStyle">注册的实例的生命周期， Singleton 表示单例模式</param>

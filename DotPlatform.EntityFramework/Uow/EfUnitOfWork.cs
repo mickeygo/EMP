@@ -69,7 +69,7 @@ namespace DotPlatform.EntityFramework.Uow
         /// </summary>
         protected override void BeginUow()
         {
-            if (!this.Options.IsTransactional == false)
+            if (this.Options.IsTransactional == false)
                 return;
 
             var transactionOptions = new TransactionOptions
@@ -95,9 +95,7 @@ namespace DotPlatform.EntityFramework.Uow
         protected override void CompleteUow()
         {
             SaveChanges();
-
-            if (this._currentTransaction != null)
-                this._currentTransaction.Complete();
+            this._currentTransaction?.Complete();
         }
 
         /// <summary>
@@ -106,9 +104,7 @@ namespace DotPlatform.EntityFramework.Uow
         protected override async Task CompleteUowAsync()
         {
             await SaveChangesAsync();
-
-            if (this._currentTransaction != null)
-                this._currentTransaction.Complete();
+            this._currentTransaction?.Complete();
         }
 
         /// <summary>
@@ -121,8 +117,9 @@ namespace DotPlatform.EntityFramework.Uow
                 context.Dispose();
             });
 
-            if (this._currentTransaction != null)
-                this._currentTransaction.Dispose();
+            this._activeDbContexts.Clear(); // 清空存储 DbContext 的集合
+
+            this._currentTransaction?.Dispose();
         }
 
         #endregion

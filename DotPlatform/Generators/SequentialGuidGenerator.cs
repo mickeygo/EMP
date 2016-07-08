@@ -25,6 +25,10 @@ namespace DotPlatform.Generators
             DatabaseType = SequentialGuidDatabaseType.SqlServer;
         }
 
+        /// <summary>
+        /// Create the Guid. default SQL Server Database.
+        /// </summary>
+        /// <returns></returns>
         public Guid Create()
         {
             return Create(DatabaseType);

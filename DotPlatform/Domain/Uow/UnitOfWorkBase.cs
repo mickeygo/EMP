@@ -112,10 +112,7 @@ namespace DotPlatform.Domain.Uow
         /// </summary>
         protected void OnCompleted()
         {
-            if (this.Completed != null)
-            {
-                this.Completed(this, EventArgs.Empty);
-            }
+            this.Completed?.Invoke(this, EventArgs.Empty);
         }
 
         /// <summary>
@@ -124,10 +121,7 @@ namespace DotPlatform.Domain.Uow
         /// <param name="ex">异常信息</param>
         protected void OnFailed(Exception ex)
         {
-            if (this.Failed != null)
-            {
-                this.Failed(this, new UnitOfWorkFailedEventArgs(ex));
-            }
+            this.Failed?.Invoke(this, new UnitOfWorkFailedEventArgs(ex));
         }
 
         /// <summary>
@@ -135,10 +129,7 @@ namespace DotPlatform.Domain.Uow
         /// </summary>
         protected void OnDisposed()
         {
-            if (this.Disposed != null)
-            {
-                this.Disposed(this, EventArgs.Empty);
-            }
+            this.Disposed?.Invoke(this, EventArgs.Empty);
         }
 
         /// <summary>

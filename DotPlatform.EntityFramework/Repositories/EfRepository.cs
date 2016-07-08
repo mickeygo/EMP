@@ -87,7 +87,7 @@ namespace DotPlatform.EntityFramework.Repositories
 
         public override TAggregateRoot Add(TAggregateRoot aggregateRoot)
         {
-            return AggregateRootContext.Add(aggregateRoot);
+            return AggregateRootContext.Add(aggregateRoot); // 等同于将实体设为 EntityState.Added 状态
         }
 
         public override TAggregateRoot Update(TAggregateRoot aggregateRoot)
@@ -151,10 +151,25 @@ namespace DotPlatform.EntityFramework.Repositories
         {
             if (!AggregateRootContext.Local.Contains(aggregateRoot))
             {
-                AggregateRootContext.Attach(aggregateRoot);
+                AggregateRootContext.Attach(aggregateRoot);     // 等同于将实体设为 EntityState.Unchanged 状态
             }
         }
 
         #endregion
+    }
+
+    /// <summary>
+    /// 基于 Microsoft EntityFramework 的仓储。主键类型 为 Guid
+    /// 用于对聚合根对象进行增删改查。
+    /// </summary>
+    /// <typeparam name="TDbContext">基于<see cref="DbContext"/>的数据上下文</typeparam>
+    /// <typeparam name="TAggregateRoot">聚合根类型，参见<see cref="IAggregateRoot"/></typeparam>
+    public class EfRepository<TDbContext, TAggregateRoot> : EfRepository<TDbContext, TAggregateRoot, Guid>
+        where TAggregateRoot : class, IAggregateRoot
+        where TDbContext : DbContext
+    {
+        public EfRepository(IDbContextProvider<TDbContext> dbContextProvider) : base(dbContextProvider)
+        {
+        }
     }
 }

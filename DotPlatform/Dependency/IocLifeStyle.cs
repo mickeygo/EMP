@@ -6,7 +6,7 @@
     public enum IocLifeStyle
     {
         /// <summary>
-        /// 单例模式
+        /// 单例模式，每次解析返回的都是同一个实例，
         /// </summary>
         Singleton,
 
