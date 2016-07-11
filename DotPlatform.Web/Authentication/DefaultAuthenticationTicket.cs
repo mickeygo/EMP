@@ -8,26 +8,18 @@ namespace DotPlatform.Web.Authentication
     /// </summary>
     public class DefaultAuthenticationTicket : IAuthenticationTicket
     {
-        public AuthenticationTicket Ticket { get; private set; }
-
-        public DefaultAuthenticationTicket()
+        public AuthenticationTicket CreateTicket(AuthenticationData authenticationData, bool IsPersistent)
         {
-            Ticket = new AuthenticationTicket(GetClaimsIdentity(), GetAuthenticationProperties());
+            var claimsIdentity = GetClaimsIdentity(authenticationData);
+            var properties = new AuthenticationProperties { IsPersistent = IsPersistent };
+            return new AuthenticationTicket(claimsIdentity, properties);
         }
 
         #region Private Methods
 
-        private AuthenticationProperties GetAuthenticationProperties()
+        private ClaimsIdentity GetClaimsIdentity(AuthenticationData data)
         {
-            return new AuthenticationProperties { };
-        }
-
-        private ClaimsIdentity GetClaimsIdentity()
-        {
-            var claimsIdentity = new ClaimsIdentity();
-
-
-            return claimsIdentity;
+            return AuthenticationHelper.CreateClaimsIdentity(data);
         }
 
         #endregion

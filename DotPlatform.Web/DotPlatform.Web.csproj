@@ -135,6 +135,7 @@
   <ItemGroup>
     <Compile Include="Auditing\WebAuditInfoProvider.cs" />
     <Compile Include="Authentication\AuthenticationData.cs" />
+    <Compile Include="Authentication\AuthenticationHelper.cs" />
     <Compile Include="Authentication\DefaultAuthenticationTicket.cs" />
     <Compile Include="Authentication\IAuthenticationTicket.cs" />
     <Compile Include="Authentication\IWebAuthenticationManager.cs" />

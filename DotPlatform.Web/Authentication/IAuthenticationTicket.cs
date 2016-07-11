@@ -8,8 +8,11 @@ namespace DotPlatform.Web.Authentication
     public interface IAuthenticationTicket
     {
         /// <summary>
-        /// 获取验证票据
+        /// 创建登录的验证票据
         /// </summary>
-        AuthenticationTicket Ticket { get; }
+        /// <param name="authenticationData">验证身份数据</param>
+        /// <param name="ispersistent">是否持久化</param>
+        /// <returns><see cref="AuthenticationTicket"/>验证票据</returns>
+        AuthenticationTicket CreateTicket(AuthenticationData authenticationData, bool IsPersistent);
     }
 }

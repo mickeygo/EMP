@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.AspNet.Identity;
+﻿using Microsoft.AspNet.Identity;
 
 namespace DotPlatform.Web.Authentication
 {
@@ -8,7 +7,11 @@ namespace DotPlatform.Web.Authentication
     /// </summary>
     public class CookieAuthenticationManager : IWebAuthenticationManager
     {
+        /// <summary>
+        /// 验证类型
+        /// </summary>
         public const string AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie;
+
         private readonly IAuthenticationProvider _authenticationProvider;
         private readonly IAuthenticationTicket _authenticationTicket;
 
@@ -18,14 +21,15 @@ namespace DotPlatform.Web.Authentication
             this._authenticationTicket = ticket;
         }
 
-        public void SignIn(Func<AuthenticationData> action)
+        public void SignIn(AuthenticationData data, bool ispersistent)
         {
-            this._authenticationProvider.SignIn(_authenticationTicket.Ticket);
+            var ticket = _authenticationTicket.CreateTicket(data, ispersistent);
+            this._authenticationProvider.SignIn(ticket);
         }
 
         public void SignOut()
         {
-            _authenticationProvider.SignOut(_authenticationTicket.Ticket.Properties, new[] { AuthenticationType });
+            _authenticationProvider.SignOut(null, new[] { AuthenticationType });
         }
     }
 }

@@ -27,7 +27,7 @@ namespace DotPlatform.Web.Authentication
 
         private IAuthenticationManager GetAuthentication()
         {
-            var owinContext = HttpContext.Current.Request.GetOwinContext();
+            var owinContext = HttpContext.Current.GetOwinContext();
             return owinContext.Authentication;
         }
 

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace DotPlatform.Web.Authentication
+﻿namespace DotPlatform.Web.Authentication
 {
     /// <summary>
     /// 验证管理类
@@ -10,7 +8,9 @@ namespace DotPlatform.Web.Authentication
         /// <summary>
         /// 登录
         /// </summary>
-        void SignIn(Func<AuthenticationData> action);
+        /// <param name="data">验证身份数据</param>
+        /// <param name="ispersistent">是否持久化</param>
+        void SignIn(AuthenticationData data, bool ispersistent);
 
         /// <summary>
         /// 登出
