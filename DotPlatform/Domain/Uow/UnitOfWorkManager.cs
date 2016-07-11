@@ -16,9 +16,9 @@ namespace DotPlatform.Domain.Uow
         /// <summary>
         /// 初始化一个新的<c>UnitOfWorkManager</c>实例
         /// </summary>
-        public UnitOfWorkManager(IIocResolver iocResolver, IUnitOfWorkDefaultOptions unitOfWorkDefaultOptions)
+        public UnitOfWorkManager(IUnitOfWorkDefaultOptions unitOfWorkDefaultOptions)
         {
-            _iocResolver = iocResolver;
+            _iocResolver = IocManager.Instance;
             _unitOfWorkDefaultOptions = unitOfWorkDefaultOptions;
         }
 
@@ -43,7 +43,6 @@ namespace DotPlatform.Domain.Uow
             options.SetDefaultOptions(_unitOfWorkDefaultOptions);
 
             // Todo: 多个事务处理（如何将多次定义的事务聚集在一起）
-
             var uow = this._iocResolver.Resolve<IUnitOfWork>();
 
             uow.Completed += (s, e) =>

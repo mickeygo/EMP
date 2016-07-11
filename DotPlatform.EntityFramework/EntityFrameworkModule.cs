@@ -1,4 +1,7 @@
-﻿using DotPlatform.Modules;
+﻿using DotPlatform.Dependency;
+using DotPlatform.Domain.Uow;
+using DotPlatform.EntityFramework.Uow;
+using DotPlatform.Modules;
 
 namespace DotPlatform.EntityFramework
 {
@@ -8,6 +11,12 @@ namespace DotPlatform.EntityFramework
     [DependsOn]
     public class EntityFrameworkModule : ModuleBase
     {
-        
+        public override void PreInitialize()
+        {
+            IocManager.RegisterGeneric(typeof(IDbContextProvider<>), typeof(SimpleDbContextProvider<>), IocLifeStyle.Transient);
+            IocManager.Register<IUnitOfWork, EfUnitOfWork>(IocLifeStyle.Transient);
+
+            this.IocManager.Build();
+        }
     }
 }

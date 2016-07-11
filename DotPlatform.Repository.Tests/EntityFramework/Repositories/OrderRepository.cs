@@ -1,0 +1,14 @@
+﻿using DotPlatform.EntityFramework.Repositories;
+using DotPlatform.TestBase.Domain.Entities;
+using DotPlatform.EntityFramework;
+
+namespace DotPlatform.Repository.Tests.EntityFramework.Repositories
+{
+    public class OrderRepository : EfRepository<TestEfDbContext, Order>
+    {
+        public OrderRepository() : base(new SimpleDbContextProvider<TestEfDbContext>(new TestEfDbContext()))
+        {
+            
+        }
+    }
+}

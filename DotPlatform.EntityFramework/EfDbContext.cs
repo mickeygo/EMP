@@ -6,10 +6,10 @@ using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Validation;
 using System.Threading;
 using System.Threading.Tasks;
+using EntityFramework.DynamicFilters;
 using DotPlatform.Domain;
 using DotPlatform.Domain.Entities;
 using DotPlatform.Domain.Entities.Auditing;
-using EntityFramework.DynamicFilters;
 using DotPlatform.Domain.Entities.Extensions;
 
 namespace DotPlatform.EntityFramework
@@ -76,21 +76,31 @@ namespace DotPlatform.EntityFramework
         #region Protected Methods
 
         /// <summary>
+        /// 可以重写， 通过 Fluent API 方式配置实体模型
+        /// </summary>
+        protected virtual void CreateModel(DbModelBuilder modelBuilder)
+        {
+
+        }
+
+        /// <summary>
         /// 重写 <see cref="DbContext"/> 的 OnModelCreating 方法
         /// </summary>
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
-            // Todo: Fluent API Entity
-            // Todo: Understandard the filter
+            // Fluent API Entity
+            this.CreateModel(modelBuilder);
+
+            // Filter
             modelBuilder.Filter(EntityDataFilters.SoftDelete, (ISoftDelete d) => d.IsDeleted, false);
             modelBuilder.Filter(EntityDataFilters.MustHaveTenant, (IMustHaveTenant t, Guid tenantId) => t.TenantId == tenantId, Guid.Empty);
             modelBuilder.Filter(EntityDataFilters.MayHaveTenant, (IMayHaveTenant t, Guid? tenantId) => t.TenantId == tenantId, Guid.Empty);
         }
 
         /// <summary>
-        /// 在调用 SaveChanges / SaveChangesAsync 之前，会先此方法
+        /// 在调用 SaveChanges / SaveChangesAsync 之前，会先调用此方法
         /// </summary>
         protected virtual void ApplyConcepts()
         {
@@ -240,6 +250,7 @@ namespace DotPlatform.EntityFramework
         private void ApplyModifiedConcepts(DbEntityEntry entry)
         {
             CheckOrSetTenantIfNull(entry);
+            SetModificationAuditProperties(entry);
         }
 
         private void ApplyDeletedConcepts(DbEntityEntry entry)
@@ -269,8 +280,10 @@ namespace DotPlatform.EntityFramework
         protected virtual void Initialize()
         {
             this.Database.Initialize(false);
-            this.SetFilterScopedParameterValue(EntityDataFilters.MustHaveTenant, EntityDataFilters.Parameters.TenantId, OwnerSession.TenantId ?? Guid.Empty);
-            this.SetFilterScopedParameterValue(EntityDataFilters.MayHaveTenant, EntityDataFilters.Parameters.TenantId, OwnerSession.TenantId);
+
+            // 设置筛选参数，在筛选时(Filter)筛选器会使用相应的设置的参数名进行匹配
+            this.SetFilterScopedParameterValue(EntityDataFilters.MustHaveTenant, EntityDataFilters.Parameters.TenantId, OwnerSession?.TenantId ?? Guid.Empty);
+            this.SetFilterScopedParameterValue(EntityDataFilters.MayHaveTenant, EntityDataFilters.Parameters.TenantId, OwnerSession?.TenantId);
         }
 
         #endregion

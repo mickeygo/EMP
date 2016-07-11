@@ -2,6 +2,7 @@
 using DotPlatform.Dependency;
 using DotPlatform.Modules;
 using DotPlatform.Web.Auditing;
+using DotPlatform.Web.Authentication;
 
 namespace DotPlatform.Web
 {
@@ -11,6 +12,10 @@ namespace DotPlatform.Web
         public override void PreInitialize()
         {
             IocManager.Register<IAuditInfoProvider, WebAuditInfoProvider>(IocLifeStyle.Transient);
+
+            IocManager.Register<IAuthenticationTicket, DefaultAuthenticationTicket>();
+            IocManager.Register<IAuthenticationProvider, OwinAuthenticationProvider>();
+            IocManager.Register<IWebAuthenticationManager, CookieAuthenticationManager>();
 
             IocManager.Build();
         }

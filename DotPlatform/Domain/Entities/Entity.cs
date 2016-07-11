@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using DotPlatform.Generators;
 
 namespace DotPlatform.Domain.Entities
 {
@@ -59,8 +60,14 @@ namespace DotPlatform.Domain.Entities
     /// 领域对象实体。实体主键类型 <see cref="Guid"/>
     /// </summary>
     [Serializable]
-    public abstract class Entity : Entity<Guid>
+    public abstract class Entity : Entity<Guid>, IEntity
     {
-        
+        /// <summary>
+        /// 生成新的 Id, 为 <see cref="Guid"/> 类型
+        /// </summary>
+        public void GenerateNewId()
+        {
+            this.Id = SequentialGuidGenerator.Instance.Create();
+        }
     }
 }
