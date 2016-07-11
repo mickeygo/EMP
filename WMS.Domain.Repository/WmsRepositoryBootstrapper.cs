@@ -1,6 +1,5 @@
 ﻿using DotPlatform.Configuration;
 using DotPlatform.Dependency;
-using DotPlatform.EntityFramework;
 
 namespace WMS.Domain.Repository
 {
@@ -12,7 +11,6 @@ namespace WMS.Domain.Repository
         public void Initialize()
         {
             IocManager.Instance.Register<WmsEfDbContext>(IocLifeStyle.Transient);
-            IocManager.Instance.RegisterGeneric(typeof(IDbContextProvider<>), typeof(SimpleDbContextProvider<>));
         }
     }
 }

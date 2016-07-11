@@ -22,7 +22,7 @@ namespace DotPlatform.Events
         public IEntity Source { get; private set; }
 
         /// <summary>
-        /// 获取事件产生的时间
+        /// 获取(或设置)事件产生的时间
         /// </summary>
         public DateTimeOffset TimeStamp { get; protected set; }
 

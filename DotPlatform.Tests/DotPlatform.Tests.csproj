@@ -51,12 +51,15 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Test.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DotPlatform.TestBase\DotPlatform.TestBase.csproj">
       <Project>{77c1caea-827e-4bbc-bcfa-e005beca5f65}</Project>
       <Name>DotPlatform.TestBase</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DotPlatform\DotPlatform.csproj">
+      <Project>{4964D0D8-492A-422A-AD2D-3EAFAE881C1A}</Project>
+      <Name>DotPlatform</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

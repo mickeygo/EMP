@@ -1,5 +1,6 @@
 ﻿using DotPlatform.Configuration.Startup;
 using DotPlatform.Configuration.Startup.Impl;
+using DotPlatform.Domain.Uow;
 using DotPlatform.Localization;
 using DotPlatform.Modules;
 using DotPlatform.Reflection;
@@ -45,7 +46,12 @@ namespace DotPlatform.Dependency.Installers
             _iocManager.Register<ILanguageManager, LanguageManager>();
 
             // Configuration
+            _iocManager.Register<AppStartupConfiguration>();
             _iocManager.Register<IStartupConfiguration, AppStartupConfiguration>();
+
+            // Uow
+            _iocManager.Register<IUnitOfWorkDefaultOptions, UnitOfWorkDefaultOptions>();
+            _iocManager.Register<IUnitOfWorkManager, UnitOfWorkManager>();
 
             // Build
             _iocManager.Build();
