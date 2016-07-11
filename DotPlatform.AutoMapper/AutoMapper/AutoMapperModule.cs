@@ -1,6 +1,10 @@
-﻿using DotPlatform.Modules;
-using DotPlatform.Reflection;
+﻿using System;
+using System.Collections.Generic;
 using System.Reflection;
+using AutoMapper;
+using DotPlatform.Modules;
+using DotPlatform.Reflection;
+using System.Linq;
 
 namespace DotPlatform.AutoMapper
 {
@@ -12,12 +16,11 @@ namespace DotPlatform.AutoMapper
     {
         private static bool _createdMappingsBefore;
         private static readonly object _syncObj = new object();
-
         private readonly ITypeFinder _typeFinder;
 
-        public AutoMapperModule(ITypeFinder typeFinder)
+        public AutoMapperModule()
         {
-            this._typeFinder = typeFinder;
+            this._typeFinder = IocManager.Resolve<ITypeFinder>();
         }
 
         public override void Initialize()
@@ -37,24 +40,31 @@ namespace DotPlatform.AutoMapper
                     return;
                 }
 
-                FindAndAutoMapTypes();
+                var profile = new AutoMapperProfileManager();
+                profile.CreateMap(FindAndAutoMapTypes());
+                profile.AddProfile(FindAndAutoMapProfileTypes());
+                profile.Buid();
 
                 _createdMappingsBefore = true;
             }
         }
 
-        private void FindAndAutoMapTypes()
+        private List<Type> FindAndAutoMapTypes()
         {
-            var types = _typeFinder.Find(type =>
+            return _typeFinder.Find(type =>
                 type.IsDefined(typeof(AutoMapAttribute)) ||
                 type.IsDefined(typeof(AutoMapFromAttribute)) ||
                 type.IsDefined(typeof(AutoMapToAttribute))
-                );
+                ).ToList();
+        }
 
-            foreach (var type in types)
-            {
-                AutoMapperHelper.CreateMap(type);
-            }
+        private List<Type> FindAndAutoMapProfileTypes()
+        {
+            return _typeFinder.Find(type =>
+                    type.IsClass &&
+                    !type.FullName.StartsWith("AutoMapper") &&
+                    type.BaseType == typeof(Profile)
+                ).ToList();
         }
 
         #endregion

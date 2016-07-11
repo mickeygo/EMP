@@ -10,6 +10,7 @@ namespace DotPlatform.Localization
     {
         public IReadOnlyList<LanguageInfo> GetLanguages()
         {
+            // Todo: Implement the default language provider
             throw new NotImplementedException();
         }
     }

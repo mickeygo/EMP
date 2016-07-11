@@ -160,6 +160,7 @@
     <Compile Include="Modules\ModuleBase.cs" />
     <Compile Include="Modules\IModuleManager.cs" />
     <Compile Include="Modules\ModuleManager.cs" />
+    <Compile Include="NameValue.cs" />
     <Compile Include="Net\Mail\IMailSender.cs" />
     <Compile Include="Net\Mail\MailSender.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -1,8 +1,8 @@
-﻿using DotPlatform.Extensions;
-using DotPlatform.Runtime.Security;
-using System;
+﻿using System;
 using System.Security.Claims;
 using System.Threading;
+using DotPlatform.Extensions;
+using DotPlatform.Runtime.Security;
 
 namespace DotPlatform.Runtime.Session
 {

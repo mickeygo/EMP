@@ -47,9 +47,10 @@
     <Compile Include="AutoMapper\AutoMapAttribute.cs" />
     <Compile Include="AutoMapper\AutoMapDirection.cs" />
     <Compile Include="AutoMapper\AutoMapFromAttribute.cs" />
-    <Compile Include="AutoMapper\AutoMapperHelper.cs" />
     <Compile Include="AutoMapper\AutoMapperModule.cs" />
+    <Compile Include="AutoMapper\AutoMapperProfileManager.cs" />
     <Compile Include="AutoMapper\AutoMapToAttribute.cs" />
+    <Compile Include="AutoMapper\AutoMapExtension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

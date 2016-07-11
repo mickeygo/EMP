@@ -12,6 +12,7 @@ namespace DotPlatform.Web
         {
             IocManager.Register<IAuditInfoProvider, WebAuditInfoProvider>(IocLifeStyle.Transient);
 
+
             IocManager.Build();
         }
     }
