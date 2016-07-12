@@ -3,11 +3,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{21722C8D-72A2-4B18-B0A9-68FAC47E3AAC}</ProjectGuid>
+    <ProjectGuid>{47B00089-DF2B-4C2D-9FEF-84999CF58AA4}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DotPlatform.Tests</RootNamespace>
-    <AssemblyName>DotPlatform.Tests</AssemblyName>
+    <RootNamespace>DotPlatform.Tests.Entityframework</RootNamespace>
+    <AssemblyName>DotPlatform.Tests.Entityframework</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -35,7 +35,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -50,11 +59,30 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="EntityFramework\EntityConfigurarion\OrderEntityTypeConfuguration.cs" />
+    <Compile Include="EntityFramework\EntityConfigurarion\OrderLineEntityTypeConfuguration.cs" />
+    <Compile Include="EntityFramework\EntityConfigurarion\ProductEntityTypeConfuguration.cs" />
+    <Compile Include="EntityFramework\Repositories\OrderRepository.cs" />
+    <Compile Include="EntityFramework\Repositories\OrderRepository_Test.cs" />
+    <Compile Include="EntityFramework\Repositories\ProductRepository.cs" />
+    <Compile Include="EntityFramework\Repositories\ProductRepository_Test.cs" />
+    <Compile Include="EntityFramework\TestEfDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="EntityFramework\Uow\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DotPlatform.EntityFramework\DotPlatform.EntityFramework.csproj">
+      <Project>{09B41815-54BA-4AFA-973C-0488FB1F578F}</Project>
+      <Name>DotPlatform.EntityFramework</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DotPlatform.TestBase\DotPlatform.TestBase.csproj">
-      <Project>{77c1caea-827e-4bbc-bcfa-e005beca5f65}</Project>
+      <Project>{77C1CAEA-827E-4BBC-BCFA-E005BECA5F65}</Project>
       <Name>DotPlatform.TestBase</Name>
     </ProjectReference>
     <ProjectReference Include="..\DotPlatform\DotPlatform.csproj">

@@ -3,11 +3,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{21722C8D-72A2-4B18-B0A9-68FAC47E3AAC}</ProjectGuid>
+    <ProjectGuid>{F4292CBD-430F-41B3-A1F3-F3A4965BA78C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DotPlatform.Tests</RootNamespace>
-    <AssemblyName>DotPlatform.Tests</AssemblyName>
+    <RootNamespace>DotPlatform.Tests.AutoMapper</RootNamespace>
+    <AssemblyName>DotPlatform.Tests.AutoMapper</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -35,6 +35,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=5.0.2.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.5.0.2\lib\net45\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
   </ItemGroup>
   <Choose>
@@ -50,9 +54,16 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="AutoMapper_Tests.cs" />
+    <Compile Include="Dto\Person2_Test.cs" />
+    <Compile Include="Dto\Person_Test.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DotPlatform.AutoMapper\DotPlatform.AutoMapper.csproj">
+      <Project>{1df11c0a-781d-4137-81de-c915c8fba88d}</Project>
+      <Name>DotPlatform.AutoMapper</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DotPlatform.TestBase\DotPlatform.TestBase.csproj">
       <Project>{77c1caea-827e-4bbc-bcfa-e005beca5f65}</Project>
       <Name>DotPlatform.TestBase</Name>
@@ -61,6 +72,9 @@
       <Project>{4964d0d8-492a-422a-ad2d-3eafae881c1a}</Project>
       <Name>DotPlatform</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

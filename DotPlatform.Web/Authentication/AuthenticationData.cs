@@ -25,7 +25,7 @@ namespace DotPlatform.Web.Authentication
         /// <summary>
         /// 相对于当前服务器所在的区域的时差
         /// </summary>
-        public int TimeDifference { get; private set; }
+        public int? TimeDifference { get; private set; }
 
         /// <summary>
         /// 获取用户 Id
@@ -53,7 +53,7 @@ namespace DotPlatform.Web.Authentication
         /// <param name="userName">用户名</param>
         /// <param name="password">用户密码</param>
         /// <param name="email">用户邮件</param>
-        public AuthenticationData(Guid? tenantId, string tenantName, string language, int timeDifference,
+        public AuthenticationData(Guid? tenantId, string tenantName, string language, int? timeDifference,
             Guid? userId, string userName, string email)
         {
             TenantId = tenantId;

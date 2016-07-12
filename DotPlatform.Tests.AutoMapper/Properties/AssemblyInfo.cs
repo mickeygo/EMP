@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("DotPlatform.Tests")]
+[assembly: AssemblyTitle("DotPlatform.Tests.AutoMapper")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Microsoft")]
-[assembly: AssemblyProduct("DotPlatform.Tests")]
+[assembly: AssemblyProduct("DotPlatform.Tests.AutoMapper")]
 [assembly: AssemblyCopyright("Copyright © Microsoft 2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("21722c8d-72a2-4b18-b0a9-68fac47e3aac")]
+[assembly: Guid("f4292cbd-430f-41b3-a1f3-f3a4965ba78c")]
 
 // Version information for an assembly consists of the following four values:
 //

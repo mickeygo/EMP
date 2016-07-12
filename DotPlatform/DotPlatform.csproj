@@ -198,7 +198,9 @@
     <Compile Include="Specifications\OrSpecification.cs" />
     <Compile Include="Specifications\ParameterRebinder.cs" />
     <Compile Include="Specifications\Specification.cs" />
-    <Compile Include="Storage\IStorage.cs" />
+    <Compile Include="Storage\IRdbmsCommand.cs" />
+    <Compile Include="Storage\IRdbmsQuery.cs" />
+    <Compile Include="Storage\IRdbmsStorage.cs" />
     <Compile Include="Timing\Clock.cs" />
     <Compile Include="Timing\IClockProvider.cs" />
     <Compile Include="Timing\LocalClockProvider.cs" />
