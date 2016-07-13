@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace DotPlatform.Storage
 {
@@ -14,7 +15,7 @@ namespace DotPlatform.Storage
         /// <param name="sqlQuery">SQL 查询语句</param>
         /// <param name="param">参数</param>
         /// <returns>T 集合</returns>
-        IEnumerable<T> Select<T>(string sqlQuery, object param);
+        IEnumerable<T> Select<T>(string sqlQuery, object param = null);
 
         /// <summary>
         /// 查询数据
@@ -23,7 +24,7 @@ namespace DotPlatform.Storage
         /// <param name="sqlQuery">SQL 查询语句</param>
         /// <param name="param">参数</param>
         /// <returns>T 集合</returns>
-        IEnumerable<T> SelectAsync<T>(string sqlQuery, object param);
+        Task<IEnumerable<T>> SelectAsync<T>(string sqlQuery, object param = null);
 
         /// <summary>
         /// 查询数据, 返回单一的值，若有多项数据或不存在数据，则抛出异常
@@ -32,7 +33,7 @@ namespace DotPlatform.Storage
         /// <param name="sqlQuery">SQL 查询语句</param>
         /// <param name="param">参数</param>
         /// <returns>T</returns>
-        T Single<T>(string sqlQuery, object param);
+        T Single<T>(string sqlQuery, object param = null);
 
         /// <summary>
         /// 查询数据, 返回单一的值，若有多项数据或不存在数据，则抛出异常
@@ -41,7 +42,7 @@ namespace DotPlatform.Storage
         /// <param name="sqlQuery">SQL 查询语句</param>
         /// <param name="param">参数</param>
         /// <returns>T</returns>
-        T SingleAsync<T>(string sqlQuery, object param);
+        Task<T> SingleAsync<T>(string sqlQuery, object param = null);
 
         /// <summary>
         /// 查询数据, 若有多项数据，取第一项，若没有数据，返回 null
@@ -50,7 +51,7 @@ namespace DotPlatform.Storage
         /// <param name="sqlQuery">SQL 查询语句</param>
         /// <param name="param">参数</param>
         /// <returns>T</returns>
-        T FirstOrDefault<T>(string sqlQuery, object param);
+        T FirstOrDefault<T>(string sqlQuery, object param = null);
 
         /// <summary>
         /// 查询数据, 若有多项数据，取第一项，若没有数据，返回 null
@@ -59,6 +60,6 @@ namespace DotPlatform.Storage
         /// <param name="sqlQuery">SQL 查询语句</param>
         /// <param name="param">参数</param>
         /// <returns>T</returns>
-        T FirstOrDefaultAsync<T>(string sqlQuery, object param);
+        Task<T> FirstOrDefaultAsync<T>(string sqlQuery, object param = null);
     }
 }

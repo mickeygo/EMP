@@ -1,4 +1,5 @@
 ﻿using System.Data;
+using System.Threading.Tasks;
 
 namespace DotPlatform.Storage
 {
@@ -13,7 +14,7 @@ namespace DotPlatform.Storage
         /// <param name="sqlCommand">SQL Command 语句</param>
         /// <param name="param">参数</param>
         /// <param name="commandType">Command 类型，默认为<see cref="CommandType.Text"/></param>
-        void Execute(string sqlCommand, object param, CommandType commandType = CommandType.Text);
+        void Execute(string sqlCommand, object param = null, CommandType commandType = CommandType.Text);
 
         /// <summary>
         /// 执行 Command 操作
@@ -21,7 +22,7 @@ namespace DotPlatform.Storage
         /// <param name="sqlCommand">SQL Command 语句</param>
         /// <param name="param">参数</param>
         /// <param name="commandType">Command 类型，默认为<see cref="CommandType.Text"/></param>
-        void ExecuteAsync(string sqlCommand, object param, CommandType commandType = CommandType.Text);
+        Task ExecuteAsync(string sqlCommand, object param = null, CommandType commandType = CommandType.Text);
 
         /// <summary>
         /// 执行 Command 操作，获取<see cref="IDataReader"/>。
@@ -32,7 +33,7 @@ namespace DotPlatform.Storage
         /// <param name="param">参数</param>
         /// <param name="commandType">Command 类型，默认为<see cref="CommandType.Text"/></param>
         /// <returns></returns>
-        IDataReader ExecuteReader(string sqlQuery, object param, CommandType commandType = CommandType.Text);
+        IDataReader ExecuteReader(string sqlCommand, object param = null, CommandType commandType = CommandType.Text);
 
         /// <summary>
         /// 执行 Command 操作，获取<see cref="IDataReader"/>。
@@ -43,7 +44,7 @@ namespace DotPlatform.Storage
         /// <param name="param">参数</param>
         /// <param name="commandType">Command 类型，默认为<see cref="CommandType.Text"/></param>
         /// <returns></returns>
-        IDataReader ExecuteReaderAsync(string sqlQuery, object param, CommandType commandType = CommandType.Text);
+        Task<IDataReader> ExecuteReaderAsync(string sqlCommand, object param = null, CommandType commandType = CommandType.Text);
 
         /// <summary>
         /// 执行 Command 操作，获取单值数据
@@ -51,7 +52,7 @@ namespace DotPlatform.Storage
         /// <param name="sqlCommand">SQL Command 语句</param>
         /// <param name="param">参数</param>
         /// <param name="commandType">Command 类型，默认为<see cref="CommandType.Text"/></param>
-        T ExecuteScalar<T>(string sqlQuery, object param, CommandType commandType = CommandType.Text);
+        T ExecuteScalar<T>(string sqlCommand, object param = null, CommandType commandType = CommandType.Text);
 
         /// <summary>
         /// 执行 Command 操作，获取单值数据
@@ -59,6 +60,6 @@ namespace DotPlatform.Storage
         /// <param name="sqlCommand">SQL Command 语句</param>
         /// <param name="param">参数</param>
         /// <param name="commandType">Command 类型，默认为<see cref="CommandType.Text"/></param>
-        T ExecuteScalarAsync<T>(string sqlQuery, object param, CommandType commandType = CommandType.Text);
+        Task<T> ExecuteScalarAsync<T>(string sqlCommand, object param = null, CommandType commandType = CommandType.Text);
     }
 }

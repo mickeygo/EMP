@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace DotPlatform.Extensions
 {
@@ -7,8 +8,10 @@ namespace DotPlatform.Extensions
     /// </summary>
     public static class StringExtension
     {
+        #region Convert
+
         /// <summary>
-        /// 将<see cref="string"/>转换为<see cref="Guid"/>类型。
+        /// 将 <see cref="string"/> 转换为 <see cref="Guid"/> 类型。
         /// 若字符串为 Null 或 Empty，或是转换失败，将返回 默认值
         /// </summary>
         /// <param name="str">要转换的字符串</param>
@@ -27,7 +30,7 @@ namespace DotPlatform.Extensions
         }
 
         /// <summary>
-        /// 将<see cref="string"/>转换为<see cref="int"/>类型。
+        /// 将 <see cref="string"/> 转换为 <see cref="int"/> 类型。
         /// 若字符串为 Null 或 Empty，或是转换失败，将返回 默认值
         /// </summary>
         /// <param name="str">要转换的字符串</param>
@@ -44,6 +47,10 @@ namespace DotPlatform.Extensions
 
             return defaultValue;
         }
+
+        #endregion
+
+        #region String
 
         /// <summary>
         /// 判断字符串是否是 null 或 Empty
@@ -64,5 +71,35 @@ namespace DotPlatform.Extensions
         {
             return string.IsNullOrWhiteSpace(str);
         }
+
+        /// <summary>
+        /// 字符串是否以指定的字符串数组中的任何一个开头,区分大小写
+        /// </summary>
+        /// <param name="str">要匹配的字符串</param>
+        /// <param name="prefixs">指定前缀的字符串数组</param>
+        /// <returns></returns>
+        public static bool StartsIn(this string str, params string[] prefixs)
+        {
+            if (prefixs == null)
+                throw new ArgumentNullException(nameof(prefixs));
+
+            return prefixs.Any(p => str.StartsWith(p));
+        }
+
+        /// <summary>
+        /// 字符串是否以指定的字符串数组中的任何一个结束,区分大小写
+        /// </summary>
+        /// <param name="str">要匹配的字符串</param>
+        /// <param name="ends">指定后缀的字符串数组</param>
+        /// <returns></returns>
+        public static bool EndsIn(this string str, params string[] ends)
+        {
+            if (ends == null)
+                throw new ArgumentNullException(nameof(ends));
+
+            return ends.Any(p => str.EndsWith(p));
+        }
+
+        #endregion
     }
 }

@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Reflection;
 using DotPlatform.Dependency.Installers;
 using DotPlatform.Dependency;
 using DotPlatform.Configuration.Startup.Impl;
@@ -13,19 +11,20 @@ namespace DotPlatform
     /// </summary>
     public class Bootstrapper : IDisposable
     {
-        private IIocManager _iocaManager;
+        private readonly IIocManager _iocaManager;
         IModuleManager _moduleManager;
 
+        /// <summary>
+        /// 是否已 Disposed.
+        /// </summary>
         protected bool IsDisposed;
 
-        public Bootstrapper() : this(IocManager.Instance)
+        /// <summary>
+        /// 初始化一个新的<see cref="Bootstrapper"/>实例
+        /// </summary>
+        public Bootstrapper()
         {
-
-        }
-
-        public Bootstrapper(IIocManager iocManager)
-        {
-            _iocaManager = iocManager;
+            _iocaManager = IocManager.Instance;
         }
 
         /// <summary>
@@ -44,7 +43,19 @@ namespace DotPlatform
             _moduleManager.Initialize();
         }
 
-        public void Dispose()
+        /// <summary>
+        /// 加载所有的程序集
+        /// </summary>
+        public virtual void LoadAllAssemblies()
+        {
+            // Todo： 如何将 IAssemblyFinder 对象在此重写
+
+        }
+
+        /// <summary>
+        /// Dispose
+        /// </summary>
+        public virtual void Dispose()
         {
             if (IsDisposed)
             {
@@ -52,6 +63,7 @@ namespace DotPlatform
             }
 
             _moduleManager.Shutdown();
+            IsDisposed = true;
         }
     }
 }

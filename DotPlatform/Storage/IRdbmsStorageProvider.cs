@@ -8,8 +8,8 @@ namespace DotPlatform.Storage
     public interface IRdbmsStorageProvider
     {
         /// <summary>
-        /// 获取 DB 连接<see cref="IDbConnection"/>
+        /// 创建 DB 连接<see cref="IDbConnection"/>
         /// </summary>
-        IDbConnection Connection { get; }
+        IDbConnection CreateConnection(string connectionName);
     }
 }

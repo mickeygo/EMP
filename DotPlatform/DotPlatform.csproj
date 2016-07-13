@@ -127,6 +127,7 @@
     </Compile>
     <Compile Include="Domain\Uow\UnitOfWorkManager.cs" />
     <Compile Include="Domain\Uow\UnitOfWorkOptions.cs" />
+    <Compile Include="DotPlatformConsts.cs" />
     <Compile Include="DotPlatformException.cs" />
     <Compile Include="Dependency\IIocManager.cs" />
     <Compile Include="Dependency\IIocRegistrar.cs" />
@@ -201,6 +202,9 @@
     <Compile Include="Storage\IRdbmsCommand.cs" />
     <Compile Include="Storage\IRdbmsQuery.cs" />
     <Compile Include="Storage\IRdbmsStorage.cs" />
+    <Compile Include="Storage\IRdbmsStorageProvider.cs" />
+    <Compile Include="Storage\RdbmsStorage.cs" />
+    <Compile Include="Storage\RdbmsStorageProviderBase.cs" />
     <Compile Include="Timing\Clock.cs" />
     <Compile Include="Timing\IClockProvider.cs" />
     <Compile Include="Timing\LocalClockProvider.cs" />

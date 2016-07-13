@@ -54,6 +54,10 @@
     <Compile Include="UnitTestBase.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DotPlatform.Storage\DotPlatform.Storage.csproj">
+      <Project>{0ABBB274-CB90-4E0E-BEB4-ADDC58F116A3}</Project>
+      <Name>DotPlatform.Storage</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DotPlatform\DotPlatform.csproj">
       <Project>{4964d0d8-492a-422a-ad2d-3eafae881c1a}</Project>
       <Name>DotPlatform</Name>
