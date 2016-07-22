@@ -20,12 +20,17 @@ namespace DotPlatform.Domain.Uow
 
         protected UnitOfWorkBase(IUnitOfWorkDefaultOptions options)
         {
+            this.Id = Guid.NewGuid().ToString("N");
             this._defaultOptions = options;
         }
 
         #endregion
 
         #region Properties
+
+        public string Id { get; set; }
+
+        public IUnitOfWork Outer { get; set; }
 
         /// <summary>
         /// 获取工作单元配置项

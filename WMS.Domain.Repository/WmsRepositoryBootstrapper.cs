@@ -6,7 +6,7 @@ namespace WMS.Domain.Repository
     /// <summary>
     /// WMS 项目引导程序
     /// </summary>
-    internal class WmsRepositoryBootstrapper : IAppInitializer
+    internal class WmsRepositoryBootstrapper : IApplicationInitializer
     {
         public void Initialize()
         {

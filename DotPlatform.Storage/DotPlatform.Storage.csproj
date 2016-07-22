@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rdbms\DapperRdbmsStorage.cs" />
+    <Compile Include="Rdbms\DapperRdbmsStorageExtension.cs" />
     <Compile Include="Rdbms\ISqlStorage.cs" />
     <Compile Include="Rdbms\MySql\MySqlStorage.cs" />
     <Compile Include="Rdbms\Oracle\OracleStorage.cs" />

@@ -3,7 +3,7 @@
 namespace DotPlatform.Events
 {
     /// <summary>
-    /// 应用了此特性的方法，在应用程序初始化时会自动将事件注册到事件处理者中
+    /// 应用了此特性的方法，在应用程序初始化时会自动将事件注册到事件处理者中。
     /// </summary>
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = true, Inherited = false)]
     public class HandlerAttribute : Attribute

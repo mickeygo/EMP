@@ -47,6 +47,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
@@ -64,7 +65,14 @@
     <Compile Include="Auditing\AuditInfo.cs" />
     <Compile Include="Auditing\IAuditInfoProvider.cs" />
     <Compile Include="Auditing\IAuditingStore.cs" />
-    <Compile Include="Configuration\IAppInitializer.cs" />
+    <Compile Include="Bus\IBus.cs" />
+    <Compile Include="Configuration\ApplicationInitializerManager.cs" />
+    <Compile Include="Configuration\Fluent\CacheFluentConfigurator.cs" />
+    <Compile Include="Configuration\Fluent\ConfiguratorBase.cs" />
+    <Compile Include="Configuration\Fluent\Config\CacheConfig.cs" />
+    <Compile Include="Configuration\Fluent\Config\EmailConfig.cs" />
+    <Compile Include="Configuration\Fluent\EmailFluentConfigurator.cs" />
+    <Compile Include="Configuration\IApplicationInitializer.cs" />
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Commands\ICommand.cs" />
     <Compile Include="Commands\ICommandBus.cs" />
@@ -114,6 +122,7 @@
     <Compile Include="Domain\Uow\CallContextCurrentUnitOfWorkProvider.cs" />
     <Compile Include="Domain\Uow\IActiveUnitOfWork.cs" />
     <Compile Include="Domain\Uow\ICurrentUnitOfWorkProvider.cs" />
+    <Compile Include="Domain\Uow\InnerUnitOfWorkCompleteHandle.cs" />
     <Compile Include="Domain\Uow\IUnitOfWork.cs" />
     <Compile Include="Domain\Uow\IUnitOfWorkCompleteHandle.cs">
       <SubType>Code</SubType>
@@ -132,8 +141,14 @@
     <Compile Include="Dependency\IIocManager.cs" />
     <Compile Include="Dependency\IIocRegistrar.cs" />
     <Compile Include="Dependency\IIocResolver.cs" />
+    <Compile Include="Events\DirectBus\DirectEventBus.cs" />
+    <Compile Include="Events\DirectBus\IDirectEventBus.cs" />
     <Compile Include="Events\DomainEvent.cs" />
     <Compile Include="Events\EventAggregator.cs" />
+    <Compile Include="Events\Registrator\EventHandlerMappingCache.cs" />
+    <Compile Include="Events\Startup\EventHandlerFinder.cs" />
+    <Compile Include="Events\Startup\EventInitializer.cs" />
+    <Compile Include="Events\Startup\IEventHandlerFinder.cs" />
     <Compile Include="Events\Storage\IDomainEventStorage.cs" />
     <Compile Include="Events\Storage\IEventStorage.cs" />
     <Compile Include="Events\HandlerAttribute.cs" />
@@ -155,6 +170,9 @@
     <Compile Include="Localization\ILocalizationManager.cs" />
     <Compile Include="Localization\LanguageInfo.cs" />
     <Compile Include="Localization\LanguageManager.cs" />
+    <Compile Include="Logger\ILogger.cs" />
+    <Compile Include="Logger\LogSeverity.cs" />
+    <Compile Include="Logger\NullLogger.cs" />
     <Compile Include="Modules\DefaultModuleFinder.cs" />
     <Compile Include="Modules\DependsOnAttribute.cs" />
     <Compile Include="Modules\IModuleFinder.cs" />
@@ -162,8 +180,13 @@
     <Compile Include="Modules\IModuleManager.cs" />
     <Compile Include="Modules\ModuleManager.cs" />
     <Compile Include="NameValue.cs" />
+    <Compile Include="Net\Mail\EmailRecipient.cs" />
     <Compile Include="Net\Mail\IMailSender.cs" />
-    <Compile Include="Net\Mail\MailSender.cs" />
+    <Compile Include="Net\Mail\IMailSenderConfiguration.cs" />
+    <Compile Include="Net\Mail\MailSenderBase.cs" />
+    <Compile Include="Net\Mail\Smtp\ISmtpMailSenderConfiguration.cs" />
+    <Compile Include="Net\Mail\Smtp\SmtpMailSender.cs" />
+    <Compile Include="Net\Mail\Smtp\SmtpMailSenderConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reflection\CurrentDomainAssemblyFinder.cs" />
     <Compile Include="Reflection\IAssemblyFinder.cs" />
@@ -203,7 +226,7 @@
     <Compile Include="Storage\IRdbmsQuery.cs" />
     <Compile Include="Storage\IRdbmsStorage.cs" />
     <Compile Include="Storage\IRdbmsStorageProvider.cs" />
-    <Compile Include="Storage\RdbmsStorage.cs" />
+    <Compile Include="Storage\RdbmsStorageBase.cs" />
     <Compile Include="Storage\RdbmsStorageProviderBase.cs" />
     <Compile Include="Timing\Clock.cs" />
     <Compile Include="Timing\IClockProvider.cs" />
@@ -213,7 +236,6 @@
     <Folder Include="Application\" />
     <Folder Include="Authorization\" />
     <Folder Include="BackgroundJobs\" />
-    <Folder Include="Configuration\Fluent\" />
     <Folder Include="Domain\Snapshots\" />
     <Folder Include="IO\" />
     <Folder Include="MultiTenancy\" />

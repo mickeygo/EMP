@@ -63,6 +63,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotPlatform.Storage", "DotP
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotPlatform.Tests.Storage", "DotPlatform.Tests.Storage\DotPlatform.Tests.Storage.csproj", "{65AA45C3-3E70-4B72-847C-44FD83EF8CAE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotPlatform.Tests.Logger", "DotPlatform.Tests.Logger\DotPlatform.Tests.Logger.csproj", "{E2FF3B97-A2B6-4AA6-B951-964F385641E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotPlatform.Tests.Bus", "DotPlatform.Tests.Bus\DotPlatform.Tests.Bus.csproj", "{5D5261FF-9F25-4C4F-A3B9-D40803B2F2CD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -155,6 +159,14 @@ Global
 		{65AA45C3-3E70-4B72-847C-44FD83EF8CAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{65AA45C3-3E70-4B72-847C-44FD83EF8CAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{65AA45C3-3E70-4B72-847C-44FD83EF8CAE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E2FF3B97-A2B6-4AA6-B951-964F385641E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2FF3B97-A2B6-4AA6-B951-964F385641E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2FF3B97-A2B6-4AA6-B951-964F385641E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2FF3B97-A2B6-4AA6-B951-964F385641E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D5261FF-9F25-4C4F-A3B9-D40803B2F2CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D5261FF-9F25-4C4F-A3B9-D40803B2F2CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D5261FF-9F25-4C4F-A3B9-D40803B2F2CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D5261FF-9F25-4C4F-A3B9-D40803B2F2CD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -184,5 +196,7 @@ Global
 		{F4292CBD-430F-41B3-A1F3-F3A4965BA78C} = {3E1E1782-280E-4F5B-AE1C-FBA3AF41203F}
 		{0ABBB274-CB90-4E0E-BEB4-ADDC58F116A3} = {8962E6C9-9800-420B-9F0D-AB8503228364}
 		{65AA45C3-3E70-4B72-847C-44FD83EF8CAE} = {3E1E1782-280E-4F5B-AE1C-FBA3AF41203F}
+		{E2FF3B97-A2B6-4AA6-B951-964F385641E8} = {3E1E1782-280E-4F5B-AE1C-FBA3AF41203F}
+		{5D5261FF-9F25-4C4F-A3B9-D40803B2F2CD} = {3E1E1782-280E-4F5B-AE1C-FBA3AF41203F}
 	EndGlobalSection
 EndGlobal

@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Threading.Tasks;
 using Dapper;
-using System;
 
 namespace DotPlatform.Storage.Rdbms
 {
@@ -14,7 +14,7 @@ namespace DotPlatform.Storage.Rdbms
     ///     3) Book book = new Book(); [INSERT / UPDATE / DELETE ... VALUES(@name); conn.Execute(query, book)] ==> 等价于 conn.Execute(query, new {name = "C#"});
     /// 
     /// </summary>
-    public class DapperRdbmsStorage : RdbmsStorage
+    public class DapperRdbmsStorage : RdbmsStorageBase
     {
         public DapperRdbmsStorage(IRdbmsStorageProvider provider) : base(provider)
         {
@@ -22,56 +22,41 @@ namespace DotPlatform.Storage.Rdbms
 
         #region Query
 
-        public IEnumerable<TResult> Select<TFirst, TSecond, TResult>(string sqlQuery, Func<TFirst, TSecond, TResult> map, object param, string splitOn = "Id")
-        {
-            return this.Connection.Query(sqlQuery, map, param, splitOn: splitOn);
-        }
-
-        public IEnumerable<TResult> Select<TFirst, TSecond, TThird, TResult>(string sqlQuery, Func<TFirst, TSecond, TThird, TResult> map, object param, string splitOn = "Id")
-        {
-            return this.Connection.Query(sqlQuery, map, param, splitOn: splitOn);
-        }
-
-        public IEnumerable<TResult> Select<TFirst, TSecond, TThird, TFourth, TResult>(string sqlQuery, Func<TFirst, TSecond, TThird, TFourth, TResult> map, object param, string splitOn = "Id")
-        {
-            return this.Connection.Query(sqlQuery, map, param, splitOn: splitOn);
-        }
-
-        public override IEnumerable<T> Select<T>(string sqlQuery, object param)
+        public override IEnumerable<T> Select<T>(string sqlQuery, object param = null)
         {
             return this.Connection.Query<T>(sqlQuery, param);
         }
 
-        public override Task<IEnumerable<T>> SelectAsync<T>(string sqlQuery, object param)
+        public override async Task<IEnumerable<T>> SelectAsync<T>(string sqlQuery, object param = null)
         {
-            return this.Connection.QueryAsync<T>(sqlQuery, param);
+            return await this.Connection.QueryAsync<T>(sqlQuery, param);
         }
 
-        public override T FirstOrDefault<T>(string sqlQuery, object param)
+        public override T FirstOrDefault<T>(string sqlQuery, object param = null)
         {
             return this.Connection.QueryFirstOrDefault<T>(sqlQuery, param);
         }
 
-        public override Task<T> FirstOrDefaultAsync<T>(string sqlQuery, object param)
+        public override async Task<T> FirstOrDefaultAsync<T>(string sqlQuery, object param = null)
         {
-            return this.Connection.QueryFirstOrDefaultAsync<T>(sqlQuery, param);
+            return await this.Connection.QueryFirstOrDefaultAsync<T>(sqlQuery, param);
         }
 
-        public override T Single<T>(string sqlQuery, object param)
+        public override T Single<T>(string sqlQuery, object param = null)
         {
             return this.Connection.QuerySingle<T>(sqlQuery, param);
         }
 
-        public override Task<T> SingleAsync<T>(string sqlQuery, object param)
+        public override async Task<T> SingleAsync<T>(string sqlQuery, object param = null)
         {
-            return this.Connection.QuerySingleAsync<T>(sqlQuery, param);
+            return await this.Connection.QuerySingleAsync<T>(sqlQuery, param);
         }
 
         #endregion
 
         #region Execute
 
-        public override void Execute(string sqlCommand, object param, CommandType commandType = CommandType.Text)
+        public override void Execute(string sqlCommand, object param = null, CommandType commandType = CommandType.Text)
         {
             var transaction = this.Connection.BeginTransaction();
 
@@ -89,7 +74,7 @@ namespace DotPlatform.Storage.Rdbms
             }
         }
 
-        public override Task ExecuteAsync(string sqlCommand, object param, CommandType commandType = CommandType.Text)
+        public override async Task ExecuteAsync(string sqlCommand, object param = null, CommandType commandType = CommandType.Text)
         {
             var transaction = this.Connection.BeginTransaction();
 
@@ -100,7 +85,7 @@ namespace DotPlatform.Storage.Rdbms
 
                 transaction.Commit();
 
-                return result;
+                await result;
             }
             catch (Exception ex)
             {
@@ -109,28 +94,28 @@ namespace DotPlatform.Storage.Rdbms
             }
         }
 
-        public override IDataReader ExecuteReader(string sqlCommand, object param, CommandType commandType = CommandType.Text)
+        public override IDataReader ExecuteReader(string sqlCommand, object param = null, CommandType commandType = CommandType.Text)
         {
             var commandDef = BuildCommandDefinition(sqlCommand, param, commandType);
             return this.Connection.ExecuteReader(commandDef);
         }
 
-        public override Task<IDataReader> ExecuteReaderAsync(string sqlCommand, object param, CommandType commandType = CommandType.Text)
+        public override async Task<IDataReader> ExecuteReaderAsync(string sqlCommand, object param = null, CommandType commandType = CommandType.Text)
         {
             var commandDef = BuildCommandDefinition(sqlCommand, param, commandType);
-            return this.Connection.ExecuteReaderAsync(commandDef);
+            return await this.Connection.ExecuteReaderAsync(commandDef);
         }
 
-        public override T ExecuteScalar<T>(string sqlCommand, object param, CommandType commandType = CommandType.Text)
+        public override T ExecuteScalar<T>(string sqlCommand, object param = null, CommandType commandType = CommandType.Text)
         {
             var commandDef = BuildCommandDefinition(sqlCommand, param, commandType);
             return this.Connection.ExecuteScalar<T>(commandDef);
         }
 
-        public override Task<T> ExecuteScalarAsync<T>(string sqlCommand, object param, CommandType commandType = CommandType.Text)
+        public override async Task<T> ExecuteScalarAsync<T>(string sqlCommand, object param = null, CommandType commandType = CommandType.Text)
         {
             var commandDef = BuildCommandDefinition(sqlCommand, param, commandType);
-            return this.Connection.ExecuteScalarAsync<T>(commandDef);
+            return await this.Connection.ExecuteScalarAsync<T>(commandDef);
         }
 
         #endregion

@@ -50,7 +50,7 @@ namespace DotPlatform.Tests.EntityFramework.Repositories
             var order = new Order
             {
                 Id = Guid.NewGuid(),
-                OrderNo = "PO_0004"
+                OrderNo = "PO_0005"
             };
 
             order.OrderLines = new List<OrderLine> {
@@ -68,7 +68,7 @@ namespace DotPlatform.Tests.EntityFramework.Repositories
                 var repository = new OrderRepository();
 
                 repository.Add(order);
-                repository.Context.SaveChanges();
+                //repository.Context.SaveChanges();
 
                 uow.Complete();
             }

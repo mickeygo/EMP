@@ -48,7 +48,7 @@
     <Compile Include="Domain\Entities\OrderLine.cs" />
     <Compile Include="Domain\Entities\Product.cs" />
     <Compile Include="Events\ProductCreatedEvent.cs" />
-    <Compile Include="Events\EventHandlers\ProductCreatedEventHandler.cs" />
+    <Compile Include="EventHandlers\ProductCreatedEventHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositores\IProductRepository.cs" />
     <Compile Include="UnitTestBase.cs" />

@@ -36,6 +36,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -50,6 +51,9 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Configuration\Fluent\CacheConfigurator_Test.cs" />
+    <Compile Include="Configuration\Fluent\EmailConfigurator_Test.cs" />
+    <Compile Include="Events\EventHandlerFinder_Test.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -61,6 +65,10 @@
       <Project>{4964d0d8-492a-422a-ad2d-3eafae881c1a}</Project>
       <Name>DotPlatform</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="App.config" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

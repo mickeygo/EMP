@@ -101,5 +101,21 @@ namespace DotPlatform.Extensions
         }
 
         #endregion
+
+        #region Split
+
+        /// <summary>
+        /// 分割字符串。分割后，移除为 Empty 的实体.
+        /// 若要分割的字符串为 null, 返回结果也为 null.
+        /// </summary>
+        /// <param name="str">要分割的字符串</param>
+        /// <param name="separator">分隔符集合</param>
+        /// <returns></returns>
+        public static string[] SplitWithoutEmpty(this string str, params char[] separator)
+        {
+            return str?.Split(separator, StringSplitOptions.RemoveEmptyEntries);
+        }
+
+        #endregion
     }
 }

@@ -24,7 +24,10 @@
 
         private void InitIocContainer()
         {
-            new Bootstrapper().Initialize();
+            var bootstrapper = new Bootstrapper();
+            bootstrapper.OnPreInitialize();
+            bootstrapper.OnInitialize();
+            bootstrapper.OnPostInitialize();
         }
     }
 }

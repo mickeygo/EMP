@@ -3,6 +3,7 @@ using DotPlatform.Dependency.Installers;
 using DotPlatform.Dependency;
 using DotPlatform.Configuration.Startup.Impl;
 using DotPlatform.Modules;
+using DotPlatform.Configuration;
 
 namespace DotPlatform
 {
@@ -11,8 +12,10 @@ namespace DotPlatform
     /// </summary>
     public class Bootstrapper : IDisposable
     {
-        private readonly IIocManager _iocaManager;
-        IModuleManager _moduleManager;
+        private IModuleManager _moduleManager;
+        private readonly IIocManager _iocManager;
+
+        private static object sync = new object();
 
         /// <summary>
         /// 是否已 Disposed.
@@ -24,23 +27,43 @@ namespace DotPlatform
         /// </summary>
         public Bootstrapper()
         {
-            _iocaManager = IocManager.Instance;
+            _iocManager = IocManager.Instance;
+        }
+
+        /// <summary>
+        /// 初始化之前处理
+        /// </summary>
+        public virtual void OnPreInitialize()
+        {
+
         }
 
         /// <summary>
         /// 初始化程序。查询启动会执行该方法
         /// </summary>
-        public virtual void Initialize()
+        public virtual void OnInitialize()
         {
-            // 安装组件
-            KernelComponentInstaller.Instance.Install();
+            lock (sync)
+            {
+                // 安装组件
+                KernelComponentInstaller.Instance.Install();
 
-            // Configuration
-            _iocaManager.Resolve<AppStartupConfiguration>().Initialize();
+                // Configuration
+                _iocManager.Resolve<AppStartupConfiguration>().Initialize();
 
-            // Module
-            _moduleManager = _iocaManager.Resolve<IModuleManager>();
-            _moduleManager.Initialize();
+                // Module
+                _moduleManager = _iocManager.Resolve<IModuleManager>();
+                _moduleManager.Initialize();
+            }
+        }
+
+        /// <summary>
+        /// 初始化后事件处理
+        /// </summary>
+        public virtual void OnPostInitialize()
+        {
+            var initManger = _iocManager.Resolve<ApplicationInitializerManager>();
+            initManger.Init();
         }
 
         /// <summary>
