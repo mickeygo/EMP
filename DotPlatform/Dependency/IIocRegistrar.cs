@@ -22,22 +22,15 @@ namespace DotPlatform.Dependency
         /// </summary>
         /// <param name="type">要注册的类型</param>
         /// <param name="Impl">实现类</param>
-        void Register(Type type, Type Impl);
-
-        /// <summary>
-        /// IOC 容器注册
-        /// </summary>
-        /// <param name="type">要注册的类型</param>
-        /// <param name="Impl">实现类</param>
         /// <param name="lifeStyle">对象生命周期</param>
-        void Register(Type type, Type Impl, IocLifeStyle lifeStyle);
+        void Register(Type type, Type Impl, IocLifeStyle lifeStyle = IocLifeStyle.Singleton);
 
         /// <summary>
         /// IOC 容器注册
         /// </summary>
         /// <typeparam name="T">要注册的类型</typeparam>
         /// <param name="lifeStyle">对象生命周期</param>
-        void Register<T>(IocLifeStyle lifeStyle = IocLifeStyle.Singleton) where T : class;
+        void Register<T>(IocLifeStyle lifeStyle = IocLifeStyle.Singleton);
 
         /// <summary>
         /// IOC 容器注册

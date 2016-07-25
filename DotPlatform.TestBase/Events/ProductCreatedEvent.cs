@@ -8,7 +8,7 @@ namespace DotPlatform.TestBase.Events
     /// </summary>
     public class ProductCreatedEvent : DomainEvent
     {
-        protected ProductCreatedEvent(IEntity entity) : base(entity)
+        public ProductCreatedEvent(IEntity entity) : base(entity)
         {
 
         }

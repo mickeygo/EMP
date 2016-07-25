@@ -1,4 +1,5 @@
-﻿using System.Security.Claims;
+﻿using System;
+using System.Security.Claims;
 using Microsoft.Owin.Security;
 
 namespace DotPlatform.Web.Authentication
@@ -8,10 +9,17 @@ namespace DotPlatform.Web.Authentication
     /// </summary>
     public class DefaultAuthenticationTicket : IAuthenticationTicket
     {
+        private DateTimeOffset expiresUtc = DateTimeOffset.UtcNow.AddDays(1);
+
         public AuthenticationTicket CreateTicket(AuthenticationData authenticationData, bool IsPersistent)
         {
             var claimsIdentity = GetClaimsIdentity(authenticationData);
-            var properties = new AuthenticationProperties { IsPersistent = IsPersistent };
+            var properties = new AuthenticationProperties
+            {
+                IsPersistent = IsPersistent,
+                ExpiresUtc = expiresUtc
+            };
+
             return new AuthenticationTicket(claimsIdentity, properties);
         }
 

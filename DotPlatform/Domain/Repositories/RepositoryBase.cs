@@ -185,6 +185,10 @@ namespace DotPlatform.Domain.Repositories
             return await Task.FromResult(this.Count(specification.GetExpression()));
         }
 
+        public virtual void Dispose()
+        {
+        }
+
         #endregion
 
         protected static Expression<Func<TAggregateRoot, bool>> CreateEqualityExpressionForId(TKey id)

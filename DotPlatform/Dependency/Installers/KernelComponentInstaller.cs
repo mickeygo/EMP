@@ -1,6 +1,10 @@
-﻿using DotPlatform.Configuration.Startup;
+﻿using DotPlatform.Configuration;
+using DotPlatform.Configuration.Startup;
 using DotPlatform.Configuration.Startup.Impl;
 using DotPlatform.Domain.Uow;
+using DotPlatform.Events;
+using DotPlatform.Events.DirectBus;
+using DotPlatform.Events.Startup;
 using DotPlatform.Localization;
 using DotPlatform.Modules;
 using DotPlatform.Reflection;
@@ -31,6 +35,9 @@ namespace DotPlatform.Dependency.Installers
 
         public void Install()
         {
+            // Interceptor
+            _iocManager.Register<UnitOfWorkInterceptor>();
+
             // Reflection
             _iocManager.Register<ITypeFinder, TypeFinder>();
 
@@ -49,9 +56,17 @@ namespace DotPlatform.Dependency.Installers
             _iocManager.Register<AppStartupConfiguration>();
             _iocManager.Register<IStartupConfiguration, AppStartupConfiguration>();
 
+            // InitializerManager
+            _iocManager.Register<ApplicationInitializerManager>();
+
             // Uow
             _iocManager.Register<IUnitOfWorkDefaultOptions, UnitOfWorkDefaultOptions>();
             _iocManager.Register<IUnitOfWorkManager, UnitOfWorkManager>();
+
+            // Event & Bus
+            _iocManager.Register<IEventHandlerFinder, EventHandlerFinder>();
+            _iocManager.Register<IEventAggregator, EventAggregator>();
+            _iocManager.Register<IDirectEventBus, DirectEventBus>();
 
             // Build
             _iocManager.Build();

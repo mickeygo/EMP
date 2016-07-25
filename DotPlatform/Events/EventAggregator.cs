@@ -1,5 +1,6 @@
 ﻿using System;
 using DotPlatform.Events.Registrator;
+using DotPlatform.Dependency;
 
 namespace DotPlatform.Events
 {
@@ -11,47 +12,61 @@ namespace DotPlatform.Events
         private readonly EventHandlerRegistrator registrator;
 
         /// <summary>
-        /// 初始化一个新的<c>EventAggregator</c>实例
+        /// 初始化一个新的<see cref="EventAggregator"/>实例
         /// </summary>
         public EventAggregator()
         {
             registrator = EventHandlerRegistrator.Instance;
         }
 
+        /// <summary>
+        /// 订阅事件
+        /// </summary>
         public void Subcribe<TEvent>(IEventHandler<TEvent> handler) where TEvent : class, IEvent
         {
-            registrator.Register(handler);
+            
         }
 
+        /// <summary>
+        /// 订阅事件
+        /// </summary>
         public void Subcribe<TEvent>(params IEventHandler<TEvent>[] handlers) where TEvent : class, IEvent
         {
-            foreach (var handler in handlers)
-            {
-                Subcribe(handler);
-            }
+            
         }
 
+        /// <summary>
+        /// 取消订阅
+        /// </summary>
         public void Unsubcribe<TEvent>(IEventHandler<TEvent> handler) where TEvent : class, IEvent
         {
-            registrator.Unregister(handler);
+            
         }
 
+        /// <summary>
+        /// 发布事件
+        /// </summary>
         public void Publish<TEvent>(TEvent @event) where TEvent : class, IEvent
         {
-            var handlers = registrator.GetEvents<TEvent>();
-            if (handlers != null)
+            var handlerTypes = registrator.GetEvents(@event.GetType());
+            if (handlerTypes != null)
             {
-                foreach (var handler in handlers)
+                foreach (var handlerType in handlerTypes)
                 {
-                    handler.Handle(@event);
+                    var handler = IocManager.Instance.Resolve(handlerType) as IEventHandler<TEvent>;
+                    if (handler != null)
+                        handler.Handle(@event);
                 }
             }
         }
 
+        /// <summary>
+        /// 发布事件
+        /// </summary>
         public void Publish<TEvent>(TEvent @event, Action<TEvent, bool> callback) where TEvent : class, IEvent
         {
-            var handlers = registrator.GetEvents<TEvent>();
-            if (handlers == null)
+            var handlerTypes = registrator.GetEvents(@event.GetType());
+            if (handlerTypes == null)
             {
                 callback(@event, false);
                 return;
@@ -59,9 +74,11 @@ namespace DotPlatform.Events
 
             try
             {
-                foreach (var handler in handlers)
+                foreach (var handlerType in handlerTypes)
                 {
-                    handler.Handle(@event);
+                    var handler = IocManager.Instance.Resolve(handlerType) as IEventHandler<TEvent>;
+                    if (handler != null)
+                        handler.Handle(@event);
                 }
 
                 callback(@event, true);

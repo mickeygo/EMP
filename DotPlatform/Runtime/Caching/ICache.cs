@@ -64,6 +64,9 @@ namespace DotPlatform.Runtime.Caching
         /// </summary>
         void Clear();
 
+        /// <summary>
+        /// 清空所有的缓存项
+        /// </summary>
         Task ClearAsync();
     }
 }
