@@ -7,8 +7,11 @@ namespace DotPlatform.Tests.Entityframework.Repositories
 {
     public class CallContextProductRepository : EfRepository<TestEfDbContext, Product>, ICallContextProductRepository
     {
+        public readonly IDbContextProvider<TestEfDbContext> _dbContextProvider;
+
         public CallContextProductRepository(IDbContextProvider<TestEfDbContext> dbContextProvider) : base(dbContextProvider)
         {
+            _dbContextProvider = dbContextProvider;
         }
     }
 }

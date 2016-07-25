@@ -11,6 +11,8 @@ namespace WMS.Domain.Repository
         public void Initialize()
         {
             IocManager.Instance.Register<WmsEfDbContext>(IocLifeStyle.Transient);
+
+            IocManager.Instance.Build();
         }
     }
 }

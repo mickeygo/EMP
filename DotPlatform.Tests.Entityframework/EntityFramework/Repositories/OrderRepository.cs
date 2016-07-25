@@ -6,7 +6,7 @@ namespace DotPlatform.Tests.EntityFramework.Repositories
 {
     public class OrderRepository : EfRepository<TestEfDbContext, Order>
     {
-        public OrderRepository() : base(new UnitOfWorkDbContextProvider<TestEfDbContext>(new TestEfDbContext()))
+        public OrderRepository() : base(new SimpleDbContextProvider<TestEfDbContext>(new TestEfDbContext()))
         {
             
         }

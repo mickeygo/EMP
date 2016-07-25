@@ -35,6 +35,9 @@ namespace DotPlatform.Dependency.Installers
 
         public void Install()
         {
+            // Interceptor
+            _iocManager.Register<UnitOfWorkInterceptor>();
+
             // Reflection
             _iocManager.Register<ITypeFinder, TypeFinder>();
 

@@ -15,7 +15,7 @@ namespace DotPlatform.Tests.EntityFramework.Repositories
         public void Initialize()
         {
             IocManager.Instance.Register<ISimpleProductRepository, SimpleProductRepository>();
-            IocManager.Instance.RegisterGeneric(typeof(IDbContextProvider<>), typeof(UnitOfWorkDbContextProvider<>), IocLifeStyle.Transient);
+            IocManager.Instance.RegisterGeneric(typeof(IDbContextProvider<>), typeof(SimpleDbContextProvider<>), IocLifeStyle.Transient);
             IocManager.Instance.Register<TestEfDbContext>(IocLifeStyle.Transient);
 
             IocManager.Instance.Build();
@@ -27,6 +27,8 @@ namespace DotPlatform.Tests.EntityFramework.Repositories
             var _simpleProductRepository = IocManager.Instance.Resolve<ISimpleProductRepository>();
             var products = _simpleProductRepository.GetAllList();
 
+            _simpleProductRepository.Dispose();
+
             Assert.IsNotNull(products);
         }
 
@@ -36,7 +38,7 @@ namespace DotPlatform.Tests.EntityFramework.Repositories
             var product = new Product
             {
                 Name = "PN_002",
-                Model = "Nodel_02"
+                Model = "Model_02"
             };
 
             var _simpleProductRepository = IocManager.Instance.Resolve<ISimpleProductRepository>();

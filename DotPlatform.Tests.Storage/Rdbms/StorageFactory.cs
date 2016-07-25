@@ -13,7 +13,7 @@ namespace DotPlatform.Tests.Storage.Rdbms
         /// </summary>
         public static IRdbmsStorage AppTest
         {
-            get { return CreateStorage("appTest"); }
+            get { return CreateStorage("MyTest"); }
         }
 
         #region Private Methods

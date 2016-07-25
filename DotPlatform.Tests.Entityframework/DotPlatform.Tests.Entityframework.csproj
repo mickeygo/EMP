@@ -63,14 +63,19 @@
     <Compile Include="EntityFramework\EntityConfigurarion\OrderLineEntityTypeConfuguration.cs" />
     <Compile Include="EntityFramework\EntityConfigurarion\ProductEntityTypeConfuguration.cs" />
     <Compile Include="EntityFramework\Repositories\CallContextProductRepository.cs" />
+    <Compile Include="EntityFramework\Repositories\CallContextProductRepository2.cs" />
     <Compile Include="EntityFramework\Repositories\CallContextProductRepository_Test.cs" />
     <Compile Include="EntityFramework\Repositories\ICallContextProductRepository.cs" />
+    <Compile Include="EntityFramework\Repositories\ICallContextProductRepository2.cs" />
     <Compile Include="EntityFramework\Repositories\ISimpleProductRepository.cs" />
     <Compile Include="EntityFramework\Repositories\OrderRepository.cs" />
     <Compile Include="EntityFramework\Repositories\OrderRepository_Test.cs" />
     <Compile Include="EntityFramework\Repositories\SimpleProductRepository.cs" />
     <Compile Include="EntityFramework\Repositories\SimpleProductRepository_Test.cs" />
+    <Compile Include="EntityFramework\Services\IUpdateProductAppService.cs" />
+    <Compile Include="EntityFramework\Services\UpdateProductAppService_Test.cs" />
     <Compile Include="EntityFramework\TestEfDbContext.cs" />
+    <Compile Include="EntityFramework\TestEfDbContext2.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

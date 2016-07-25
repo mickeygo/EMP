@@ -22,6 +22,7 @@ namespace DotPlatform.EntityFramework.Repositories
          where TDbContext : DbContext
     {
         private readonly IDbContextProvider<TDbContext> _dbContextProvider;
+        private bool isDisposed;
 
         /// <summary>
         /// 获取Db上下文对象
@@ -138,6 +139,15 @@ namespace DotPlatform.EntityFramework.Repositories
         public override async Task<int> CountAsync(ISpecification<TAggregateRoot> specification)
         {
             return await this.AggregateRootContext.CountAsync(specification.GetExpression());
+        }
+
+        public override void Dispose()
+        {
+            if (!isDisposed)
+            {
+                Context.Dispose();
+                isDisposed = true;
+            }
         }
 
         #endregion

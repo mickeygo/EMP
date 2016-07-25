@@ -17,7 +17,8 @@ namespace DotPlatform.Domain.Uow
         /// <summary>
         /// 初始化一个新的<c>UnitOfWorkManager</c>实例
         /// </summary>
-        public UnitOfWorkManager(ICurrentUnitOfWorkProvider currentUnitOfWorkProvider, IUnitOfWorkDefaultOptions unitOfWorkDefaultOptions)
+        public UnitOfWorkManager(ICurrentUnitOfWorkProvider currentUnitOfWorkProvider,
+            IUnitOfWorkDefaultOptions unitOfWorkDefaultOptions)
         {
             _iocResolver = IocManager.Instance;
             _currentUnitOfWorkProvider = currentUnitOfWorkProvider;
@@ -55,14 +56,10 @@ namespace DotPlatform.Domain.Uow
 
             var uow = this._iocResolver.Resolve<IUnitOfWork>();
 
-            uow.Completed += (s, e) =>
+            // Must Set
+            uow.Disposed += (s, e) =>
             {
-                _currentUnitOfWorkProvider.Current = null;
-            };
-
-            uow.Failed += (s, e) =>
-            {
-                _currentUnitOfWorkProvider.Current = null;
+                _currentUnitOfWorkProvider.Current = null; // 释放资源时，同时释放当前工作单元的数据槽
             };
 
             uow.Begin(options);
