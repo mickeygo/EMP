@@ -3,7 +3,7 @@
 namespace DotPlatform.Events
 {
     /// <summary>
-    /// 事件聚合器。用于订阅和发布事件。
+    /// 事件聚合器。用于订阅(Subcribe)/取消(Unsubcribe)和发布(Publish)事件。
     /// </summary>
     public interface IEventAggregator
     {

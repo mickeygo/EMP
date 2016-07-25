@@ -22,9 +22,10 @@ namespace DotPlatform.EntityFramework.Repositories
          where TDbContext : DbContext
     {
         private readonly IDbContextProvider<TDbContext> _dbContextProvider;
+        private bool isDisposed;
 
         /// <summary>
-        /// 获取上下文对象
+        /// 获取Db上下文对象
         /// </summary>
         public virtual TDbContext Context
         {
@@ -32,7 +33,7 @@ namespace DotPlatform.EntityFramework.Repositories
         }
 
         /// <summary>
-        /// 获取聚合根上下文对象
+        /// 获取聚合根对象的数据集合
         /// </summary>
         public virtual DbSet<TAggregateRoot> AggregateRootContext
         {
@@ -140,6 +141,15 @@ namespace DotPlatform.EntityFramework.Repositories
             return await this.AggregateRootContext.CountAsync(specification.GetExpression());
         }
 
+        public override void Dispose()
+        {
+            if (!isDisposed)
+            {
+                Context.Dispose();
+                isDisposed = true;
+            }
+        }
+
         #endregion
 
         #region Protected Methods
@@ -159,7 +169,7 @@ namespace DotPlatform.EntityFramework.Repositories
     }
 
     /// <summary>
-    /// 基于 Microsoft EntityFramework 的仓储。主键类型 为 Guid
+    /// 基于 Microsoft EntityFramework 的仓储。主键类型 为 <see cref="Guid"/>
     /// 用于对聚合根对象进行增删改查。
     /// </summary>
     /// <typeparam name="TDbContext">基于<see cref="DbContext"/>的数据上下文</typeparam>

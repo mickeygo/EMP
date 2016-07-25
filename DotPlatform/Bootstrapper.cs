@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Reflection;
 using DotPlatform.Dependency.Installers;
 using DotPlatform.Dependency;
 using DotPlatform.Configuration.Startup.Impl;
 using DotPlatform.Modules;
+using DotPlatform.Configuration;
 
 namespace DotPlatform
 {
@@ -13,38 +12,73 @@ namespace DotPlatform
     /// </summary>
     public class Bootstrapper : IDisposable
     {
-        private IIocManager _iocaManager;
-        IModuleManager _moduleManager;
+        private IModuleManager _moduleManager;
+        private readonly IIocManager _iocManager;
 
+        private static object sync = new object();
+
+        /// <summary>
+        /// 是否已 Disposed.
+        /// </summary>
         protected bool IsDisposed;
 
-        public Bootstrapper() : this(IocManager.Instance)
+        /// <summary>
+        /// 初始化一个新的<see cref="Bootstrapper"/>实例
+        /// </summary>
+        public Bootstrapper()
         {
-
+            _iocManager = IocManager.Instance;
         }
 
-        public Bootstrapper(IIocManager iocManager)
+        /// <summary>
+        /// 初始化之前处理
+        /// </summary>
+        public virtual void OnPreInitialize()
         {
-            _iocaManager = iocManager;
+
         }
 
         /// <summary>
         /// 初始化程序。查询启动会执行该方法
         /// </summary>
-        public virtual void Initialize()
+        public virtual void OnInitialize()
         {
-            // 安装组件
-            KernelComponentInstaller.Instance.Install();
+            lock (sync)
+            {
+                // 安装组件
+                KernelComponentInstaller.Instance.Install();
 
-            // Configuration
-            _iocaManager.Resolve<AppStartupConfiguration>().Initialize();
+                // Configuration
+                _iocManager.Resolve<AppStartupConfiguration>().Initialize();
 
-            // Module
-            _moduleManager = _iocaManager.Resolve<IModuleManager>();
-            _moduleManager.Initialize();
+                // Module
+                _moduleManager = _iocManager.Resolve<IModuleManager>();
+                _moduleManager.Initialize();
+            }
         }
 
-        public void Dispose()
+        /// <summary>
+        /// 初始化后事件处理
+        /// </summary>
+        public virtual void OnPostInitialize()
+        {
+            var initManger = _iocManager.Resolve<ApplicationInitializerManager>();
+            initManger.Init();
+        }
+
+        /// <summary>
+        /// 加载所有的程序集
+        /// </summary>
+        public virtual void LoadAllAssemblies()
+        {
+            // Todo： 如何将 IAssemblyFinder 对象在此重写
+
+        }
+
+        /// <summary>
+        /// Dispose
+        /// </summary>
+        public virtual void Dispose()
         {
             if (IsDisposed)
             {
@@ -52,6 +86,7 @@ namespace DotPlatform
             }
 
             _moduleManager.Shutdown();
+            IsDisposed = true;
         }
     }
 }

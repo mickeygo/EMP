@@ -3,7 +3,8 @@
 namespace DotPlatform.Runtime.Caching.Configurations
 {
     /// <summary>
-    /// 缓存配置程序
+    /// 缓存配置程序。
+    /// 可设置不同的缓存对象具有不同的过期时间
     /// </summary>
     public interface ICacheConfigurator
     {

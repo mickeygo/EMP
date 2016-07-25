@@ -20,7 +20,7 @@ namespace DotPlatform.Modules
         public void Initialize()
         {
             // Load all modules
-            var _modules = LoadAllModules();
+            _modules = LoadAllModules();
 
             // Execute loaded module PreInitialize, Initialize an PostInitialize function
             _modules.ForEach(m =>
@@ -33,10 +33,13 @@ namespace DotPlatform.Modules
 
         public void Shutdown()
         {
-            _modules.ForEach(m =>
+            if (_modules != null)
             {
-                m.Shutdown();
-            });
+                _modules.ForEach(m =>
+                {
+                    m.Shutdown();
+                });
+            }
         }
 
         #region Private Methods

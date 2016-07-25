@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using DotPlatform.Extensions;
 
 namespace DotPlatform.Reflection
 {
@@ -9,6 +10,8 @@ namespace DotPlatform.Reflection
     /// </summary>
     public class TypeFinder : ITypeFinder
     {
+        private readonly string[] excludeAssemblies = { "mscorlib", "Microsoft", "System" };
+
         public IAssemblyFinder AssemblyFinder { get; set; }
 
         /// <summary>
@@ -31,7 +34,10 @@ namespace DotPlatform.Reflection
 
         private IEnumerable<Type> GetAllTypes()
         {
-            return AssemblyFinder.GetAllAssemblies().Distinct().SelectMany(a => a.GetTypes());
+            return AssemblyFinder.GetAllAssemblies()
+                .Where(a => !a.FullName.StartsIn(excludeAssemblies))
+                .Distinct()
+                .SelectMany(a => a.GetTypes());
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Security.Claims;
 using DotPlatform.Runtime.Security;
+using DotPlatform.Extensions;
 
 namespace DotPlatform.Web.Authentication
 {
@@ -22,6 +23,27 @@ namespace DotPlatform.Web.Authentication
             return claimsIdentity;
         }
 
+        /// <summary>
+        /// 将基于声明的身份解析为验证数据
+        /// </summary>
+        /// <param name="claimsIdentity"></param>
+        /// <returns></returns>
+        public static AuthenticationData ReSolveClaimsIdentity(ClaimsIdentity claimsIdentity)
+        {
+            var tenantId = claimsIdentity.FindFirst(c => c.Type == OwnerClaimTypes.TenantId)?.Value.ToGuid();
+            var tenantName = claimsIdentity.FindFirst(c => c.Type == OwnerClaimTypes.TenantName)?.Value;
+            var language = claimsIdentity.FindFirst(c => c.Type == OwnerClaimTypes.Language)?.Value;
+            var timeDifference = claimsIdentity.FindFirst(c => c.Type == OwnerClaimTypes.TimeDifference)?.Value.ToInt32();
+
+            var userId = claimsIdentity.FindFirst(c => c.Type == ClaimTypes.NameIdentifier)?.Value.ToGuid();
+            var userName = claimsIdentity.FindFirst(c => c.Type == ClaimTypes.Name)?.Value;
+            var email = claimsIdentity.FindFirst(c => c.Type == ClaimTypes.Email)?.Value;
+
+            return new AuthenticationData(tenantId, tenantName, language, timeDifference, userId, userName, email);
+        }
+
+        #region Private Methods
+
         private static IEnumerable<Claim> CreateClaims(AuthenticationData data)
         {
             yield return new Claim(OwnerClaimTypes.TenantId, data.TenantId?.ToString());
@@ -32,7 +54,8 @@ namespace DotPlatform.Web.Authentication
             yield return new Claim(ClaimTypes.NameIdentifier, data.UserId?.ToString());
             yield return new Claim(ClaimTypes.Name, data.UserName);
             yield return new Claim(ClaimTypes.Email, data.Email);
-            yield return new Claim(ClaimTypes.Gender, data.Email);
         }
+
+        #endregion
     }
 }

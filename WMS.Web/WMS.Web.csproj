@@ -33,6 +33,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -168,6 +169,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\AccoutController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Startup.cs" />
     <Content Include="AUI_Test.html" />
     <Content Include="Contents\aui\css\aui-production.min.css" />
@@ -506,7 +509,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Controllers\" />
     <Folder Include="Js\" />
     <Folder Include="Models\" />
   </ItemGroup>
@@ -514,6 +516,10 @@
     <ProjectReference Include="..\DotPlatform.AutoMapper\DotPlatform.AutoMapper.csproj">
       <Project>{1df11c0a-781d-4137-81de-c915c8fba88d}</Project>
       <Name>DotPlatform.AutoMapper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DotPlatform.Bus\DotPlatform.Bus.csproj">
+      <Project>{d7adf3e0-02b4-4ef1-827f-c82f2ebafeb6}</Project>
+      <Name>DotPlatform.Bus</Name>
     </ProjectReference>
     <ProjectReference Include="..\DotPlatform.EntityFramework\DotPlatform.EntityFramework.csproj">
       <Project>{09b41815-54ba-4afa-973c-0488fb1f578f}</Project>

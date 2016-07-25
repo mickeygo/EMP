@@ -59,8 +59,9 @@ namespace DotPlatform.Modules
         /// <returns></returns>
         public static bool IsDependedModule(Type type)
         {
-            return type.IsClass && !type.IsAbstract &&
-                typeof(ModuleBase).IsAssignableFrom(type);
+            return type.IsClass 
+                && !type.IsAbstract 
+                && typeof(ModuleBase).IsAssignableFrom(type);
         }
 
         /// <summary>
@@ -78,7 +79,8 @@ namespace DotPlatform.Modules
                 var dependsOnAttributes = moduleType.GetCustomAttributes(typeof(DependsOnAttribute), true).Cast<DependsOnAttribute>();
 
                 return dependsOnAttributes.Where(s => s.DependedModuleTypes != null)
-                    .SelectMany(s => s.DependedModuleTypes).ToList();
+                    .SelectMany(s => s.DependedModuleTypes)
+                    .ToList();
             }
 
             return new List<Type>();
