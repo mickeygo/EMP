@@ -1,8 +1,8 @@
 ﻿using System;
 using DotPlatform.RedisCache.Runtime.Caching.Redis.Extensions;
 using DotPlatform.Runtime.Caching;
-using DotPlatform.Serialization;
 using StackExchange.Redis;
+using DotPlatform.Serialization.Json;
 
 namespace DotPlatform.RedisCache.Runtime.Caching.Redis
 {

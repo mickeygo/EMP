@@ -13,7 +13,7 @@ namespace DotPlatform.EntityFramework
     {
         public override void PreInitialize()
         {
-            //IocManager.RegisterGeneric(typeof(IDbContextProvider<>), typeof(SimpleDbContextProvider<>), IocLifeStyle.Transient);
+            IocManager.RegisterGeneric(typeof(IDbContextProvider<>), typeof(UnitOfWorkDbContextProvider<>), IocLifeStyle.Transient);
             IocManager.Register<IUnitOfWork, EfUnitOfWork>(IocLifeStyle.Transient);
 
             this.IocManager.Build();

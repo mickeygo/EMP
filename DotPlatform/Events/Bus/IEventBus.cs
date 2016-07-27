@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DotPlatform.Events
+namespace DotPlatform.Events.Bus
 {
     /// <summary>
     /// 表示实现接口的类为事件总线。
@@ -9,7 +9,7 @@ namespace DotPlatform.Events
     public interface IEventBus
     {
         /// <summary>
-        /// 获取事件总线的 Id
+        /// 获取事件总线的 Id.
         /// </summary>
         Guid Id { get; }
 

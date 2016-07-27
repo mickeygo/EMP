@@ -8,8 +8,7 @@
         /// <summary>
         /// 发布消息
         /// </summary>
-        /// <typeparam name="TMessage"></typeparam>
-        /// <param name="message"></param>
-        void Publish<TMessage>(TMessage message);
+        /// <param name="message">要发布的消息</param>
+        void Publish(IMessage message);
     }
 }

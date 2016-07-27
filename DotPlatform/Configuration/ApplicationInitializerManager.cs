@@ -39,7 +39,9 @@ namespace DotPlatform.Configuration
 
         private IEnumerable<Type> FindAllInitializerTypes()
         {
-            return _typeFinder.Find(t => t.IsClass && !t.IsAbstract && t.IsAssignableFrom(typeof(IApplicationInitializer)));
+            return _typeFinder.Find(t => t.IsClass
+                        && !t.IsAbstract
+                        && typeof(IApplicationInitializer).IsAssignableFrom(t));
         }
     }
 }

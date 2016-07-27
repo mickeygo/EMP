@@ -36,6 +36,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Messaging" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -45,9 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MSMQ\IMsmqBus.cs" />
+    <Compile Include="Msmq\Configuration\IMsmqConfiguration.cs" />
+    <Compile Include="Msmq\IMsmqBus.cs" />
+    <Compile Include="Msmq\MsmqBus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RabbitMQ\IRabbitmqBus.cs" />
+    <Compile Include="Rabbitmq\Configuration\IRabbitmqConfiguration.cs" />
+    <Compile Include="Rabbitmq\IRabbitmqBus.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DotPlatform\DotPlatform.csproj">

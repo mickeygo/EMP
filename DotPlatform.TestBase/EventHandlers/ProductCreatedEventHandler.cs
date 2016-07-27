@@ -12,26 +12,18 @@ namespace DotPlatform.TestBase.EventHandlers
     /// </summary>
     public class ProductCreatedEventHandler : IEventHandler<ProductCreatedEvent>
     {
-        private readonly IUnitOfWorkManager _uowManager;
         private readonly IProductRepository _productRepository;
 
-        public ProductCreatedEventHandler(IUnitOfWorkManager uowManager, 
-            IProductRepository productRepository)
+        public ProductCreatedEventHandler(IProductRepository productRepository)
         {
-            _uowManager = uowManager;
             _productRepository = productRepository;
         }
 
-        public void Handle(ProductCreatedEvent e)
+        [UnitOfWork]
+        public virtual void Handle(ProductCreatedEvent e)
         {
             var product = e.Source.Cast<Product>();
-
-            using (var uow =_uowManager.Begin())
-            {
-                this._productRepository.Add(product);
-
-                uow.Complete();
-            }                
+            _productRepository.Add(product);
         }
     }
 }

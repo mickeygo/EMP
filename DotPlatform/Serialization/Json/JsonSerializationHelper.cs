@@ -1,7 +1,7 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
+using Newtonsoft.Json;
 
-namespace DotPlatform.Serialization
+namespace DotPlatform.Serialization.Json
 {
     /// <summary>
     /// Json 序列器帮助类

@@ -66,10 +66,14 @@
     <Compile Include="Algorithms\Cryptography\CryptoFactory.cs" />
     <Compile Include="Algorithms\Cryptography\DESCrypto.cs" />
     <Compile Include="Algorithms\Cryptography\MD5Crypto.cs" />
+    <Compile Include="Application\Services\ApplicationService.cs" />
+    <Compile Include="Application\Services\IApplicationService.cs" />
     <Compile Include="Auditing\AuditInfo.cs" />
     <Compile Include="Auditing\IAuditInfoProvider.cs" />
     <Compile Include="Auditing\IAuditingStore.cs" />
+    <Compile Include="Bus\BusModel.cs" />
     <Compile Include="Bus\IBus.cs" />
+    <Compile Include="Bus\IMessage.cs" />
     <Compile Include="Configuration\ApplicationInitializerManager.cs" />
     <Compile Include="Configuration\Fluent\CacheFluentConfigurator.cs" />
     <Compile Include="Configuration\Fluent\ConfiguratorBase.cs" />
@@ -148,10 +152,13 @@
     <Compile Include="Dependency\IIocManager.cs" />
     <Compile Include="Dependency\IIocRegistrar.cs" />
     <Compile Include="Dependency\IIocResolver.cs" />
-    <Compile Include="Events\DirectBus\DirectEventBus.cs" />
-    <Compile Include="Events\DirectBus\IDirectEventBus.cs" />
+    <Compile Include="Events\Bus\EventBus.cs" />
+    <Compile Include="Events\Bus\IEventBusProvider.cs" />
+    <Compile Include="Events\Bus\EventBusProvider.cs" />
+    <Compile Include="Events\Bus\DirectBus.cs" />
     <Compile Include="Events\DomainEvent.cs" />
     <Compile Include="Events\EventAggregator.cs" />
+    <Compile Include="Events\DomainEventData.cs" />
     <Compile Include="Events\Registrator\EventHandlerMappingCache.cs" />
     <Compile Include="Events\Startup\EventHandlerFinder.cs" />
     <Compile Include="Events\Startup\EventInitializer.cs" />
@@ -163,10 +170,13 @@
     <Compile Include="Events\IDomainEvent.cs" />
     <Compile Include="Events\IEvent.cs" />
     <Compile Include="Events\IEventAggregator.cs" />
-    <Compile Include="Events\IEventBus.cs" />
+    <Compile Include="Events\Bus\IEventBus.cs" />
     <Compile Include="Events\IEventHandler.cs" />
+    <Compile Include="Events\Storage\InDbDomainEventStorage.cs" />
+    <Compile Include="Events\Storage\NullDomainEventStorage.cs" />
     <Compile Include="Extensions\CollectionExtension.cs" />
     <Compile Include="Extensions\NullableExtension.cs" />
+    <Compile Include="Extensions\ObjectExtension.cs" />
     <Compile Include="Extensions\StringExtension.cs" />
     <Compile Include="Generators\IGuidGenerator.cs" />
     <Compile Include="Generators\RegularGuidGenerator.cs" />
@@ -212,7 +222,7 @@
     <Compile Include="Runtime\Session\IOwnerSession.cs" />
     <Compile Include="Runtime\Session\NullSession.cs" />
     <Compile Include="Serialization\IObjectSerializer.cs" />
-    <Compile Include="Serialization\JsonSerializationHelper.cs" />
+    <Compile Include="Serialization\Json\JsonSerializationHelper.cs" />
     <Compile Include="Serialization\ObjectBinarySerializer.cs" />
     <Compile Include="Serialization\ObjectJsonSerializer.cs" />
     <Compile Include="Serialization\ObjectXmlSerializer.cs" />
@@ -239,9 +249,9 @@
     <Compile Include="Timing\Clock.cs" />
     <Compile Include="Timing\IClockProvider.cs" />
     <Compile Include="Timing\LocalClockProvider.cs" />
+    <Compile Include="Utils\PrivateReflectionDynamicObject.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Application\" />
     <Folder Include="Authorization\" />
     <Folder Include="BackgroundJobs\" />
     <Folder Include="Domain\Snapshots\" />
@@ -250,7 +260,6 @@
     <Folder Include="Net\Mail\Extensions\" />
     <Folder Include="RealTime\" />
     <Folder Include="Transactions\" />
-    <Folder Include="Utils\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

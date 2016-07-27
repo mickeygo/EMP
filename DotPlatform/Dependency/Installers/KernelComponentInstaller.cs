@@ -1,10 +1,12 @@
-﻿using DotPlatform.Configuration;
+﻿using DotPlatform.Bus;
+using DotPlatform.Configuration;
 using DotPlatform.Configuration.Startup;
 using DotPlatform.Configuration.Startup.Impl;
 using DotPlatform.Domain.Uow;
 using DotPlatform.Events;
-using DotPlatform.Events.DirectBus;
+using DotPlatform.Events.Bus;
 using DotPlatform.Events.Startup;
+using DotPlatform.Events.Storage;
 using DotPlatform.Localization;
 using DotPlatform.Modules;
 using DotPlatform.Reflection;
@@ -62,11 +64,16 @@ namespace DotPlatform.Dependency.Installers
             // Uow
             _iocManager.Register<IUnitOfWorkDefaultOptions, UnitOfWorkDefaultOptions>();
             _iocManager.Register<IUnitOfWorkManager, UnitOfWorkManager>();
+            _iocManager.Register<ICurrentUnitOfWorkProvider, CallContextCurrentUnitOfWorkProvider>();
 
             // Event & Bus
             _iocManager.Register<IEventHandlerFinder, EventHandlerFinder>();
             _iocManager.Register<IEventAggregator, EventAggregator>();
-            _iocManager.Register<IDirectEventBus, DirectEventBus>();
+            _iocManager.Register<IDomainEventStorage, NullDomainEventStorage>(); // Todo: Change the event storage
+            
+            _iocManager.Register<IEventBusProvider, EventBusProvider>();
+            _iocManager.Register<IEventBus, EventBus>();
+            _iocManager.Register<IBus, DirectBus>();
 
             // Build
             _iocManager.Build();

@@ -1,4 +1,4 @@
-﻿namespace DotPlatform.Bus.RabbitMQ
+﻿namespace DotPlatform.Bus.Rabbitmq
 {
     /// <summary>
     /// 表示基于 RabbitMQ 的消息队列总线
