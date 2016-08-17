@@ -1,4 +1,6 @@
-﻿using DotPlatform.Bus;
+﻿using System;
+using System.Threading.Tasks;
+using DotPlatform.Bus;
 
 namespace DotPlatform.Events.Bus
 {
@@ -17,9 +19,16 @@ namespace DotPlatform.Events.Bus
         /// <summary>
         /// 发布事件
         /// </summary>
-        public void Publish(IMessage message)
+        public void Publish<TMessage>(TMessage message) 
+            where TMessage : IMessage
         {
             _eventAggregator.Publish((IEvent)message);
+        }
+
+        public async Task PublishAsync<TMessage>(TMessage message) 
+            where TMessage : IMessage
+        {
+            await Task.Run(() => _eventAggregator.Publish((IEvent)message));
         }
     }
 }

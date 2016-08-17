@@ -12,6 +12,11 @@ namespace DotPlatform.Storage
             return CreateInternalConnection(connectionName);
         }
 
+        /// <summary>
+        /// 创建内部连接
+        /// </summary>
+        /// <param name="connectionName">连接名</param>
+        /// <returns><see cref="IDbConnection"/></returns>
         protected abstract IDbConnection CreateInternalConnection(string connectionName);
     }
 }

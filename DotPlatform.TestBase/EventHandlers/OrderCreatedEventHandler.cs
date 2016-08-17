@@ -5,7 +5,7 @@ namespace DotPlatform.TestBase.EventHandlers
 {
     public class OrderCreatedEventHandler : IEventHandler<OrderCreatedEvent>
     {
-        public void Handle(OrderCreatedEvent e)
+        public virtual void Handle(OrderCreatedEvent e)
         {
 
         }

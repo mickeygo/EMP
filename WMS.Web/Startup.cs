@@ -2,7 +2,6 @@
 using Owin;
 
 [assembly: OwinStartup(typeof(WMS.Web.Startup))]
-
 namespace WMS.Web
 {
     public partial class Startup

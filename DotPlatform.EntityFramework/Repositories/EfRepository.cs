@@ -1,8 +1,8 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Data.Entity;
 using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using System;
 using System.Linq.Expressions;
 using DotPlatform.Domain.Entities;
 using DotPlatform.Domain.Repositories;

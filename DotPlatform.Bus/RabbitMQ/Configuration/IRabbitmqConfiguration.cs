@@ -1,22 +1,18 @@
-﻿namespace DotPlatform.Bus.Rabbitmq.Configuration
+﻿namespace DotPlatform.Bus.RabbitMq.Configuration
 {
     /// <summary>
     /// 基于 RabbitMQ 的配置信息
     /// </summary>
-    public interface IRabbitmqConfiguration
+    public interface IRabbitMqConfiguration
     {
-        string Hostame { get; set; }
+        /// <summary>
+        /// 获取或设置配置名
+        /// </summary>
+        string Name { get; set; }
 
-        int Port { get; set; }
-
-        string UserName { get; set; }
-
-        string Password { get; set; }
-
-        string virtualHost { get; set; }
-
-        bool OneWay { get; set; }
-
-        int MaxMessageSize { get; set; }
+        /// <summary>
+        /// 获取或设置连接字符串
+        /// </summary>
+        string ConnectionString { get; set; }
     }
 }

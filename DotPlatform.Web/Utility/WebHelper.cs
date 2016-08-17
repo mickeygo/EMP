@@ -36,10 +36,7 @@ namespace DotPlatform.Web.Utility
             // Host
             hostAddress = Dns.GetHostAddresses(Dns.GetHostName())
                .FirstOrDefault(a => a.AddressFamily == AddressFamily.InterNetwork);
-            if (hostAddress != null)
-                return hostAddress.ToString();
-
-            return null;
+            return hostAddress?.ToString();
         }
 
         /// <summary>

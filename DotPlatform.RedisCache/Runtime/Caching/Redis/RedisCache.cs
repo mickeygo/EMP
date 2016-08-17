@@ -6,6 +6,9 @@ using DotPlatform.Serialization.Json;
 
 namespace DotPlatform.RedisCache.Runtime.Caching.Redis
 {
+    /// <summary>
+    /// Redis 缓存。用于管理 Redis 缓存
+    /// </summary>
     public class RedisCache : CacheBase
     {
         private readonly IDatabase _database;

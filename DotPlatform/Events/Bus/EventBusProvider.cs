@@ -9,6 +9,7 @@ namespace DotPlatform.Events.Bus
     {
         public EventBusProvider(IBus bus)
         {
+            // Todo: 可以根据 Attribute 自由选择 Bus
             Bus = bus;
         }
 

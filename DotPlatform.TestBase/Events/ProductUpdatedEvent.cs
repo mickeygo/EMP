@@ -1,4 +1,5 @@
-﻿using DotPlatform.Events;
+﻿using System;
+using DotPlatform.Events;
 using DotPlatform.TestBase.Domain.Entities;
 
 namespace DotPlatform.TestBase.Events

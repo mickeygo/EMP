@@ -73,6 +73,7 @@
     <Compile Include="EntityFramework\SampleDbContext.cs" />
     <Compile Include="EventHandlers\ProductCreatedEventHandler_Test.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\Query\SampleProductQueryRepository.cs" />
     <Compile Include="Repositories\SampleProductRepository.cs" />
   </ItemGroup>
   <ItemGroup>

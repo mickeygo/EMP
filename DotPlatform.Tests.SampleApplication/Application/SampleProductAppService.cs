@@ -1,9 +1,9 @@
 ﻿using System;
 using DotPlatform.Application.Services;
 using DotPlatform.TestBase.Domain.Entities;
-using DotPlatform.TestBase.Repositores;
 using DotPlatform.Events.Bus;
 using DotPlatform.TestBase.Events;
+using DotPlatform.TestBase.Repositores.Query;
 
 namespace DotPlatform.Tests.SampleApplication.Application
 {
@@ -13,18 +13,18 @@ namespace DotPlatform.Tests.SampleApplication.Application
     public class SampleProductAppService : ApplicationService, IProductAppService
     {
         private readonly IEventBus _eventBus;
-        private readonly IProductRepository _productRepository;
+        private readonly IProductQueryRepository _productQueryRepository;
 
 
-        public SampleProductAppService(IEventBus eventBus, IProductRepository productRepository)
+        public SampleProductAppService(IEventBus eventBus, IProductQueryRepository productQueryRepository)
         {
             _eventBus = eventBus;
-            _productRepository = productRepository;
+            _productQueryRepository = productQueryRepository;
         }
 
         public Product Get(Guid productId)
         {
-            return _productRepository.Get(productId);
+            return _productQueryRepository.Get(productId);
         }
 
         public void Create(Product product)
@@ -34,12 +34,17 @@ namespace DotPlatform.Tests.SampleApplication.Application
 
         public void Update(Product product)
         {
-            throw new NotImplementedException();
+            _eventBus.Publish(new ProductUpdatedEvent(product));
         }
 
         public void Delete(Guid productId)
         {
             throw new NotImplementedException();
+        }
+
+        protected override void Close()
+        {
+            _productQueryRepository?.Dispose();
         }
     }
 }

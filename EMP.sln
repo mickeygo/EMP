@@ -71,6 +71,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sample", "Sample", "{908146
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotPlatform.Tests.SampleApplication", "DotPlatform.Tests.SampleApplication\DotPlatform.Tests.SampleApplication.csproj", "{7F7B6ED7-FA9B-4A76-9BC6-8DA0B73924E0}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SelfHosting", "SelfHosting", "{F17D17E1-D53C-45EB-9EFD-18FA6776AA20}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

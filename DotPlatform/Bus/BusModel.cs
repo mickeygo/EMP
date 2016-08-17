@@ -9,16 +9,16 @@
         /// <summary>
         /// 直接执行的 Bus.
         /// </summary>
-        Direct = 1,
+        Direct = 0,
 
         /// <summary>
         /// 基于 Microsoft Message Queue 的 Bus.
         /// </summary>
-        MSMQ = 2,
+        MSMQ = 1,
 
         /// <summary>
         /// 基于 RabbitMQ 的 Bus.
         /// </summary>
-        RabbitMQ = 3
+        RabbitMQ = 2
     }
 }

@@ -30,8 +30,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="RabbitMQ.Client, Version=3.6.3.0, Culture=neutral, PublicKeyToken=89e7d7c5feba84ce, processorArchitecture=MSIL">
-      <HintPath>..\packages\RabbitMQ.Client.3.6.3\lib\net45\RabbitMQ.Client.dll</HintPath>
+    <Reference Include="EasyNetQ, Version=0.61.0.442, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\EasyNetQ.0.61.0.442\lib\net45\EasyNetQ.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="RabbitMQ.Client, Version=3.6.4.0, Culture=neutral, PublicKeyToken=89e7d7c5feba84ce, processorArchitecture=MSIL">
+      <HintPath>..\packages\RabbitMQ.Client.3.6.4\lib\net45\RabbitMQ.Client.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -46,12 +50,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Msmq\Configuration\IMsmqConfiguration.cs" />
-    <Compile Include="Msmq\IMsmqBus.cs" />
-    <Compile Include="Msmq\MsmqBus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Rabbitmq\Configuration\IRabbitmqConfiguration.cs" />
-    <Compile Include="Rabbitmq\IRabbitmqBus.cs" />
+    <Compile Include="RabbitMq\Configuration\IRabbitMqConfiguration.cs" />
+    <Compile Include="RabbitMq\IRabbitMqBus.cs" />
+    <Compile Include="RabbitMq\IRabbitMqConnection.cs" />
+    <Compile Include="RabbitMq\RabbitMqBus.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DotPlatform\DotPlatform.csproj">
