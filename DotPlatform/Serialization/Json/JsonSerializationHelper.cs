@@ -1,5 +1,6 @@
 ﻿using System;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 
 namespace DotPlatform.Serialization.Json
 {
@@ -14,9 +15,10 @@ namespace DotPlatform.Serialization.Json
         /// <typeparam name="TObject">要序列化的对象类型</typeparam>
         /// <param name="obj">要序列化的对象</param>
         /// <returns>序列化后的字符串</returns>
-        public static string Serialize<TObject>(TObject obj)
+        public static string Serialize<TObject>(TObject obj, bool useCamelCase = false)
         {
-            return JsonConvert.SerializeObject(obj);
+            var jsonSetting = MakeJsonSetting(useCamelCase);
+            return JsonConvert.SerializeObject(obj, jsonSetting);
         }
 
         /// <summary>
@@ -24,9 +26,10 @@ namespace DotPlatform.Serialization.Json
         /// </summary>
         /// <param name="obj">要序列化的对象</param>
         /// <returns>序列化后的字符串</returns>
-        public static string Serialize(object obj)
+        public static string Serialize(object obj, bool useCamelCase = false)
         {
-            return JsonConvert.SerializeObject(obj);
+            var jsonSetting = MakeJsonSetting(useCamelCase);
+            return JsonConvert.SerializeObject(obj, jsonSetting);
         }
 
         /// <summary>
@@ -35,9 +38,10 @@ namespace DotPlatform.Serialization.Json
         /// <typeparam name="TObject">要反序列化的对象类型</typeparam>
         /// <param name="valve">要反序列化的 Json 字符串</param>
         /// <returns>要反序列化的对象实例</returns>
-        public static TObject Deserialize<TObject>(string valve)
+        public static TObject Deserialize<TObject>(string valve, bool useCamelCase = false)
         {
-            return JsonConvert.DeserializeObject<TObject>(valve);
+            var jsonSetting = MakeJsonSetting(useCamelCase);
+            return JsonConvert.DeserializeObject<TObject>(valve, jsonSetting);
         }
 
         /// <summary>
@@ -46,9 +50,23 @@ namespace DotPlatform.Serialization.Json
         /// <param name="valve">要反序列化的 Json 字符串</param>
         /// <param name="type">要反序列化的类型</param>
         /// <returns>要反序列化的对象实例</returns>
-        public static object Deserialize(string valve, Type type) 
+        public static object Deserialize(string valve, Type type, bool useCamelCase = false) 
         {
-            return JsonConvert.DeserializeObject(valve, type);
+            var jsonSetting = MakeJsonSetting(useCamelCase);
+            return JsonConvert.DeserializeObject(valve, type, jsonSetting);
         }
+
+        #region Private Methods
+
+        private static JsonSerializerSettings MakeJsonSetting(bool useCamelCase)
+        {
+            var jsonSetting = new JsonSerializerSettings();
+            if (useCamelCase)
+                jsonSetting.ContractResolver = new CamelCasePropertyNamesContractResolver();
+
+            return jsonSetting;
+        }
+
+        #endregion
     }
 }
