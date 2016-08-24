@@ -52,6 +52,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Authorization\Authorization_Tests.cs" />
     <Compile Include="Configuration\Fluent\CacheConfigurator_Test.cs" />
     <Compile Include="Configuration\Fluent\EmailConfigurator_Test.cs" />
     <Compile Include="Events\EventHandlerFinder_Test.cs" />

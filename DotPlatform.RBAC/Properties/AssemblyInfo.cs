@@ -5,15 +5,14 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("DotPlatform.TestBase")]
+[assembly: AssemblyTitle("DotPlatform.RBAC")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Microsoft")]
-[assembly: AssemblyProduct("DotPlatform.TestBase")]
+[assembly: AssemblyProduct("DotPlatform.RBAC")]
 [assembly: AssemblyCopyright("Copyright © Microsoft 2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
-
 
 // Setting ComVisible to false makes the types in this assembly not visible 
 // to COM components.  If you need to access a type in this assembly from 
@@ -21,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("d4d48dd8-33ad-45c8-b8e9-bf35299cd8f5")]
+[assembly: Guid("cb302955-5080-4d7d-9853-a2cc1685ff15")]
 
 // Version information for an assembly consists of the following four values:
 //

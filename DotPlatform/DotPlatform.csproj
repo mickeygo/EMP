@@ -66,17 +66,34 @@
     <Compile Include="Algorithms\Cryptography\CryptoFactory.cs" />
     <Compile Include="Algorithms\Cryptography\DESCrypto.cs" />
     <Compile Include="Algorithms\Cryptography\MD5Crypto.cs" />
+    <Compile Include="Application\Navigation\MenuDefinition.cs" />
+    <Compile Include="Application\Navigation\MenuItemDefinition.cs" />
+    <Compile Include="Application\Navigation\NavigationProvider.cs" />
     <Compile Include="Application\Services\ApplicationService.cs" />
     <Compile Include="Application\Services\IApplicationService.cs" />
     <Compile Include="Application\Services\Dto\IDto.cs" />
     <Compile Include="Auditing\AuditInfo.cs" />
     <Compile Include="Auditing\IAuditInfoProvider.cs" />
     <Compile Include="Auditing\IAuditingStore.cs" />
+    <Compile Include="Authorization\ActorAttribute.cs" />
+    <Compile Include="Authorization\ActorMode.cs" />
+    <Compile Include="Authorization\AuthorizationConfiguration.cs" />
+    <Compile Include="Authorization\AuthorizationProvider.cs" />
+    <Compile Include="Authorization\IAuthorizationConfiguration.cs" />
+    <Compile Include="Authorization\IPermissionDefinitionContext.cs" />
+    <Compile Include="Authorization\IPermissionManager.cs" />
+    <Compile Include="Authorization\Permission.cs" />
+    <Compile Include="Authorization\PermissionDefinitionContextBase.cs" />
+    <Compile Include="Authorization\PermissionDictionary.cs" />
+    <Compile Include="Authorization\PermissionManager.cs" />
     <Compile Include="Bus\BusAttribute.cs" />
     <Compile Include="Bus\BusInterceptor.cs" />
     <Compile Include="Bus\BusModel.cs" />
     <Compile Include="Bus\IBus.cs" />
     <Compile Include="Bus\IMessage.cs" />
+    <Compile Include="Collections\Extensions\DictionaryExtensions.cs" />
+    <Compile Include="Collections\ITypeList.cs" />
+    <Compile Include="Collections\TypeList.cs" />
     <Compile Include="Configuration\ApplicationInitializerManager.cs" />
     <Compile Include="Configuration\Fluent\CacheFluentConfigurator.cs" />
     <Compile Include="Configuration\Fluent\ConfiguratorBase.cs" />
@@ -255,7 +272,6 @@
     <Compile Include="Utils\PrivateReflectionDynamicObject.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Authorization\" />
     <Folder Include="BackgroundJobs\" />
     <Folder Include="Domain\Snapshots\" />
     <Folder Include="IO\" />

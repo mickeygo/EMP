@@ -7,7 +7,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{f5512476-ee19-4ff7-b95c-631fd1b6f92f}</ProjectGuid>
     <ArchitectureToolsVersion>2.0.0.0</ArchitectureToolsVersion>
-    <Name>Platform</Name>
+    <Name>DotPlatform</Name>
     <RootNamespace>Platform</RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -22,12 +22,40 @@
   </PropertyGroup>
   <Import Project="$(VSToolsPath)\ArchitectureTools\Microsoft.VisualStudio.TeamArchitect.ModelingProject.targets" Condition="'$(VSToolsPath)' != ''" />
   <ItemGroup>
-    <Content Include="Uow_Class.classdiagram">
+    <Content Include="Core\Authorization.classdiagram">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Uow_Class.classdiagram.layout">
+    <Content Include="Core\Authorization.classdiagram.layout">
       <SubType>Content</SubType>
-      <DependentUpon>Uow_Class.classdiagram</DependentUpon>
+      <DependentUpon>Core\Authorization.classdiagram</DependentUpon>
+    </Content>
+    <Content Include="Core\Localization.classdiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Core\Localization.classdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>Core\Localization.classdiagram</DependentUpon>
+    </Content>
+    <Content Include="Core\Navigation.classdiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Core\Navigation.classdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>Core\Navigation.classdiagram</DependentUpon>
+    </Content>
+    <Content Include="Core\Uow.classdiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Core\Uow.classdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>Core\Uow.classdiagram</DependentUpon>
+    </Content>
+    <Content Include="Module\RBAC.classdiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Module\RBAC.classdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>Module\RBAC.classdiagram</DependentUpon>
     </Content>
     <Folder Include="ModelDefinition\" />
     <Content Include="Layout.dgml">
@@ -36,5 +64,7 @@
     <Content Include="ModelDefinition\Platform.uml">
       <SubType>Content</SubType>
     </Content>
+    <Folder Include="Core" />
+    <Folder Include="Module" />
   </ItemGroup>
 </Project>
