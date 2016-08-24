@@ -1,4 +1,6 @@
-﻿namespace DotPlatform.Bus
+﻿using System.Threading.Tasks;
+
+namespace DotPlatform.Bus
 {
     /// <summary>
     /// Bus 总线
@@ -8,8 +10,13 @@
         /// <summary>
         /// 发布消息
         /// </summary>
-        /// <typeparam name="TMessage"></typeparam>
-        /// <param name="message"></param>
-        void Publish<TMessage>(TMessage message);
+        /// <param name="message">要发布的消息</param>
+        void Publish<TMessage>(TMessage message) where TMessage : IMessage;
+
+        /// <summary>
+        /// 发布消息
+        /// </summary>
+        /// <param name="message">要发布的消息</param>
+        Task PublishAsync<TMessage>(TMessage message) where TMessage : IMessage;
     }
 }

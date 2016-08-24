@@ -22,34 +22,38 @@ namespace DotPlatform.Storage.Rdbms
 
         #region Query
 
-        public override IEnumerable<T> Select<T>(string sqlQuery, object param = null)
+        public override IEnumerable<T> Select<T>(string sqlQuery, object param = null, CommandType commandType = CommandType.Text)
         {
-            return this.Connection.Query<T>(sqlQuery, param);
+            var commandDef = BuildCommandDefinition(sqlQuery, param, commandType);
+            return this.Connection.Query<T>(commandDef);
         }
 
-        public override async Task<IEnumerable<T>> SelectAsync<T>(string sqlQuery, object param = null)
+        public override async Task<IEnumerable<T>> SelectAsync<T>(string sqlQuery, object param = null, CommandType commandType = CommandType.Text)
         {
-            return await this.Connection.QueryAsync<T>(sqlQuery, param);
+            var commandDef = BuildCommandDefinition(sqlQuery, param, commandType);
+            return await this.Connection.QueryAsync<T>(commandDef);
         }
 
-        public override T FirstOrDefault<T>(string sqlQuery, object param = null)
+        public override T FirstOrDefault<T>(string sqlQuery, object param = null, CommandType commandType = CommandType.Text)
         {
-            return this.Connection.QueryFirstOrDefault<T>(sqlQuery, param);
+            var commandDef = BuildCommandDefinition(sqlQuery, param, commandType);
+            return this.Connection.QueryFirstOrDefault<T>(commandDef);
         }
 
-        public override async Task<T> FirstOrDefaultAsync<T>(string sqlQuery, object param = null)
+        public override async Task<T> FirstOrDefaultAsync<T>(string sqlQuery, object param = null, CommandType commandType = CommandType.Text)
         {
-            return await this.Connection.QueryFirstOrDefaultAsync<T>(sqlQuery, param);
+            return await this.Connection.QueryFirstOrDefaultAsync<T>(sqlQuery, param, commandType: commandType);
         }
 
-        public override T Single<T>(string sqlQuery, object param = null)
+        public override T Single<T>(string sqlQuery, object param = null, CommandType commandType = CommandType.Text)
         {
-            return this.Connection.QuerySingle<T>(sqlQuery, param);
+            var commandDef = BuildCommandDefinition(sqlQuery, param, commandType);
+            return this.Connection.QuerySingle<T>(commandDef);
         }
 
-        public override async Task<T> SingleAsync<T>(string sqlQuery, object param = null)
+        public override async Task<T> SingleAsync<T>(string sqlQuery, object param = null, CommandType commandType = CommandType.Text)
         {
-            return await this.Connection.QuerySingleAsync<T>(sqlQuery, param);
+            return await this.Connection.QuerySingleAsync<T>(sqlQuery, param, commandType: commandType);
         }
 
         #endregion

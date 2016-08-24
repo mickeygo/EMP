@@ -22,7 +22,7 @@ namespace DotPlatform.Events.Startup
         {
             return _typeFinder.Find(t => t.IsClass
                     && !t.IsAbstract
-                    && t.GetInterfaces().Any(i => i.GetGenericTypeDefinition() == typeof(IEventHandler<>)));
+                    && t.GetInterfaces().Any(i => i.IsGenericType && i.GetGenericTypeDefinition() == typeof(IEventHandler<>)));
         }
     }
 }

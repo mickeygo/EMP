@@ -142,12 +142,23 @@
     <Compile Include="Authentication\IAuthenticationProvider.cs" />
     <Compile Include="Authentication\OwinAuthenticationProvider.cs" />
     <Compile Include="Authentication\CookieAuthenticationManager.cs" />
+    <Compile Include="Extensions\HtmlHelperExtensions\HtmlNavgationExtensions.cs" />
     <Compile Include="Mvc\Controllers\DotPlatformController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utility\WebHelper.cs" />
+    <Compile Include="WebApi\Client\IWebApiClient.cs" />
+    <Compile Include="WebApi\Client\WebApiClient.cs" />
     <Compile Include="WebApi\Controllers\DotPlatformApiController.cs" />
+    <Compile Include="WebApi\Dynamic\DynamicApiActionInfo.cs" />
+    <Compile Include="WebApi\Dynamic\DynamicApiControllerInfo.cs" />
+    <Compile Include="WebApi\Dynamic\Formatters\PlainTextFormatter.cs" />
     <Compile Include="WebAssemblyFinder.cs" />
     <Compile Include="WebModule.cs" />
+    <Compile Include="Web\Models\AjaxReponse.cs" />
+    <Compile Include="Web\Models\AjaxResponseOfTResult.cs" />
+    <Compile Include="Web\Models\ErrorInfo.cs" />
+    <Compile Include="Web\Models\RemoteCallException.cs" />
+    <Compile Include="Web\Models\ValidationErrorInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DotPlatform\DotPlatform.csproj">

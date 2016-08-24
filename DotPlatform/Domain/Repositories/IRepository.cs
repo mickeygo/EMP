@@ -16,8 +16,8 @@ namespace DotPlatform.Domain.Repositories
     /// </summary>
     /// <typeparam name="TAggregateRoot">聚合根类型，<see cref="IAggregateRoot"/></typeparam>
     /// <typeparam name="TKey">聚合根主键</typeparam>
-    public interface IRepository<TAggregateRoot, TKey> : IRepositoryQuery<TAggregateRoot, TKey>,
-                                                         IRepositoryCommand<TAggregateRoot, TKey>,
+    public interface IRepository<TAggregateRoot, TKey> : IQueryRepository<TAggregateRoot, TKey>,
+                                                         ICommandRepository<TAggregateRoot, TKey>,
                                                          IRepository
         where TAggregateRoot : IAggregateRoot<TKey>
     {

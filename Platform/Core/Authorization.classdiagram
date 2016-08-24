@@ -1,0 +1,220 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" dslVersion="1.0.0.0" Id="d6d47607-7735-489f-906e-244e1ccb6d9e" name="Authorization" linkedPackageId="b665ef95-d97c-41ae-a165-71ac5221a24a" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
+  <packagedElements>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="8ea63f49-d19e-4e25-8d72-d030dbcb3287" name="Permission" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="a8c28e46-0414-4ea6-bce5-08879a0b7d1e" />
+        <ownedAttributesInternal>
+          <property Id="3b55027a-6d86-48e2-81db-42eec850c400" name="Parent" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="d1c821ee-64e1-4e4f-bd89-a55b92696d4d" />
+          </property>
+          <property Id="5d7dc1bf-45f1-441e-b801-4efc15c41503" name="Children" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="d0d96f81-bafc-4894-a024-73e870961d56" />
+          </property>
+          <property Id="0cc26402-3b38-4933-a732-0d61f6caf9a7" name="Name" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="06d518d0-c2a7-4b72-aad6-d60a3898fe1d" />
+          </property>
+          <property Id="aa9681d5-1e09-48b6-a98b-caa6bf0fb0bf" name="DisplayName" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="03ae688c-bf0a-4fd3-8b45-05b35e8aef14" />
+          </property>
+          <property Id="860631a8-29d9-4cdc-847e-64026048f821" name="Description" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="f141cda6-ca88-4feb-95e4-016825cd470c" />
+          </property>
+        </ownedAttributesInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <Interface Id="ffbe3bd2-d348-4909-b457-24e6ac010372" name="IPermissionDefinitionContext" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="e44352ff-1113-4c2c-bb98-50c35c73ea26" />
+        <ownedOperations>
+          <operation Id="b76ad9b2-eeb3-48b9-bec5-6930c12eb8e3" name="CreatePermission" isLeaf="false" isStatic="false" isAbstract="true" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="ba657e1a-4181-4f75-9f30-d0bd5cb1b8bb" />
+          </operation>
+          <operation Id="75a83dfa-e69f-4a64-b162-aec8cc33b6ee" name="GetPermissionOrNull" isLeaf="false" isStatic="false" isAbstract="true" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="9e01682c-fb83-4f2d-b1ed-9eeb1c8b2831" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="e599fedb-67e4-41ed-b821-0a25c6332602" name="string name" direction="In" isUnique="false">
+                  <elementDefinition Id="70bf86e1-557e-4785-89b8-8b97f31297ae" />
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperations>
+      </Interface>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="e203e066-6aab-4e8a-b14d-aca1d71cc656" name="PermissionDefinitionContextBase" isAbstract="true" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="e2e55628-dafa-411f-a3f3-a0370754c6ef" />
+        <suppliersInternal>
+          <dependency Id="03e03df8-1540-4b48-bb6c-2d45ff816e76">
+            <classMoniker Id="47dd01fe-acce-4a7b-a290-8e354060422f" LastKnownName="PermissionDictionary" />
+            <elementDefinition Id="1bf724a7-9477-4267-8111-aace41e5faa6" />
+          </dependency>
+          <interfaceRealization Id="079e4218-e977-4a0d-9fff-72f93cbfc2e1">
+            <interfaceMoniker Id="ffbe3bd2-d348-4909-b457-24e6ac010372" LastKnownName="IPermissionDefinitionContext" />
+            <elementDefinition Id="8d9da8c5-377f-4757-9cd7-fe5bee60c930" />
+          </interfaceRealization>
+        </suppliersInternal>
+        <ownedOperationsInternal>
+          <operation Id="f02f7a76-967b-4ef6-9a1d-f2e2a7875066" name="CreatePermission" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="e2c6ce27-0bdf-421d-8ad8-d1b11614624e" />
+          </operation>
+          <operation Id="be0ca9b9-fc42-4f17-b934-3c0a00aa7393" name="GetPermissionOrNull" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="768b02a5-ae91-4d2f-808a-219efe48988b" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="54b8e4d1-413b-42e9-b529-051ab100d5a8" name="string name" direction="In" isUnique="false">
+                  <elementDefinition Id="12f9de98-2656-4807-b124-6c57c28cf6b2" />
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="47dd01fe-acce-4a7b-a290-8e354060422f" name="PermissionDictionary" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="9c11de78-2a98-466d-87b0-a0979c56bca7" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <Interface Id="ed3d4c33-695f-46c9-b94a-33e0c2b285a9" name="IPermissionManager" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="c2786014-cbef-4d75-9532-78972b0c73f1" />
+        <ownedOperations>
+          <operation Id="f89a91f8-a3d6-4775-a37b-a332995ab506" name="GetPermission" isLeaf="false" isStatic="false" isAbstract="true" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="e84bd2c5-f462-48d3-990d-1d58fe972093" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="2947d912-f57f-4971-84c9-ca5abd422460" name="string name" direction="In" isUnique="false">
+                  <elementDefinition Id="18c1a100-b5a5-41f5-a8af-56f2d8f02b18" />
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="812dd4af-4447-4473-911c-c478701a823f" name="GetAllPermissions" isLeaf="false" isStatic="false" isAbstract="true" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="c540a6a0-a4cb-4ec6-bac3-e98557517753" />
+          </operation>
+        </ownedOperations>
+      </Interface>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="f54f9f9f-9560-4fa3-b987-7fcaf943aea4" name="PermissionManager" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="ecc2020f-da53-4f9d-a78d-cd2b8794cc0f" />
+        <suppliersInternal>
+          <interfaceRealization Id="50d9353c-0f55-4dde-9506-a30c9426f0ef">
+            <interfaceMoniker Id="ed3d4c33-695f-46c9-b94a-33e0c2b285a9" LastKnownName="IPermissionManager" />
+            <elementDefinition Id="da09dcff-b9f3-45a7-9527-96be5b6546f3" />
+          </interfaceRealization>
+          <dependency Id="f317c356-7c44-4325-8b08-7f0b8e0a8eca">
+            <interfaceMoniker Id="bab702a0-6cf0-41a6-89c2-bd5612a0d2fd" LastKnownName="IAuthorizationConfiguration" />
+            <elementDefinition Id="8afac6b9-6c16-4fcb-95d1-1497d0a75992" />
+          </dependency>
+        </suppliersInternal>
+        <generalsInternal>
+          <generalization Id="17a438e8-9efa-47b8-bc35-3f1278f14dee" isSubstitutable="false">
+            <classMoniker Id="e203e066-6aab-4e8a-b14d-aca1d71cc656" LastKnownName="PermissionDefinitionContextBase" />
+            <elementDefinition Id="987d6f07-7387-4390-a9b7-c86379d26a41" />
+          </generalization>
+        </generalsInternal>
+        <ownedOperationsInternal>
+          <operation Id="4da0ebf1-fdbc-469c-98e7-402d6aee2762" name="GetPermission" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="5a31c40c-aebc-4050-9b66-1d9c3494bdf9" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="a1b8b5ca-6f9d-46e6-b483-9211f3e61b16" name="string name" direction="In" isUnique="false">
+                  <elementDefinition Id="294b1501-32d0-4bcb-8b21-96e033169f30" />
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="c840f1ef-33ee-4ffc-9bab-b66660d47cd1" name="GetAllPermissions" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="7787b5c7-0a6e-4e38-8f75-3c9749520f40" />
+          </operation>
+          <operation Id="849a4aa6-92db-494e-b62e-1cb906b71b56" name="Initialize" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="fab11d46-b9cc-47e4-991d-c5b202d67b4a" />
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <Interface Id="bab702a0-6cf0-41a6-89c2-bd5612a0d2fd" name="IAuthorizationConfiguration" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="3033bde4-784f-4702-9499-3e6f3425d2a1" />
+        <targetEnds>
+          <association Id="bf64b756-7e9e-416e-a628-9e2d165e03ff" isDerived="false" sourceEndRoleName="" targetEndRoleName="" isLeaf="false" isAbstract="false">
+            <classMoniker Id="29b5b57e-d5f3-49bb-8136-48aba29e542e" LastKnownName="AuthorizationProvider" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="dbe2ca9a-da67-46f5-8fcb-f174c023bfc2" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Composite" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="f100118d-46ed-4fe2-a6ba-a9be7982e22e" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="0db4f264-c2a9-473c-977b-0db66592c303" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="true">
+                  <elementDefinition Id="6c786d83-6237-47b3-b53f-5fac72a57f1a" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="064ef910-619c-4a65-a00f-b357eeeb0e11" />
+          </association>
+        </targetEnds>
+        <ownedAttributes>
+          <property Id="c62ab7c3-1638-4887-9f7b-d60f1c02517e" name="Providers { get; }" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="cec4d379-fabd-477f-bdc2-6daaf5e35f7d" />
+          </property>
+        </ownedAttributes>
+      </Interface>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="29b5b57e-d5f3-49bb-8136-48aba29e542e" name="AuthorizationProvider" isAbstract="true" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="c8609c6b-9dc7-478f-8b7f-d3174801a910" />
+        <suppliersInternal>
+          <dependency Id="eb791e71-2790-401e-b5b8-d5c15933cf71">
+            <interfaceMoniker Id="ffbe3bd2-d348-4909-b457-24e6ac010372" LastKnownName="IPermissionDefinitionContext" />
+            <elementDefinition Id="b1d2bddc-f56a-48b0-b66e-9e9f2466991a" />
+          </dependency>
+        </suppliersInternal>
+        <ownedOperationsInternal>
+          <operation Id="0a5dc782-a8ab-4ca2-a0e3-51d8679ab9c7" name="SetPermissions" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="c4f7e851-ffab-40e8-9b0c-2d9f7627cdd9" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="f310c90e-3604-4482-88ea-b02b936e054b" name="IPermissionDefinitionContext context" direction="In" isUnique="false">
+                  <elementDefinition Id="5f4d642f-a1c2-48b9-9033-5157924daf01" />
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="f6c666b2-0a8f-47c8-be59-23f9ea4df83e" name="AuthorizationConfiguration" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="3f9c2b8c-657a-421e-9bc4-b76075149f87" />
+        <suppliersInternal>
+          <interfaceRealization Id="8caceb74-f923-44a9-8130-eabb15ed6ebc">
+            <interfaceMoniker Id="bab702a0-6cf0-41a6-89c2-bd5612a0d2fd" LastKnownName="IAuthorizationConfiguration" />
+            <elementDefinition Id="98e73fee-fdfd-4440-842c-6a18243944fc" />
+          </interfaceRealization>
+        </suppliersInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+  </packagedElements>
+  <package Id="b665ef95-d97c-41ae-a165-71ac5221a24a" name="Platform">
+    <elementDefinition Id="f10c19f2-a54a-4615-be4f-93e12b5a54e6" />
+    <profileInstances>
+      <packageHasProfileInstances Id="57d82f44-7cfb-4c2e-87ea-fdc640c7b19c">
+        <profileInstance Id="d758eedc-c80c-4782-9469-7fccaac05dc9" name="StandardProfileL2">
+          <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+        </profileInstance>
+        <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+      </packageHasProfileInstances>
+      <packageHasProfileInstances Id="a29454d1-9a04-4529-a16b-cdb625eb2b6c">
+        <profileInstance Id="66b565a6-a5ba-413b-aff0-dac1475b8c1d" name="StandardProfileL3">
+          <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+        </profileInstance>
+        <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+      </packageHasProfileInstances>
+    </profileInstances>
+  </package>
+</logicalClassDesignerModel>

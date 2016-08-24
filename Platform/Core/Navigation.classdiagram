@@ -1,0 +1,225 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" dslVersion="1.0.0.0" Id="806c5035-b481-4bb7-94c3-bfaa04f8046c" name="Navigation" linkedPackageId="8d844625-a53e-474e-be38-b40239cd4356" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
+  <profileInstances>
+    <packageHasProfileInstances Id="a0c4d45e-0d20-4309-943e-5375fad67771">
+      <profileInstance Id="eb7037af-abeb-4bb4-8213-54d614406bbf" name="StandardProfileL2">
+        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+      </profileInstance>
+      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="e779391a-d9df-42cb-940e-6e9510c22280">
+      <profileInstance Id="ee7e2d10-f094-400f-b257-66173e33c4f7" name="StandardProfileL3">
+        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+      </profileInstance>
+      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="87c2854e-68eb-4d4a-a030-740d15b7a186" name="Menu" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="870230f2-f161-4758-b790-9bf59e3f8d7d" />
+        <targetEnds>
+          <association Id="9e4ee4db-68c6-4ac2-82dd-219464fde63f" isDerived="false" sourceEndRoleName="Menu" targetEndRoleName="MenuItem" isLeaf="false" isAbstract="false">
+            <classMoniker Id="93d740d0-d509-4bdd-baa6-349a5069c93d" LastKnownName="MenuItem" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="7280f523-e6bc-4caa-b78f-d2dac7a0ac96" name="Menu" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Composite" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="73039abf-68db-4d61-b22a-87ae73e0d70a" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="3485107a-8c67-41f3-8b38-9107e2fc0f06" name="MenuItem" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="true">
+                  <lowerValueInternal>
+                    <literalString Id="6e793100-ea58-4ca3-b74e-bc83b14f0a7d" name="Lower" value="*">
+                      <elementDefinition Id="0bd40dd7-eeb4-4dee-b85a-6b97acc35220" />
+                    </literalString>
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString Id="8745c7dd-733d-44e4-8fa3-c753957da80d" name="Upper" value="*">
+                      <elementDefinition Id="6137a73d-f617-4352-abc6-f13e6babd987" />
+                    </literalString>
+                  </upperValueInternal>
+                  <elementDefinition Id="9f6d6ca1-ddec-4b32-8ad4-51c1cab180c7" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="73c10e00-f8b6-450f-a09f-aca322098c8c" />
+          </association>
+        </targetEnds>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="93d740d0-d509-4bdd-baa6-349a5069c93d" name="MenuItem" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="24570743-0b58-416a-85fc-0b0c4d508c44" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="8000715b-2a74-42f0-9bc8-8a24d5d841a4" name="UserMenuItem" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="d0b4f005-73a0-4ba0-86fd-6643e50f2bd5" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="951fa1d9-f48d-4eae-b5d5-caffdc1ac984" name="UserMenu" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="ca6d3159-f24d-4b5b-9551-c483674aa625" />
+        <suppliersInternal>
+          <dependency Id="7a516a62-eb34-4e5d-85d7-292a7f2825e0">
+            <classMoniker Id="87c2854e-68eb-4d4a-a030-740d15b7a186" LastKnownName="Menu" />
+            <elementDefinition Id="2f27d94a-f188-40ad-a552-f3b147ced401" />
+          </dependency>
+        </suppliersInternal>
+        <targetEnds>
+          <association Id="3b2244d0-f7a2-49a6-9a91-7f4c5768a67c" isDerived="false" sourceEndRoleName="UserMenu" targetEndRoleName="UserMenuItem" isLeaf="false" isAbstract="false">
+            <classMoniker Id="8000715b-2a74-42f0-9bc8-8a24d5d841a4" LastKnownName="UserMenuItem" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="951bba36-eae0-47e6-9ac3-b14ad67067da" name="UserMenu" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Composite" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="6b756a15-b703-4833-b463-7bcdbe808a3e" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="8463fcd3-bb02-4595-a795-9e791bc9e4ae" name="UserMenuItem" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="true">
+                  <lowerValueInternal>
+                    <literalString Id="cb155be1-c357-4d4f-b1bf-46a01e79d36f" name="Lower" value="*">
+                      <elementDefinition Id="77fb06ed-89ef-4c2f-bbbf-35e22325ac49" />
+                    </literalString>
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString Id="548c29f2-85c1-4b26-84bf-2f6d981f56a7" name="Upper" value="*">
+                      <elementDefinition Id="48693b64-1eb4-4c81-b2a4-c2485df7d5fa" />
+                    </literalString>
+                  </upperValueInternal>
+                  <elementDefinition Id="2e45bd26-737f-4a0d-a56f-4b5b238acc8d" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="8578568a-a8a0-4a03-be1f-7d1a3cca0b25" />
+          </association>
+        </targetEnds>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <Interface Id="42893805-c6a9-4d77-8b2f-e334991a0a0d" name="INavigationManager" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="d6ba4796-e780-4d55-9d60-e593ee89c87a" />
+        <suppliersInternal>
+          <dependency Id="5439d08f-cb81-4df7-b98e-a467b9dd4359">
+            <classMoniker Id="87c2854e-68eb-4d4a-a030-740d15b7a186" LastKnownName="Menu" />
+            <elementDefinition Id="a2ef5837-5f89-4f26-9ea9-78380b754c86" />
+          </dependency>
+          <dependency Id="dfc21785-9070-4937-b296-926bce4b5765">
+            <interfaceMoniker Id="aadd685a-ca74-40e4-9302-8a4eb95d3700" LastKnownName="INavigationConfiguration" />
+            <elementDefinition Id="d4b015e8-fb4e-4277-9818-f66ed52cd92e" />
+          </dependency>
+        </suppliersInternal>
+        <ownedAttributes>
+          <property Id="7e57cfe3-b5b2-4265-970a-ff5a35151e14" name="Menus" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="282d4b71-5d52-4324-9cba-bbdcf2632c01" />
+          </property>
+          <property Id="2e47c800-a4b6-437a-b18d-fc36f3fa7f10" name="MainMenu" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="7f303d9b-f7b9-4cf6-882c-7da2478f03b3" />
+          </property>
+        </ownedAttributes>
+      </Interface>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="0c2669d4-e529-444a-a634-8f9653361375" name="NavigationManager" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="60a4029e-6e87-4620-b90c-c8bd02cb9357" />
+        <suppliersInternal>
+          <interfaceRealization Id="2b082899-81d8-4828-be93-b7af2fc6f980">
+            <interfaceMoniker Id="42893805-c6a9-4d77-8b2f-e334991a0a0d" LastKnownName="INavigationManager" />
+            <elementDefinition Id="43da2518-f43b-41bc-aa6e-e0282887b38c" />
+          </interfaceRealization>
+        </suppliersInternal>
+        <ownedOperationsInternal>
+          <operation Id="6f11c078-93b8-4984-97dc-72e73fd94201" name="Initialize" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="9bcd1376-f147-4267-a57a-9351476ca7c4" />
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <Interface Id="aadd685a-ca74-40e4-9302-8a4eb95d3700" name="INavigationConfiguration" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="cf670e14-69e0-42ce-8c51-d742117d7965" />
+        <targetEnds>
+          <association Id="938eb0f5-3722-49f5-b8c5-eab6e3841d4d" isDerived="false" sourceEndRoleName="" targetEndRoleName="" isLeaf="false" isAbstract="false">
+            <classMoniker Id="236a1c80-18a7-4458-8031-818de70e577f" LastKnownName="NavigationProvider" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="b1785c01-482f-49dd-b26f-1b369106e002" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Composite" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="80fbfbec-10a3-409c-99d6-d99cc96deced" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="97a842fd-4769-42d0-b4bf-ea811fd2c8c8" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="true">
+                  <elementDefinition Id="b9ef670d-89a3-4f11-b762-90078540ea40" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="ca34406d-bbed-4378-a447-f2d4a1af7f57" />
+          </association>
+        </targetEnds>
+        <ownedAttributes>
+          <property Id="60e24ff8-311b-497a-bd50-51bd139b19e7" name="Providers" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="4ca770e8-aeba-4283-8279-6f3f075a2d70" />
+          </property>
+        </ownedAttributes>
+      </Interface>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="bc7ac62f-e773-41ac-807b-daa5360747d5" name="NavigationConfiguration" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="2ea9f691-24c6-4b35-8031-cd1f9022e3d5" />
+        <suppliersInternal>
+          <interfaceRealization Id="595e4fe3-9d5c-48a7-86e5-55354b12cf42">
+            <interfaceMoniker Id="aadd685a-ca74-40e4-9302-8a4eb95d3700" LastKnownName="INavigationConfiguration" />
+            <elementDefinition Id="ac8d2bef-1428-41c0-a2c8-c2c5b54be7b2" />
+          </interfaceRealization>
+        </suppliersInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="236a1c80-18a7-4458-8031-818de70e577f" name="NavigationProvider" isAbstract="true" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="98809825-621b-4935-93d4-31f0506db18d" />
+        <suppliersInternal>
+          <dependency Id="b1f2ec15-827b-4e16-9f61-0320564607be">
+            <interfaceMoniker Id="dbce86f0-47cc-4ffa-a102-8a49a7bc93ba" LastKnownName="INavigationProviderContext" />
+            <elementDefinition Id="3315f16a-27a1-4b6f-b2d8-fcede513462b" />
+          </dependency>
+        </suppliersInternal>
+        <ownedOperationsInternal>
+          <operation Id="cebc327d-88ef-4baf-b315-86a837106a5f" name="SetNavigation" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="2401a4a7-fdb0-4b8e-929e-2ee7f06c6f2c" />
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <Interface Id="dbce86f0-47cc-4ffa-a102-8a49a7bc93ba" name="INavigationProviderContext" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="67fcbc3d-b4c6-4eb6-8f7d-74993e3a6d63" />
+        <generalsInternal>
+          <generalization Id="f9a81a91-257e-4d44-b435-13ae904b3e30" isSubstitutable="false">
+            <interfaceMoniker Id="42893805-c6a9-4d77-8b2f-e334991a0a0d" LastKnownName="INavigationManager" />
+            <elementDefinition Id="8f2c9886-e69c-4b40-a33e-3b9b9251362c" />
+          </generalization>
+        </generalsInternal>
+        <ownedAttributes>
+          <property Id="6b9eef35-b2e9-4cef-b51b-15acd99bdca8" name="Manager" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="022e36ce-c773-42e5-b8b5-d7cd8d107214" />
+          </property>
+        </ownedAttributes>
+      </Interface>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="ca4a5442-372a-413f-a2e3-e59d4d08f8bb" name="NavigationProviderContext" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="bd469f84-f717-4f2b-a842-656105aaab3a" />
+        <suppliersInternal>
+          <dependency Id="54d42ac3-4a11-4b7a-bc95-e948f5fd8049">
+            <interfaceMoniker Id="dbce86f0-47cc-4ffa-a102-8a49a7bc93ba" LastKnownName="INavigationProviderContext" />
+            <elementDefinition Id="5c0a0c9c-d016-416e-87e5-aa1dc3dd7cad" />
+          </dependency>
+        </suppliersInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+  </packagedElements>
+  <package Id="8d844625-a53e-474e-be38-b40239cd4356" name="Platform">
+    <elementDefinition Id="f10c19f2-a54a-4615-be4f-93e12b5a54e6" />
+  </package>
+</logicalClassDesignerModel>

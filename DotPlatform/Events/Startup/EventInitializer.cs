@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using DotPlatform.Configuration;
 using DotPlatform.Dependency;
 using DotPlatform.Events.Registrator;
+using DotPlatform.Domain.Uow;
 
 namespace DotPlatform.Events.Startup
 {
@@ -36,7 +37,7 @@ namespace DotPlatform.Events.Startup
         {
             foreach (var type in eventHandlerTypes)
             {
-                _iocManager.Register(type, IocLifeStyle.Transient);
+                _iocManager.RegisterWithInterceptor(type, IocLifeStyle.Transient, typeof(UnitOfWorkInterceptor));
             }
 
             _iocManager.Build();
