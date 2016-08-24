@@ -12,9 +12,9 @@ namespace DotPlatform.Events
         #region Properties
 
         /// <summary>
-        /// 获取事件 Id
+        /// 获取(或设置)事件 Id
         /// </summary>
-        public Guid Id { get; protected set; }
+        public Guid Id { get; protected set; } = Guid.NewGuid();
 
         /// <summary>
         /// 获取事件源
@@ -24,12 +24,12 @@ namespace DotPlatform.Events
         /// <summary>
         /// 获取(或设置)事件产生的时间
         /// </summary>
-        public DateTimeOffset TimeStamp { get; protected set; }
+        public DateTimeOffset TimeStamp { get; protected set; } = DateTimeOffset.Now;
 
         /// <summary>
-        /// 获取事件的版本号
+        /// 获取(或设置)事件的版本号
         /// </summary>
-        public int Version { get; protected set; }
+        public int Version { get; protected set; } = 1;
 
         #endregion
 

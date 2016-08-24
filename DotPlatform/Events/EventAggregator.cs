@@ -1,6 +1,7 @@
 ﻿using System;
 using DotPlatform.Events.Registrator;
 using DotPlatform.Dependency;
+using DotPlatform.Extensions;
 
 namespace DotPlatform.Events
 {
@@ -53,9 +54,9 @@ namespace DotPlatform.Events
             {
                 foreach (var handlerType in handlerTypes)
                 {
-                    var handler = IocManager.Instance.Resolve(handlerType) as IEventHandler<TEvent>;
+                    var handler = IocManager.Instance.Resolve(handlerType);
                     if (handler != null)
-                        handler.Handle(@event);
+                        handler.AsDynamic().Handle(@event);
                 }
             }
         }
@@ -78,7 +79,7 @@ namespace DotPlatform.Events
                 {
                     var handler = IocManager.Instance.Resolve(handlerType) as IEventHandler<TEvent>;
                     if (handler != null)
-                        handler.Handle(@event);
+                        handler.AsDynamic().Handle(@event);
                 }
 
                 callback(@event, true);

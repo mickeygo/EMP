@@ -39,12 +39,10 @@ namespace DotPlatform.Web
 
         private IEnumerable<Assembly> GetAllAssembliesInternal()
         {
-            var assembliesInBinFolder = new List<Assembly>();
-
             var allReferencedAssemblies = BuildManager.GetReferencedAssemblies().Cast<Assembly>().ToList();
             var dllFiles = Directory.GetFiles(HttpRuntime.AppDomainAppPath + "bin\\", "*.dll", SearchOption.TopDirectoryOnly).ToList();
 
-            foreach (string dllFile in dllFiles)
+            foreach (var dllFile in dllFiles)
             {
                 var locatedAssembly = allReferencedAssemblies.FirstOrDefault(asm => AssemblyName.ReferenceMatchesDefinition(asm.GetName(), AssemblyName.GetAssemblyName(dllFile)));
                 if (locatedAssembly != null)

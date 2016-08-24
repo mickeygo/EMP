@@ -5,10 +5,11 @@ namespace DotPlatform.EntityFramework
     /// <summary>
     /// DB 上下文提供者。做了简单的封装。
     /// 使用简单的 DB 上下文提供对象，DB 上下文对象 直接从 <see cref="TDbContext"/> 解析出来（必须在 IoC 中有注入），
-    /// 然后给仓储对象<see cref="EfRepository{TDbContext}"/>
+    /// 然后给仓储对象<see cref="EfRepository{TDbContext}"/>。
+    /// 该提供者可用来作用于 Read DB.
     /// </summary>
     /// <typeparam name="TDbContext">派生于<see cref="DbContext"/>的上下文对象</typeparam>
-    public class SimpleDbContextProvider<TDbContext> : IDbContextProvider<TDbContext>
+    public class SimpleDbContextProvider<TDbContext> : ISimpleDbContextProvider<TDbContext>
       where TDbContext : DbContext
     {
         /// <summary>

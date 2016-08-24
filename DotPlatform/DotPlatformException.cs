@@ -6,6 +6,7 @@ namespace DotPlatform
     /// <summary>
     /// DotPlatform 基础框架异常类
     /// </summary>
+    [Serializable]
     public class DotPlatformException : Exception
     {
         /// <summary>

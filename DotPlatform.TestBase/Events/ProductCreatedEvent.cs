@@ -1,5 +1,5 @@
 ﻿using DotPlatform.Events;
-using DotPlatform.Domain.Entities;
+using DotPlatform.TestBase.Domain.Entities;
 
 namespace DotPlatform.TestBase.Events
 {
@@ -8,7 +8,7 @@ namespace DotPlatform.TestBase.Events
     /// </summary>
     public class ProductCreatedEvent : DomainEvent
     {
-        public ProductCreatedEvent(IEntity entity) : base(entity)
+        public ProductCreatedEvent(Product product) : base(product)
         {
 
         }

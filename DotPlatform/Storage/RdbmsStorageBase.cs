@@ -1,7 +1,7 @@
-﻿using DotPlatform.Extensions;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data;
 using System.Threading.Tasks;
+using DotPlatform.Extensions;
 
 namespace DotPlatform.Storage
 {
@@ -34,17 +34,17 @@ namespace DotPlatform.Storage
 
         #region Query
 
-        public abstract IEnumerable<T> Select<T>(string sqlQuery, object param = null);
+        public abstract IEnumerable<T> Select<T>(string sqlQuery, object param = null, CommandType commandType = CommandType.Text);
 
-        public abstract Task<IEnumerable<T>> SelectAsync<T>(string sqlQuery, object param = null);
+        public abstract Task<IEnumerable<T>> SelectAsync<T>(string sqlQuery, object param = null, CommandType commandType = CommandType.Text);
 
-        public abstract T FirstOrDefault<T>(string sqlQuery, object param = null);
+        public abstract T FirstOrDefault<T>(string sqlQuery, object param = null, CommandType commandType = CommandType.Text);
 
-        public abstract Task<T> FirstOrDefaultAsync<T>(string sqlQuery, object param = null);
+        public abstract Task<T> FirstOrDefaultAsync<T>(string sqlQuery, object param = null, CommandType commandType = CommandType.Text);
      
-        public abstract T Single<T>(string sqlQuery, object param = null);
+        public abstract T Single<T>(string sqlQuery, object param = null, CommandType commandType = CommandType.Text);
 
-        public abstract Task<T> SingleAsync<T>(string sqlQuery, object param = null);
+        public abstract Task<T> SingleAsync<T>(string sqlQuery, object param = null, CommandType commandType = CommandType.Text);
 
         #endregion
 
