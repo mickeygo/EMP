@@ -3,12 +3,12 @@ using System.ComponentModel.DataAnnotations;
 using DotPlatform.Domain.Entities;
 using DotPlatform.Domain.Entities.Auditing;
 
-namespace DotPlatform.RBAC.Domain.Menus
+namespace DotPlatform.RBAC.Domain.Models.Menus
 {
     /// <summary>
-    /// 菜单信息
+    /// RBAC 菜单信息
     /// </summary>
-    public class Menu : AggregateRoot, ISoftDelete, ICreationAudited, IModificationAudited
+    public class RbacMenu : AggregateRoot, ISoftDelete, ICreationAudited, IModificationAudited
     {
         #region Properties
 
@@ -43,12 +43,12 @@ namespace DotPlatform.RBAC.Domain.Menus
         public Guid? ParentId { get; private set; }
 
         /// <summary>
-        /// 获取菜单是否已激活
+        /// 获取一个<see cref="bool"/>值，表示菜单是否已激活
         /// </summary>
         public bool IsActive { get; private set; }
 
         /// <summary>
-        /// 获取或设置菜单是否已删除
+        /// 获取或设置一个<see cref="bool"/>值，表示菜单是否已删除
         /// </summary>
         public bool IsDeleted { get; set; }
 
@@ -76,19 +76,19 @@ namespace DotPlatform.RBAC.Domain.Menus
 
         #region Ctor
 
-        public Menu()
+        public RbacMenu()
         {
         }
 
         /// <summary>
-        /// 初始化一个新的<see cref="Menu"/>实例
+        /// 初始化一个新的<see cref="RbacMenu"/>实例
         /// </summary>
         /// <param name="name">菜单唯一名</param>
         /// <param name="displayName">菜单显示名</param>
         /// <param name="description">菜单描述</param>
         /// <param name="url">菜单地址</param>
         /// <param name="parentId">父菜单</param>
-        public Menu(string name, string displayName, string description, string url, Guid? parentId = null)
+        public RbacMenu(string name, string displayName, string description, string url, Guid? parentId = null)
         {
             Name = name;
             DisplayName = displayName;

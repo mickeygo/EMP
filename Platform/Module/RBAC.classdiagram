@@ -14,7 +14,7 @@
           <property Id="ef69d3f8-98e5-436f-b2ca-7e633f2d64d6" name="UserId" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <elementDefinition Id="92d31bbc-1c06-4452-9d82-6b5543c95ebe" />
           </property>
-          <property Id="0fc101b6-6838-491c-b4e9-989d95536ea1" name="TenantId?" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+          <property Id="0fc101b6-6838-491c-b4e9-989d95536ea1" name="TenantId ?" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <elementDefinition Id="7664ac38-04ad-40fd-be16-fcb291c4a816" />
           </property>
         </ownedAttributesInternal>
@@ -23,11 +23,17 @@
     <logicalClassDesignerModelHasTypes>
       <class Id="d82b0d77-c7a6-44b2-b188-30c0ff3b5a54" name="Role" isAbstract="false" isLeaf="false" isActiveClass="false">
         <elementDefinition Id="1d98c423-951a-4d5e-9dd8-90dbd5d7b80f" />
+        <suppliersInternal>
+          <dependency Id="24357d02-b1b7-4ded-b32b-707417defa67">
+            <classMoniker Id="b8b66b88-1d9b-4252-9aac-4595207d8820" LastKnownName="Tenant" />
+            <elementDefinition Id="b0e7507f-bae5-4bb1-9d91-b9ffa2add865" />
+          </dependency>
+        </suppliersInternal>
         <ownedAttributesInternal>
           <property Id="ca5bd281-78d3-42b1-bf4c-be4f401d1726" name="RoleId" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <elementDefinition Id="62ffca24-639f-4c33-bdfd-a405f462a3e1" />
           </property>
-          <property Id="2b3e0e19-3539-4196-af58-6093bbfb99a8" name="TenantId?" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+          <property Id="2b3e0e19-3539-4196-af58-6093bbfb99a8" name="TenantId ?" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <elementDefinition Id="0de78cff-d590-4b7a-a274-5b39a6a93517" />
           </property>
         </ownedAttributesInternal>
@@ -151,6 +157,24 @@
     <logicalClassDesignerModelHasTypes>
       <class Id="f84f5ce6-1c0d-4537-a5f2-b3d1010cc80a" name="Menu" isAbstract="false" isLeaf="false" isActiveClass="false">
         <elementDefinition Id="15fea1a1-a56c-4af5-b810-1b60dbe52dbc" />
+        <targetEnds>
+          <association Id="a86ef681-2825-4502-b4e8-242201b86895" isDerived="false" sourceEndRoleName="" targetEndRoleName="" isLeaf="false" isAbstract="false">
+            <classMoniker Id="f84f5ce6-1c0d-4537-a5f2-b3d1010cc80a" LastKnownName="Menu" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="138025a5-7523-47b8-9567-95bcde8e54b2" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="53ca194d-95ea-4dec-b08d-b70b940d6b43" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="04b0ce87-d055-4e3a-89a8-a17157e8f3a2" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="b8c0b3de-fed2-4ba0-80c2-b71daaac9a44" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="f4a77bde-0fdf-4caa-85a8-fe36de0deadd" />
+          </association>
+        </targetEnds>
         <ownedAttributesInternal>
           <property Id="a0e425ba-11d8-4dfc-95ea-ac126d21ca4e" name="MenuId" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <elementDefinition Id="bea8ad26-f1de-44b7-a94b-6f6e8bd047cd" />
