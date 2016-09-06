@@ -1,0 +1,75 @@
+﻿@model WMS.Web.Models.LoginViewModel
+
+@{ 
+    Layout = null;
+    ViewBag.Title = "Login";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="wms, Advantech">
+    <meta name="author" content="Advantech Web Team">
+    <title>@ViewBag.Title - WMS</title>
+
+    <!-- CSS -->
+    @Styles.Render("~/content/main")
+    @Styles.Render("~/content/addon")
+    @Styles.Render("~/content/custom")
+
+    <!-- Js -->
+    @Scripts.Render("~/bundles/main")
+    @Scripts.Render("~/bundles/addon")
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+        <script src="~/scripts/html5shiv.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <div class="ch-container">
+        <div class="row">
+            <div class="row">
+                <div class="col-md-12 center login-header">
+                    <h2>Welcome to WMS</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="well col-md-5 center login-box">
+                    @using (Html.BeginForm("Login", "Account", new { ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        @Html.ValidationSummary(true, "", new { @class = "alert alert-danger" })
+                        <fieldset>
+                            <div class="input-group input-group-lg">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-user red"></i></span>
+                                @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", placeholder = "User name" })
+                            </div>
+                            <div class="clearfix"></div><br>
+                            <div class="input-group input-group-lg">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-lock red"></i></span>
+                                @Html.TextBoxFor(m => m.Password, new { @class = "form-control", placeholder = "Password" })
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="input-prepend">
+                                <label class="remember" for="remember"><input type="checkbox" id="remember"> Remember me</label>
+                            </div>
+                            <div class="clearfix"></div>
+                            <p class="center col-md-5">
+                                <button type="submit" class="btn btn-primary">Login</button>
+                            </p>
+                        </fieldset>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @Scripts.Render("~/bundles/custom")
+</body>
+</html>

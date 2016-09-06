@@ -74,8 +74,9 @@ namespace DotPlatform.Domain.Uow
                     exception => uow.Dispose()
                     );
             }
-            else //Task<TResult>
+            else
             {
+                //Task<TResult>
                 invocation.ReturnValue = AsyncHelper.CallAwaitTaskWithPostActionAndFinallyAndGetResult(
                     invocation.Method.ReturnType.GenericTypeArguments[0],
                     invocation.ReturnValue,

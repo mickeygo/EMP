@@ -62,6 +62,31 @@ $(function () {
 
     $('.accordion li.active:first').parents('ul').slideDown();
 
+    //datatable
+    $('.datatable').dataTable({
+        "sDom": "<'row'<'col-md-6'l><'col-md-6'f>r>t<'row'<'col-md-12'i><'col-md-12 center-block'p>>",
+        "sPaginationType": "bootstrap",
+        "oLanguage": {
+            "sLengthMenu": "_MENU_ records per page"
+        }
+    });
+    $('.btn-close').click(function (e) {
+        e.preventDefault();
+        $(this).parent().parent().parent().fadeOut();
+    });
+    $('.btn-minimize').click(function (e) {
+        e.preventDefault();
+        var $target = $(this).parent().parent().next('.box-content');
+        if ($target.is(':visible')) $('i', $(this)).removeClass('glyphicon-chevron-up').addClass('glyphicon-chevron-down');
+        else $('i', $(this)).removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-up');
+        $target.slideToggle();
+    });
+    $('.btn-setting').click(function (e) {
+        e.preventDefault();
+        $('#myModal').modal('show');
+    });
+
+    //
     doReady();
 });
 
@@ -83,4 +108,13 @@ function doReady() {
 
     // popover
     $('[data-toggle="popover"]').popover();
+
+    // jQuery validate
+    $("form").validate();
+    jQuery.validator.addMethod("specific", function (value, element) {
+        return this.optional(element) || /^[a-zA-Z0-9_]*$/.test(value);
+    }, "请输入字母数字或下划线");
+    jQuery.validator.addMethod("chinese", function (value, element) {
+        return this.optional(element) || /^[\u4e00-\u9fa5]*$/.test(value);
+    }, "只能为汉字");
 }

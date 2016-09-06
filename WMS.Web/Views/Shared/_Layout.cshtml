@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="wms, Advantech">
     <meta name="author" content="Advantech Web Team">
+    <link rel="shortcut icon" type="image/ico" href="~/favicon.ico" />
     <title>@ViewBag.Title - WMS</title>
      
     <!-- CSS -->
@@ -39,21 +40,7 @@
             </div>
 
             <div class="col-lg-10 col-sm-10">
-                <div>
-                    <nav>
-                        <div>
-                            <ul class="breadcrumb">
-                                <li>
-                                    <a href="#">Home</a>@Url.Content("")
-                                </li>
-                                <li>
-                                    <a href="#">Dashboard</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </nav>
-                </div>
-                <div>
+                <div style="min-height:400px">
                     @RenderBody()
                 </div>
             </div>

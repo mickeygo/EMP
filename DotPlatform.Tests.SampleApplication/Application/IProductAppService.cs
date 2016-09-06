@@ -7,7 +7,7 @@ namespace DotPlatform.Tests.SampleApplication.Application
     /// <summary>
     /// 产品应用服务
     /// </summary>
-    public interface IProductAppService : IDisposable
+    public interface IProductAppService : IApplicationService
     {
         /// <summary>
         /// 获取

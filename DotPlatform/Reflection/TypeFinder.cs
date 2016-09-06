@@ -19,7 +19,8 @@ namespace DotPlatform.Reflection
         /// </summary>
         public TypeFinder()
         {
-            AssemblyFinder = CurrentDomainAssemblyFinder.Instance;
+            //AssemblyFinder = CurrentDomainAssemblyFinder.Instance;
+            AssemblyFinder = CurrentDomainBinDirectoryFinder.Instance;
         }
 
         public IEnumerable<Type> Find(Func<Type, bool> predicate)
@@ -35,7 +36,7 @@ namespace DotPlatform.Reflection
         private IEnumerable<Type> GetAllTypes()
         {
             return AssemblyFinder.GetAllAssemblies()
-                .Where(a => !a.FullName.StartsIn(excludeAssemblies))
+                .Where(a => !a.FullName.StartsIn(excludeAssemblies) && !a.IsDynamic)
                 .Distinct()
                 .SelectMany(a => a.GetTypes());
         }

@@ -1,4 +1,6 @@
-﻿using DotPlatform.EntityFramework;
+﻿using System.Reflection;
+using System.Data.Entity;
+using DotPlatform.EntityFramework;
 using DotPlatform.Runtime.Session;
 
 namespace WMS.Domain.Repository
@@ -14,6 +16,11 @@ namespace WMS.Domain.Repository
         public WmsEfDbContext() : base(ConnectionName)
         {
             this.OwnerSession = ClaimsSession.Instance;
+        }
+
+        protected override void CreateModel(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Configurations.AddFromAssembly(Assembly.GetExecutingAssembly());
         }
 
         #region

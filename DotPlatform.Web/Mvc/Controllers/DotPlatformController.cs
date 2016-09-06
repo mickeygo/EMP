@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using DotPlatform.Auditing;
@@ -10,6 +11,8 @@ using DotPlatform.Extensions;
 using DotPlatform.Runtime.Session;
 using DotPlatform.Serialization.Json;
 using DotPlatform.Timing;
+using Newtonsoft.Json;
+using DotPlatform.Web.Extensions;
 
 namespace DotPlatform.Web.Mvc.Controllers
 {
@@ -37,6 +40,78 @@ namespace DotPlatform.Web.Mvc.Controllers
         public IAuditInfoProvider AuditInfoProvider { get; set; }
 
         public IAuditingStore AuditingStore { get; set; }
+
+        #endregion
+
+        #region Json
+
+        /// <summary>
+        /// Json 序列化，基于 Newtonsoft.Json 框架
+        /// </summary>
+        /// <param name="isSuccess">要传递的状态 status: success/fail</param>
+        /// <param name="message">要传递的消息 message</param>
+        /// <returns>Json</returns>
+        public JsonResult Json(bool isSuccess, string message = null)
+        {
+            return Json(isSuccess, null, message, JsonRequestBehavior.DenyGet);
+        }
+
+        /// <summary>
+        /// Json 序列化，基于 Newtonsoft.Json 框架
+        /// </summary>
+        /// <param name="isSuccess">要传递的状态 status: success/fail</param>
+        /// <param name="data">要序列化的数据 data</param>
+        /// <param name="message">要传递的消息 message</param>
+        /// <returns>Json</returns>
+        public JsonResult Json(bool isSuccess, object data, string message = null)
+        {
+            return Json(isSuccess, data, message, JsonRequestBehavior.DenyGet);
+        }
+
+        /// <summary>
+        /// Json 序列化，基于 Newtonsoft.Json 框架
+        /// </summary>
+        /// <param name="isSuccess">要传递的状态 status: true/false</param>
+        /// <param name="data">要序列化的数据 data</param>
+        /// <param name="message">要传递的消息 message</param>
+        /// <param name="behavior">请求 Json 序列化的行为</param>
+        /// <returns>Json</returns>
+        public JsonResult Json(bool isSuccess, object data, string message, JsonRequestBehavior behavior)
+        {
+            return JsonEx(new { status = isSuccess, data, message }, null, null, behavior, null);
+        }
+
+        /// <summary>
+        /// Json 序列化，基于 Newtonsoft.Json 框架
+        /// </summary>
+        /// <param name="data">要序列化的数据</param>
+        /// <param name="contentType">输出的内容类型</param>
+        /// <param name="contentEncoding">输出的内容编码</param>
+        /// <returns></returns>
+        protected JsonResult JsonEx(object data, string contentType, Encoding contentEncoding)
+        {
+            return JsonEx(data, contentType, contentEncoding, JsonRequestBehavior.AllowGet, null);
+        }
+
+        /// <summary>
+        /// Json 序列化，基于 Newtonsoft.Json 框架
+        /// </summary>
+        /// <param name="data">要序列化的数据</param>
+        /// <param name="contentType">输出的内容类型</param>
+        /// <param name="contentEncoding">输出的内容编码</param>
+        /// <param name="behavior">允许的 Json 请求行为</param>
+        /// <param name="jsonSettings">json 参数, 见<see cref="JsonSerializerSettings"/></param>
+        /// <returns></returns>
+        protected JsonResult JsonEx(object data, string contentType, Encoding contentEncoding, JsonRequestBehavior behavior, JsonSerializerSettings jsonSettings)
+        {
+            var json = jsonSettings == null ? new JsonResultEx() : new JsonResultEx(jsonSettings);
+            json.Data = data;
+            json.ContentType = contentType;
+            json.ContentEncoding = contentEncoding;
+            json.JsonRequestBehavior = behavior;
+
+            return json;
+        }
 
         #endregion
 

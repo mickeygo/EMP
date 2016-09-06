@@ -60,6 +60,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Clients\RbacUserManager_Tests.cs" />
     <Compile Include="Repositories\RawRepository_Tests.cs" />
     <Compile Include="Repositories\UserRepository_Tests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

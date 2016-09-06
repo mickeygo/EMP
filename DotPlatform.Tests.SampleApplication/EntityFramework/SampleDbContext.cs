@@ -2,7 +2,6 @@
 using DotPlatform.EntityFramework;
 using DotPlatform.Runtime.Session;
 using System.Reflection;
-using DotPlatform.Tests.SampleApplication.EntityFramework.EntityConfigurarion;
 
 namespace DotPlatform.Tests.SampleApplication.EntityFramework
 {
@@ -18,13 +17,7 @@ namespace DotPlatform.Tests.SampleApplication.EntityFramework
 
         protected override void CreateModel(DbModelBuilder modelBuilder)
         {
-            //modelBuilder.Configurations.Add(new ProductEntityTypeConfuguration());
-            //modelBuilder.Configurations.Add(new OrderEntityTypeConfuguration());
-            //modelBuilder.Configurations.Add(new OrderLineEntityTypeConfuguration());
-
-            //modelBuilder.Configurations.AddFromAssembly(Assembly.GetCallingAssembly());
-
-            modelBuilder.Configurations.AddFromAssembly(Assembly.GetAssembly(this.GetType()));
+            modelBuilder.Configurations.AddFromAssembly(Assembly.GetExecutingAssembly());
         }
     }
 }

@@ -43,6 +43,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DotPlatform.AutoMapper\DotPlatform.AutoMapper.csproj">
+      <Project>{1df11c0a-781d-4137-81de-c915c8fba88d}</Project>
+      <Name>DotPlatform.AutoMapper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DotPlatform.RBAC\DotPlatform.RBAC.csproj">
+      <Project>{cb302955-5080-4d7d-9853-a2cc1685ff15}</Project>
+      <Name>DotPlatform.RBAC</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DotPlatform\DotPlatform.csproj">
       <Project>{4964d0d8-492a-422a-ad2d-3eafae881c1a}</Project>
       <Name>DotPlatform</Name>
@@ -66,6 +74,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ImplServices\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

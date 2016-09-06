@@ -84,6 +84,10 @@
       <HintPath>..\packages\Microsoft.ApplicationInsights.2.1.0\lib\net46\Microsoft.ApplicationInsights.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.ApplicationInsights.TraceListener, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.TraceListener.2.1.0\lib\net45\Microsoft.ApplicationInsights.TraceListener.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
       <Private>True</Private>
@@ -96,6 +100,7 @@
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Owin, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
       <Private>True</Private>
@@ -189,14 +194,19 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\BaseController.cs" />
     <Compile Include="App_Start\Bootstrapper.cs" />
-    <Compile Include="Controllers\AccoutController.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\WarehouseController.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Startup.cs" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Site.css" />
     <Content Include="Content\site.custom.css" />
     <Content Include="Content\css\select2.css" />
     <Content Include="Content\css\select2.min.css" />
@@ -346,6 +356,7 @@
     <Content Include="Content\DataTables\images\sort_desc_disabled.png" />
     <Content Include="Content\DataTables\swf\flashExport.swf" />
     <Content Include="Content\images\ajax-loader.gif" />
+    <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Js\startup.js" />
@@ -498,6 +509,16 @@
     <Content Include="Content\DataTables\css\mixins.scss" />
     <Content Include="Content\DataTables\css\common.scss" />
     <Content Include="Content\component.custom.css" />
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Admin\Views\Warehouse\Index.cshtml" />
+    <None Include="Properties\PublishProfiles\Wms.Debug.pubxml" />
+    <None Include="Properties\PublishProfiles\Wms.Release.pubxml" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
     <None Include="Scripts\jquery-3.1.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.1.0.js" />
     <Content Include="Scripts\jquery-3.1.0.min.js" />
@@ -576,6 +597,7 @@
     <Content Include="Views\Shared\Permission.cshtml" />
     <Content Include="Views\Shared\_Left_Menu.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -584,7 +606,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Models\" />
+    <Folder Include="Areas\Admin\Models\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DotPlatform.AutoMapper\DotPlatform.AutoMapper.csproj">
@@ -603,9 +625,21 @@
       <Project>{63b69b12-786e-49ba-96e8-093c6227caad}</Project>
       <Name>DotPlatform.MongoDB</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DotPlatform.RBAC.Repository\DotPlatform.RBAC.Repository.csproj">
+      <Project>{1e876652-0fea-47b1-b141-8e6524017408}</Project>
+      <Name>DotPlatform.RBAC.Repository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DotPlatform.RBAC\DotPlatform.RBAC.csproj">
+      <Project>{cb302955-5080-4d7d-9853-a2cc1685ff15}</Project>
+      <Name>DotPlatform.RBAC</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DotPlatform.RedisCache\DotPlatform.RedisCache.csproj">
       <Project>{097272c4-ca67-4ae4-994b-c9a0119342f3}</Project>
       <Name>DotPlatform.RedisCache</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DotPlatform.Storage\DotPlatform.Storage.csproj">
+      <Project>{0abbb274-cb90-4e0e-beb4-addc58f116a3}</Project>
+      <Name>DotPlatform.Storage</Name>
     </ProjectReference>
     <ProjectReference Include="..\DotPlatform.Web.SignalR\DotPlatform.Web.SignalR.csproj">
       <Project>{71c0c83a-fd83-48f3-9c2e-30fd5a16933d}</Project>
@@ -638,6 +672,10 @@
     <ProjectReference Include="..\WMS.Domain\WMS.Domain.csproj">
       <Project>{817a0d8c-79a2-4f84-8f29-5d0a514736a7}</Project>
       <Name>WMS.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WMS.Web.Client\WMS.Web.Client.csproj">
+      <Project>{9e3a2d2a-37bd-4df3-a6e6-35de60cf1ee2}</Project>
+      <Name>WMS.Web.Client</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

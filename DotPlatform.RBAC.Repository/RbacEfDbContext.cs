@@ -12,13 +12,12 @@ namespace DotPlatform.RBAC.Repository
     {
         public RbacEfDbContext() : base(ConnectionName)
         {
-            // Todo: change the RbacEfDbContext Session
-            OwnerSession = NullSession.Instance;
+            this.OwnerSession = ClaimsSession.Instance;
         }
 
         protected override void CreateModel(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Configurations.AddFromAssembly(Assembly.GetAssembly(this.GetType()));
+            modelBuilder.Configurations.AddFromAssembly(Assembly.GetExecutingAssembly());
         }
 
         #region

@@ -1,4 +1,5 @@
-﻿using DotPlatform.Extensions;
+﻿using System.Linq;
+using DotPlatform.Extensions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace DotPlatform.Tests.Extensions
@@ -16,6 +17,16 @@ namespace DotPlatform.Tests.Extensions
         public void EndsIn_Test()
         {
             Assert.IsTrue("abc".EndsIn("bc", "c"));
+        }
+
+        [TestMethod]
+        public void Should_Collection_Not_In()
+        {
+            var stringCollection = new[] { "mscorlib.a", "System.b", "DotPlatform.c" };
+            var result = stringCollection.Where(s => !s.StartsIn("mscorlib", "Microsoft", "System"));
+
+            Assert.IsNotNull(result);
+            Assert.IsTrue(result.Any());
         }
     }
 }

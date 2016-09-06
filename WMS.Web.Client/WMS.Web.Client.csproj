@@ -1,0 +1,234 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9E3A2D2A-37BD-4DF3-A6E6-35DE60CF1EE2}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WMS.Web.Client</RootNamespace>
+    <AssemblyName>WMS.Web.Client</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Account\AccountManager.cs" />
+    <Compile Include="Account\IAccount.cs" />
+    <Compile Include="Extensions\HtmlExtenstions\HtmlNavgationExtensions.cs" />
+    <Compile Include="MemberShip\UserValidator .cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\MembershipWebService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+    <None Include="Properties\DataSources\System.Data.DataSet.datasource" />
+    <None Include="Service References\MembershipWebService\MembershipWebservice.wsdl" />
+    <None Include="Service References\MembershipWebService\WMS.Web.Client.MembershipWebService.AddActivityWithWSResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MembershipWebService\WMS.Web.Client.MembershipWebService.AddOnlineRequestV2WithWSResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MembershipWebService\WMS.Web.Client.MembershipWebService.AddOnlineRequestWithWSResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MembershipWebService\WMS.Web.Client.MembershipWebService.AddServiceRequestWithWSResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MembershipWebService\WMS.Web.Client.MembershipWebService.getAddSRDescriptionByRowIDResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MembershipWebService\WMS.Web.Client.MembershipWebService.loginAndCheckLevelResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MembershipWebService\WMS.Web.Client.MembershipWebService.MemberRegStepOne.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MembershipWebService\WMS.Web.Client.MembershipWebService.MEMBER_SIMPLE.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MembershipWebService\WMS.Web.Client.MembershipWebService.MEMBER_SIMPLE_FORM_QUESTIONNAIRE.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MembershipWebService\WMS.Web.Client.MembershipWebService.OnlineRequest.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MembershipWebService\WMS.Web.Client.MembershipWebService.OnlineRequestV2.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MembershipWebService\WMS.Web.Client.MembershipWebService.registerResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MembershipWebService\WMS.Web.Client.MembershipWebService.ReportMemberRBU.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MembershipWebService\WMS.Web.Client.MembershipWebService.SendRegReminderResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MembershipWebService\WMS.Web.Client.MembershipWebService.SSOUSER.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MembershipWebService\WMS.Web.Client.MembershipWebService.UserLevel.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\MembershipWebService\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\MembershipWebService\MembershipWebservice.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\MembershipWebService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\MembershipWebService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\MembershipWebService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DotPlatform.AutoMapper\DotPlatform.AutoMapper.csproj">
+      <Project>{1df11c0a-781d-4137-81de-c915c8fba88d}</Project>
+      <Name>DotPlatform.AutoMapper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DotPlatform.Bus\DotPlatform.Bus.csproj">
+      <Project>{d7adf3e0-02b4-4ef1-827f-c82f2ebafeb6}</Project>
+      <Name>DotPlatform.Bus</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DotPlatform.EntityFramework\DotPlatform.EntityFramework.csproj">
+      <Project>{09b41815-54ba-4afa-973c-0488fb1f578f}</Project>
+      <Name>DotPlatform.EntityFramework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DotPlatform.MongoDB\DotPlatform.MongoDB.csproj">
+      <Project>{63b69b12-786e-49ba-96e8-093c6227caad}</Project>
+      <Name>DotPlatform.MongoDB</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DotPlatform.RBAC.Repository\DotPlatform.RBAC.Repository.csproj">
+      <Project>{1e876652-0fea-47b1-b141-8e6524017408}</Project>
+      <Name>DotPlatform.RBAC.Repository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DotPlatform.RBAC\DotPlatform.RBAC.csproj">
+      <Project>{cb302955-5080-4d7d-9853-a2cc1685ff15}</Project>
+      <Name>DotPlatform.RBAC</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DotPlatform.RedisCache\DotPlatform.RedisCache.csproj">
+      <Project>{097272c4-ca67-4ae4-994b-c9a0119342f3}</Project>
+      <Name>DotPlatform.RedisCache</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DotPlatform.Storage\DotPlatform.Storage.csproj">
+      <Project>{0abbb274-cb90-4e0e-beb4-addc58f116a3}</Project>
+      <Name>DotPlatform.Storage</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DotPlatform.Web.SignalR\DotPlatform.Web.SignalR.csproj">
+      <Project>{71c0c83a-fd83-48f3-9c2e-30fd5a16933d}</Project>
+      <Name>DotPlatform.Web.SignalR</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DotPlatform.Web\DotPlatform.Web.csproj">
+      <Project>{a52150d2-3b42-4a48-ae98-ec4e0f8e2531}</Project>
+      <Name>DotPlatform.Web</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DotPlatform\DotPlatform.csproj">
+      <Project>{4964D0D8-492A-422A-AD2D-3EAFAE881C1A}</Project>
+      <Name>DotPlatform</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WMS.ApplicationService\WMS.ApplicationService.csproj">
+      <Project>{ac035f6c-5190-4b28-90ab-d003edd065b7}</Project>
+      <Name>WMS.ApplicationService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WMS.Application\WMS.Application.csproj">
+      <Project>{832d6e4e-ee20-4635-b79f-531d92621d7f}</Project>
+      <Name>WMS.Application</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WMS.DataTransferObject\WMS.DataTransferObject.csproj">
+      <Project>{1b724b11-6108-4ee2-84b8-ed934c1c2d20}</Project>
+      <Name>WMS.DataTransferObject</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WMS.Domain.Repository\WMS.Domain.Repository.csproj">
+      <Project>{f5889ff7-c6db-438e-a007-abe3792187ec}</Project>
+      <Name>WMS.Domain.Repository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WMS.Domain\WMS.Domain.csproj">
+      <Project>{817a0d8c-79a2-4f84-8f29-5d0a514736a7}</Project>
+      <Name>WMS.Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

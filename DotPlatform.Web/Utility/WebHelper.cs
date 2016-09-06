@@ -13,15 +13,30 @@ namespace DotPlatform.Web.Utility
         /// <summary>
         /// 获取客户端 IP
         /// </summary>
+        public static string GetClientIp()
+        {
+            return GetClientIp(HttpContext.Current);
+        }
+
+        /// <summary>
+        /// 获取客户端 IP
+        /// </summary>
+        /// <param name="httpContext">HttpContext 上下文</param>
+        /// <returns></returns>
         public static string GetClientIp(HttpContext httpContext)
         {
-            return HttpContext.Current.Request.ServerVariables["HTTP_X_FORWARDED_FOR"] 
-                ?? HttpContext.Current.Request.ServerVariables["REMOTE_ADDR"];
+            var httpRequest = httpContext.Request;
+            var localIp = "127.0.0.1";
+            if (httpRequest.IsLocal)
+                return localIp;
+
+            var ip = httpRequest.ServerVariables["HTTP_X_FORWARDED_FOR"] ?? httpRequest.ServerVariables["REMOTE_ADDR"];
+
+            return string.IsNullOrEmpty(ip) ? localIp : ip;
         }
 
         /// <summary>
         /// 获取客户的IP V4地址。
-        /// 对于主机自身访问，可
         /// </summary>
         public static string GetClientIpAddress(HttpContext httpContext)
         {
@@ -40,7 +55,8 @@ namespace DotPlatform.Web.Utility
         }
 
         /// <summary>
-        /// 获取客户端访问的主机名
+        /// 获取客户端访问的主机名。
+        /// 不出在时返回 null
         /// </summary>
         public static string GetClientHostName(HttpContext httpContext)
         {

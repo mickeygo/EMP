@@ -1,9 +1,9 @@
-﻿using AutoMapper;
-using AutoMapper.Configuration;
-using DotPlatform.Extensions;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
+using AutoMapper;
+using AutoMapper.Configuration;
+using DotPlatform.Extensions;
 
 namespace DotPlatform.AutoMapper
 {
