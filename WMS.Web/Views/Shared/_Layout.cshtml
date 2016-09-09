@@ -39,21 +39,7 @@
             </div>
 
             <div class="col-lg-10 col-sm-10">
-                <div>
-                    <nav>
-                        <div>
-                            <ul class="breadcrumb">
-                                <li>
-                                    <a href="#">Home</a>@Url.Content("")
-                                </li>
-                                <li>
-                                    <a href="#">Dashboard</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </nav>
-                </div>
-                <div>
+                <div style="min-height:500px">
                     @RenderBody()
                 </div>
             </div>
@@ -65,6 +51,7 @@
         <footer>@Html.Partial("_Layout_Footer")</footer>
     </div>
 
+    @Scripts.Render("~/bundles/src")
     @Scripts.Render("~/bundles/custom")
     @RenderSection("scripts", false)
 </body>

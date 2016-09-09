@@ -1,11 +1,10 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using DotPlatform.Bus;
 
 namespace DotPlatform.Events.Bus
 {
     /// <summary>
-    /// 没有中间组件的总线。
+    /// 没有中间组件的总线。可用于 Command 总线和 Event 总线
     /// </summary>
     public class DirectBus : IBus
     {

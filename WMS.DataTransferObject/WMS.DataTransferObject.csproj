@@ -31,6 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -40,15 +41,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dtos\LocationDto.cs" />
+    <Compile Include="Dtos\ShelfDto.cs" />
+    <Compile Include="Dtos\TenantDto.cs" />
+    <Compile Include="Dtos\UserDto.cs" />
+    <Compile Include="Dtos\WarehouseDto.cs" />
+    <Compile Include="Dtos\ZoneDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Dto\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\DotPlatform.AutoMapper\DotPlatform.AutoMapper.csproj">
       <Project>{1df11c0a-781d-4137-81de-c915c8fba88d}</Project>
       <Name>DotPlatform.AutoMapper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DotPlatform.RBAC\DotPlatform.RBAC.csproj">
+      <Project>{CB302955-5080-4D7D-9853-A2CC1685FF15}</Project>
+      <Name>DotPlatform.RBAC</Name>
     </ProjectReference>
     <ProjectReference Include="..\DotPlatform\DotPlatform.csproj">
       <Project>{4964d0d8-492a-422a-ad2d-3eafae881c1a}</Project>

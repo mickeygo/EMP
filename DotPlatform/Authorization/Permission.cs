@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
+
 namespace DotPlatform.Authorization
 {
     public sealed class Permission
@@ -90,6 +91,11 @@ namespace DotPlatform.Authorization
         public override string ToString()
         {
             return $"[Permission: {Name}]";
+        }
+
+        public static implicit operator Permission(List<Permission> v)
+        {
+            throw new NotImplementedException();
         }
     }
 }

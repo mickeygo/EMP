@@ -49,14 +49,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EntityFramework\ModelConfigurations\Warehouses\LocationEntityTypeConfiguration.cs" />
+    <Compile Include="EntityFramework\ModelConfigurations\Warehouses\ShelfEntityTypeConfiguration.cs" />
+    <Compile Include="EntityFramework\ModelConfigurations\Warehouses\WarehouseEntityTypeConfiguration.cs" />
+    <Compile Include="EntityFramework\ModelConfigurations\Warehouses\ZoneEntityTypeConfiguration.cs" />
+    <Compile Include="EntityFramework\QueryRepositories\LocationQueryRepository.cs" />
+    <Compile Include="EntityFramework\QueryRepositories\ShelfQueryRepository.cs" />
+    <Compile Include="EntityFramework\QueryRepositories\WarehouseQueryRepository.cs" />
+    <Compile Include="EntityFramework\QueryRepositories\ZoneQueryRepository.cs" />
+    <Compile Include="EntityFramework\Repositories\LocationRepository.cs" />
+    <Compile Include="EntityFramework\Repositories\ShelfRepository.cs" />
+    <Compile Include="EntityFramework\Repositories\WarehouseRepository.cs" />
+    <Compile Include="EntityFramework\Repositories\ZoneRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Contexts\WmsQueryEfDbContext.cs" />
+    <Compile Include="Contexts\WmsQueryEfRepository.cs" />
     <Compile Include="WmsRepositoryBootstrapper.cs" />
-    <Compile Include="WmsEfDbContext.cs" />
-    <Compile Include="WmsEfRepository.cs" />
+    <Compile Include="Contexts\WmsEfDbContext.cs" />
+    <Compile Include="Contexts\WmsEfRepository.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="EntityFramework\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\DotPlatform.EntityFramework\DotPlatform.EntityFramework.csproj">
       <Project>{09b41815-54ba-4afa-973c-0488fb1f578f}</Project>

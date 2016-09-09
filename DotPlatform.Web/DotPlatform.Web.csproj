@@ -143,6 +143,7 @@
     <Compile Include="Authentication\OwinAuthenticationProvider.cs" />
     <Compile Include="Authentication\CookieAuthenticationManager.cs" />
     <Compile Include="Extensions\HtmlHelperExtensions\HtmlNavgationExtensions.cs" />
+    <Compile Include="Extensions\JsonResultEx.cs" />
     <Compile Include="Mvc\Controllers\DotPlatformController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utility\WebHelper.cs" />
