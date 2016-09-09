@@ -41,7 +41,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EventHandlers\Warehouses\LocationCreatedEventHandler.cs" />
+    <Compile Include="EventHandlers\Warehouses\ShelfCreatedEventHandler.cs" />
     <Compile Include="EventHandlers\Warehouses\WarehouseCreatedEventHandler.cs" />
+    <Compile Include="EventHandlers\Warehouses\ZoneCreatedEventHandler.cs" />
+    <Compile Include="Events\Warehouses\LocationCreatedEvent.cs" />
+    <Compile Include="Events\Warehouses\ShelfCreatedEvent.cs" />
     <Compile Include="Events\Warehouses\WarehouseCreatedEvent.cs" />
     <Compile Include="Events\Warehouses\ZoneCreatedEvent.cs" />
     <Compile Include="Models\Warehouses\Location.cs" />
