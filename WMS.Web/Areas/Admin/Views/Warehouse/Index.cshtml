@@ -1,4 +1,6 @@
-﻿@{ 
+﻿
+
+@{ 
     ViewBag.Title = "Admin Warehouse";
 }
 
@@ -6,36 +8,124 @@
     @Html.Navgation("Admin", "Warehouse")
 </div>
 
+@section scripts {
+    <script>
+       // ReactDOM.render(
+       //     React.createElement(HelloWorld),
+       //     document.getElementById('content')
+       // );
+
+       // ReactDOM.render(
+       //    React.createElement(HelloMessage, {name: "123"}),
+       //    document.getElementById('content2')
+       //);
+    </script>
+}
+
 <div class="row">
     <div class="box col-md-12">
         <div class="box-inner">
             <div class="box-header well" data-original-title="">
-                <h2>Combined All</h2>
+                <h2>Warehouse</h2>
                 <div class="box-icon">
-                    <a href="#" class="btn btn-setting btn-round btn-default">
-                        <i class="glyphicon glyphicon-cog"></i>
+                    <a class="btn btn-round btn-default" data-dialog="true" data-ajax-form="true" 
+                       data-dialog-title="Create Warehouse" data-dialog-href="@Url.Action("Create", "Warehouse", new { area = "Admin" })"
+                       data-ajax-success="createGroupSuccess" data-ajax-failure="createGroupFailure">
+                        <i class="glyphicon glyphicon-plus"></i>
                     </a>
-                    <a href="#" class="btn btn-minimize btn-round btn-default">
-                        <i class="glyphicon glyphicon-chevron-up"></i>
-                    </a>
-                    <a href="#" class="btn btn-close btn-round btn-default">
-                        <i class="glyphicon glyphicon-remove"></i>
-                    </a>
+                    <a href="#" class="btn btn-minimize btn-round btn-default"></a>
                 </div>
             </div>
             <div class="box-content">
-                <table class="table table-bordered table-striped table-condensed">
-                    <thead>
-                        <tr>
-                            <th>Display Name</th>
-                            <th>Description</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-
-                    </tbody>
-                </table>
+                <div class="box-inner">
+                    <div class="box-header well">
+                        <h2>AKM1</h2>
+                        <div class="box-icon">
+                            <a class="btn btn-round btn-default" data-dialog="true">
+                                <i class="glyphicon glyphicon-plus"></i>
+                            </a>
+                            <a class="btn btn-setting btn-round btn-default" data-dialog="true"></a>
+                            <a href="#" class="btn btn-minimize btn-round btn-default"></a>
+                            <a href="#" class="btn btn-round btn-default">
+                                <i class="glyphicon glyphicon-remove"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="box-content">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading" role="tab" id="headingOne">
+                                            <div class="panel-title">
+                                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                                   <i class="glyphicon glyphicon-th-list"></i> 1
+                                                </a>
+                                                <div class="box-icon">
+                                                    <a class="btn btn-round btn-default" data-dialog="true">
+                                                        <i class="glyphicon glyphicon-plus"></i>
+                                                    </a>
+                                                    <a class="btn btn-round btn-default" data-dialog="true">
+                                                        <i class="glyphicon glyphicon-cog"></i>
+                                                    </a>
+                                                    <a href="#" class="btn btn-round btn-default">
+                                                        <i class="glyphicon glyphicon-remove"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                                            <div class="panel-body">
+                                                <div class="row">
+                                                   <div class="col-md-8">
+                                                       <div>
+                                                           Volume: 5 * 3 * 1.5
+                                                       </div>
+                                                       <div>
+                                                           Description: AKMC01-dd
+                                                       </div>
+                                                   </div>
+                                                </div>
+                                                <div style="margin-top: 10px;">
+                                                    <table class="table table-bordered table-striped table-condensed table-responsive datatable">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Shelf</th>
+                                                                <th>Location</th>
+                                                                <th>IsBonded</th>
+                                                                <th>Create Time</th>
+                                                                <th></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>Shelf-A</td>
+                                                                <td>Location-1</td>
+                                                                <td>Y</td>
+                                                                <td>@DateTime.Now</td>
+                                                                <td>
+                                                                    <a herf="#" class="btn btn-info btn-xs">
+                                                                        <i class="glyphicon glyphicon-plus"></i>
+                                                                    </a>
+                                                                    <a herf="#" class="btn btn-primary btn-xs">
+                                                                        <i class="glyphicon glyphicon-edit"></i>
+                                                                    </a>
+                                                                    <a herf="#" class="btn btn-danger btn-xs">
+                                                                        <i class="glyphicon glyphicon-trash"></i>
+                                                                    </a>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 using DotPlatform.Application.Services.Dto;
 using DotPlatform.AutoMapper;
 using WMS.Domain.Models.Warehouses;
@@ -19,32 +20,41 @@ namespace WMS.DataTransferObject.Dtos
         /// <summary>
         /// 获取或设置仓库名
         /// </summary>
+        [Required]
+        [StringLength(20)]
         public string Name { get; set; }
 
         /// <summary>
         /// 获取或设置仓库显示名
         /// </summary>
+        [Required]
+        [StringLength(50)]
         public string DisplayName { get; set; }
 
         /// <summary>
         /// 获取或设置仓库描述
         /// </summary>
+        [Required]
+        [StringLength(80)]
         public string Description { get; set; }
 
         /// <summary>
         /// 获取或设置仓库的长度(m)
         /// </summary>
-        public int Length { get; set; }
+        [Range(0, 999)]
+        public double Length { get; set; }
 
         /// <summary>
         /// 获取或设置仓库的宽度(m)
         /// </summary>
-        public int Width { get; set; }
+        [Range(0, 999)]
+        public double Width { get; set; }
 
         /// <summary>
         /// 获取或设置仓库的高度(m)
         /// </summary>
-        public int Height { get; set; }
+        [Range(0, 10)]
+        public double Height { get; set; }
 
         /// <summary>
         /// 是否已删除

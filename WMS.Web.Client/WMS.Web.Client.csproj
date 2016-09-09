@@ -202,10 +202,6 @@
       <Project>{4964D0D8-492A-422A-AD2D-3EAFAE881C1A}</Project>
       <Name>DotPlatform</Name>
     </ProjectReference>
-    <ProjectReference Include="..\WMS.ApplicationService\WMS.ApplicationService.csproj">
-      <Project>{ac035f6c-5190-4b28-90ab-d003edd065b7}</Project>
-      <Name>WMS.ApplicationService</Name>
-    </ProjectReference>
     <ProjectReference Include="..\WMS.Application\WMS.Application.csproj">
       <Project>{832d6e4e-ee20-4635-b79f-531d92621d7f}</Project>
       <Name>WMS.Application</Name>

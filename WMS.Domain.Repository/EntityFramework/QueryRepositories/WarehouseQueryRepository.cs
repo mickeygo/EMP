@@ -8,9 +8,9 @@ namespace WMS.Domain.Repository.EntityFramework.QueryRepositories
     /// <summary>
     /// 仓库查询仓储
     /// </summary>
-    public class WarehouseQueryRepository : WmsReadEfRepository<Warehouse>, IWarehouseQueryRepository
+    public class WarehouseQueryRepository : WmsQueryEfRepository<Warehouse>, IWarehouseQueryRepository
     {
-        public WarehouseQueryRepository(ISimpleDbContextProvider<WmsReadEfDbContext> dbContextProvider) : base(dbContextProvider)
+        public WarehouseQueryRepository(ISimpleDbContextProvider<WmsQueryEfDbContext> dbContextProvider) : base(dbContextProvider)
         {
         }
 

@@ -24,17 +24,17 @@ namespace WMS.DataTransferObject.Dtos
         /// <summary>
         /// 获取或设置货架的长度(m)
         /// </summary>
-        public int Length { get; set; }
+        public double Length { get; set; }
 
         /// <summary>
         /// 获取或设置货架的宽度(m)
         /// </summary>
-        public int Width { get; set; }
+        public double Width { get; set; }
 
         /// <summary>
         /// 获取或设置货架的高度(m)
         /// </summary>
-        public int Height { get; set; }
+        public double Height { get; set; }
 
         /// <summary>
         /// 获取或设置区域 Id

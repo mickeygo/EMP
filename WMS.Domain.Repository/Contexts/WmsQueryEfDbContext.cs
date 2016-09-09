@@ -7,11 +7,11 @@ namespace WMS.Domain.Repository
 {
     /// <summary>
     /// 基于 Microsoft EntityFramework 的 DB 上下文.
-    /// 只用于 ReadOnly.
+    /// 只用于 查询.
     /// </summary>
-    public class WmsReadEfDbContext : EfDbContext
+    public class WmsQueryEfDbContext : EfDbContext
     {
-        public WmsReadEfDbContext() : base(ConnectionName)
+        public WmsQueryEfDbContext() : base(ConnectionName)
         {
             this.OwnerSession = ClaimsSession.Instance;
         }

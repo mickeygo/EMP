@@ -43,14 +43,21 @@
   <ItemGroup>
     <Compile Include="EventHandlers\Warehouses\WarehouseCreatedEventHandler.cs" />
     <Compile Include="Events\Warehouses\WarehouseCreatedEvent.cs" />
+    <Compile Include="Events\Warehouses\ZoneCreatedEvent.cs" />
     <Compile Include="Models\Warehouses\Location.cs" />
     <Compile Include="Models\Warehouses\Shelf.cs" />
     <Compile Include="Models\Warehouses\TickSetting.cs" />
     <Compile Include="Models\Warehouses\Warehouse.cs" />
     <Compile Include="Models\Warehouses\Zone.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\ILocationRepository.cs" />
     <Compile Include="Repositories\IWarehouseRepository.cs" />
+    <Compile Include="Repositories\IZoneRepository.cs" />
+    <Compile Include="Repositories\Query\ILocationQueryRepository.cs" />
+    <Compile Include="Repositories\Query\IShelfQueryRepository.cs" />
+    <Compile Include="Repositories\IShelfRepository.cs" />
     <Compile Include="Repositories\Query\IWarehouseQueryRepository.cs" />
+    <Compile Include="Repositories\Query\IZoneQueryRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Factories\" />

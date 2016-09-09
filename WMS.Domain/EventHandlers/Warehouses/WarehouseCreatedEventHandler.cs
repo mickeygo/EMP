@@ -20,7 +20,7 @@ namespace WMS.Domain.EventHandlers.Warehouses
         }
 
         [UnitOfWork]
-        public void Handle(WarehouseCreatedEvent e)
+        public virtual void Handle(WarehouseCreatedEvent e)
         {
             var warehouse = e.Source.Cast<Warehouse>();
 

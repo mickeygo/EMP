@@ -50,10 +50,11 @@ namespace DotPlatform.Web.Extensions
 
             if (this.Data != null)
             {
-                var settings = new JsonSerializerSettings();
-
                 if (this.RecursionLimit.HasValue)
                     _jsonSettings.MaxDepth = this.RecursionLimit.Value;
+
+                // 忽略循环引用
+                _jsonSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
 
                 response.Write(JsonConvert.SerializeObject(this.Data, _jsonSettings));
             }

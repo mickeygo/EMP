@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="wms, Advantech">
     <meta name="author" content="Advantech Web Team">
-    <link rel="shortcut icon" type="image/ico" href="~/favicon.ico" />
     <title>@ViewBag.Title - WMS</title>
      
     <!-- CSS -->
@@ -40,7 +39,7 @@
             </div>
 
             <div class="col-lg-10 col-sm-10">
-                <div style="min-height:400px">
+                <div style="min-height:500px">
                     @RenderBody()
                 </div>
             </div>
@@ -52,6 +51,7 @@
         <footer>@Html.Partial("_Layout_Footer")</footer>
     </div>
 
+    @Scripts.Render("~/bundles/src")
     @Scripts.Render("~/bundles/custom")
     @RenderSection("scripts", false)
 </body>

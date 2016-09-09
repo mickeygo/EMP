@@ -34,17 +34,17 @@ namespace WMS.Domain.Models.Warehouses
         /// <summary>
         /// 获取或设置仓库的长度(m)
         /// </summary>
-        public int Length { get; set; }
+        public double Length { get; set; }
 
         /// <summary>
         /// 获取或设置仓库的宽度(m)
         /// </summary>
-        public int Width { get; set; }
+        public double Width { get; set; }
 
         /// <summary>
         /// 获取或设置仓库的高度(m)
         /// </summary>
-        public int Height { get; set; }
+        public double Height { get; set; }
 
         /// <summary>
         /// 是否已删除
@@ -86,11 +86,17 @@ namespace WMS.Domain.Models.Warehouses
         /// <param name="name">仓库名称</param>
         /// <param name="displayName">仓库显示名称</param>
         /// <param name="description">参考描述</param>
-        public Warehouse(string name, string displayName, string description)
+        /// <param name="length">仓库长度</param>
+        /// <param name="width">仓库宽度</param>
+        /// <param name="height">仓库高度</param>
+        public Warehouse(string name, string displayName, string description, double length, double width, double height)
         {
             Name = name;
             DisplayName = displayName;
             Description = description;
+            Length = length;
+            Width = width;
+            Height = height;
         }
 
         #endregion

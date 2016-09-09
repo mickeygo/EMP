@@ -17,6 +17,9 @@ namespace DotPlatform.AutoMapper
         /// <returns>目标对象</returns>
         public static TDesitination MapTo<TSource, TDesitination>(this TSource source)
         {
+            if (source == null)
+                return default(TDesitination);
+
             return Mapper.Map<TDesitination>(source);
         }
 
@@ -28,6 +31,9 @@ namespace DotPlatform.AutoMapper
         /// <returns>目标对象</returns>
         public static TDesitination MapTo<TDesitination>(this object source)
         {
+            if (source == null)
+                return default(TDesitination);
+
             return Mapper.Map<TDesitination>(source);
         }
 
@@ -40,6 +46,9 @@ namespace DotPlatform.AutoMapper
         /// <returns></returns>
         public static List<TDesitination> MapTo<TDesitination>(this IEnumerable<object> source)
         {
+            if (source == null)
+                return null;
+
             return Mapper.Map<List<TDesitination>>(source);
         }
     }
