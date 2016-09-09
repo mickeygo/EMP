@@ -1,4 +1,5 @@
 ﻿using System.Web.Optimization;
+using System.Web.Optimization.React;
 
 namespace WMS
 {
@@ -21,6 +22,8 @@ namespace WMS
             bundles.Add(RegisterMainJs());      // Main
             bundles.Add(RegisterAddonJs());     // Addon
             bundles.Add(RegisterCustomJs());    // Custom Js
+
+            bundles.Add(RegisterSrcJsx());      // jsx
         }
 
         #region Private Methods
@@ -51,15 +54,19 @@ namespace WMS
         {
             return new ScriptBundle("~/bundles/main").Include(
                 "~/Scripts/jquery-{version}.js",
+                "~/Scripts/jquery.unobtrusive-ajax.js",
+                "~/Scripts/jquery.validate.js",
+                "~/Scripts/jquery.validate.unobtrusive.js",
                 "~/Scripts/bootstrap.js",
-                "~/Scripts/respond.js");
+                "~/Scripts/respond.js").Include(
+                "~/Scripts/react/react.js",
+                "~/Scripts/react/react-dom.js");
         }
 
         // 插件 Js
         private static Bundle RegisterAddonJs()
         {
             return new ScriptBundle("~/bundles/addon").Include(
-                "~/Scripts/jquery.validate.js",
                 "~/Scripts/DataTables/jquery.dataTables.js",
                 "~/Scripts/jquery.form.js",
                 "~/Scripts/jquery.cookie.js",
@@ -73,10 +80,16 @@ namespace WMS
         private static Bundle RegisterCustomJs()
         {
             return new ScriptBundle("~/bundles/custom")
-                .IncludeDirectory("~/Js", "*.custom.js")
+                .IncludeDirectory("~/Js/utils", "*.js", false)
                 .Include("~/Js/startup.js");
         }
 
+        private static Bundle RegisterSrcJsx()
+        {
+            return new BabelBundle("~/bundles/src")
+                 .IncludeDirectory("~/Js/src", "*.jsx", true);
+        }
+        
         #endregion
     }
 }

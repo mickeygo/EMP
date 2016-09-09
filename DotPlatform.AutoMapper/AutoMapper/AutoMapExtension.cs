@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using System.Collections.Generic;
 
 namespace DotPlatform.AutoMapper
 {
@@ -16,6 +17,9 @@ namespace DotPlatform.AutoMapper
         /// <returns>目标对象</returns>
         public static TDesitination MapTo<TSource, TDesitination>(this TSource source)
         {
+            if (source == null)
+                return default(TDesitination);
+
             return Mapper.Map<TDesitination>(source);
         }
 
@@ -27,7 +31,25 @@ namespace DotPlatform.AutoMapper
         /// <returns>目标对象</returns>
         public static TDesitination MapTo<TDesitination>(this object source)
         {
+            if (source == null)
+                return default(TDesitination);
+
             return Mapper.Map<TDesitination>(source);
+        }
+
+        /// <summary>
+        /// 从源对象映射到目标对象。
+        /// 源对象必须为集合类型
+        /// </summary>
+        /// <typeparam name="TDesitination">映射到目标对象的类型</typeparam>
+        /// <param name="source">源对象实例</param>
+        /// <returns></returns>
+        public static List<TDesitination> MapTo<TDesitination>(this IEnumerable<object> source)
+        {
+            if (source == null)
+                return null;
+
+            return Mapper.Map<List<TDesitination>>(source);
         }
     }
 }

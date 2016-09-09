@@ -1,0 +1,51 @@
+﻿@model WarehouseDto
+
+<div>
+    @using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-group">
+            <label class="col-md-3 control-label" for="ReportName">Report Name</label>
+            <div class="col-md-9">
+                @Html.TextBoxFor(m => m.Name, new { @class = "form-control", required = "", data_format = "string", maxlength = "20", onpaste = "return false;" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-3 control-label" for="DisplayName">Display Name</label>
+            <div class="col-md-9">
+                @Html.TextBoxFor(m => m.DisplayName, new { @class = "form-control", required = "", maxlength = "50" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Description, new { @class = "col-md-3 control-label" })
+            <div class="col-md-9">
+                @Html.TextAreaFor(m => m.Description, new { @class = "form-control", maxlength = "80" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Length, new { @class = "col-md-3 control-label" })
+            <div class="col-md-9">
+                @Html.TextBoxFor(m => m.Length, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Width, new { @class = "col-md-3 control-label" })
+            <div class="col-md-9">
+                @Html.TextBoxFor(m => m.Width, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Height, new { @class = "col-md-3 control-label" })
+            <div class="col-md-9">
+                @Html.TextBoxFor(m => m.Height, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-3 col-md-9">
+                <input type="submit" value="submit" class="btn btn-primary"
+                       onclick="return confirm('After submitted, the group name would not allowed modified, are you want to continue submit ?');" />
+            </div>
+        </div>
+    }
+</div>

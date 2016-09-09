@@ -14,8 +14,7 @@ namespace DotPlatform.Tests.SampleApplication.Clients
     [TestClass]
     public class SampleProduct_Test : UnitTestBase
     {
-        [TestInitialize]
-        public void Initialize()
+        protected override void PostInitialize()
         {
             IocManager.Instance.Register<IProductQueryRepository, SampleProductQueryRepository>();
             IocManager.Instance.Register<IProductRepository, SampleProductRepository>();

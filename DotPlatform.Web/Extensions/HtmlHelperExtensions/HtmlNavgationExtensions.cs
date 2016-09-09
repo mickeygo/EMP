@@ -11,6 +11,13 @@ namespace DotPlatform.Web.Extensions.HtmlHelperExtensions
     /// </summary>
     public static class HtmlNavgationExtensions
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="helper"></param>
+        /// <param name="home"></param>
+        /// <param name="navgations"></param>
+        /// <returns></returns>
         public static IHtmlString Navgation(this HtmlHelper helper, string home, params string[] navgations)
         {
             var navs = navgations != null
@@ -19,6 +26,13 @@ namespace DotPlatform.Web.Extensions.HtmlHelperExtensions
             return Navgation(helper, home, navs);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="helper"></param>
+        /// <param name="home">主页</param>
+        /// <param name="navgations"></param>
+        /// <returns></returns>
         public static IHtmlString Navgation(this HtmlHelper helper, string home, Dictionary<string, string> navgations)
         {
             //<div>

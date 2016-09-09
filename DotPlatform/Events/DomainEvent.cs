@@ -27,7 +27,7 @@ namespace DotPlatform.Events
         public DateTimeOffset TimeStamp { get; protected set; } = DateTimeOffset.Now;
 
         /// <summary>
-        /// 获取(或设置)事件的版本号
+        /// 获取(或设置)事件的版本号, default = 1
         /// </summary>
         public int Version { get; protected set; } = 1;
 
