@@ -74,7 +74,7 @@ namespace DotPlatform.RBAC.Authorization
 
         public void Dispose()
         {
-            Store.Dispose();
+            Store?.Dispose();
         }
     }
 }

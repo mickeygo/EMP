@@ -2,7 +2,7 @@
 using DotPlatform.Domain.Repositories;
 using WMS.Domain.Models.Warehouses;
 
-namespace WMS.Domain.Repositories.Query
+namespace WMS.Domain.QueryRepositories
 {
     /// <summary>
     /// 仓库区域查询仓储

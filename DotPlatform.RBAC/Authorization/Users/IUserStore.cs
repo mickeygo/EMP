@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using DotPlatform.Domain.Entities;
+using DotPlatform.RBAC.Domain.Models.Users;
 
 namespace DotPlatform.RBAC.Authorization
 {
@@ -44,5 +45,12 @@ namespace DotPlatform.RBAC.Authorization
         /// <param name="user">要删除的对象</param>
         /// <returns></returns>
         Task DeleteAsync(TUser user);
+    }
+
+    /// <summary>
+    /// 用户存储
+    /// </summary>
+    public interface IUserStore : IUserStore<RbacUser, Guid>
+    {
     }
 }

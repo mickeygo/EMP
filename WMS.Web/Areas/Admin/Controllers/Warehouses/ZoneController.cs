@@ -1,13 +1,20 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
+using WMS.Application.Services;
 using WMS.DataTransferObject.Dtos;
+using DotPlatform.Dependency;
 
 namespace WMS.Web.Areas.Admin.Controllers
 {
     public class ZoneController : BaseController
     {
-        public ActionResult Index()
+        public ActionResult Index(Guid id)
         {
-            return PartialView();
+            using (var service = IocManager.Instance.Resolve<IWarehouseAppService>())
+            {
+                var zones = service.GetZones(id);
+                return PartialView(zones);
+            }
         }
 
         public ActionResult Create()

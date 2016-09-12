@@ -1,7 +1,7 @@
 ﻿using System.Web.Mvc;
-using DotPlatform.Dependency;
 using WMS.DataTransferObject.Dtos;
 using WMS.Application.Services;
+using DotPlatform.Dependency;
 
 namespace WMS.Web.Areas.Admin.Controllers
 {
@@ -9,7 +9,11 @@ namespace WMS.Web.Areas.Admin.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            using (var service = IocManager.Instance.Resolve<IWarehouseAppService>())
+            {
+                var warehouses = service.GetAllWarehouses();
+                return View(warehouses);
+            }
         }
 
         public ActionResult Create()
@@ -30,7 +34,7 @@ namespace WMS.Web.Areas.Admin.Controllers
 
                 return Json(true);
             }
-            catch (System.Exception)
+            catch
             {
                 return Json(false);
             }

@@ -58,11 +58,11 @@
     <Compile Include="Repositories\ILocationRepository.cs" />
     <Compile Include="Repositories\IWarehouseRepository.cs" />
     <Compile Include="Repositories\IZoneRepository.cs" />
-    <Compile Include="Repositories\Query\ILocationQueryRepository.cs" />
-    <Compile Include="Repositories\Query\IShelfQueryRepository.cs" />
+    <Compile Include="QueryRepositories\ILocationQueryRepository.cs" />
+    <Compile Include="QueryRepositories\IShelfQueryRepository.cs" />
     <Compile Include="Repositories\IShelfRepository.cs" />
-    <Compile Include="Repositories\Query\IWarehouseQueryRepository.cs" />
-    <Compile Include="Repositories\Query\IZoneQueryRepository.cs" />
+    <Compile Include="QueryRepositories\IWarehouseQueryRepository.cs" />
+    <Compile Include="QueryRepositories\IZoneQueryRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Factories\" />

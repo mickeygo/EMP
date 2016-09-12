@@ -9,7 +9,7 @@ namespace WMS.DataTransferObject.Dtos
     /// 储位 Dto 对象
     /// </summary>
     [AutoMapFrom(typeof(Location))]
-    public class LocationDto : IDto
+    public class LocationDto : IEntityDto
     {
         /// <summary>
         /// 获取或设置仓库储位 Id

@@ -1,4 +1,6 @@
-﻿namespace DotPlatform.TestBase
+﻿using DotPlatform.Reflection;
+
+namespace DotPlatform.TestBase
 {
     /// <summary>
     /// 单元测试基类
@@ -14,7 +16,7 @@
 
         protected virtual void PreInitialize()
         {
-
+            AssemblyLoadHelper.LoadAssembly("WMS");
         }
 
         protected virtual void PostInitialize()
@@ -25,9 +27,10 @@
         private void InitIocContainer()
         {
             var bootstrapper = new Bootstrapper();
-            bootstrapper.OnPreInitialize();
+            bootstrapper.PreInitializeEvent += (o, s) => PreInitialize();
+            bootstrapper.PostInitializeEvent += (o, s) => PostInitialize();
+
             bootstrapper.OnInitialize();
-            bootstrapper.OnPostInitialize();
         }
     }
 }

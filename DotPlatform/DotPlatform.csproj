@@ -70,6 +70,7 @@
     <Compile Include="Application\Navigation\MenuItemDefinition.cs" />
     <Compile Include="Application\Navigation\NavigationProvider.cs" />
     <Compile Include="Application\Services\ApplicationService.cs" />
+    <Compile Include="Application\Services\Dto\IEntityDto.cs" />
     <Compile Include="Application\Services\IApplicationService.cs" />
     <Compile Include="Application\Services\Dto\IDto.cs" />
     <Compile Include="Auditing\AuditInfo.cs" />
@@ -225,6 +226,7 @@
     <Compile Include="Net\Mail\Smtp\SmtpMailSender.cs" />
     <Compile Include="Net\Mail\Smtp\SmtpMailSenderConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reflection\AssemblyLoadHelper.cs" />
     <Compile Include="Reflection\CurrentDomainAssemblyFinder.cs" />
     <Compile Include="Reflection\CurrentDomainBinDirectoryFinder.cs" />
     <Compile Include="Reflection\IAssemblyFinder.cs" />

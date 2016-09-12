@@ -1,7 +1,7 @@
 ﻿using DotPlatform.Dependency;
 using DotPlatform.TestBase;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using WMS.Domain.Repositories.Query;
+using WMS.Domain.QueryRepositories;
 
 namespace WMS.Tests.Repository.Warehouses
 {

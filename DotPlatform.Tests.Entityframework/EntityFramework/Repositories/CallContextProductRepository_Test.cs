@@ -20,12 +20,12 @@ namespace DotPlatform.Tests.Entityframework.Repositories
         [TestInitialize]
         public void Initialize()
         {
-            IocManager.Instance.Register<ICallContextProductRepository, CallContextProductRepository>();
-            IocManager.Instance.RegisterGeneric(typeof(IDbContextProvider<>), typeof(UnitOfWorkDbContextProvider<>), IocLifeStyle.Transient);
-            IocManager.Instance.Register<ICurrentUnitOfWorkProvider, CallContextCurrentUnitOfWorkProvider>();
-            IocManager.Instance.Register<TestEfDbContext>(IocLifeStyle.Transient);
-            IocManager.Instance.Register<ICallContextProductRepository2, UpdateProductAppService>();
-            IocManager.Instance.Register<TestEfDbContext2>(IocLifeStyle.Transient);
+            IocManager.Instance.Register<ICallContextProductRepository, CallContextProductRepository>(IocLifeStyle.Singleton);
+            IocManager.Instance.RegisterGeneric(typeof(IDbContextProvider<>), typeof(UnitOfWorkDbContextProvider<>));
+            IocManager.Instance.Register<ICurrentUnitOfWorkProvider, CallContextCurrentUnitOfWorkProvider>(IocLifeStyle.Singleton);
+            IocManager.Instance.Register<TestEfDbContext>();
+            IocManager.Instance.Register<ICallContextProductRepository2, UpdateProductAppService>(IocLifeStyle.Singleton);
+            IocManager.Instance.Register<TestEfDbContext2>();
 
             IocManager.Instance.RegisterWithInterceptor<IProductAppService, ProductAppService_Test>(IocLifeStyle.Singleton, typeof(UnitOfWorkInterceptor));
 

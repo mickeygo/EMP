@@ -1,7 +1,7 @@
 ﻿using DotPlatform.Dependency;
 using DotPlatform.RBAC.Domain.Repositories;
 using DotPlatform.RBAC.Repository;
-using DotPlatform.RBAC.Repository.Repositories;
+using DotPlatform.RBAC.Repository.EntityFramework.Repositories;
 using DotPlatform.TestBase;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 

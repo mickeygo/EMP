@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using DotPlatform.Application.Services;
 using DotPlatform.Events.Bus;
+using DotPlatform.AutoMapper;
 using WMS.DataTransferObject.Dtos;
 using WMS.Domain.Events.Warehouses;
 using WMS.Domain.Models.Warehouses;
-using WMS.Domain.Repositories.Query;
-using DotPlatform.AutoMapper;
+using WMS.Domain.QueryRepositories;
 
 namespace WMS.Application.Services.Impl
 {
@@ -62,7 +62,8 @@ namespace WMS.Application.Services.Impl
 
         public void CreateZone(ZoneDto zone)
         {
-            throw new NotImplementedException();
+            var model = new Zone(zone.WarehouseId, zone.Name, zone.DisplayName, zone.Description, zone.Length, zone.Length, zone.Height);
+            _eventBus.Publish(new ZoneCreatedEvent(model));
         }
 
         public List<ShelfDto> GetShelfs(Guid zoneId)
@@ -77,7 +78,8 @@ namespace WMS.Application.Services.Impl
 
         public void CreateShelf(ShelfDto shelf)
         {
-            throw new NotImplementedException();
+            var model = new Shelf(shelf.ZoneId, shelf.Name, shelf.Length, shelf.Length, shelf.Height);
+            _eventBus.Publish(new ShelfCreatedEvent(model));
         }
 
         public List<LocationDto> GetLocations(Guid shelfId)
@@ -92,7 +94,8 @@ namespace WMS.Application.Services.Impl
 
         public void CreateLocation(LocationDto location)
         {
-            throw new NotImplementedException();
+            var model = new Location(location.ShelfId, location.Name, location.IsBonded, location.Length, location.Length, location.Height);
+            _eventBus.Publish(new LocationCreatedEvent(model));
         }
 
         protected override void Close()

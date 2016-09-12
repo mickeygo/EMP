@@ -43,7 +43,7 @@
   <ItemGroup>
     <Compile Include="Authorization\Users\IUserStore.cs" />
     <Compile Include="Authorization\Users\RbacUserManager.cs" />
-    <Compile Include="Authorization\Users\RbacUserStore.cs" />
+    <Compile Include="Authorization\Users\UserStore.cs" />
     <Compile Include="Authorization\Users\UserManager.cs" />
     <Compile Include="Domain\Models\Actors\RbacActor.cs" />
     <Compile Include="Domain\Models\Menus\RbacMenu.cs" />
@@ -74,6 +74,7 @@
     <Compile Include="Domain\Repositories\IUserInUserGroupRepository.cs" />
     <Compile Include="Domain\Repositories\IUserRepository.cs" />
     <Compile Include="Domain\Repositories\IUserRoleRepository.cs" />
+    <Compile Include="RbacBootStrapper.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

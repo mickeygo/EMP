@@ -1,5 +1,4 @@
 ﻿using System;
-using DotPlatform.Runtime.Session;
 using System.Data.Common;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
@@ -7,6 +6,7 @@ using System.Data.Entity.Validation;
 using System.Threading;
 using System.Threading.Tasks;
 using EntityFramework.DynamicFilters;
+using DotPlatform.Runtime.Session;
 using DotPlatform.Domain;
 using DotPlatform.Domain.Entities;
 using DotPlatform.Domain.Entities.Auditing;
@@ -95,8 +95,12 @@ namespace DotPlatform.EntityFramework
 
             // Filter
             modelBuilder.Filter(EntityDataFilters.SoftDelete, (ISoftDelete d) => d.IsDeleted, false);
-            modelBuilder.Filter(EntityDataFilters.MustHaveTenant, (IMustHaveTenant t, Guid tenantId) => t.TenantId == tenantId, Guid.Empty);
-            modelBuilder.Filter(EntityDataFilters.MayHaveTenant, (IMayHaveTenant t, Guid? tenantId) => t.TenantId == tenantId, Guid.Empty);
+
+            if (OwnerSession.IsAuthenticated)
+            {
+                modelBuilder.Filter(EntityDataFilters.MustHaveTenant, (IMustHaveTenant t, Guid tenantId) => t.TenantId == tenantId, Guid.Empty);
+                modelBuilder.Filter(EntityDataFilters.MayHaveTenant, (IMayHaveTenant t, Guid? tenantId) => t.TenantId == tenantId, Guid.Empty);
+            }
         }
 
         /// <summary>
@@ -279,11 +283,16 @@ namespace DotPlatform.EntityFramework
         /// </summary>
         protected virtual void Initialize()
         {
-            this.Database.Initialize(false);
+            //Database.Initialize(false);
+            //Database.SetInitializer<MyDbContext>(null);
 
-            // 设置筛选参数，在筛选时(Filter)筛选器会使用相应的设置的参数名进行匹配
-            this.SetFilterScopedParameterValue(EntityDataFilters.MustHaveTenant, EntityDataFilters.Parameters.TenantId, OwnerSession?.TenantId ?? Guid.Empty);
-            this.SetFilterScopedParameterValue(EntityDataFilters.MayHaveTenant, EntityDataFilters.Parameters.TenantId, OwnerSession?.TenantId);
+            OwnerSession = ClaimsSession.Instance;
+            if (OwnerSession.IsAuthenticated)
+            {
+                // 设置筛选参数，在筛选时(Filter)筛选器会使用相应的设置的参数名进行匹配
+                this.SetFilterScopedParameterValue(EntityDataFilters.MustHaveTenant, EntityDataFilters.Parameters.TenantId, OwnerSession.TenantId ?? Guid.Empty);
+                this.SetFilterScopedParameterValue(EntityDataFilters.MayHaveTenant, EntityDataFilters.Parameters.TenantId, OwnerSession.TenantId);
+            }
         }
 
         #endregion

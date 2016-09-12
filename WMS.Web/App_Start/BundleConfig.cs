@@ -1,7 +1,7 @@
 ﻿using System.Web.Optimization;
 using System.Web.Optimization.React;
 
-namespace WMS
+namespace WMS.Web
 {
     /// <summary>
     /// Bundle 配置，用于打包并优化 js 和 css .
@@ -60,7 +60,8 @@ namespace WMS
                 "~/Scripts/bootstrap.js",
                 "~/Scripts/respond.js").Include(
                 "~/Scripts/react/react.js",
-                "~/Scripts/react/react-dom.js");
+                "~/Scripts/react/react-dom.js",
+                "~/Scripts/react/react-with-addons.js");
         }
 
         // 插件 Js

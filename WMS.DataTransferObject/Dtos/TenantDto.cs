@@ -9,7 +9,7 @@ namespace WMS.DataTransferObject.Dtos
     /// 租户 DTO 对象
     /// </summary>
     [AutoMapFrom(typeof(RbacTenant))]
-    public class TenantDto : IDto
+    public class TenantDto : IEntityDto
     {
         /// <summary>
         /// 获取或设置租户 Id

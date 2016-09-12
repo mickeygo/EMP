@@ -8,7 +8,7 @@ namespace WMS.DataTransferObject.Dtos
     /// 仓库区域 Dto 对象
     /// </summary>
     [AutoMapFrom(typeof(Domain.Models.Warehouses.Zone))]
-    public class ZoneDto : IDto
+    public class ZoneDto : IEntityDto
     {
         /// <summary>
         /// 获取或设置仓库区域 Id

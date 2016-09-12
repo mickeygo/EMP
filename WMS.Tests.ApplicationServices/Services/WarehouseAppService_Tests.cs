@@ -27,9 +27,12 @@ namespace WMS.Tests.ApplicationServices.Services
             {
                 service.CreateWarehouse(new WarehouseDto
                 {
-                    Name = "AKMC01",
-                    DisplayName = "AKMC 01",
-                    Description = "AKMC 01 Test"
+                    Name = "AKMC02",
+                    DisplayName = "AKMC 02",
+                    Description = "AKMC 02 Test",
+                    Length = 5,
+                    Width = 3,
+                    Height = 1
                 });
             }
         }

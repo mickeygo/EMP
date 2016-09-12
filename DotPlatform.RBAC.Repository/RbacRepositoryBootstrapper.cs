@@ -1,5 +1,7 @@
 ﻿using DotPlatform.Configuration;
 using DotPlatform.Dependency;
+using DotPlatform.RBAC.Domain.Repositories;
+using DotPlatform.RBAC.Repository.EntityFramework.Repositories;
 
 namespace DotPlatform.RBAC.Repository
 {
@@ -10,9 +12,10 @@ namespace DotPlatform.RBAC.Repository
     {
         public void Initialize()
         {
-            IocManager.Instance.Register<RbacEfDbContext>(IocLifeStyle.Transient);
+            IocManager.Instance.Register<RbacEfDbContext>();
 
             // Repository
+            IocManager.Instance.Register<IUserRepository, UserRepository>();
 
             // Services
 

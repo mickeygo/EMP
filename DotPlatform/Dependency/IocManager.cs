@@ -66,34 +66,34 @@ namespace DotPlatform.Dependency
 
         #region IIocRegistrar Members
 
-        public void Register<TType, TImpl>(IocLifeStyle lifeStyle = IocLifeStyle.Singleton)
+        public void Register<TType, TImpl>(IocLifeStyle lifeStyle = IocLifeStyle.Transient)
             where TType : class
             where TImpl : class, TType
         {
             this._builder.RegisterType<TImpl>().As<TType>().Life(lifeStyle);
         }
 
-        public void Register(Type type, Type Impl, IocLifeStyle lifeStyle = IocLifeStyle.Singleton)
+        public void Register(Type type, Type Impl, IocLifeStyle lifeStyle = IocLifeStyle.Transient)
         {
             this._builder.RegisterType(Impl).As(type).Life(lifeStyle);
         }
 
-        public void Register<T>(IocLifeStyle lifeStyle = IocLifeStyle.Singleton)
+        public void Register<T>(IocLifeStyle lifeStyle = IocLifeStyle.Transient)
         {
             this._builder.RegisterType<T>().Life(lifeStyle);
         }
 
-        public void Register(Type type, IocLifeStyle lifeStyle = IocLifeStyle.Singleton)
+        public void Register(Type type, IocLifeStyle lifeStyle = IocLifeStyle.Transient)
         {
             this._builder.RegisterType(type).Life(lifeStyle);
         }
 
-        public void RegisterGeneric(Type type, IocLifeStyle lifeStyle = IocLifeStyle.Singleton)
+        public void RegisterGeneric(Type type, IocLifeStyle lifeStyle = IocLifeStyle.Transient)
         {
             this._builder.RegisterGeneric(type).LifeGeneric(lifeStyle);
         }
 
-        public void RegisterGeneric(Type type, Type Impl, IocLifeStyle lifeStyle = IocLifeStyle.Singleton)
+        public void RegisterGeneric(Type type, Type Impl, IocLifeStyle lifeStyle = IocLifeStyle.Transient)
         {
             this._builder.RegisterGeneric(Impl).As(type).LifeGeneric(lifeStyle);
         }
@@ -102,7 +102,7 @@ namespace DotPlatform.Dependency
 
         #region Registrar Interceptor
 
-        public void RegisterWithInterceptor<TType, TImpl>(IocLifeStyle lifeStyle = IocLifeStyle.Singleton, params Type[] interceptors)
+        public void RegisterWithInterceptor<TType, TImpl>(IocLifeStyle lifeStyle = IocLifeStyle.Transient, params Type[] interceptors)
            where TType : class
            where TImpl : class, TType
         {
@@ -112,7 +112,7 @@ namespace DotPlatform.Dependency
                 this._builder.RegisterType<TImpl>().As<TType>().EnableInterfaceInterceptors().Life(lifeStyle);
         }
 
-        public void RegisterWithInterceptor(Type type, Type Impl, IocLifeStyle lifeStyle = IocLifeStyle.Singleton, params Type[] interceptors)
+        public void RegisterWithInterceptor(Type type, Type Impl, IocLifeStyle lifeStyle = IocLifeStyle.Transient, params Type[] interceptors)
         {
             if (interceptors != null && interceptors.Any())
                 this._builder.RegisterType(Impl).As(type).EnableInterfaceInterceptors().InterceptedBy(interceptors).Life(lifeStyle);
@@ -120,7 +120,7 @@ namespace DotPlatform.Dependency
                 this._builder.RegisterType(Impl).As(type).EnableInterfaceInterceptors().Life(lifeStyle);
         }
 
-        public void RegisterWithInterceptor<T>(IocLifeStyle lifeStyle = IocLifeStyle.Singleton, params Type[] interceptors)
+        public void RegisterWithInterceptor<T>(IocLifeStyle lifeStyle = IocLifeStyle.Transient, params Type[] interceptors)
         {
             if (interceptors != null && interceptors.Any())
                 this._builder.RegisterType<T>().EnableClassInterceptors().InterceptedBy(interceptors).Life(lifeStyle);
@@ -128,7 +128,7 @@ namespace DotPlatform.Dependency
                 this._builder.RegisterType<T>().EnableClassInterceptors().Life(lifeStyle);
         }
 
-        public void RegisterWithInterceptor(Type type, IocLifeStyle lifeStyle = IocLifeStyle.Singleton, params Type[] interceptors)
+        public void RegisterWithInterceptor(Type type, IocLifeStyle lifeStyle = IocLifeStyle.Transient, params Type[] interceptors)
         {
             if (interceptors != null && interceptors.Any())
                 this._builder.RegisterType(type).EnableClassInterceptors().InterceptedBy(interceptors).Life(lifeStyle);
@@ -136,7 +136,7 @@ namespace DotPlatform.Dependency
                 this._builder.RegisterType(type).EnableClassInterceptors().Life(lifeStyle);
         }
 
-        public void RegisterGenericWithInterceptor(Type type, Type Impl, IocLifeStyle lifeStyle = IocLifeStyle.Singleton, params Type[] interceptors)
+        public void RegisterGenericWithInterceptor(Type type, Type Impl, IocLifeStyle lifeStyle = IocLifeStyle.Transient, params Type[] interceptors)
         {
             if (interceptors != null && interceptors.Any())
                 this._builder.RegisterGeneric(Impl).As(type).EnableInterfaceInterceptors().InterceptedBy(interceptors).LifeGeneric(lifeStyle);

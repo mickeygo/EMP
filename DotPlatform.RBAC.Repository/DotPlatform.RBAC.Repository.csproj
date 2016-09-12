@@ -53,10 +53,10 @@
     <Compile Include="EntityFramework\ModelConfigurations\TenantEntityTypeConfiguration.cs" />
     <Compile Include="EntityFramework\ModelConfigurations\UserEntityTypeConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RbacEfDbContext.cs" />
-    <Compile Include="RbacEfRepository.cs" />
+    <Compile Include="Contexts\RbacEfDbContext.cs" />
+    <Compile Include="Contexts\RbacEfRepository.cs" />
     <Compile Include="RbacRepositoryBootstrapper.cs" />
-    <Compile Include="Repositories\UserRepository.cs" />
+    <Compile Include="EntityFramework\Repositories\UserRepository.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

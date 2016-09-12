@@ -82,10 +82,16 @@ namespace WMS.Domain.Models.Warehouses
         /// </summary>
         /// <param name="name">货架名</param>
         /// <param name="zoneId">隶属的区域 Id</param>
-        public Shelf(string name, Guid zoneId)
+        /// <param name="length">货架长度</param>
+        /// <param name="width">货架宽度</param>
+        /// <param name="height">货架高度</param>
+        public Shelf(Guid zoneId, string name, double length, double width, double height)
         {
             Name = name;
             ZoneId = zoneId;
+            Length = length;
+            Width = width;
+            Height = height;
         }
 
         #endregion

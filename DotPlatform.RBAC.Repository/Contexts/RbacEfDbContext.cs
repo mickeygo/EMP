@@ -1,18 +1,17 @@
 ﻿using System.Data.Entity;
 using System.Reflection;
 using DotPlatform.EntityFramework;
-using DotPlatform.Runtime.Session;
 
 namespace DotPlatform.RBAC.Repository
 {
     /// <summary>
-    /// 基于 Microsoft EntityFramework 的 RBAC DB 上下文
+    /// Rbac DB 上下文。基于 Microsoft EntityFramework 框架。
     /// </summary>
     public class RbacEfDbContext : EfDbContext
     {
         public RbacEfDbContext() : base(ConnectionName)
         {
-            this.OwnerSession = ClaimsSession.Instance;
+            
         }
 
         protected override void CreateModel(DbModelBuilder modelBuilder)

@@ -128,17 +128,17 @@ namespace DotPlatform.EntityFramework.Repositories
 
         public override async Task<int> CountAsync()
         {
-            return await this.AggregateRootContext.CountAsync();
+            return await AggregateRootContext.CountAsync();
         }
 
         public override async Task<int> CountAsync(Expression<Func<TAggregateRoot, bool>> predicate)
         {
-            return await this.AggregateRootContext.CountAsync(predicate);
+            return await AggregateRootContext.CountAsync(predicate);
         }
 
         public override async Task<int> CountAsync(ISpecification<TAggregateRoot> specification)
         {
-            return await this.AggregateRootContext.CountAsync(specification.GetExpression());
+            return await AggregateRootContext.CountAsync(specification.GetExpression());
         }
 
         public override void Dispose()

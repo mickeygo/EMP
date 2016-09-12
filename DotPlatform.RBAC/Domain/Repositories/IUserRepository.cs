@@ -14,13 +14,13 @@ namespace DotPlatform.RBAC.Domain.Repositories
         /// </summary>
         /// <param name="userName">用户名</param>
         /// <returns></returns>
-        RbacUser Get(string userName);
+        RbacUser Find(string userName);
 
         /// <summary>
         /// 查找用户
         /// </summary>
         /// <param name="userName">用户名</param>
         /// <returns></returns>
-        Task<RbacUser> GetAsync(string userName);
+        Task<RbacUser> FindAsync(string userName);
     }
 }

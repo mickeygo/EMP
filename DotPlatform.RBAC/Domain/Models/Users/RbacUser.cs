@@ -17,7 +17,7 @@ namespace DotPlatform.RBAC.Domain.Models.Users
         /// </summary>
         [Required]
         [StringLength(80)]
-        public string UserName { get; set; }
+        public string UserName { get; private set; }
 
         /// <summary>
         /// 获取密码
@@ -34,6 +34,46 @@ namespace DotPlatform.RBAC.Domain.Models.Users
         public string EmailAddress { get; private set; }
 
         /// <summary>
+        /// 获取用户工号
+        /// </summary>
+        public string EmployeeNo { get; private set; }
+
+        /// <summary>
+        /// 获取用户英文名
+        /// </summary>
+        public string EnglishName { get; private set; }
+
+        /// <summary>
+        /// 获取用户本地名
+        /// </summary>
+        public string LocalName { get; private set; }
+
+        /// <summary>
+        /// 获取用户组织
+        /// </summary>
+        public string Organization { get; private set; }
+
+        /// <summary>
+        /// 获取用户部门
+        /// </summary>
+        public string Department { get; private set; }
+
+        /// <summary>
+        /// 获取用户职位
+        /// </summary>
+        public string Job { get; private set; }
+
+        /// <summary>
+        /// 获取用户电话
+        /// </summary>
+        public string Tel { get; private set; }
+
+        /// <summary>
+        /// 获取用户分机
+        /// </summary>
+        public string Extension { get; private set; }
+
+        /// <summary>
         /// 获取租户.为 null 表示不含有租户
         /// </summary>
         public Guid? TenantId { get; set; }
@@ -48,6 +88,11 @@ namespace DotPlatform.RBAC.Domain.Models.Users
         /// </summary>
         public bool IsDeleted { get; set; }
 
+        /// <summary>
+        /// 最后登录时间
+        /// </summary>
+        public DateTime? LastLoginTime { get; private set; }
+
         #endregion
 
         #region Ctor
@@ -59,32 +104,40 @@ namespace DotPlatform.RBAC.Domain.Models.Users
         /// <summary>
         /// 初始化一个新的<see cref="RbacUser"/>实例
         /// </summary>
-        /// <param name="tenantId"></param>
-        /// <param name="userName"></param>
-        /// <param name="password"></param>
-        /// <param name="emailAddress"></param>
-        public RbacUser(Guid? tenantId, string userName, string password, string emailAddress)
+        /// <param name="tenantId">用户所在的租户</param>
+        /// <param name="userName">用户名</param>
+        /// <param name="password">用户密码</param>
+        /// <param name="emailAddress">用户邮件</param>
+        /// <param name="employeeNo">用户工号</param>
+        /// <param name="englishName">用户英文名</param>
+        /// <param name="localName">用户本地名</param>
+        /// <param name="organization">用户所在的组织</param>
+        /// <param name="department">用户所在的部门</param>
+        /// <param name="job">用户职位</param>
+        /// <param name="tel">用户电话</param>
+        /// <param name="extension">用户分机</param>
+        public RbacUser(Guid? tenantId, string userName, string password, string emailAddress, string employeeNo = null, string englishName = null,
+            string localName = null, string organization = null, string department = null, string job = null, string tel = null, string extension = null)
         {
             TenantId = tenantId;
             UserName = userName;
             Password = password;
             EmailAddress = emailAddress;
-        }
+            EmployeeNo = employeeNo;
+            EnglishName = englishName;
+            LocalName = localName;
+            Organization = organization;
+            Department = department;
+            Job = job;
+            Tel = tel;
+            Extension = extension;
 
-        /// <summary>
-        /// 初始化一个新的<see cref="RbacUser"/>实例
-        /// </summary>
-        /// <param name="name"></param>
-        /// <param name="password"></param>
-        /// <param name="emailAddress"></param>
-        public RbacUser(string userName, string password, string emailAddress)
-            : this(null, userName, password, emailAddress)
-        {
+            this.LastLoginTime = DateTime.Now;
         }
 
         #endregion
 
-        #region
+        #region Public Methods
 
         /// <summary>
         /// 绑定租户
@@ -102,6 +155,24 @@ namespace DotPlatform.RBAC.Domain.Models.Users
         public void UpdatePassword(string password)
         {
             Password = password;
+        }
+
+        /// <summary>
+        /// 更新用户信息
+        /// </summary>
+        public void Update(string employeeNo = null, string englishName = null, string localName = null, 
+            string organization = null, string department = null, string job = null, string tel = null, string extension = null)
+        {
+            EmployeeNo = employeeNo;
+            EnglishName = englishName;
+            LocalName = localName;
+            Organization = organization;
+            Department = department;
+            Job = job;
+            Tel = tel;
+            Extension = extension;
+
+            this.LastLoginTime = DateTime.Now;
         }
 
         #endregion

@@ -1,7 +1,7 @@
-﻿using WMS.Domain.Models.Warehouses;
-using WMS.Domain.Repositories.Query;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using WMS.Domain.Models.Warehouses;
 using DotPlatform.EntityFramework;
+using WMS.Domain.QueryRepositories;
 
 namespace WMS.Domain.Repository.EntityFramework.QueryRepositories
 {
