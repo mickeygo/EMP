@@ -1,8 +1,8 @@
-﻿using DotPlatform.Storage.Rdbms;
+﻿using DotPlatform.Dependency;
+using DotPlatform.Storage.Rdbms;
 using DotPlatform.TestBase;
 using DotPlatform.TestBase.Domain.Entities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Collections.Generic;
 
 namespace DotPlatform.Tests.Storage.Rdbms
 {
@@ -11,7 +11,7 @@ namespace DotPlatform.Tests.Storage.Rdbms
     {
         protected override void PreInitialize()
         {
-            var dic = RdbmsStorageHelper.StorageDictionary;
+            IocManager.Instance.Register<MyTestRepository>();
         }
 
         [TestMethod]
@@ -26,8 +26,9 @@ namespace DotPlatform.Tests.Storage.Rdbms
             sqlQuery += "           INNER JOIN dbo.Product ON Product.ProductId = OrderLine.ProductId ";
 
             //var orderLookup = new Order();
-            var storage = StorageFactory.AppTest;
-            var orderResult = storage.Select<Order, OrderLine, Product, Product>(sqlQuery, 
+            var repository = IocManager.Instance.Resolve<MyTestRepository>();
+
+            var orderResult = repository.Select<Order, OrderLine, Product, Product>(sqlQuery, 
                 (order, orderLine, product) => 
                 {
                     return product;

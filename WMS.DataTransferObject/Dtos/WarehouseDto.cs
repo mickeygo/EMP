@@ -57,6 +57,11 @@ namespace WMS.DataTransferObject.Dtos
         public double Height { get; set; }
 
         /// <summary>
+        /// 获取或设置隶属的租户
+        /// </summary>
+        public Guid TenantId { get; set; }
+
+        /// <summary>
         /// 是否已删除
         /// </summary>
         public bool IsDeleted { get; set; }

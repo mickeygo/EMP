@@ -1,4 +1,4 @@
-﻿using DotPlatform.Storage.Rdbms;
+﻿using DotPlatform.Dependency;
 using DotPlatform.TestBase;
 using DotPlatform.TestBase.Domain.Entities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -10,7 +10,7 @@ namespace DotPlatform.Tests.Storage.Rdbms
     {
         protected override void PreInitialize()
         {
-            var dic = RdbmsStorageHelper.StorageDictionary;
+            IocManager.Instance.Register<MyTestRepository>();
         }
 
         [TestMethod]
@@ -20,14 +20,14 @@ namespace DotPlatform.Tests.Storage.Rdbms
             sqlQuery += "   ,LastModifierUserId, LastModificationTime, DeleterUserId, DeletionTime ";
             sqlQuery += "   FROM dbo.Product ";
 
-            var storage = StorageFactory.AppTest;
-            var product = storage.Select<Product>(sqlQuery);
+            var repository = IocManager.Instance.Resolve<MyTestRepository>();
+            Assert.IsNotNull(repository);
 
-            Assert.IsNotNull(product);
+            var product = repository.Select<Product>(sqlQuery);
 
-            using (storage.Connection)
+            using (repository.Connection)
             {
-                Assert.IsTrue(storage.Connection.State == System.Data.ConnectionState.Closed);
+                Assert.IsTrue(repository.Connection.State == System.Data.ConnectionState.Closed);
             }
         }
 
@@ -38,14 +38,15 @@ namespace DotPlatform.Tests.Storage.Rdbms
             sqlQuery += "   ,LastModifierUserId, LastModificationTime, DeleterUserId, DeletionTime ";
             sqlQuery += "   FROM dbo.Product ";
 
-            var storage = StorageFactory.AppTest;
+            var repository = IocManager.Instance.Resolve<MyTestRepository>();
+            Assert.IsNotNull(repository);
 
-            var dr = storage.ExecuteReader(sqlQuery);
+            var dr = repository.ExecuteReader(sqlQuery);
             dr.Dispose();
 
-            using (storage.Connection)
+            using (repository.Connection)
             {
-                Assert.IsTrue(storage.Connection.State == System.Data.ConnectionState.Closed);
+                Assert.IsTrue(repository.Connection.State == System.Data.ConnectionState.Closed);
             }
         }
     }

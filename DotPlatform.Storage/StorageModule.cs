@@ -13,7 +13,6 @@ namespace DotPlatform.Storage
         public override void PreInitialize()
         {
             IocManager.Register<IRdbmsStorageProvider, RdbmsStorageProvider>();
-            IocManager.Register<IRdbmsStorage, DapperRdbmsStorage>(IocLifeStyle.Transient);
 
             IocManager.Build();
         }

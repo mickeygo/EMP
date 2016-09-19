@@ -1,4 +1,6 @@
-﻿using DotPlatform.Auditing;
+﻿using System.Web.Helpers;
+using System.Security.Claims;
+using DotPlatform.Auditing;
 using DotPlatform.Dependency;
 using DotPlatform.Modules;
 using DotPlatform.Web.Auditing;
@@ -18,6 +20,11 @@ namespace DotPlatform.Web
             IocManager.Register<IWebAuthenticationManager, CookieAuthenticationManager>();
 
             IocManager.Build();
+        }
+
+        public override void PostInitialize()
+        {
+            AntiForgeryConfig.UniqueClaimTypeIdentifier = ClaimTypes.NameIdentifier;
         }
     }
 }

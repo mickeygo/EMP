@@ -2,4 +2,29 @@
     ViewBag.Title = "Home";
 }
 
+@section scripts {
+    <script>
+        ReactDOM.render(
+            React.createElement(HelloWorld, { message: "gggg"}),
+            document.getElementById("content1")
+        )
+
+        ReactDOM.render(
+           React.createElement(HelloMessage),
+           document.getElementById('content2')
+       )
+
+        ReactDOM.render(
+           React.createElement('li'),
+           document.getElementById("content3")
+       )
+    </script>
+}
+
 @Html.Navgation()
+
+<div>
+    <div id="content1"></div>
+    <div id="content2"></div>
+    <div id="content3"></div>
+</div>

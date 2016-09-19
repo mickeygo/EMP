@@ -9,10 +9,15 @@ namespace WMS.Web.Areas.Admin.Controllers
     {
         public ActionResult Index()
         {
+            return View();
+        }
+
+        public ActionResult GetAll()
+        {
             using (var service = IocManager.Instance.Resolve<IWarehouseAppService>())
             {
                 var warehouses = service.GetAllWarehouses();
-                return View(warehouses);
+                return JsonEx(warehouses);
             }
         }
 
@@ -30,9 +35,10 @@ namespace WMS.Web.Areas.Admin.Controllers
                 using (var service = IocManager.Instance.Resolve<IWarehouseAppService>())
                 {
                     service.CreateWarehouse(model);
-                }
 
-                return Json(true);
+                    var whs = service.GetAllWarehouses();
+                    return Json(true, whs);
+                }
             }
             catch
             {

@@ -85,6 +85,16 @@ namespace DotPlatform.Web.Mvc.Controllers
         /// Json 序列化，基于 Newtonsoft.Json 框架
         /// </summary>
         /// <param name="data">要序列化的数据</param>
+        /// <returns></returns>
+        protected JsonResult JsonEx(object data)
+        {
+            return JsonEx(data, null, null);
+        }
+
+        /// <summary>
+        /// Json 序列化，基于 Newtonsoft.Json 框架
+        /// </summary>
+        /// <param name="data">要序列化的数据</param>
         /// <param name="contentType">输出的内容类型</param>
         /// <param name="contentEncoding">输出的内容编码</param>
         /// <returns></returns>

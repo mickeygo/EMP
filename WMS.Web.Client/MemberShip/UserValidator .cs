@@ -23,7 +23,7 @@ namespace WMS.Web.Client.Membership
         #region Ctor
 
         /// <summary>
-        /// 创建一个新的<c>UserValidator</c>实例
+        /// 创建一个新的<see cref="UserValidator"/>实例
         /// </summary>
         /// <param name="userName">用户名</param>
         /// <param name="password">用户密码(原始密码)</param>

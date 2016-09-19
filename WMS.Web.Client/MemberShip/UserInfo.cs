@@ -3,6 +3,7 @@ using DotPlatform.Dependency;
 using DotPlatform.RBAC.Authorization;
 using WMS.DataTransferObject.Dtos;
 using DotPlatform.AutoMapper;
+using WMS.Web.Client.External.Ez;
 
 namespace WMS.Web.Client.Membership
 {
@@ -41,7 +42,34 @@ namespace WMS.Web.Client.Membership
         /// <returns></returns>
         public UserDto GetRemoteUserInfo()
         {
-            return null;
+            var ez = new EzUser();
+            return ez.FindUser(_usernName);
+        }
+
+        /// <summary>
+        /// 更新用户信息
+        /// </summary>
+        public async Task UpdateUser()
+        {
+            var userEz = GetRemoteUserInfo();
+
+            using (var service = IocManager.Instance.Resolve<RbacUserManager>())
+            {
+                var user = await service.FindByNameAsync(_usernName);
+
+                if (userEz == null)
+                {
+                    await service.DeleteAsync(user);
+                    return;
+                }
+
+                user.Update(userEz.EmployeeNo, userEz.EnglishName, userEz.LocalName, userEz.Organization,
+                    userEz.Department, userEz.Job, userEz.Tel, userEz.Extension);
+
+                user.UpdatePassword(userEz.Password);
+
+                await service.UpdateAsync(user);
+            }
         }
     }
 }

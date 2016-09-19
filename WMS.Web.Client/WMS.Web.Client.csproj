@@ -73,7 +73,11 @@
   <ItemGroup>
     <Compile Include="Account\AccountManager.cs" />
     <Compile Include="Account\IAccount.cs" />
+    <Compile Include="ClientBootstrapper.cs" />
     <Compile Include="Extensions\HtmlExtenstions\HtmlNavgationExtensions.cs" />
+    <Compile Include="External\Ez\EzRepository.cs" />
+    <Compile Include="External\Ez\EzUser.cs" />
+    <Compile Include="External\Ez\EzUserRepository.cs" />
     <Compile Include="Membership\UserInfo.cs" />
     <Compile Include="Membership\UserValidator .cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -171,9 +175,17 @@
       <Project>{09b41815-54ba-4afa-973c-0488fb1f578f}</Project>
       <Name>DotPlatform.EntityFramework</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DotPlatform.Logger\DotPlatform.Logger.csproj">
+      <Project>{63d8bd86-3c28-47d0-9b6c-b4ac8285c689}</Project>
+      <Name>DotPlatform.Logger</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DotPlatform.MongoDB\DotPlatform.MongoDB.csproj">
       <Project>{63b69b12-786e-49ba-96e8-093c6227caad}</Project>
       <Name>DotPlatform.MongoDB</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DotPlatform.Plugin\DotPlatform.Plugin.csproj">
+      <Project>{70a1c23e-ba57-48ef-b7b3-a60c6972608b}</Project>
+      <Name>DotPlatform.Plugin</Name>
     </ProjectReference>
     <ProjectReference Include="..\DotPlatform.RBAC.Repository\DotPlatform.RBAC.Repository.csproj">
       <Project>{1e876652-0fea-47b1-b141-8e6524017408}</Project>
@@ -219,6 +231,9 @@
       <Project>{817a0d8c-79a2-4f84-8f29-5d0a514736a7}</Project>
       <Name>WMS.Domain</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="External\SAP\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -20,12 +20,23 @@ namespace WMS.Web.Client.Account
         /// <returns>True 表示登录成功；否则为 false</returns>
         public async Task<bool> Login(string userName, string password, bool? remember)
         {
-            var authenManager = IocManager.Instance.Resolve<IWebAuthenticationManager>();
+            // 1、验证本地数据
+            // 1.1、ok，更新本地数据
+            // 2、验证远程数据
+            // 2.1、ok，新增数据到本地
 
-            var user = await GetUserInfo(userName);
-            if (user == null)
-                return false;
+            var userInfo = new UserInfo(userName);
 
+            var validator = new UserValidator(userName, password);
+            if (!(await validator.ValidateInLocal()))
+            {
+                if (!validator.ValidateInRemote())
+                    return false;
+            }
+
+            await userInfo.UpdateUser();
+
+            var user = await userInfo.GetLocalUserInfo();
             var tenant = user.Tenant;
 
             AuthenticationData authenData;
@@ -34,6 +45,7 @@ namespace WMS.Web.Client.Account
             else
                 authenData = new AuthenticationData(tenant.Id, tenant.Name, tenant.Language, tenant.TimeDifference, user.Id, user.UserName, user.EmailAddress);
 
+            var authenManager = IocManager.Instance.Resolve<IWebAuthenticationManager>();
             authenManager.SignIn(authenData, remember.GetValueOrDefault());
 
             return true;
@@ -48,10 +60,8 @@ namespace WMS.Web.Client.Account
             authenManager.SignOut();
         }
 
-        private async Task<UserDto> GetUserInfo(string userName)
-        {
-            var userInfo = new UserInfo(userName);
-            return await userInfo.GetLocalUserInfo();
-        }
+        #region Private Methods
+
+        #endregion
     }
 }

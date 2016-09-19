@@ -13,8 +13,8 @@ namespace DotPlatform.Storage
         IDbConnection Connection { get; }
 
         /// <summary>
-        /// 获取或设置 web.config / app.config 中的数据库连接字符串名称
+        /// 获取 web.config / app.config 中的数据库连接字符串名称
         /// </summary>
-        string ConnectionName { get; set; }
+        string ConnectionName { get; }
     }
 }

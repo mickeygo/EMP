@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ADO\EzRepository.cs" />
     <Compile Include="EntityFramework\ModelConfigurations\Warehouses\LocationEntityTypeConfiguration.cs" />
     <Compile Include="EntityFramework\ModelConfigurations\Warehouses\ShelfEntityTypeConfiguration.cs" />
     <Compile Include="EntityFramework\ModelConfigurations\Warehouses\WarehouseEntityTypeConfiguration.cs" />
@@ -73,6 +74,10 @@
     <ProjectReference Include="..\DotPlatform.EntityFramework\DotPlatform.EntityFramework.csproj">
       <Project>{09b41815-54ba-4afa-973c-0488fb1f578f}</Project>
       <Name>DotPlatform.EntityFramework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DotPlatform.Storage\DotPlatform.Storage.csproj">
+      <Project>{0abbb274-cb90-4e0e-beb4-addc58f116a3}</Project>
+      <Name>DotPlatform.Storage</Name>
     </ProjectReference>
     <ProjectReference Include="..\DotPlatform\DotPlatform.csproj">
       <Project>{4964d0d8-492a-422a-ad2d-3eafae881c1a}</Project>

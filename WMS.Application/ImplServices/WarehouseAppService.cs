@@ -7,8 +7,9 @@ using WMS.DataTransferObject.Dtos;
 using WMS.Domain.Events.Warehouses;
 using WMS.Domain.Models.Warehouses;
 using WMS.Domain.QueryRepositories;
+using WMS.Application.Services;
 
-namespace WMS.Application.Services.Impl
+namespace WMS.Application.ImplServices
 {
     /// <summary>
     /// 仓库管理应用服务
