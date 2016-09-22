@@ -8,18 +8,18 @@ namespace WMS.Web.Areas.Admin.Controllers
 {
     public class ZoneController : BaseController
     {
-        public ActionResult Index(Guid id)
+        public ActionResult GetAll(Guid whId)
         {
             using (var service = IocManager.Instance.Resolve<IWarehouseAppService>())
             {
-                var zones = service.GetZones(id);
-                return PartialView(zones);
+                var zones = service.GetZones(whId);
+                return JsonEx(zones);
             }
         }
 
-        public ActionResult Create()
+        public ActionResult Create(Guid whId)
         {
-            return PartialView();
+            return PartialView(new ZoneDto { WarehouseId = whId });
         }
 
         [HttpPost]
@@ -27,11 +27,21 @@ namespace WMS.Web.Areas.Admin.Controllers
         public ActionResult Create(ZoneDto model)
         {
             if (!ModelState.IsValid)
-            {
                 return Json(false, "Input data is invalid.");
-            }
 
-            return Json(true);
+            try
+            {
+                using (var service = IocManager.Instance.Resolve<IWarehouseAppService>())
+                {
+                    service.CreateZone(model);
+                }
+
+                return Json(true);
+            }
+            catch
+            {
+                return Json(false);
+            }
         }
     }
 }

@@ -11,7 +11,7 @@ namespace WMS.Web.Client.Account
         /// <param name="password"></param>
         /// <param name="remember"></param>
         /// <returns></returns>
-        Task<bool> Login(string userName, string password, bool? remember);
+        bool Login(string userName, string password, bool? remember);
 
         /// <summary>
         /// 当前用户登出

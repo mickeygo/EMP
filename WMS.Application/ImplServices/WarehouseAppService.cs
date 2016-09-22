@@ -95,7 +95,7 @@ namespace WMS.Application.ImplServices
 
         public void CreateLocation(LocationDto location)
         {
-            var model = new Location(location.ShelfId, location.Name, location.IsBonded, location.Length, location.Length, location.Height);
+            var model = new Location(location.ShelfId, location.Name, location.IsBonded, location.Length, location.Width, location.Height);
             _eventBus.Publish(new LocationCreatedEvent(model));
         }
 

@@ -1,7 +1,9 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 using DotPlatform.Application.Services.Dto;
 using DotPlatform.AutoMapper;
 using WMS.Domain.Models.Warehouses;
+
 
 namespace WMS.DataTransferObject.Dtos
 {
@@ -17,8 +19,10 @@ namespace WMS.DataTransferObject.Dtos
         public Guid Id { get; set; }
 
         /// <summary>
-        /// 获取或设置仓库名
+        /// 获取或设置仓库储位名
         /// </summary>
+        [Required]
+        [StringLength(20)]
         public string Name { get; set; }
 
         /// <summary>

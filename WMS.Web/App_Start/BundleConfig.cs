@@ -23,6 +23,7 @@ namespace WMS.Web
             bundles.Add(RegisterAddonJs());     // Addon
             bundles.Add(RegisterCustomJs());    // Custom Js
 
+            bundles.Add(RegisterReactJs());     // React Js
             bundles.Add(RegisterSrcJsx());      // jsx
         }
 
@@ -58,10 +59,15 @@ namespace WMS.Web
                 "~/Scripts/jquery.validate.js",
                 "~/Scripts/jquery.validate.unobtrusive.js",
                 "~/Scripts/bootstrap.js",
-                "~/Scripts/respond.js").Include(
+                "~/Scripts/respond.js");
+        }
+
+        private static Bundle RegisterReactJs()
+        {
+            return new ScriptBundle("~/bundles/react").Include(
                 "~/Scripts/react/react.js",
-                "~/Scripts/react/react-dom.js",
-                "~/Scripts/react/react-with-addons.js");
+                "~/Scripts/react/react-with-addons.js",
+                "~/Scripts/react/react-dom.js");
         }
 
         // 插件 Js
@@ -74,7 +80,7 @@ namespace WMS.Web
                 "~/Scripts/jquery.blockUI.js").Include(
                 "~/Scripts/select2.js",
                 "~/Scripts/jquery.maskedinput.js",
-                "~/Scripts/noty/jquery.noty.js");
+                "~/Scripts/noty/packaged/jquery.noty.packaged.js");
         }
 
         // 自定义脚本

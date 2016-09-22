@@ -30,15 +30,17 @@ namespace WMS.Web.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(WarehouseDto model)
         {
+            if (!ModelState.IsValid)
+                return Json(false, "Input data is invalid.");
+
             try
             {
                 using (var service = IocManager.Instance.Resolve<IWarehouseAppService>())
                 {
                     service.CreateWarehouse(model);
-
-                    var whs = service.GetAllWarehouses();
-                    return Json(true, whs);
                 }
+
+                return Json(true);
             }
             catch
             {

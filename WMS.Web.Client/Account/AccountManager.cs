@@ -1,7 +1,5 @@
-﻿using System.Threading.Tasks;
-using DotPlatform.Dependency;
+﻿using DotPlatform.Dependency;
 using DotPlatform.Web.Authentication;
-using WMS.DataTransferObject.Dtos;
 using WMS.Web.Client.Membership;
 
 namespace WMS.Web.Client.Account
@@ -18,7 +16,7 @@ namespace WMS.Web.Client.Account
         /// <param name="password"></param>
         /// <param name="remember"></param>
         /// <returns>True 表示登录成功；否则为 false</returns>
-        public async Task<bool> Login(string userName, string password, bool? remember)
+        public bool Login(string userName, string password, bool? remember)
         {
             // 1、验证本地数据
             // 1.1、ok，更新本地数据
@@ -28,15 +26,22 @@ namespace WMS.Web.Client.Account
             var userInfo = new UserInfo(userName);
 
             var validator = new UserValidator(userName, password);
-            if (!(await validator.ValidateInLocal()))
+
+            if (!(validator.ValidateInLocalWithoutTenant()))
             {
                 if (!validator.ValidateInRemote())
                     return false;
             }
 
-            await userInfo.UpdateUser();
+            // Todo: 更新数据
+            //await userInfo.UpdateUser();
 
-            var user = await userInfo.GetLocalUserInfo();
+            // Todo: 直接抓数据,不经过 EF (EF 会筛选租户)
+
+            //var user = await userInfo.GetLocalUserInfo();
+            //var tenant = user.Tenant;
+
+            var user = userInfo.GetLocalUserInfoWithoutTenant();
             var tenant = user.Tenant;
 
             AuthenticationData authenData;

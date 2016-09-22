@@ -22,6 +22,11 @@ namespace DotPlatform.RBAC.Authorization
             Store = store;
         }
 
+        public virtual TUser FindByNameWithAnonymous(string userName)
+        {
+            return Store.FindByNameWithAnonymous(userName);
+        }
+
         /// <summary>
         /// 查找用户
         /// </summary>

@@ -56,6 +56,23 @@ namespace WMS.Web.Client.Membership
         }
 
         /// <summary>
+        /// 用本地数据验证用户信息(不含租户信息)
+        /// </summary>
+        public bool ValidateInLocalWithoutTenant()
+        {
+            if (!CheckNotNullOfNameAndPwd())
+                return false;
+
+            var userInfo = new UserInfo(_userName);
+            var user = userInfo.GetLocalUserInfoWithoutTenant();
+            if (user == null)
+                return false;
+
+            var encryptedPwd = EncryptPassword(_userName.ToLower(), _password);
+            return encryptedPwd.Equals(user.Password, StringComparison.OrdinalIgnoreCase);
+        }
+
+        /// <summary>
         /// 通过 RPC 远程调用数据验证用户信息
         /// </summary>
         /// <returns>true 表示验证成功；false 表示验证失败</returns>

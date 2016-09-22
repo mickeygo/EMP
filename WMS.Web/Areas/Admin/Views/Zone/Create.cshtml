@@ -1,4 +1,4 @@
-﻿@model WarehouseDto
+﻿@model ZoneDto
 
 <div>
     @using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
@@ -47,5 +47,8 @@
                        onclick="return confirm('After submitted, the group name would not allowed modified, are you want to continue submit ?');" />
             </div>
         </div>
+
+        @Html.HiddenFor(m => m.WarehouseId)
     }
 </div>
+

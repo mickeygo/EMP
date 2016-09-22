@@ -149,6 +149,16 @@ namespace DotPlatform.RBAC.Domain.Models.Users
         }
 
         /// <summary>
+        /// 绑定租户
+        /// </summary>
+        /// <param name="tenant">租户信息</param>
+        public void BindTenant(RbacTenant tenant)
+        {
+            TenantId = tenant.Id;
+            Tenant = tenant;
+        }
+
+        /// <summary>
         /// 更新密码
         /// </summary>
         /// <param name="password">密码</param>

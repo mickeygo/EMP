@@ -51,8 +51,10 @@
         <footer>@Html.Partial("_Layout_Footer")</footer>
     </div>
 
+    @Scripts.Render("~/bundles/react")
     @Scripts.Render("~/bundles/src")
     @Scripts.Render("~/bundles/custom")
+  
     @RenderSection("scripts", false)
 </body>
 </html>

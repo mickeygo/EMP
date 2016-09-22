@@ -27,7 +27,12 @@ namespace DotPlatform.EntityFramework
         /// </summary>
         public IOwnerSession OwnerSession { get; protected set; }
 
-         #endregion
+        /// <summary>
+        /// 是否启用多租户, 默认为 true.
+        /// </summary>
+        public bool EnableMultiTenant { get; protected set; } = true;
+
+        #endregion
 
         #region Ctor
 
@@ -84,7 +89,8 @@ namespace DotPlatform.EntityFramework
         }
 
         /// <summary>
-        /// 重写 <see cref="DbContext"/> 的 OnModelCreating 方法
+        /// 重写 <see cref="DbContext"/> 的 OnModelCreating 方法。
+        /// 默认情况下，为了性能，此方法只会调用一次，然后会被缓存起来。
         /// </summary>
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -96,7 +102,8 @@ namespace DotPlatform.EntityFramework
             // Filter
             modelBuilder.Filter(EntityDataFilters.SoftDelete, (ISoftDelete d) => d.IsDeleted, false);
 
-            if (OwnerSession.IsAuthenticated)
+            // Enabled tenant filter
+            if (EnableMultiTenant)
             {
                 modelBuilder.Filter(EntityDataFilters.MustHaveTenant, (IMustHaveTenant t, Guid tenantId) => t.TenantId == tenantId, Guid.Empty);
                 modelBuilder.Filter(EntityDataFilters.MayHaveTenant, (IMayHaveTenant t, Guid? tenantId) => t.TenantId == tenantId, Guid.Empty);
@@ -191,7 +198,8 @@ namespace DotPlatform.EntityFramework
         protected virtual void CheckOrSetMustHaveTenantIfNull(DbEntityEntry entry)
         {
             var entity = entry.Cast<IMustHaveTenant>().Entity;
-            // Filter Disabled
+
+            // 租户未启用
             if (!this.IsFilterEnabled(EntityDataFilters.MustHaveTenant))
             {
                 if (OwnerSession.TenantId.HasValue && entity.TenantId != Guid.Empty)
@@ -224,7 +232,7 @@ namespace DotPlatform.EntityFramework
         /// </summary>
         protected virtual void CheckOrSetMayHaveTenantIfNull(DbEntityEntry entry)
         {
-            // Filter Disabled
+            // 租户未启用，直接退出函数
             if (!this.IsFilterEnabled(EntityDataFilters.MayHaveTenant))
                 return;
 
@@ -264,11 +272,11 @@ namespace DotPlatform.EntityFramework
 
         private void CheckOrSetTenantIfNull(DbEntityEntry entry)
         {
-            if (entry is IMustHaveTenant)
+            if (entry.Entity is IMustHaveTenant)
             {
                 this.CheckOrSetMustHaveTenantIfNull(entry);
             }
-            else if (entry is IMayHaveTenant)
+            else if (entry.Entity is IMayHaveTenant)
             {
                 this.CheckOrSetMayHaveTenantIfNull(entry);
             }
@@ -287,12 +295,10 @@ namespace DotPlatform.EntityFramework
             //Database.SetInitializer<MyDbContext>(null);
 
             OwnerSession = ClaimsSession.Instance;
-            if (OwnerSession.IsAuthenticated)
-            {
-                // 设置筛选参数，在筛选时(Filter)筛选器会使用相应的设置的参数名进行匹配
-                this.SetFilterScopedParameterValue(EntityDataFilters.MustHaveTenant, EntityDataFilters.Parameters.TenantId, OwnerSession.TenantId ?? Guid.Empty);
-                this.SetFilterScopedParameterValue(EntityDataFilters.MayHaveTenant, EntityDataFilters.Parameters.TenantId, OwnerSession.TenantId);
-            }
+
+            // 设置筛选参数，在筛选时(Filter)筛选器会使用相应的设置的参数名进行匹配
+            this.SetFilterScopedParameterValue(EntityDataFilters.MustHaveTenant, EntityDataFilters.Parameters.TenantId, OwnerSession.TenantId ?? Guid.Empty);
+            this.SetFilterScopedParameterValue(EntityDataFilters.MayHaveTenant, EntityDataFilters.Parameters.TenantId, OwnerSession.TenantId);
         }
 
         #endregion

@@ -137,9 +137,15 @@ function doReady() {
     });
 
     // notifications
+    // type: alert/success/error/warning/information
+    // layout: top/[topLeft/topCenter/topRight]/[center/centerLeft/centerRight]/[bottomLeft/bottomCenter/bottomRight]/bottom
     $('.noty').click(function (e) {
         e.preventDefault();
         var options = $.parseJSON($(this).attr('data-noty-options'));
+        options[text] = $(this).attr('data-noty-text');
+        options[type] = $(this).attr('data-noty-type');
+        options[layout] = $(this).attr('data-noty-layout');
+        
         noty(options);
     });
 

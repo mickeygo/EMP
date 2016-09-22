@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using DotPlatform.RBAC.Domain.Models.Users;
 using DotPlatform.RBAC.Domain.Repositories;
+using DotPlatform.RBAC.Domain.QueryRepositories;
 
 namespace DotPlatform.RBAC.Authorization
 {
@@ -11,10 +12,17 @@ namespace DotPlatform.RBAC.Authorization
     public class UserStore : IUserStore
     {
         private readonly IUserRepository _userRepository;
+        private readonly IUserQueryStorage _userStorage;
 
-        public UserStore(IUserRepository userRepository)
+        public UserStore(IUserRepository userRepository, IUserQueryStorage userStorage)
         {
             _userRepository = userRepository;
+            _userStorage = userStorage;
+        }
+
+        public RbacUser FindByNameWithAnonymous(string userName)
+        {
+            return _userStorage.GetUser(userName);
         }
 
         public async Task<RbacUser> FindByIdAsync(Guid userId)

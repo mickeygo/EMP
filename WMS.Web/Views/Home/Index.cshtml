@@ -4,6 +4,15 @@
 
 @section scripts {
     <script>
+
+        noty({
+            text: "top",
+            type: 'alert',
+            dismissQueue: true,
+            layout: "top",
+            theme: 'defaultTheme'
+        });
+
         ReactDOM.render(
             React.createElement(HelloWorld, { message: "gggg"}),
             document.getElementById("content1")

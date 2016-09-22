@@ -4,7 +4,7 @@
 /*
 	tag eg:
 	<element data-dialog="true" data-dialog-href="" data-dialog-title="" data-dialog-size="lg\sm\..."
-		data-dialog-loading="callback" data-dialog-loaded="callback"
+		data-dialog-loading="callback" data-dialog-loaded="callback" data-event-id="eventId"
 		data-ajax-success="callback" data-ajax-failure="callback" />
 
 	form eg:
@@ -45,7 +45,7 @@
 			}
 
 			if (!this.href) {
-			    throw new Error("The element lost data-dialog-href property.");
+				throw new Error("The element lost data-dialog-href property.");
 			}
 
 			if (!$(this.modalId).is("div")) {
@@ -109,6 +109,7 @@
 							form.attr({ "data-ajax-begin": element.attr("data-ajax-begin") });
 							form.attr({ "data-ajax-success": element.attr("data-ajax-success") });
 							form.attr({ "data-ajax-failure": element.attr("data-ajax-failure") });
+							form.attr({ "data-event-id": element.attr("data-event-id") });
 						}
 					}
 				}).fail(function() {
@@ -128,13 +129,13 @@
 		modalDialog.show($(this));
 	};
 
-	$(document).on("click", "[data-dialog=true]", function (evt) {
-	    evt.preventDefault();
+	$(document).on("click", "[data-dialog=true]", function (e) {
+		e.preventDefault();
 		$(this).dialog();
 	});
 
 	// form ajax submit
-	$(document).on("submit", "form[data-ajax-form=true]", function(evt) {
+	$(document).on("submit", "form[data-ajax-form=true]", function(e) {
 		var element = $(this);
 		var option = {
 			dataType: "json",
@@ -149,8 +150,18 @@
 			}
 		};
 
+		//e.preventDefault();  // use test
 		element.ajaxSubmit(option);
 		$(element.closest("div[role=dialog]")).modal("hide");
+
+	    // publish event
+		if (EventEmitter) {
+		    var eventId = element.attr("data-event-id");
+		    if (typeof (eventId) !== "undefined") {
+		        console.log("Event Id: " + eventId);
+		        EventEmitter.dispatch(eventId, true);
+		    }
+		}
 
 		return false;
 	});

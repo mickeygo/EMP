@@ -28,12 +28,12 @@ class HelloMessage extends React.Component {
     }
 
     render() {
-        var newsList = [1, 2, 3].map(function (news) {
-            return (<News name={news} />);
+        var newsList = [1, 2, 3].map(function (news, i) {
+            return (<News key={i} name={news} />);
         });
 
         return (
-            <div className="commentBox">
+            <div className="commentBox" ref="cb">
                <ul>
                    {newsList}
                </ul>

@@ -58,6 +58,7 @@
     <Compile Include="Domain\Models\Users\UserGroupInRole.cs" />
     <Compile Include="Domain\Models\Users\UserInUserGroup.cs" />
     <Compile Include="Domain\Models\Users\UserRole.cs" />
+    <Compile Include="Domain\QueryRepositories\IUserQueryStorage.cs" />
     <Compile Include="Domain\Services\IRetrieveUserInfoDomainService.cs" />
     <Compile Include="Domain\Services\Impl\RetrieveUserInfoDomainService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

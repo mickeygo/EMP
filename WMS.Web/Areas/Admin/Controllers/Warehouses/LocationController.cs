@@ -8,25 +8,40 @@ namespace WMS.Web.Areas.Admin.Controllers
 {
     public class LocationController : BaseController
     {
-        public ActionResult Index(Guid id)
+        public ActionResult GetAll(Guid shelfId)
         {
             using (var service = IocManager.Instance.Resolve<IWarehouseAppService>())
             {
-                var locations = service.GetLocations(id);
-                return PartialView(locations);
+                var locations = service.GetLocations(shelfId);
+                return JsonEx(locations);
             }
         }
 
-        public ActionResult Create()
+        public ActionResult Create(Guid shelfId)
         {
-            return PartialView();
+            return PartialView(new LocationDto { ShelfId = shelfId });
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(LocationDto model)
         {
-            return Json(true);
+            if (!ModelState.IsValid)
+                return Json(false, "Input data is invalid.");
+
+            try
+            {
+                using (var service = IocManager.Instance.Resolve<IWarehouseAppService>())
+                {
+                    service.CreateLocation(model);
+                }
+
+                return Json(true);
+            }
+            catch
+            {
+                return Json(false);
+            }
         }
     }
 }

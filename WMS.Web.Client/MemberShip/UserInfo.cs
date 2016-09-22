@@ -37,6 +37,18 @@ namespace WMS.Web.Client.Membership
         }
 
         /// <summary>
+        /// 获取本地用户信息（没有租户限定）
+        /// </summary>
+        public UserDto GetLocalUserInfoWithoutTenant()
+        {
+            using (var service = IocManager.Instance.Resolve<RbacUserManager>())
+            {
+                var user = service.FindByNameWithAnonymous(_usernName);
+                return user.MapTo<UserDto>();
+            }
+        }
+
+        /// <summary>
         /// 获取远端用户信息
         /// </summary>
         /// <returns></returns>

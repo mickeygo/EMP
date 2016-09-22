@@ -12,6 +12,12 @@ namespace DotPlatform.RBAC.Authorization
          where TUser : class, IAggregateRoot<TKey>
     {
         /// <summary>
+        /// 查找用户（没有 租户 限定）
+        /// </summary>
+        /// <param name="userId">用户名称</param>
+        TUser FindByNameWithAnonymous(string userName);
+
+        /// <summary>
         /// 查找用户
         /// </summary>
         /// <param name="userId">用户 Id</param>

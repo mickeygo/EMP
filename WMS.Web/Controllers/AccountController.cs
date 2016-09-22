@@ -17,7 +17,7 @@ namespace WMS.Web.Controllers
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         [HttpPost]
-        public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
+        public ActionResult Login(LoginViewModel model, string returnUrl)
         {
             if (!ModelState.IsValid)
             {
@@ -27,7 +27,7 @@ namespace WMS.Web.Controllers
             }
 
             var manager = new AccountManager();
-            if (await manager.Login(model.UserName, model.Password, model.RememberMe))
+            if (manager.Login(model.UserName, model.Password, model.RememberMe))
                 return Url.IsLocalUrl(returnUrl) ? Redirect(returnUrl) : RedirectToHome();
 
             ModelState.AddModelError("", "The user name and password is not matched.");

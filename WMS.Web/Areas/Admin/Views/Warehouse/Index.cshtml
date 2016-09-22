@@ -8,190 +8,36 @@
 
 @section scripts {
     <script>
-        var warehouses = $.getJSON("@Url.Action("GetAll", "Warehouse", new { area = "admin" })", function (data) {
-            console.log(data);
-        });
+        ReactDOM.render(
+           React.createElement(WarehouseCollection),
+           document.getElementById('warehousecollection')
+        );
 
-        //ReactDOM.render(
-        //    React.createElement(HelloMessage, { source: warehouses }),
-        //    document.getElementById('content2')
-        //);
+        ReactDOM.render(
+          React.createElement(ZoneCollection),
+          document.getElementById('zonecollection')
+        );
 
+        ReactDOM.render(
+            React.createElement(ShelfCollection),
+            document.getElementById('shelfcollection')
+        );
 
-        // ReactDOM.render(
-        //     React.createElement(HelloWorld),
-        //     document.getElementById('content')
-        // );
-
-        // ReactDOM.render(
-        //    React.createElement(HelloMessage, {name: "123"}),
-        //    document.getElementById('content2')
-        //);
-
-        var Warehouse = {
-            createWhSuccess: function (data) {
-                console.log(data.status);
-                console.log(data.message);
-            },
-            createWhfailure: function (data) {
-
-            }
-        };
-
+        ReactDOM.render(
+           React.createElement(ShelfDetail),
+           document.getElementById('shelfdetail')
+        );
     </script>
 }
 
-<div class="row">
-    <div class="col-md-11">
-        <div class="btn-group" data-toggle="buttons">
-            <div class="btn btn-primary">
-                <input type="radio" name="options" value="" />
-                <i class="glyphicon glyphicon-home"></i> WH01
-            </div>
-            <div class="btn btn-primary">
-                <input type="radio" name="options" value="" />
-                <i class="glyphicon glyphicon-home"></i> WH02
-            </div>
-            <div class="btn btn-primary">
-                <input type="radio" name="options" value="" />
-                <i class="glyphicon glyphicon-home"></i> WH03
-            </div>
-            <a class="btn btn-primary" data-dialog="true" data-dialog-href="@Url.Action("Create", "Warehouse", new { area = "admin" })" 
-               data-dialog-form="true" data-dialog-title="Create Warehouse" 
-               data-ajax-success="Warehouse.createWhSuccess" data-ajax-failure="Warehouse.createWhfailure">
-                <i class="glyphicon glyphicon-plus"></i>
-            </a>
-        </div>
-    </div>
-    <div class="col-md-1">
-        <a class="btn btn-primary btn-xs">
-            <i class="glyphicon glyphicon-edit"></i>
-        </a>
-        <a class="btn btn-danger btn-xs">
-            <i class="glyphicon glyphicon-trash"></i>
-        </a>
-    </div>
-</div>
+<div id="warehousecollection"></div>
 
-<div class="row" style="margin-top:20px;">
-    <div class="col-md-2">
-        <div class="list-group">
-            <a href="#" class="list-group-item active">
-                <i class="glyphicon glyphicon-plus"></i>
-            </a>
-            <div href="#" class="list-group-item">
-                <div class="row">
-                    <div class="col-md-5">
-                        <a>Zone01</a>
-                    </div>
-                    <div class="col-md-7 text-right">
-                        <a><i class="glyphicon glyphicon-edit"></i></a>
-                        <a><i class="glyphicon glyphicon-trash"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div href="#" class="list-group-item">
-                <div class="row">
-                    <div class="col-md-5">
-                        <a>Zone02</a>
-                    </div>
-                    <div class="col-md-7 text-right">
-                        <a><i class="glyphicon glyphicon-edit"></i></a>
-                        <a><i class="glyphicon glyphicon-trash"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div href="#" class="list-group-item">
-                <div class="row">
-                    <div class="col-md-5">
-                        <a>Zone03</a>
-                    </div>
-                    <div class="col-md-7 text-right">
-                        <a><i class="glyphicon glyphicon-edit"></i></a>
-                        <a><i class="glyphicon glyphicon-trash"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-10">
-        <div class="panel panel-default">
-            <div class="panel-body">
-                <div class="row">
-                    <div class="col-md-10 controls">
-                        <select id="selectError" data-rel="chosen">
-                            <option>Shelf 1</option>
-                            <option>Shelf 2</option>
-                            <option>Shelf 3</option>
-                            <option>Shelf 4</option>
-                            <option>Shelf 5</option>
-                        </select>
-                    </div>
-                    <div class="col-md-2 text-right">
-                        <div class="box-icon">
-                            <a class="btn btn-round btn-default" data-dialog="true">
-                                <i class="glyphicon glyphicon-plus"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                Shelf-01
-                <div class="box-icon">
-                    <a class="btn btn-round btn-default" data-dialog="true">
-                        <i class="glyphicon glyphicon-plus"></i>
-                    </a>
-                    <a class="btn btn-round btn-default" data-dialog="true">
-                        <i class="glyphicon glyphicon-cog"></i>
-                    </a>
-                    <a href="#" class="btn btn-round btn-default">
-                        <i class="glyphicon glyphicon-remove"></i>
-                    </a>
-                </div>
-            </div>
-            <div class="panel-body">
-                <div class="row">
-                    <div class="col-md-8">
-                        <div>
-                            Volume: 5 * 3 * 1.5 (m)
-                        </div>
-                        <div>
-                            Description: AKMC01-dd
-                        </div>
-                    </div>
-                </div>
-                <div style="margin-top: 10px;">
-                    <table class="table table-bordered table-striped table-condensed table-responsive datatable">
-                        <thead>
-                            <tr>
-                                <th>Location</th>
-                                <th>IsBonded</th>
-                                <th>Volume</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Location-1</td>
-                                <td>Y</td>
-                                <td>3.4 * 2 * 1.5 (m)</td>
-                                <td>
-                                    <a herf="#" class="btn btn-primary btn-xs">
-                                        <i class="glyphicon glyphicon-edit"></i>
-                                    </a>
-                                    <a herf="#" class="btn btn-danger btn-xs">
-                                        <i class="glyphicon glyphicon-trash"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                        </tbody>
-
-                    </table>
-                </div>
-            </div>
+<div style="margin-top:20px;">
+    <div class="row">
+        <div id="zonecollection" class="col-md-2"></div>
+        <div class="col-md-10">
+            <div id="shelfcollection"></div>
+            <div id="shelfdetail"></div>
         </div>
     </div>
 </div>

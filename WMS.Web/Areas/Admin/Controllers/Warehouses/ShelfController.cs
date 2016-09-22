@@ -8,25 +8,49 @@ namespace WMS.Web.Areas.Admin.Controllers
 {
     public class ShelfController : BaseController
     {
-        public ActionResult Index(Guid id)
+        public ActionResult GetAll(Guid zoneId)
         {
             using (var service = IocManager.Instance.Resolve<IWarehouseAppService>())
             {
-                var shelfs = service.GetShelfs(id);
-                return PartialView(shelfs);
+                var shelfs = service.GetShelfs(zoneId);
+                return JsonEx(shelfs);
             }
         }
 
-        public ActionResult Create()
+        public ActionResult Get(Guid id)
         {
-            return PartialView();
+            using (var service = IocManager.Instance.Resolve<IWarehouseAppService>())
+            {
+                var shelf = service.GetShelf(id);
+                return JsonEx(shelf);
+            }
+        }
+
+        public ActionResult Create(Guid zoneId)
+        {
+            return PartialView(new ShelfDto { ZoneId = zoneId });
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(ShelfDto model)
         {
-            return Json(true);
+            if (!ModelState.IsValid)
+                return Json(false, "Input data is invalid.");
+
+            try
+            {
+                using (var service = IocManager.Instance.Resolve<IWarehouseAppService>())
+                {
+                    service.CreateShelf(model);
+                }
+
+                return Json(true);
+            }
+            catch
+            {
+                return Json(false);
+            }
         }
     }
 }
