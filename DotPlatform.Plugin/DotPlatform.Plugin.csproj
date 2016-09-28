@@ -60,13 +60,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IO\Excel\CollectionExcel.cs" />
-    <Compile Include="IO\Excel\DataReaderExcel.cs" />
+    <Compile Include="IO\Excel\CollectionExcelWriter.cs" />
+    <Compile Include="IO\Excel\DataReaderExcelWriter.cs" />
     <Compile Include="IO\Excel\ExcelCellStyle.cs" />
-    <Compile Include="IO\Excel\ExcelReader.cs" />
-    <Compile Include="IO\Excel\ExcelRecord.cs" />
+    <Compile Include="IO\Excel\ExcelFactory.cs" />
+    <Compile Include="IO\Excel\IExcelWriter.cs" />
+    <Compile Include="IO\Excel\JsonExcelReader.cs" />
+    <Compile Include="IO\Excel\ExcelWriter.cs" />
     <Compile Include="IO\Excel\ExcelVersion.cs" />
-    <Compile Include="IO\Excel\IExcel.cs" />
+    <Compile Include="IO\Excel\IExcelReader.cs" />
+    <Compile Include="IO\Excel\WorkBookFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

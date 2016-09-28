@@ -18,7 +18,7 @@ namespace DotPlatform.Tests.Serialization
                 {
                     Id = Guid.NewGuid(),
                     Name = "Product_Name",
-                    Model = "Product_Model",
+                    Model = "Product_Model \t",
                     IsDeleted = false,
                     CreatorUserId = Guid.NewGuid(),
                     CreationTime = DateTime.Now

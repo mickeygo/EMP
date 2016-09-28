@@ -91,6 +91,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotPlatform.Logger", "DotPl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotPlatform.Plugin", "DotPlatform.Plugin\DotPlatform.Plugin.csproj", "{70A1C23E-BA57-48EF-B7B3-A60C6972608B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotPlatform.Tests.Plugin", "DotPlatform.Tests.Plugin\DotPlatform.Tests.Plugin.csproj", "{28216CFD-1FA7-45B1-9043-84240615FC8B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -223,6 +225,10 @@ Global
 		{70A1C23E-BA57-48EF-B7B3-A60C6972608B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{70A1C23E-BA57-48EF-B7B3-A60C6972608B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{70A1C23E-BA57-48EF-B7B3-A60C6972608B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28216CFD-1FA7-45B1-9043-84240615FC8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28216CFD-1FA7-45B1-9043-84240615FC8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28216CFD-1FA7-45B1-9043-84240615FC8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28216CFD-1FA7-45B1-9043-84240615FC8B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -265,5 +271,6 @@ Global
 		{9E3A2D2A-37BD-4DF3-A6E6-35DE60CF1EE2} = {D6AE2EC0-0DEB-46A9-8196-EF684FF2100C}
 		{63D8BD86-3C28-47D0-9B6C-B4AC8285C689} = {8962E6C9-9800-420B-9F0D-AB8503228364}
 		{70A1C23E-BA57-48EF-B7B3-A60C6972608B} = {8962E6C9-9800-420B-9F0D-AB8503228364}
+		{28216CFD-1FA7-45B1-9043-84240615FC8B} = {3E1E1782-280E-4F5B-AE1C-FBA3AF41203F}
 	EndGlobalSection
 EndGlobal

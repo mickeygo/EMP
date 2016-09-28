@@ -1,7 +1,6 @@
-﻿using System;
-using NPOI.SS.UserModel;
+﻿using NPOI.SS.UserModel;
 
-namespace DotPlatform.IO.Excel
+namespace DotPlatform.Plugin.IO.Excel
 {
     /// <summary>
     /// Excel 单元格样式
@@ -57,7 +56,6 @@ namespace DotPlatform.IO.Excel
     /// <summary>
     /// Excel 单元格样式
     /// </summary>
-    [Flags]
     public enum CellStyle
     {
         /// <summary>

@@ -1,11 +1,8 @@
-﻿using System;
-
-namespace DotPlatform.IO.Excel
+﻿namespace DotPlatform.Plugin.IO.Excel
 {
     /// <summary>
     /// Excel 版本
     /// </summary>
-    [Flags]
     public enum ExcelVersion
     {
         /// <summary>

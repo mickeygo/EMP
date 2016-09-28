@@ -5,13 +5,15 @@
 @section scripts {
     <script>
 
-        noty({
-            text: "top",
-            type: 'alert',
-            dismissQueue: true,
-            layout: "top",
-            theme: 'defaultTheme'
-        });
+        //noty({
+        //    text: "top",
+        //    type: 'information',
+        //    dismissQueue: true,
+        //    layout: "top",
+        //    theme: 'defaultTheme',
+        //    timeout: 3000,
+        //    modal: true
+        //});
 
         ReactDOM.render(
             React.createElement(HelloWorld, { message: "gggg"}),
@@ -37,3 +39,5 @@
     <div id="content2"></div>
     <div id="content3"></div>
 </div>
+
+<button class="noty" data-noty-text="test">noty</button>

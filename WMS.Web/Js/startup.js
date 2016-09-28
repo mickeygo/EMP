@@ -131,6 +131,12 @@ $(function () {
 });
 
 function doReady() {
+    // Bootstrap tooltip
+    $('[data-toggle="tooltip"]').tooltip();
+
+    // Bootstrap popover
+    $('[data-toggle="popover"]').popover();
+
     // prevent # links from moving to top
     $('a[href="#"][data-top!=true]').click(function (e) {
         e.preventDefault();
@@ -139,21 +145,20 @@ function doReady() {
     // notifications
     // type: alert/success/error/warning/information
     // layout: top/[topLeft/topCenter/topRight]/[center/centerLeft/centerRight]/[bottomLeft/bottomCenter/bottomRight]/bottom
-    $('.noty').click(function (e) {
-        e.preventDefault();
-        var options = $.parseJSON($(this).attr('data-noty-options'));
-        options[text] = $(this).attr('data-noty-text');
-        options[type] = $(this).attr('data-noty-type');
-        options[layout] = $(this).attr('data-noty-layout');
-        
+    $(document).on("click", ".noty", function (e) {
+        //e.preventDefault();
+
+        var options = JSON.parse($(this).attr('data-noty-options') || '{}');
+        options["text"] = options["text"] || $(this).attr('data-noty-text') || "";
+        options["type"] = options["type"] || $(this).attr('data-noty-type') || "information";
+        options["layout"] = options["layout"] || $(this).attr('data-noty-layout') || "top";
+        options["modal"] = options["modal"] || $(this).attr('data-noty-modal') || false;  // 遮罩 true/false
+        options["dismissQueue"] = true;  // add to queue
+        options["maxVisible"] = 10; // 一个队列中同一时间最多显示的数量
+        options["timeout"] = options["timeout"] || $(this).attr('data-noty-timeout') || false;  // auto close
+
         noty(options);
     });
-
-    // tooltip
-    $('[data-toggle="tooltip"]').tooltip();
-
-    // popover
-    $('[data-toggle="popover"]').popover();
 
     // datepicker
     $(document).on("focusin", "input[data-format=date]", function (e) {
