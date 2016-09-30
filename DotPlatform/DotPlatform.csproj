@@ -272,6 +272,7 @@
     <Compile Include="Timing\Clock.cs" />
     <Compile Include="Timing\IClockProvider.cs" />
     <Compile Include="Timing\LocalClockProvider.cs" />
+    <Compile Include="Utils\ConfigurationHelper.cs" />
     <Compile Include="Utils\PrivateReflectionDynamicObject.cs" />
     <Compile Include="Utils\ReflectionHelper.cs" />
   </ItemGroup>

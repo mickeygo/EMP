@@ -11,8 +11,10 @@ using DotPlatform.Extensions;
 using DotPlatform.Runtime.Session;
 using DotPlatform.Serialization.Json;
 using DotPlatform.Timing;
-using Newtonsoft.Json;
 using DotPlatform.Web.Extensions;
+using DotPlatform.Net.Mail;
+using DotPlatform.Dependency;
+using Newtonsoft.Json;
 
 namespace DotPlatform.Web.Mvc.Controllers
 {
@@ -33,6 +35,18 @@ namespace DotPlatform.Web.Mvc.Controllers
 
         #endregion
 
+        #region Protected Properties
+
+        /// <summary>
+        /// 获取 Ioc 解析器
+        /// </summary>
+        protected IIocResolver IocResolver
+        {
+            get { return IocManager.Instance; }
+        }
+
+        #endregion 
+
         #region Public Properties
 
         public IOwnerSession OwnerSession { get; set; }
@@ -40,6 +54,19 @@ namespace DotPlatform.Web.Mvc.Controllers
         public IAuditInfoProvider AuditInfoProvider { get; set; }
 
         public IAuditingStore AuditingStore { get; set; }
+
+        /// <summary>
+        /// Email 对象，用于发送邮件
+        /// </summary>
+        public IMailSender MailSender
+        {
+            get { return IocResolver.Resolve<IMailSender>(); }
+        }
+
+        #endregion
+
+        #region Public Methods
+
 
         #endregion
 

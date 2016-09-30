@@ -2,7 +2,6 @@
 using System.Web.Mvc;
 using WMS.Application.Services;
 using WMS.DataTransferObject.Dtos;
-using DotPlatform.Dependency;
 
 namespace WMS.Web.Areas.Admin.Controllers
 {
@@ -10,7 +9,7 @@ namespace WMS.Web.Areas.Admin.Controllers
     {
         public ActionResult GetAll(Guid whId)
         {
-            using (var service = IocManager.Instance.Resolve<IWarehouseAppService>())
+            using (var service = IocResolver.Resolve<IWarehouseAppService>())
             {
                 var zones = service.GetZones(whId);
                 return JsonEx(zones);
@@ -31,7 +30,7 @@ namespace WMS.Web.Areas.Admin.Controllers
 
             try
             {
-                using (var service = IocManager.Instance.Resolve<IWarehouseAppService>())
+                using (var service = IocResolver.Resolve<IWarehouseAppService>())
                 {
                     service.CreateZone(model);
                 }

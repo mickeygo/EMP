@@ -2,7 +2,6 @@
 using System.Web.Mvc;
 using WMS.Application.Services;
 using WMS.DataTransferObject.Dtos;
-using DotPlatform.Dependency;
 
 namespace WMS.Web.Areas.Admin.Controllers
 {
@@ -10,7 +9,7 @@ namespace WMS.Web.Areas.Admin.Controllers
     {
         public ActionResult GetAll(Guid zoneId)
         {
-            using (var service = IocManager.Instance.Resolve<IWarehouseAppService>())
+            using (var service = IocResolver.Resolve<IWarehouseAppService>())
             {
                 var shelfs = service.GetShelfs(zoneId);
                 return JsonEx(shelfs);
@@ -19,7 +18,7 @@ namespace WMS.Web.Areas.Admin.Controllers
 
         public ActionResult Get(Guid id)
         {
-            using (var service = IocManager.Instance.Resolve<IWarehouseAppService>())
+            using (var service = IocResolver.Resolve<IWarehouseAppService>())
             {
                 var shelf = service.GetShelf(id);
                 return JsonEx(shelf);
@@ -40,7 +39,7 @@ namespace WMS.Web.Areas.Admin.Controllers
 
             try
             {
-                using (var service = IocManager.Instance.Resolve<IWarehouseAppService>())
+                using (var service = IocResolver.Resolve<IWarehouseAppService>())
                 {
                     service.CreateShelf(model);
                 }

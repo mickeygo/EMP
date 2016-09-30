@@ -63,6 +63,17 @@ namespace DotPlatform.Utils
         }
 
         /// <summary>
+        /// 获取对象的属性名与其对应的值的集合
+        /// </summary>
+        /// <param name="obj">对象实例</param>
+        public static IDictionary<string, object> GetNameValues(object obj)
+        {
+            return (from property in TypeDescriptor.GetProperties(obj).Cast<PropertyDescriptor>()
+                    select new { property.Name, Value = property.GetValue(obj) }
+                    ).ToDictionary(k => k.Name, v => v.Value);
+        }
+
+        /// <summary>
         /// 设置对象的属性值
         /// </summary>
         /// <param name="obj">对象实例</param>
