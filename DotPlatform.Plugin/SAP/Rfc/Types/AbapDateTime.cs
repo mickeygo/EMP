@@ -12,7 +12,7 @@ namespace DotPlatform.Plugin.SAP.Rfc.Types
         private static CultureInfo enUS = new CultureInfo("en-US");
 
         /// <summary>
-        /// 将 ABAP 的时间转换为 NET 时间
+        /// 将 ABAP 的时间转换为 .NET 时间
         /// </summary>
         /// <param name="value">APAB 的时间字符串</param>
         /// <param name="acceptNull">是否允许接收空值</param>
@@ -40,7 +40,7 @@ namespace DotPlatform.Plugin.SAP.Rfc.Types
         }
 
         /// <summary>
-        /// 将 NET 时间转换日期，格式为 yyyyMMdd 
+        /// 将 .NET 时间转换 ABAP 日期格式，格式为 yyyyMMdd 
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
@@ -50,7 +50,7 @@ namespace DotPlatform.Plugin.SAP.Rfc.Types
         }
 
         /// <summary>
-        /// 将 NET 时间转换为时间，格式为 HHmmss
+        /// 将 .NET 时间转换为 ABAP 时间，格式为 HHmmss
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>

@@ -50,15 +50,13 @@
       <HintPath>..\packages\NPOI.2.2.1\lib\net40\NPOI.OpenXmlFormats.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="NSAPConnector, Version=1.0.2.0, Culture=neutral, processorArchitecture=AMD64">
-      <HintPath>..\packages\NSAPConnector_x64.1.0.2\lib\NSAPConnector.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="sapnco, Version=3.0.0.42, Culture=neutral, PublicKeyToken=50436dca5c7f7d23, processorArchitecture=x86">
+    <Reference Include="sapnco, Version=3.0.0.42, Culture=neutral, PublicKeyToken=50436dca5c7f7d23, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\SAPMiddlewareConnector.3.0.2.0\lib\sapnco.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="sapnco_utils, Version=3.0.0.42, Culture=neutral, PublicKeyToken=50436dca5c7f7d23, processorArchitecture=x86">
+    <Reference Include="sapnco_utils, Version=3.0.0.42, Culture=neutral, PublicKeyToken=50436dca5c7f7d23, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\SAPMiddlewareConnector.3.0.2.0\lib\sapnco_utils.dll</HintPath>
       <Private>True</Private>
     </Reference>
@@ -86,6 +84,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SAP\Rfc\Annotations\RfcMapAttribute.cs" />
     <Compile Include="SAP\Rfc\Exceptions\RfcConnectionException.cs" />
+    <Compile Include="SAP\Rfc\Extensions\RfcElementMetadataExtensions.cs" />
     <Compile Include="SAP\Rfc\Exceptions\RfcFunctionParamtersException.cs" />
     <Compile Include="SAP\Rfc\Exceptions\RfcMappingException.cs" />
     <Compile Include="SAP\Rfc\Extensions\IRfcFunctionExtensions.cs" />
@@ -95,17 +94,22 @@
     <Compile Include="SAP\Rfc\IRfcResult.cs" />
     <Compile Include="SAP\Rfc\Plain\PlainRfcCommand.cs" />
     <Compile Include="SAP\Rfc\Plain\PlainRfcConnection.cs" />
+    <Compile Include="SAP\Rfc\Plain\PlainRfcResult.cs" />
+    <Compile Include="SAP\Rfc\Plain\PlainRfcStructureMapper.cs" />
+    <Compile Include="SAP\Rfc\Plain\PlainRfcValueMapper.cs" />
     <Compile Include="SAP\Rfc\RfcCommand.cs" />
     <Compile Include="SAP\Rfc\RfcConnection.cs" />
     <Compile Include="SAP\Rfc\RfcConnectionFactory.cs" />
     <Compile Include="SAP\Rfc\RfcProvider.cs" />
     <Compile Include="SAP\Rfc\RfcStructureMapper.cs" />
+    <Compile Include="SAP\Rfc\RfcValueMapper.cs" />
     <Compile Include="SAP\Rfc\Types\AbapBool.cs" />
     <Compile Include="SAP\Rfc\Types\AbapDataType.cs" />
     <Compile Include="SAP\Rfc\Types\AbapDateTime.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="bin\Debug\DotPlatform.Plugin.dll.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -113,6 +117,29 @@
       <Project>{4964d0d8-492a-422a-ad2d-3eafae881c1a}</Project>
       <Name>DotPlatform</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\Debug\Autofac.dll" />
+    <Content Include="bin\Debug\Autofac.Extras.DynamicProxy2.dll" />
+    <Content Include="bin\Debug\Autofac.Extras.DynamicProxy2.xml" />
+    <Content Include="bin\Debug\Autofac.xml" />
+    <Content Include="bin\Debug\Castle.Core.dll" />
+    <Content Include="bin\Debug\Castle.Core.xml" />
+    <Content Include="bin\Debug\DotPlatform.dll" />
+    <Content Include="bin\Debug\DotPlatform.pdb" />
+    <Content Include="bin\Debug\DotPlatform.Plugin.dll" />
+    <Content Include="bin\Debug\DotPlatform.Plugin.pdb" />
+    <Content Include="bin\Debug\ICSharpCode.SharpZipLib.dll" />
+    <Content Include="bin\Debug\Newtonsoft.Json.dll" />
+    <Content Include="bin\Debug\Newtonsoft.Json.xml" />
+    <Content Include="bin\Debug\NPOI.dll" />
+    <Content Include="bin\Debug\NPOI.OOXML.dll" />
+    <Content Include="bin\Debug\NPOI.OpenXml4Net.dll" />
+    <Content Include="bin\Debug\NPOI.OpenXmlFormats.dll" />
+    <Content Include="bin\Debug\NPOI.xml" />
+    <Content Include="bin\Debug\NSAPConnector.dll" />
+    <Content Include="bin\Debug\sapnco.dll" />
+    <Content Include="bin\Debug\sapnco_utils.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

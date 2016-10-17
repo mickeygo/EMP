@@ -1,0 +1,33 @@
+﻿@{ 
+    ViewBag.Title = "Receiving";
+}
+
+@section scripts {
+    <script>
+        // SN 页面初始化自动聚焦
+        $(function () {
+            $("[name=sn]").focus();
+        });
+
+        $(document).keyup(function (evnet) {
+            if (evnet.keyCode == 13) {
+                
+            }
+        });
+
+        var Receiving = {
+            element: "",
+            click: function () {
+
+            }
+        };
+    </script>
+}
+
+@Html.Navgation("Inbound", "Receiving")
+
+<div>
+    <div>
+        <input name="sn" />
+    </div>
+</div>

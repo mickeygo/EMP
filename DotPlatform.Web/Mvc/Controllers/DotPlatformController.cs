@@ -45,6 +45,14 @@ namespace DotPlatform.Web.Mvc.Controllers
             get { return IocManager.Instance; }
         }
 
+        /// <summary>
+        /// 获取当前区域时间，根据区域的不同而设计的时间不同
+        /// </summary>
+        protected DateTime LocalDateTime
+        {
+            get { return Clock.Local; }
+        }
+
         #endregion 
 
         #region Public Properties

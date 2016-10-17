@@ -66,6 +66,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Factories\" />
+    <Folder Include="Models\Inbounds\" />
     <Folder Include="Sevices\" />
     <Folder Include="Specifications\" />
   </ItemGroup>

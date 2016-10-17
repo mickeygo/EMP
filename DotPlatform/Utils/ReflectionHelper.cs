@@ -52,6 +52,21 @@ namespace DotPlatform.Utils
         }
 
         /// <summary>
+        /// 获取指定类型中属性带有的指定的 Attribute 值集合
+        /// </summary>
+        /// <typeparam name="T">要解析的 Attribute 类型</typeparam>
+        /// <param name="type">类型实例</param>
+        /// <returns></returns>
+        public static IDictionary<string, T> GetCustomAttributesOfProperty<T>(Type type)
+            where T : Attribute
+        {
+            return (from proterty in TypeDescriptor.GetProperties(type).Cast<PropertyDescriptor>()
+                    let attribute = proterty.Attributes.OfType<T>().FirstOrDefault()
+                    where attribute != null
+                    select new { proterty.Name, attribute, }).ToDictionary(k => k.Name, v => v.attribute);
+        }
+
+        /// <summary>
         /// 获取对象属性值集合
         /// </summary>
         /// <param name="obj">对象实例</param>

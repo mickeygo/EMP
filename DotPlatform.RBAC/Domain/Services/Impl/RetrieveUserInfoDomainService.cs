@@ -26,9 +26,20 @@ namespace DotPlatform.RBAC.Domain.Services.Impl
         private readonly IPermissionMenuRepository _permissionMenuRepository;
         private readonly IPermissionActorRepository _permissionActorRepository;
 
-        public RetrieveUserInfoDomainService()
+        public RetrieveUserInfoDomainService(
+                IUserRoleRepository userRoleRepository,
+                IUserInUserGroupRepository userInUserGroupRepository,
+                IUserGroupInRoleRepository userGroupInRoleRepository,
+                IRolePermissionRepository rolePermissionRepository,
+                IPermissionMenuRepository permissionMenuRepository,
+                IPermissionActorRepository permissionActorRepository)
         {
-
+            _userRoleRepository = userRoleRepository;
+            _userInUserGroupRepository = userInUserGroupRepository;
+            _userGroupInRoleRepository = userGroupInRoleRepository;
+            _rolePermissionRepository = rolePermissionRepository;
+            _permissionMenuRepository = permissionMenuRepository;
+            _permissionActorRepository = permissionActorRepository;
         }
 
         public IEnumerable<RbacRole> GetRoles(Guid userId)

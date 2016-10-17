@@ -80,8 +80,15 @@
     <Compile Include="External\Ez\EzUserRepository.cs" />
     <Compile Include="Membership\UserInfo.cs" />
     <Compile Include="Membership\UserValidator .cs" />
+    <Compile Include="Models\QryData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Remote\Sfis\SfisServiceClient.cs" />
     <Compile Include="Service References\MembershipWebService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\SFISEtlService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -143,9 +150,11 @@
     <None Include="Service References\MembershipWebService\WMS.Web.Client.MembershipWebService.UserLevel.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\SFISEtlService\etl_service.wsdl" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\MembershipWebService\" />
+    <WCFMetadataStorage Include="Service References\SFISEtlService\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\MembershipWebService\MembershipWebservice.disco" />
@@ -234,6 +243,21 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="External\SAP\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\SFISEtlService\etl_service.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\SFISEtlService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\SFISEtlService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\SFISEtlService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

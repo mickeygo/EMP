@@ -129,55 +129,23 @@ namespace DotPlatform.Plugin.IO.Excel
             switch (cell.CellType)
             {
                 case CellType.String:
-                    return JsonFormater(name, cell.StringCellValue);
+                    return JsonFormater.ConvertToJsonFormater(name, cell.StringCellValue);
                 case CellType.Numeric:
                     if (DateUtil.IsCellDateFormatted(cell))
-                        return JsonFormater(name, cell.DateCellValue);
+                        return JsonFormater.ConvertToJsonFormater(name, cell.DateCellValue);
                     else
-                        return JsonFormater(name, cell.NumericCellValue);
+                        return JsonFormater.ConvertToJsonFormater(name, cell.NumericCellValue);
                 case CellType.Boolean:
-                    return JsonFormater(name, cell.BooleanCellValue);
+                    return JsonFormater.ConvertToJsonFormater(name, cell.BooleanCellValue);
                 case CellType.Unknown:
                 case CellType.Formula:
                 //var e = new HSSFFormulaEvaluator(hssfworkbook);
                 case CellType.Blank:
                 case CellType.Error:
-                    return $"\"{name}\":null";
+                    return JsonFormater.ConvertToJsonFormater(name, null);
                 default:
-                    return JsonFormater(name, cell.ToString());
+                    return JsonFormater.ConvertToJsonFormater(name, cell.ToString());
             }
-        }
-
-        private string JsonFormater(string name, object obj)
-        {
-            if (obj == null)
-                return $"\"{name}\":null";
-
-            if (obj.GetType() == typeof(string))
-                return $"\"{name}\":\"{obj}\"";
-
-            if (obj.GetType() == typeof(int) || obj.GetType() == typeof(int?))
-                return $"\"{name}\":{obj}";
-
-            if (obj.GetType() == typeof(long) || obj.GetType() == typeof(long?))
-                return $"\"{name}\":{obj}";
-
-            if (obj.GetType() == typeof(float) || obj.GetType() == typeof(float?))
-                return $"\"{name}\":{obj}";
-
-            if (obj.GetType() == typeof(double) || obj.GetType() == typeof(double?))
-                return $"\"{name}\":{obj}";
-
-            if (obj.GetType() == typeof(bool) || obj.GetType() == typeof(bool?))
-                return $"\"{name}\":{(((bool)obj) ? "true" : "false")}";
-
-            if (obj.GetType() == typeof(DateTime) || obj.GetType() == typeof(DateTime?))
-                return $"\"{name}\":\"{((DateTime)obj).ToString("s")}\"";
-
-            if (obj.GetType() == typeof(DateTimeOffset) || obj.GetType() == typeof(DateTimeOffset?))
-                return $"\"{name}\":\"{((DateTime)obj).ToString("s")}\"";
-
-            return $"\"{name}\":\"{obj}\"";
         }
     }
 }

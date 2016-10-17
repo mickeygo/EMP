@@ -17,7 +17,9 @@ namespace DotPlatform.Plugin.SAP.Rfc
             _rfcProvider = connction.RfcProvider;
         }
 
-        public virtual IRfcResult Execute(string functionName, object paramters = null)
+        protected abstract IRfcResult ReturnResult(IRfcFunction function);
+
+        public IRfcResult Execute(string functionName, object paramters = null)
         {
             var function = _rfcProvider.Rfc.Repository.CreateFunction(functionName);
 
@@ -26,9 +28,11 @@ namespace DotPlatform.Plugin.SAP.Rfc
 
             function.Invoke(_rfcProvider.Rfc);
 
-            return null;
+            return ReturnResult(function);
         }
-        
+
+        #region Private Methods
+
         private void SetFunctionParamters(IRfcFunction function, object paramters)
         {
             var paramType = paramters.GetType();
@@ -74,5 +78,7 @@ namespace DotPlatform.Plugin.SAP.Rfc
 
             throw new RfcFunctionParamtersException("The function paramters must be an IDictionary or an Anonymous object.");
         }
+
+        #endregion
     }
 }

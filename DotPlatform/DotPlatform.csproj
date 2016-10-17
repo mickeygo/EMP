@@ -196,9 +196,11 @@
     <Compile Include="Events\Storage\InDbDomainEventStorage.cs" />
     <Compile Include="Events\Storage\NullDomainEventStorage.cs" />
     <Compile Include="Extensions\CollectionExtensions.cs" />
+    <Compile Include="Extensions\DataTableExtensions.cs" />
     <Compile Include="Extensions\NullableExtensions.cs" />
     <Compile Include="Extensions\ObjectExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="Extensions\TypeExtensions.cs" />
     <Compile Include="Generators\IGuidGenerator.cs" />
     <Compile Include="Generators\RegularGuidGenerator.cs" />
     <Compile Include="Generators\SequentialGuidGenerator.cs" />
@@ -245,6 +247,7 @@
     <Compile Include="Runtime\Session\IOwnerSession.cs" />
     <Compile Include="Runtime\Session\NullSession.cs" />
     <Compile Include="Serialization\IObjectSerializer.cs" />
+    <Compile Include="Serialization\Json\JsonFormater.cs" />
     <Compile Include="Serialization\Json\JsonSerializationHelper.cs" />
     <Compile Include="Serialization\ObjectBinarySerializer.cs" />
     <Compile Include="Serialization\ObjectJsonSerializer.cs" />

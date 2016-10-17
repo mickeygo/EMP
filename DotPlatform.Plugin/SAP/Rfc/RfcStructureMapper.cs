@@ -1,5 +1,6 @@
 ﻿using System;
-using SAP.Middleware.Connector;
+using System.Collections.Generic;
+using DotPlatform.Plugin.SAP.Rfc.Types;
 
 namespace DotPlatform.Plugin.SAP.Rfc
 {
@@ -8,52 +9,44 @@ namespace DotPlatform.Plugin.SAP.Rfc
     /// </summary>
     public abstract class RfcStructureMapper
     {
-        private RfcElementMetadata[] _elementMetadataArray;
+        private RfcValueMapper _valueMapper;
 
-        public void Map(IRfcTable table)
+        public RfcStructureMapper(RfcValueMapper valueMapper)
         {
-            foreach (var row in table)
-            {
-                for (var i = 0; i < table.ElementCount; i++)
-                {
-                    var metadata = _elementMetadataArray[i];
-                }
-            }
-
-            // RfcElementMetadata 元数据，描述 Table 每列的信息
-
-            // IRfcStructure Table 每行的数据信息
+            _valueMapper = valueMapper;
         }
 
-        private void ElementMetadata(IRfcTable table)
+        /// <summary>
+        /// 将 ABAP 对象转换为 .NET 对象
+        /// </summary>
+        /// <typeparam name="T">要获取的对象类型</typeparam>
+        /// <param name="value">对象值</param>
+        /// <returns></returns>
+        public T FromRemoteValue<T>(object value)
         {
-            for (var i = 0; i < table.ElementCount; i++)
-            {
-                _elementMetadataArray[i] = table.GetElementMetadata(i);
-            }
+            return (T)_valueMapper.FromRemoteValue(typeof(T), value);
         }
 
-        private Type ConvertToAspNetDataType(RfcDataType rfcDataType)
+        /// <summary>
+        /// 将 ABAP 对象转换为 .NET 对象
+        /// </summary>
+        /// <param name="type">要获取的对象类型</param>
+        /// <param name="value">对象值</param>
+        /// <returns></returns>
+        public object FromRemoteValue(Type type, object value)
         {
-            switch (rfcDataType)
-            {
-                case RfcDataType.CHAR:
-                    return typeof(string);
-                case RfcDataType.STRING:
-                    return typeof(string);
-                case RfcDataType.BCD:
-                    return typeof(decimal);
-                case RfcDataType.INT2:
-                    return typeof(int);
-                case RfcDataType.INT4:
-                    return typeof(int);
-                case RfcDataType.FLOAT:
-                    return typeof(double);
-                case RfcDataType.DATE:
-                    return typeof(DateTime);
-                default:
-                    return typeof(string);
-            }
+            return _valueMapper.FromRemoteValue(type, value);
+        }
+
+        /// <summary>
+        /// 将 .NET 对象转换为 ABAP 对象
+        /// </summary>
+        /// <param name="remoteType">ABAP 对象类型</param>
+        /// <param name="value">对象</param>
+        /// <returns></returns>
+        public object ToRemoteValue(AbapDataType remoteType, object value)
+        {
+            return _valueMapper.ToRemoteValue(remoteType, value);
         }
     }
 }

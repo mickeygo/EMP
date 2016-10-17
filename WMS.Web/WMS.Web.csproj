@@ -253,6 +253,8 @@
     <Compile Include="Areas\Admin\Controllers\Warehouses\ShelfController.cs" />
     <Compile Include="Areas\Admin\Controllers\Warehouses\WarehouseController.cs" />
     <Compile Include="Areas\Admin\Controllers\Warehouses\ZoneController.cs" />
+    <Compile Include="Areas\Inbound\Controllers\ReceivingController.cs" />
+    <Compile Include="Areas\Inbound\InboundAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
@@ -261,6 +263,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\images\logo.png" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\site.custom.css" />
     <Content Include="Content\css\select2.css" />
@@ -578,8 +581,16 @@
     <Content Include="Areas\Admin\Views\Zone\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Shelf\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Location\Create.cshtml" />
+    <Content Include="Areas\Inbound\Views\web.config" />
+    <Content Include="Areas\Inbound\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Inbound\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Inbound\Views\Receiving\Index.cshtml" />
     <None Include="Properties\PublishProfiles\Wms.Debug.pubxml" />
     <None Include="Properties\PublishProfiles\Wms.Release.pubxml" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
     <None Include="Scripts\jquery-3.1.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.1.0.js" />
     <Content Include="Scripts\jquery-3.1.0.min.js" />
@@ -602,6 +613,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\noty\jquery.noty.js" />
     <Content Include="Scripts\noty\layouts\bottom.js" />
@@ -674,6 +686,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Areas\Inbound\Models\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DotPlatform.AutoMapper\DotPlatform.AutoMapper.csproj">

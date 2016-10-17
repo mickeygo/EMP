@@ -80,7 +80,6 @@ namespace DotPlatform.Plugin.SAP.Rfc
                 if (!rfcConfigParameters.ContainsKey(key))
                     rfcConfigParameters.Add(key, value);
             }
-
             return rfcConfigParameters;
         }
 
