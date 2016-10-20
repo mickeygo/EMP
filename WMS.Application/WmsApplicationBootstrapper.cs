@@ -16,6 +16,7 @@ namespace WMS.Application
 
             // Warehouse
             IocManager.Instance.Register<IWarehouseAppService, WarehouseAppService>();
+            IocManager.Instance.Register<IInboundAppService, InboundAppService>();
 
             #endregion
 

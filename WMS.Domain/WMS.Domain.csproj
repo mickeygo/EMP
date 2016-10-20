@@ -41,6 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EventHandlers\Inbounds\StockInboundedEventHandler.cs" />
+    <Compile Include="EventHandlers\Inbounds\StockInCreatedEventHandler.cs" />
+    <Compile Include="Events\Inbounds\StockInboundedEvent.cs" />
+    <Compile Include="Events\Inbounds\StockInCreatedEvent.cs" />
     <Compile Include="EventHandlers\Warehouses\LocationCreatedEventHandler.cs" />
     <Compile Include="EventHandlers\Warehouses\ShelfCreatedEventHandler.cs" />
     <Compile Include="EventHandlers\Warehouses\WarehouseCreatedEventHandler.cs" />
@@ -49,13 +53,18 @@
     <Compile Include="Events\Warehouses\ShelfCreatedEvent.cs" />
     <Compile Include="Events\Warehouses\WarehouseCreatedEvent.cs" />
     <Compile Include="Events\Warehouses\ZoneCreatedEvent.cs" />
+    <Compile Include="Models\Inbounds\StockIn.cs" />
+    <Compile Include="Models\Inbounds\StockInLine.cs" />
+    <Compile Include="Models\Inbounds\StockInStatus.cs" />
     <Compile Include="Models\Warehouses\Location.cs" />
     <Compile Include="Models\Warehouses\Shelf.cs" />
     <Compile Include="Models\Warehouses\TickSetting.cs" />
     <Compile Include="Models\Warehouses\Warehouse.cs" />
     <Compile Include="Models\Warehouses\Zone.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QueryRepositories\IStockInQueryRepository.cs" />
     <Compile Include="Repositories\ILocationRepository.cs" />
+    <Compile Include="Repositories\IStockInRepository.cs" />
     <Compile Include="Repositories\IWarehouseRepository.cs" />
     <Compile Include="Repositories\IZoneRepository.cs" />
     <Compile Include="QueryRepositories\ILocationQueryRepository.cs" />
@@ -66,7 +75,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Factories\" />
-    <Folder Include="Models\Inbounds\" />
     <Folder Include="Sevices\" />
     <Folder Include="Specifications\" />
   </ItemGroup>

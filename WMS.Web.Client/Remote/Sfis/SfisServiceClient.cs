@@ -1,5 +1,5 @@
-﻿using DotPlatform.Extensions;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using DotPlatform.Extensions;
 using WMS.Web.Client.Models;
 using WMS.Web.Client.SFISEtlService;
 
@@ -16,7 +16,7 @@ namespace WMS.Web.Client.Remote.Sfis
         /// <param name="inhouseNo">单据名称</param>
         /// <param name="plant">工厂</param>
         /// <returns></returns>
-        public List<QryData> GetSfisRv<T>(string inhouseNo, string plant)
+        public bool GetSfisRv(string inhouseNo, string plant, out List<InhouseGoods> result, out string errorMessage)
         {
             var param = "<root>";
             param += "      <METHOD ID='ETLSO.QryFQCInhouseMasterSN001'/>";
@@ -27,10 +27,24 @@ namespace WMS.Web.Client.Remote.Sfis
 
             var client = new ETL_ServiceSoapClient();
             var ds = client.SFIS_Rv(param, plant);
-            if (ds == null)
-                return null;
+            var dataTable = ds.Tables[0];
 
-            return ds.Tables[0].ToList<QryData>();
+            if (dataTable.TableName == "QryData")
+            {
+                errorMessage = string.Empty;
+                result = dataTable.ToList<InhouseGoods>();
+
+                return true;
+            }
+
+            if (dataTable.TableName == "Message")
+                errorMessage = dataTable.Rows[0][0].ToString();
+            else
+                errorMessage = "There are not any data.";
+
+            result = null;
+
+            return false;
         }
     }
 }

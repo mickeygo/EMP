@@ -40,8 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ImplServices\InboundAppService.cs" />
     <Compile Include="ImplServices\WarehouseAppService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\IInboundAppService.cs" />
     <Compile Include="Services\IWarehouseAppService.cs" />
     <Compile Include="WmsApplicationBootstrapper.cs" />
   </ItemGroup>

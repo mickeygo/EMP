@@ -40,6 +40,8 @@ namespace WMS.Web
         private static Bundle RegisterAddonCss()
         {
             return new StyleBundle("~/content/addon").Include(
+                "~/Content/jquery-ui-{version}.custom.css",  // ~/Content/themes/base/jquery.ui.all.css
+                "~/Content/jquery-ui-timepicker-addon.css",
                 "~/Content/css/select2.css");
         }
 
@@ -74,6 +76,8 @@ namespace WMS.Web
         private static Bundle RegisterAddonJs()
         {
             return new ScriptBundle("~/bundles/addon").Include(
+                "~/Scripts/jquery-ui-{version}.js",
+                 "~/Scripts/jquery-ui-timepicker-addon.js",
                 "~/Scripts/DataTables/jquery.dataTables.js",
                 "~/Scripts/jquery.form.js",
                 "~/Scripts/jquery.cookie.js",

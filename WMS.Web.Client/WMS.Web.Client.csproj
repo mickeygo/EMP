@@ -80,7 +80,7 @@
     <Compile Include="External\Ez\EzUserRepository.cs" />
     <Compile Include="Membership\UserInfo.cs" />
     <Compile Include="Membership\UserValidator .cs" />
-    <Compile Include="Models\QryData.cs" />
+    <Compile Include="Models\InhouseGoods.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Remote\Sfis\SfisServiceClient.cs" />
     <Compile Include="Service References\MembershipWebService\Reference.cs">

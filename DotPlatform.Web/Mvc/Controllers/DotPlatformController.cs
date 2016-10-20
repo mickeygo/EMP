@@ -88,7 +88,7 @@ namespace DotPlatform.Web.Mvc.Controllers
         /// <returns>Json</returns>
         public JsonResult Json(bool isSuccess, string message = null)
         {
-            return Json(isSuccess, null, message, JsonRequestBehavior.DenyGet);
+            return Json(isSuccess, null, message, JsonRequestBehavior.AllowGet);
         }
 
         /// <summary>
@@ -100,7 +100,7 @@ namespace DotPlatform.Web.Mvc.Controllers
         /// <returns>Json</returns>
         public JsonResult Json(bool isSuccess, object data, string message = null)
         {
-            return Json(isSuccess, data, message, JsonRequestBehavior.DenyGet);
+            return Json(isSuccess, data, message, JsonRequestBehavior.AllowGet);
         }
 
         /// <summary>

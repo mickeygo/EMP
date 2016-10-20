@@ -1,4 +1,4 @@
-﻿@{ 
+﻿@{
     ViewBag.Title = "Receiving";
 }
 
@@ -6,28 +6,103 @@
     <script>
         // SN 页面初始化自动聚焦
         $(function () {
-            $("[name=sn]").focus();
+            Receiving.focus();
         });
 
         $(document).keyup(function (evnet) {
             if (evnet.keyCode == 13) {
-                
+                Receiving.getInboundInfo();
             }
         });
 
-        var Receiving = {
-            element: "",
-            click: function () {
+        $("#submit").click(function () {
+            if (!Receiving.checkInboundDate())
+                return false;
 
+            Receiving.receive();
+            Receiving.focus();
+        });
+
+        var Receiving = {
+            inputElement: "#QRCode",
+            inputDateElement: "#inboundDate",
+            getInboundInfo: function () {
+                var qrcode = $(this.inputElement).val();
+                var url = '@Url.Action("GetInboundInfo", "Receiving", new { area = "Inbound" })';
+                $.getJSON(url, { qrcode }, function (data) {
+                    if (!data.status) {
+                        noty({ text: data.message, type: "error" });
+                        return false;
+                    }
+
+                    Receiving.showInfo(data);
+                });
+            },
+            receive: function () {
+                var qrcode = $(this.inputElement).val();
+                var inboundDate = $(this.inputDateElement).val();
+                var url = '@Url.Action("Receive", "Receiving", new { area = "Inbound" })';
+                $.post(url, { qrcode, inboundDate }, function (data) {
+                    if (!data.status) {
+                        noty({ text: data.message, type: "error" });
+                        return false;
+                    }
+
+                    Receiving.clearInfo();
+                });
+            },
+            showInfo: function (data) {
+                ReactDOM.render(
+                    React.createElement(Inbound, data),
+                    document.getElementById('inbound')
+                );
+            },
+            clearInfo: function () {
+
+            },
+            checkInboundDate: function () {
+                if ($.trim($(this.inputDateElement).val()) == "") {
+                    noty({ text: "Plese input the inbound date.", type: "error" });
+                    return false;
+                }
+                return true;
+            },
+            focus: function () {
+                $(this.inputElement).val("");
+                $(this.inputElement).focus();
             }
         };
     </script>
 }
 
-@Html.Navgation("Inbound", "Receiving")
+@Html.Navgation("Inbound", "Intelligent Receiving")
 
-<div>
-    <div>
-        <input name="sn" />
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="container-fluid">
+            <div class="row">
+                @*<div class="col-md-1">QR Code:</div>
+                    <div class="col-md-10">
+                        <input name="qr_code" />
+                    </div>*@
+                <div class="input-group input-group-sm">
+                    <span class="input-group-addon">@@</span>
+                    <input type="text" id="QRCode" class="form-control" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-group input-group-sm">
+                    <span class="input-group-addon">@@</span>
+                    <input type="text" id="inboundDate" class="form-control" data-format="date" readonly="readonly" />
+                </div>
+            </div>
+        </div>
+        <input type="button" id="submit" value="Submit" />
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div id="inbound"></div>
     </div>
 </div>

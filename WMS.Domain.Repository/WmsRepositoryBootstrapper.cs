@@ -19,7 +19,7 @@ namespace WMS.Domain.Repository
 
             #region Repositry
 
-            // Warehouse Repositry
+            // Warehouse Repository
             IocManager.Instance.Register<IWarehouseQueryRepository, WarehouseQueryRepository>();
             IocManager.Instance.Register<IWarehouseRepository, WarehouseRepository>();
             IocManager.Instance.Register<IZoneQueryRepository, ZoneQueryRepository>();
@@ -28,6 +28,10 @@ namespace WMS.Domain.Repository
             IocManager.Instance.Register<IShelfRepository, ShelfRepository>();
             IocManager.Instance.Register<ILocationQueryRepository, LocationQueryRepository>();
             IocManager.Instance.Register<ILocationRepository, LocationRepository>();
+
+            // StockIn Repository
+            IocManager.Instance.Register<IStockInRepository, StockInRepository>();
+            IocManager.Instance.Register<IStockInQueryRepository, StockInQueryRepository>();
 
             #endregion
 

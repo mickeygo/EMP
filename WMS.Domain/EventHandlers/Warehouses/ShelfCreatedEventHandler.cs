@@ -1,5 +1,4 @@
-﻿using System;
-using DotPlatform.Events;
+﻿using DotPlatform.Events;
 using WMS.Domain.Events.Warehouses;
 using DotPlatform.Domain.Uow;
 using WMS.Domain.Repositories;

@@ -50,16 +50,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ADO\EzRepository.cs" />
+    <Compile Include="EntityFramework\ModelConfigurations\Inbounds\StockInEntityTypeConfiguration.cs" />
+    <Compile Include="EntityFramework\ModelConfigurations\Inbounds\StockInLineEntityTypeConfiguration.cs" />
     <Compile Include="EntityFramework\ModelConfigurations\Warehouses\LocationEntityTypeConfiguration.cs" />
     <Compile Include="EntityFramework\ModelConfigurations\Warehouses\ShelfEntityTypeConfiguration.cs" />
     <Compile Include="EntityFramework\ModelConfigurations\Warehouses\WarehouseEntityTypeConfiguration.cs" />
     <Compile Include="EntityFramework\ModelConfigurations\Warehouses\ZoneEntityTypeConfiguration.cs" />
+    <Compile Include="EntityFramework\QueryRepositories\StockInQueryRepository.cs" />
     <Compile Include="EntityFramework\QueryRepositories\LocationQueryRepository.cs" />
     <Compile Include="EntityFramework\QueryRepositories\ShelfQueryRepository.cs" />
     <Compile Include="EntityFramework\QueryRepositories\WarehouseQueryRepository.cs" />
     <Compile Include="EntityFramework\QueryRepositories\ZoneQueryRepository.cs" />
     <Compile Include="EntityFramework\Repositories\LocationRepository.cs" />
     <Compile Include="EntityFramework\Repositories\ShelfRepository.cs" />
+    <Compile Include="EntityFramework\Repositories\StockInRepository.cs" />
     <Compile Include="EntityFramework\Repositories\WarehouseRepository.cs" />
     <Compile Include="EntityFramework\Repositories\ZoneRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
