@@ -6,7 +6,7 @@
     <script>
         // SN 页面初始化自动聚焦
         $(function () {
-            Receiving.focus();
+            Receiving.init();
         });
 
         $(document).keyup(function (evnet) {
@@ -20,12 +20,18 @@
                 return false;
 
             Receiving.receive();
+            Receiving.clearInfo();
             Receiving.focus();
         });
 
         var Receiving = {
             inputElement: "#QRCode",
             inputDateElement: "#inboundDate",
+            detailNodeId: "#detailInfo",
+            init: function() {
+                $(this.inputElement).focus();
+                $(this.detailNodeId).hide();
+            },
             getInboundInfo: function () {
                 var qrcode = $(this.inputElement).val();
                 var url = '@Url.Action("GetInboundInfo", "Receiving", new { area = "Inbound" })';
@@ -48,17 +54,23 @@
                         return false;
                     }
 
+                    noty({ text: "Receive material successfully, SAP Certificate: " + data.message, type: "success" });
                     Receiving.clearInfo();
                 });
             },
             showInfo: function (data) {
+                $(this.detailNodeId).show();
+
                 ReactDOM.render(
                     React.createElement(Inbound, data),
                     document.getElementById('inbound')
                 );
             },
             clearInfo: function () {
+                $(this.inputElement).val("");
+                $(this.inputDateElement).val("");
 
+                $(this.detailNodeId).hide();
             },
             checkInboundDate: function () {
                 if ($.trim($(this.inputDateElement).val()) == "") {
@@ -79,29 +91,29 @@
 
 <div class="panel panel-default">
     <div class="panel-body">
-        <div class="container-fluid">
-            <div class="row">
-                @*<div class="col-md-1">QR Code:</div>
-                    <div class="col-md-10">
-                        <input name="qr_code" />
-                    </div>*@
-                <div class="input-group input-group-sm">
-                    <span class="input-group-addon">@@</span>
-                    <input type="text" id="QRCode" class="form-control" />
+        <div class="form-horizontal" role="form">
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">QR Code:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="QRCode" placeholder="QR Code ...">
                 </div>
             </div>
-            <div class="row">
-                <div class="input-group input-group-sm">
-                    <span class="input-group-addon">@@</span>
-                    <input type="text" id="inboundDate" class="form-control" data-format="date" readonly="readonly" />
+            <div class="form-group">
+                <label for="inputPassword3" class="col-sm-2 control-label">Inbound Date:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="inboundDate" data-format="date" readonly="readonly" placeholder="Posted Date ...">
                 </div>
             </div>
         </div>
-        <input type="button" id="submit" value="Submit" />
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <input type="button" id="submit" class="btn btn-primary" value="Submit" />
+            </div>
+        </div>
     </div>
 </div>
 
-<div class="panel panel-default">
+<div id="detailInfo" class="panel panel-default">
     <div class="panel-body">
         <div id="inbound"></div>
     </div>

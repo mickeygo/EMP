@@ -1,5 +1,4 @@
-﻿using System;
-using DotPlatform.Events;
+﻿using DotPlatform.Events;
 using WMS.Domain.Events.Inbounds;
 using DotPlatform.Domain.Uow;
 using WMS.Domain.Repositories;
@@ -9,19 +8,19 @@ using DotPlatform.Domain.Entities.Extensions;
 namespace WMS.Domain.EventHandlers.Inbounds
 {
     /// <summary>
-    /// 入库单入库事件处理者
+    /// 入库单过账事件处理者
     /// </summary>
-    public class StockInboundedEventHandler : IEventHandler<StockInboundedEvent>
+    public class StockInPostedEventHandler : IEventHandler<StockInPostedEvent>
     {
         private readonly IStockInRepository _stockInRepository;
 
-        public StockInboundedEventHandler(IStockInRepository stockInRepository)
+        public StockInPostedEventHandler(IStockInRepository stockInRepository)
         {
             _stockInRepository = stockInRepository;
         }
 
         [UnitOfWork]
-        public virtual void Handle(StockInboundedEvent e)
+        public virtual void Handle(StockInPostedEvent e)
         {
             var stockIn = e.Source.Cast<StockIn>();
             _stockInRepository.Update(stockIn);

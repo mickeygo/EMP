@@ -41,9 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EventHandlers\Inbounds\StockInboundedEventHandler.cs" />
+    <Compile Include="EventHandlers\Inbounds\StockInPostedEventHandler.cs" />
     <Compile Include="EventHandlers\Inbounds\StockInCreatedEventHandler.cs" />
-    <Compile Include="Events\Inbounds\StockInboundedEvent.cs" />
+    <Compile Include="Events\Inbounds\StockInPostedEvent.cs" />
     <Compile Include="Events\Inbounds\StockInCreatedEvent.cs" />
     <Compile Include="EventHandlers\Warehouses\LocationCreatedEventHandler.cs" />
     <Compile Include="EventHandlers\Warehouses\ShelfCreatedEventHandler.cs" />

@@ -7,6 +7,7 @@ using WMS.DataTransferObject.Dtos;
 using WMS.Domain.Events.Inbounds;
 using WMS.Domain.Models.Inbounds;
 using WMS.Domain.QueryRepositories;
+using DotPlatform.AutoMapper;
 
 namespace WMS.Application.ImplServices
 {
@@ -25,6 +26,16 @@ namespace WMS.Application.ImplServices
             _stockInQueryRepository = stockInQueryRepository;
         }
 
+        public StockInDto GetStockIn(string docNo)
+        {
+            return _stockInQueryRepository.Get(docNo).MapTo<StockInDto>();
+        }
+
+        public bool ExistStockIn(string docNo)
+        {
+            return _stockInQueryRepository.Count(s => s.DocNo == docNo) > 0;
+        }
+
         public void CreateStockIn(StockInDto model)
         {
             var stockIn = new StockIn(model.DocNo, model.Plant, model.WipNo, model.PartNumber, model.Quantity,
@@ -35,12 +46,13 @@ namespace WMS.Application.ImplServices
             _eventBus.Publish(new StockInCreatedEvent(stockIn));
         }
 
-        public void Inbound(Guid docId, string inboundBy, DateTime inboundDate)
+        public void Post(Guid docId, string postedBy, DateTime postedDate, string certificate, string ackMessage)
         {
             var stockIn = _stockInQueryRepository.Get(docId);
-            stockIn.Inbound(inboundBy, inboundDate);
+            stockIn.Post(postedBy, postedDate);
+            stockIn.Ack(certificate, ackMessage);
 
-            _eventBus.Publish(new StockInboundedEvent(stockIn));
+            _eventBus.Publish(new StockInPostedEvent(stockIn));
         }
 
         protected override void Close()

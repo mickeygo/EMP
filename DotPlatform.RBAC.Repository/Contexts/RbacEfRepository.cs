@@ -15,7 +15,7 @@ namespace DotPlatform.RBAC.Repository
     {
         protected RbacEfRepository(ISimpleDbContextProvider<RbacEfDbContext> dbContextProvider) : base(dbContextProvider)
         {
-            
+             
         }
 
         /// <summary>

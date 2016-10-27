@@ -7,6 +7,7 @@ using WMS.Web.Client.Remote.Sfis;
 using WMS.Web.Client.Models;
 using WMS.DataTransferObject.Dtos;
 using WMS.Application.Services;
+using WMS.Web.Client.Remote.Sap;
 
 namespace WMS.Web.Areas.Inbound.Controllers
 {
@@ -19,8 +20,9 @@ namespace WMS.Web.Areas.Inbound.Controllers
             return View();
         }
 
+        // 收料
         [HttpPost]
-        public JsonResult Receive(string qrcode, DateTime inboundDate)
+        public JsonResult Receive(string qrcode, DateTime inboundDate, string remark)
         {
             try
             {
@@ -28,21 +30,40 @@ namespace WMS.Web.Areas.Inbound.Controllers
                 if (!goodsResult.Item2)
                     return Json(false, goodsResult.Item3);
 
+                var stockIn = goodsResult.Item1;
+                stockIn.Applicant = User.Identity.Name;
+                stockIn.Remark = remark;
+                
+                // 收料
                 using (var service = IocResolver.Resolve<IInboundAppService>())
                 {
-                    var stockIn = goodsResult.Item1;
-                    stockIn.Applicant = User.Identity.Name;
-                    stockIn.InboundBy = User.Identity.Name;
-                    stockIn.InboundDate = inboundDate;
+                    if (service.ExistStockIn(stockIn.DocNo))
+                        return Json(false, $"The inhouse no [{stockIn.DocNo}] already exists.");
 
                     service.CreateStockIn(stockIn);
                 }
 
-                return Json(true);
+                // 过账
+                string meterialDoc, errorMessage;
+                if (SapClient.Post(stockIn.DocNo, stockIn.WipNo, stockIn.Plant, stockIn.PartNumber, stockIn.Quantity,
+                    stockIn.DestPlant, stockIn.DestLocation, true, inboundDate, out meterialDoc, out errorMessage))
+                {
+                    using (var service = IocResolver.Resolve<IInboundAppService>())
+                    {
+                        var model = service.GetStockIn(stockIn.DocNo);
+                        service.Post(model.Id, User.Identity.Name, inboundDate, meterialDoc, errorMessage);
+                    }
+                }
+                else
+                {
+                    return Json(false, errorMessage);
+                }
+
+                return Json(true, meterialDoc);
             }
             catch
             {
-                return Json(false);
+                return Json(false, "Receive the stockin failure.");
             }
         }
 

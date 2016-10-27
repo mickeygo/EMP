@@ -88,6 +88,7 @@
     <Compile Include="SAP\Rfc\Exceptions\RfcFunctionParamtersException.cs" />
     <Compile Include="SAP\Rfc\Exceptions\RfcMappingException.cs" />
     <Compile Include="SAP\Rfc\Extensions\IRfcFunctionExtensions.cs" />
+    <Compile Include="SAP\Rfc\Exceptions\UnknownRfcParameterException.cs" />
     <Compile Include="SAP\Rfc\IRfcCommand.cs" />
     <Compile Include="SAP\Rfc\IRfcConnection.cs" />
     <Compile Include="SAP\Rfc\IRfcProvider.cs" />

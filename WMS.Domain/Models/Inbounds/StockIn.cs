@@ -45,13 +45,13 @@ namespace WMS.Domain.Models.Inbounds
         public int Quantity { get; private set; }
 
         /// <summary>
-        /// 目的工厂
+        /// 收料工厂
         /// </summary>
         [StringLength(4)]
         public string DestPlant { get; private set; }
 
         /// <summary>
-        /// 目的库位
+        /// 收料库位
         /// </summary>
         [StringLength(4)]
         public string DestLocation { get; private set; }
@@ -93,15 +93,15 @@ namespace WMS.Domain.Models.Inbounds
         public DateTime ApplicantDate { get; private set; }
 
         /// <summary>
-        /// 单据入库操作人
+        /// 过账人
         /// </summary>
         [StringLength(80)]
-        public string InboundBy { get; private set; }
+        public string PostedBy { get; private set; }
 
         /// <summary>
-        /// 单据入库时间
+        /// 过账日期
         /// </summary>
-        public DateTime? InboundDate { get; private set; }
+        public DateTime? PostedDate { get; private set; }
 
         /// <summary>
         /// 入库单单据状态
@@ -197,23 +197,16 @@ namespace WMS.Domain.Models.Inbounds
         }
 
         /// <summary>
-        /// 单据入库
+        /// 单据过账(入库)
         /// </summary>
-        /// <param name="inboundBy">入库确定人</param>
-        /// <param name="inStoreDate">入库时间</param>
-        public void Inbound(string inboundBy, DateTime inboundDate)
+        /// <param name="postedBy">过账人</param>
+        /// <param name="postedDate">过账时间</param>
+        public void Post(string postedBy, DateTime postedDate)
         {
-            InboundBy = inboundBy;
-            InboundDate = inboundDate;
-            Status = StockInStatus.InStore;
-        }
+            PostedBy = postedBy;
+            PostedDate = postedDate;
 
-        /// <summary>
-        /// 关闭单据
-        /// </summary>
-        public void CloseOrder()
-        {
-            Status = StockInStatus.Closed;
+            Status = StockInStatus.Posted;
         }
 
         /// <summary>
@@ -226,6 +219,14 @@ namespace WMS.Domain.Models.Inbounds
         {
             Certificate = certificate;
             AckMessage = ackMessage;
+        }
+
+        /// <summary>
+        /// 关闭单据
+        /// </summary>
+        public void CloseOrder()
+        {
+            Status = StockInStatus.Closed;
         }
 
         #endregion

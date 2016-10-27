@@ -15,9 +15,9 @@ namespace WMS.DataTransferObject.Dtos
         Opened = 1,
 
         /// <summary>
-        /// 已入库
+        /// 已过账
         /// </summary>
-        InStore = 2,
+        Posted = 2,
 
         /// <summary>
         /// 单据已关闭

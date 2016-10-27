@@ -115,6 +115,9 @@ namespace DotPlatform.Plugin.SAP.Rfc
             if (remoteType == AbapDataType.TIME)
                 return AbapDateTime.ToTimeString((DateTime)value);
 
+            if (valueType.Equals(typeof(DateTime)))
+                return AbapDateTime.ToDateString((DateTime)value);
+
             return value;
         }
 

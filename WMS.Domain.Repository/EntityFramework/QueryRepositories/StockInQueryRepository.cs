@@ -11,6 +11,7 @@ namespace WMS.Domain.Repository.EntityFramework.QueryRepositories
     {
         public StockInQueryRepository(ISimpleDbContextProvider<WmsQueryEfDbContext> dbContextProvider) : base(dbContextProvider)
         {
+            Tracking = false;
         }
 
         public StockIn Get(string no)

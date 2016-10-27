@@ -21,6 +21,6 @@ namespace DotPlatform.Plugin.SAP.Rfc
         /// <typeparam name="T">结果类型</typeparam>
         /// <param name="name">值名称</param>
         /// <returns></returns>
-        IEnumerable<T> GetList<T>(string name);
+        List<T> GetList<T>(string name);
     }
 }

@@ -43,13 +43,13 @@ namespace WMS.DataTransferObject.Dtos
         public int Quantity { get; set; }
 
         /// <summary>
-        /// 目的工厂
+        /// 收料工厂
         /// </summary>
         [StringLength(4)]
         public string DestPlant { get; set; }
 
         /// <summary>
-        /// 目的库位
+        /// 收料库位
         /// </summary>
         [StringLength(4)]
         public string DestLocation { get; set; }
@@ -90,15 +90,15 @@ namespace WMS.DataTransferObject.Dtos
         public DateTime ApplicantDate { get; set; }
 
         /// <summary>
-        /// 单据入库操作人
+        /// 过账人
         /// </summary>
         [StringLength(80)]
-        public string InboundBy { get; set; }
+        public string PostedBy { get; set; }
 
         /// <summary>
-        /// 单据入库时间
+        /// 过账日期
         /// </summary>
-        public DateTime? InboundDate { get; set; }
+        public DateTime? PostedDate { get; set; }
 
         /// <summary>
         /// 入库单单据状态

@@ -4,11 +4,11 @@ using DotPlatform.Domain.Entities;
 namespace WMS.Domain.Events.Inbounds
 {
     /// <summary>
-    /// 入库单入库事件
+    /// 入库单过账事件
     /// </summary>
-    public class StockInboundedEvent : DomainEvent
+    public class StockInPostedEvent : DomainEvent
     {
-        public StockInboundedEvent(IEntity entity) : base(entity)
+        public StockInPostedEvent(IEntity entity) : base(entity)
         {
         }
     }

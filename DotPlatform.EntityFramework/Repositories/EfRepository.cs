@@ -25,6 +25,11 @@ namespace DotPlatform.EntityFramework.Repositories
         private bool isDisposed;
 
         /// <summary>
+        /// 是否追踪对象, 默认为 true.
+        /// </summary>
+        public bool Tracking { get; protected set; } = true;
+
+        /// <summary>
         /// 获取Db上下文对象
         /// </summary>
         public virtual TDbContext Context
@@ -53,6 +58,9 @@ namespace DotPlatform.EntityFramework.Repositories
 
         public override IQueryable<TAggregateRoot> GetAll()
         {
+            if (!Tracking)
+                return AggregateRootContext.AsNoTracking();
+
             return AggregateRootContext;
         }
 

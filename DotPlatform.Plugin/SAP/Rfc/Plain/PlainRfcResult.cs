@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using SAP.Middleware.Connector;
 
 namespace DotPlatform.Plugin.SAP.Rfc.Plain
@@ -10,14 +9,14 @@ namespace DotPlatform.Plugin.SAP.Rfc.Plain
     public class PlainRfcResult : IRfcResult
     {
         private readonly IRfcFunction _function;
-        private readonly PlainRfcStructureMapper _structureMapper;
+        private readonly RfcStructureMapper _structureMapper;
 
         /// <summary>
         /// 初始化一个新的<see cref="PlainRfcResult"/>实例
         /// </summary>
         /// <param name="function">Rfc 函数</param>
         /// <param name="structureMapper">基于 Plain 的数据结构映射器</param>
-        public PlainRfcResult(IRfcFunction function, PlainRfcStructureMapper structureMapper)
+        public PlainRfcResult(IRfcFunction function, RfcStructureMapper structureMapper)
         {
             _function = function;
             _structureMapper = structureMapper;
@@ -32,7 +31,7 @@ namespace DotPlatform.Plugin.SAP.Rfc.Plain
             return _structureMapper.FromRemoteValue<T>(value);  // 单值
         }
 
-        public IEnumerable<T> GetList<T>(string name)
+        public List<T> GetList<T>(string name)
         {
             var table = _function.GetTable(name);
             var returnTable = new List<T>(table.RowCount);

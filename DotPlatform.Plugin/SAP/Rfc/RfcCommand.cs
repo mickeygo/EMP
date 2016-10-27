@@ -2,6 +2,7 @@
 using SAP.Middleware.Connector;
 using DotPlatform.Plugin.SAP.Rfc.Exceptions;
 using DotPlatform.Utils;
+using DotPlatform.Plugin.SAP.Rfc.Extensions;
 
 namespace DotPlatform.Plugin.SAP.Rfc
 {
@@ -11,6 +12,11 @@ namespace DotPlatform.Plugin.SAP.Rfc
     public abstract class RfcCommand : IRfcCommand
     {
         private readonly IRfcProvider _rfcProvider;
+
+        /// <summary>
+        /// 结构映射器
+        /// </summary>
+        public RfcStructureMapper StructureMapper { get; protected set; }
 
         protected RfcCommand(IRfcConnection connction)
         {
@@ -33,50 +39,70 @@ namespace DotPlatform.Plugin.SAP.Rfc
 
         #region Private Methods
 
-        private void SetFunctionParamters(IRfcFunction function, object paramters)
+        private void SetFunctionParamters(IRfcFunction function, object parameters)
         {
-            var paramType = paramters.GetType();
+            var paramType = parameters.GetType();
 
             // IDictionary<,> 类型 或 匿名类型（匿名类型属于泛型）
             if (paramType.IsGenericType)
             {
                 if (typeof(IDictionary<,>).IsAssignableFrom(paramType.GetGenericTypeDefinition()))
                 {
-                    var param = paramters as IDictionary<string, string>;
-                    if (param != null)
+                    if (parameters is IDictionary<string, string>)
                     {
-                        foreach (var p in param)
-                        {
-                            function.SetValue(p.Key, p.Value);
-                        }
-
+                        var param = parameters as IDictionary<string, string>;
+                        SetFunctionValue(function, (IDictionary<string, object>)param);
                         return;
                     }
 
-                    var param2 = paramters as IDictionary<string, object>;
-                    if (param2 != null)
+                    if (parameters is IDictionary<string, object>)
                     {
-                        foreach (var p in param2)
-                        {
-                            function.SetValue(p.Key, p.Value);
-                        }
-
+                        var param = parameters as IDictionary<string, object>;
+                        SetFunctionValue(function, param);
                         return;
                     }
 
-                    throw new RfcFunctionParamtersException("The function paramters must be an IDictionary or an Anonymous object.");
+                    throw new RfcFunctionParamtersException("The function parameters must be an IDictionary or an anonymous object.");
                 }
 
                 // 匿名类型
-                foreach (var param in ReflectionHelper.GetNameValues(paramters))
-                {
-                    function.SetValue(param.Key, param.Value);
-                }
+                var m_parameters = ReflectionHelper.GetNameValues(parameters);
+                SetFunctionValue(function, m_parameters);
 
                 return;
             }
 
-            throw new RfcFunctionParamtersException("The function paramters must be an IDictionary or an Anonymous object.");
+            throw new RfcFunctionParamtersException("The function paramters must be an IDictionary or an anonymous object.");
+        }
+
+        private void SetFunctionValue(IRfcFunction function, IDictionary<string, object> parameters)
+        {
+            foreach (var parameter in parameters)
+            {
+                var index = function.Metadata.TryNameToIndex(parameter.Key);
+                if (index == -1)
+                    throw new UnknownRfcParameterException($"The Rfc function does not include the parameter '{parameter.Key}'");
+
+                var pType = function.Metadata[index].DataType;
+
+                switch (pType)
+                {
+                    case RfcDataType.STRUCTURE:
+                        RfcStructureMetadata structureMetadata = function.GetStructure(index).Metadata;
+                        IRfcStructure structure = StructureMapper.CreateStructure(structureMetadata, parameter.Value);
+                        function.SetValue(parameter.Key, structure);
+                        break;
+                    case RfcDataType.TABLE:
+                        RfcTableMetadata tableMetadata = function.GetTable(index).Metadata;
+                        IRfcTable table = StructureMapper.CreateTable(tableMetadata, parameter.Value);
+                        function.SetValue(parameter.Key, table);
+                        break;
+                    default:
+                        object formattedValue = StructureMapper.ToRemoteValue(function.Metadata[index].GetAbapDataType(), parameter.Value);
+                        function.SetValue(parameter.Key, formattedValue);
+                        break;
+                }
+            }
         }
 
         #endregion

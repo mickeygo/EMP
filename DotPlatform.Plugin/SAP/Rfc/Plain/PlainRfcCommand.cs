@@ -1,5 +1,4 @@
-﻿using System;
-using SAP.Middleware.Connector;
+﻿using SAP.Middleware.Connector;
 
 namespace DotPlatform.Plugin.SAP.Rfc.Plain
 {
@@ -10,11 +9,12 @@ namespace DotPlatform.Plugin.SAP.Rfc.Plain
     {
         public PlainRfcCommand(IRfcConnection rfcConnection) : base(rfcConnection)
         {
+            StructureMapper = new PlainRfcStructureMapper(new PlainRfcValueMapper());
         }
 
         protected override IRfcResult ReturnResult(IRfcFunction function)
         {
-            return new PlainRfcResult(function, new PlainRfcStructureMapper(new PlainRfcValueMapper()));
+            return new PlainRfcResult(function, StructureMapper);
         }
     }
 }
