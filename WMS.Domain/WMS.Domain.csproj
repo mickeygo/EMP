@@ -56,6 +56,9 @@
     <Compile Include="Models\Inbounds\StockIn.cs" />
     <Compile Include="Models\Inbounds\StockInLine.cs" />
     <Compile Include="Models\Inbounds\StockInStatus.cs" />
+    <Compile Include="Models\Stocks\SnStatus.cs" />
+    <Compile Include="Models\Stocks\Stock.cs" />
+    <Compile Include="Models\Stocks\StockLine.cs" />
     <Compile Include="Models\Warehouses\Location.cs" />
     <Compile Include="Models\Warehouses\Shelf.cs" />
     <Compile Include="Models\Warehouses\TickSetting.cs" />

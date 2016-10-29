@@ -275,6 +275,7 @@
     <Compile Include="Timing\Clock.cs" />
     <Compile Include="Timing\IClockProvider.cs" />
     <Compile Include="Timing\LocalClockProvider.cs" />
+    <Compile Include="Transactions\Extenstions\IsolationLevelExtensions.cs" />
     <Compile Include="Utils\ConfigurationHelper.cs" />
     <Compile Include="Utils\PrivateReflectionDynamicObject.cs" />
     <Compile Include="Utils\ReflectionHelper.cs" />
@@ -286,7 +287,6 @@
     <Folder Include="MultiTenancy\" />
     <Folder Include="Net\Mail\Extensions\" />
     <Folder Include="RealTime\" />
-    <Folder Include="Transactions\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

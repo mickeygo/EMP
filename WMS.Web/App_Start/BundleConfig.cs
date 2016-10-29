@@ -1,4 +1,7 @@
-﻿using System.Web.Optimization;
+﻿using DotPlatform.Extensions;
+using DotPlatform.Web.Bundle;
+using System.Runtime.CompilerServices;
+using System.Web.Optimization;
 using System.Web.Optimization.React;
 
 namespace WMS.Web
@@ -100,7 +103,59 @@ namespace WMS.Web
             return new BabelBundle("~/bundles/src")
                  .IncludeDirectory("~/Js/src", "*.jsx", true);
         }
-        
+
+        #endregion
+
+        #region Metronic UI
+
+        public const string RelativePathPrefix = "~/wwwroot/lib/metronic/theme/assets/";
+
+        // Core
+
+        private static void RegisterMetronicCoreJs(BundleCollection bundles)
+        {
+            bundles.Add(new ScriptBundle("~/bundles/core").Include(
+                "~/wwwroot/lib/metronic/theme/assets/global/plugins/jquery-{version}.js",
+                "~/wwwroot/lib/metronic/theme/assets/global/plugins/bootstrap/js/bootstrap.js"
+                ));
+        }
+
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
+        private static void RegisterBundlesFromConfigFile(BundleCollection bundles)
+        {
+            var manager = new BundleManager();
+            var bundleData = manager.Resolve();
+
+            if (bundleData.Bundles.IsNullOrEmpty())
+                return;
+
+            foreach (var bundle in bundleData.Bundles)
+            {
+                Bundle mBundle = null;
+                if (bundle.Type == "script")
+                    mBundle = new ScriptBundle(bundle.VirtualPath);
+                else if (bundle.Type == "style")
+                    mBundle = new StyleBundle(bundle.VirtualPath);
+
+                if (mBundle == null)
+                    continue;
+
+                if(!bundle.VirtualFilePaths.IsNullOrEmpty())
+                    mBundle.Include(bundle.VirtualFilePaths);
+
+                if (!bundle.Directories.IsNullOrEmpty())
+                {
+                    foreach (var dir in bundle.Directories)
+                    {
+                        mBundle.IncludeDirectory(dir.DirectoryVirtualPath, dir.SearchPattern, dir.SearchSubdirectories);
+                    }
+                }
+            }
+        }
+
+        // Plugins
+
         #endregion
     }
 }

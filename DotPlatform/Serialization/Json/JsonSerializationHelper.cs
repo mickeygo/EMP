@@ -15,6 +15,7 @@ namespace DotPlatform.Serialization.Json
         /// </summary>
         /// <typeparam name="TObject">要序列化的对象类型</typeparam>
         /// <param name="obj">要序列化的对象</param>
+        /// <param name="useCamelCase">是否采用驼峰式格式序列化对象属性</param>
         /// <returns>序列化后的字符串</returns>
         public static string Serialize<TObject>(TObject obj, bool useCamelCase = false)
         {
@@ -26,6 +27,7 @@ namespace DotPlatform.Serialization.Json
         /// 将对象序列化为 Json 字符串
         /// </summary>
         /// <param name="obj">要序列化的对象</param>
+        /// <param name="useCamelCase">是否采用驼峰式格式序列化对象属性</param>
         /// <returns>序列化后的字符串</returns>
         public static string Serialize(object obj, bool useCamelCase = false)
         {

@@ -9,5 +9,10 @@ namespace WMS.Web.Controllers
         {
             return View();
         }
+
+        public ActionResult Metronic()
+        {
+            return View();
+        }
     }
 }

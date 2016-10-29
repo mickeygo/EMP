@@ -1,0 +1,35 @@
+﻿{
+    "bundles": [
+        {
+            "type": "script",
+            "virtualPath": "~/bundles/core",
+            "virtualFilePaths": [
+                "~/wwwroot/lib/metronic/theme/assets/global/plugins/jquery-{version}.js",
+                "~/wwwroot/lib/metronic/theme/assets/global/plugins/bootstrap/js/bootstrap.js"
+            ],
+            "directories": [
+                {
+                    "directoryVirtualPath": "",
+                    "searchPattern": "",
+                    "SearchSubdirectories": false
+                }
+            ]
+        },
+
+        {
+            "type": "style",
+            "virtualPath": "~/bundles/core",
+            "virtualFilePaths": [
+                "~/wwwroot/lib/metronic/theme/assets/global/plugins/jquery-{version}.js",
+                "~/wwwroot/lib/metronic/theme/assets/global/plugins/bootstrap/js/bootstrap.js"
+            ],
+            "directories": [
+                {
+                    "directoryVirtualPath": "",
+                    "searchPattern": "",
+                    "SearchSubdirectories": false
+                }
+            ]
+        }
+    ]
+}

@@ -24,18 +24,21 @@ namespace WMS.Domain.Models.Inbounds
         /// <summary>
         /// 来源工厂
         /// </summary>
+        [Required]
         [StringLength(4)]
         public string Plant { get; private set; }
 
         /// <summary>
         /// WIP 单号
         /// </summary>
+        [Required]
         [StringLength(10)]
         public string WipNo { get; private set; }
 
         /// <summary>
         /// 料号
         /// </summary>
+        [Required]
         [StringLength(20)]
         public string PartNumber { get; private set; }
 
@@ -47,12 +50,14 @@ namespace WMS.Domain.Models.Inbounds
         /// <summary>
         /// 收料工厂
         /// </summary>
+        [Required]
         [StringLength(4)]
         public string DestPlant { get; private set; }
 
         /// <summary>
         /// 收料库位
         /// </summary>
+        [Required]
         [StringLength(4)]
         public string DestLocation { get; private set; }
 

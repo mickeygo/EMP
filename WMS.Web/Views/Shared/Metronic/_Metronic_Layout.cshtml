@@ -1,0 +1,93 @@
+﻿<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
+<!-- BEGIN HEAD -->
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title - WMS</title>
+    <meta name="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="wms, advantech">
+    <meta name="author" content="advantech web team">
+
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    <link href="~/wwwroot/lib/metronic/theme/assets/global/plugins/font-google/css/font-google.css" rel="stylesheet" />
+    <link href="~/wwwroot/lib/metronic/theme/assets/global/plugins/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link href="~/wwwroot/lib/metronic/theme/assets/global/plugins/simple-line-icons/simple-line-icons.css" rel="stylesheet" />
+    <link href="~/wwwroot/lib/metronic/theme/assets/global/plugins/bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/wwwroot/lib/metronic/theme/assets/global/plugins/uniform/css/uniform.default.css" rel="stylesheet" />
+    <link href="~/wwwroot/lib/metronic/theme/assets/global/plugins/bootstrap-switch/css/bootstrap-switch.css" rel="stylesheet" />
+    <!-- END GLOBAL MANDATORY STYLES -->
+    <!-- BEGIN THEME GLOBAL STYLES -->
+    <link href="~/wwwroot/lib/metronic/theme/assets/global/css/components.css" rel="stylesheet" id="style_components" />
+    <link href="~/wwwroot/lib/metronic/theme/assets/global/css/plugins.css" rel="stylesheet" />
+    <!-- END THEME GLOBAL STYLES -->
+    <!-- BEGIN THEME LAYOUT STYLES -->
+    <link href="~/wwwroot/lib/metronic/theme/assets/layouts/layout4/css/layout.css" rel="stylesheet" />
+    <link href="~/wwwroot/lib/metronic/theme/assets/layouts/layout4/css/themes/light.css" rel="stylesheet" id="style_color" />
+    <link href="~/wwwroot/lib/metronic/theme/assets/layouts/layout4/css/custom.css" rel="stylesheet" />
+    <!-- END THEME LAYOUT STYLES -->
+
+    @RenderSection("styles", false)
+</head>
+<body class="page-container-bg-solid page-header-fixed page-sidebar-closed-hide-logo">
+    <!-- BEGIN HEADER -->
+    @Html.Partial("Metronic/_Metronic_Layout_Header")
+    <!-- END HEADER -->
+
+    <!-- BEGIN HEADER & CONTENT DIVIDER -->
+    <div class="clearfix"> </div>
+    <!-- END HEADER & CONTENT DIVIDER -->
+
+    <!-- BEGIN CONTAINER -->
+    <div class="page-container">
+        <!-- BEGIN SIDEBAR -->
+        @Html.Partial("Metronic/_Metronic_Sidebar")
+        <!-- END SIDEBAR -->
+        <!-- BEGIN CONTENT -->
+        <div class="page-content-wrapper">
+            <!-- BEGIN CONTENT BODY -->
+            <div class="page-content">
+                @RenderBody()
+            </div>
+            <!-- END CONTENT BODY -->
+        </div>
+        <!-- END CONTENT -->
+    </div>
+    <!-- BEGINEND CONTAINER -->
+
+    <!-- BEGIN FOOTER -->
+    @Html.Partial("Metronic/_Metronic_Layout_Footer")
+    <!-- END FOOTER -->
+
+    <!--[if lt IE 9]>
+    <script src="~/wwwroot/lib/metronic/theme/assets/global/plugins/respond.min.js"></script>
+    <script src="~/wwwroot/lib/metronic/theme/assets/global/plugins/excanvas.min.js"></script>
+    <![endif]-->
+
+    <!-- BEGIN CORE PLUGINS -->
+    <script src="~/wwwroot/lib/metronic/theme/assets/global/plugins/jquery-1.12.4.js"></script>
+    <script src="~/wwwroot/lib/metronic/theme/assets/global/plugins/bootstrap/js/bootstrap.js"></script>
+    <script src="~/wwwroot/lib/metronic/theme/assets/global/plugins/jquery.cookie.js"></script>
+    <script src="~/wwwroot/lib/metronic/theme/assets/global/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.js"></script>
+    <script src="~/wwwroot/lib/metronic/theme/assets/global/plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+    <script src="~/wwwroot/lib/metronic/theme/assets/global/plugins/jquery.blockui.js"></script>
+    <script src="~/wwwroot/lib/metronic/theme/assets/global/plugins/uniform/jquery.uniform.js"></script>
+    <script src="~/wwwroot/lib/metronic/theme/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.js"></script>
+    <!-- END CORE PLUGINS -->
+    <!-- BEGIN THEME GLOBAL SCRIPTS -->
+    <script src="~/wwwroot/lib/metronic/theme/assets/global/scripts/app.js"></script>
+    <!-- END THEME GLOBAL SCRIPTS -->
+    <!-- BEGIN THEME LAYOUT SCRIPTS -->
+    <script src="~/wwwroot/lib/metronic/theme/assets/layouts/layout4/scripts/layout.js"></script>
+    <script src="~/wwwroot/lib/metronic/theme/assets/layouts/layout4/scripts/demo.js"></script>
+    <script src="~/wwwroot/lib/metronic/theme/assets/layouts/global/scripts/quick-sidebar.js"></script>
+    <!-- END THEME LAYOUT SCRIPTS -->
+
+    @RenderSection("scripts", false)
+</body>
+</html>
