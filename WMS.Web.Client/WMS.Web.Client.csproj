@@ -75,6 +75,7 @@
     <Compile Include="Account\IAccount.cs" />
     <Compile Include="ClientBootstrapper.cs" />
     <Compile Include="Extensions\HtmlExtenstions\HtmlNavgationExtensions.cs" />
+    <Compile Include="Extensions\HtmlExtenstions\HtmlUserIdentityExtensions.cs" />
     <Compile Include="External\Ez\EzRepository.cs" />
     <Compile Include="External\Ez\EzUser.cs" />
     <Compile Include="External\Ez\EzUserRepository.cs" />

@@ -25,6 +25,14 @@ namespace WMS.Web.Client
             return CreateNavgation(helper, "Home", navs);
         }
 
+        public static IHtmlString Navgation2(this HtmlHelper helper, params string[] navgations)
+        {
+            var navs = navgations != null
+             ? navgations.ToDictionary(k => k, v => "")
+             : new Dictionary<string, string>();
+            return CreateNavgation2(helper, "Home", navs);
+        }
+
         /// <summary>
         /// 导航标签
         /// </summary>
@@ -34,6 +42,11 @@ namespace WMS.Web.Client
         public static IHtmlString Navgation(this HtmlHelper helper, Dictionary<string, string> navgations)
         {
             return CreateNavgation(helper, "Home", navgations);
+        }
+
+        public static IHtmlString Navgation2(this HtmlHelper helper, Dictionary<string, string> navgations)
+        {
+            return CreateNavgation2(helper, "Home", navgations);
         }
 
         private static IHtmlString CreateNavgation(this HtmlHelper helper, string home, Dictionary<string, string> navgations)
@@ -69,6 +82,61 @@ namespace WMS.Web.Client
             ulTag.InnerHtml = itemBuilder.ToString();
 
             TagBuilder menuTag = new TagBuilder("div");
+            menuTag.InnerHtml = ulTag.ToString();
+
+            return MvcHtmlString.Create(menuTag.ToString());
+        }
+
+        private static IHtmlString CreateNavgation2(this HtmlHelper helper, string home, Dictionary<string, string> navgations)
+        {
+            //<ul class="page-breadcrumb breadcrumb">
+            //    <li>
+            //        <a href="index.html">Home</a>
+            //        <i class="fa fa-circle"></i>
+            //    </li>
+            //    <li>
+            //        <a href="#">Tables</a>
+            //        <i class="fa fa-circle"></i>
+            //    </li>
+            //    <li>
+            //        <span class="active">Dashboard</span>
+            //    </li>
+            //</ul>
+
+            var itemBuilder = new StringBuilder();
+            itemBuilder.Append(CreateHomeNav(home));
+
+            var navIndex = 0;
+            foreach (var navgation in navgations)
+            {
+                var barTag = new TagBuilder("i");
+                barTag.AddCssClass("fa fa-circle");
+
+                TagBuilder valTag;
+                if (++navIndex < navgations.Count)
+                {
+                    valTag = new TagBuilder("a");
+                    valTag.MergeAttribute("href", string.IsNullOrWhiteSpace(navgation.Value) ? "javascript:void(0)" : navgation.Value);
+                    valTag.SetInnerText(navgation.Key);
+                }
+                else
+                {
+                    valTag = new TagBuilder("span");
+                    valTag.AddCssClass("active");
+                    valTag.SetInnerText(navgation.Key);
+                }
+
+                var liTag = new TagBuilder("li");
+                liTag.InnerHtml = barTag.ToString() + valTag.ToString();
+
+                itemBuilder.Append(liTag.ToString());
+            }
+
+            var ulTag = new TagBuilder("ul");
+            ulTag.AddCssClass("page-breadcrumb breadcrumb");
+            ulTag.InnerHtml = itemBuilder.ToString();
+
+            var menuTag = new TagBuilder("div");
             menuTag.InnerHtml = ulTag.ToString();
 
             return MvcHtmlString.Create(menuTag.ToString());

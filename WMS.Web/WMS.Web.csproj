@@ -203,7 +203,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
-      <HintPath>..\packages\WebActivatorEx.2.1.0\lib\net40\WebActivatorEx.dll</HintPath>
+      <HintPath>..\packages\WebActivatorEx.2.2.0\lib\net40\WebActivatorEx.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -269,7 +269,10 @@
     <Content Include="Content\jquery-ui-timepicker-addon.min.css" />
     <Content Include="bundle.config.json" />
     <None Include="Scripts\jquery-1.12.4.intellisense.js" />
-    <Content Include="Metronic.html" />
+    <Content Include="Js\utils\EventEmitter.js" />
+    <Content Include="Js\utils\Guid.js" />
+    <Content Include="Scripts\bootbox.js" />
+    <Content Include="Scripts\bootbox.min.js" />
     <Content Include="Scripts\jquery-1.12.4.js" />
     <Content Include="Scripts\jquery-1.12.4.min.js" />
     <Content Include="wwwroot\lib\metronic\readme.txt" />
@@ -288,9 +291,8 @@
     <Content Include="wwwroot\lib\metronic\theme\assets\apps\scripts\todo.js" />
     <Content Include="wwwroot\lib\metronic\theme\assets\apps\scripts\todo.min.js" />
     <Content Include="wwwroot\lib\metronic\theme\assets\global\plugins\autosize\autosize.min.js" />
+    <Content Include="wwwroot\lib\metronic\theme\assets\global\plugins\bootbox\bootbox.js" />
     <Content Include="wwwroot\lib\metronic\theme\assets\global\plugins\bootbox\bootbox.min.js" />
-    <Content Include="wwwroot\lib\metronic\theme\assets\global\plugins\bootbox\LICENSE.md" />
-    <Content Include="wwwroot\lib\metronic\theme\assets\global\plugins\bootbox\README.md" />
     <Content Include="wwwroot\lib\metronic\theme\assets\global\plugins\bootstrap-confirmation\bootstrap-confirmation.js" />
     <Content Include="wwwroot\lib\metronic\theme\assets\global\plugins\bootstrap-confirmation\bootstrap-confirmation.min.js" />
     <Content Include="wwwroot\lib\metronic\theme\assets\global\plugins\bootstrap-confirmation\README.md" />
@@ -1194,6 +1196,22 @@
     <Content Include="wwwroot\lib\metronic\theme\assets\global\plugins\jquery-slimscroll\jquery.slimscroll.min.js" />
     <Content Include="wwwroot\lib\metronic\theme\assets\global\plugins\jquery-slimscroll\README.md" />
     <Content Include="wwwroot\lib\metronic\theme\assets\global\plugins\jquery-slimscroll\slimScroll.jquery.json" />
+    <Content Include="wwwroot\lib\metronic\theme\assets\global\plugins\jquery-ui\images\ui-bg_diagonals-thick_18_b81900_40x40.png" />
+    <Content Include="wwwroot\lib\metronic\theme\assets\global\plugins\jquery-ui\images\ui-bg_diagonals-thick_20_666666_40x40.png" />
+    <Content Include="wwwroot\lib\metronic\theme\assets\global\plugins\jquery-ui\images\ui-bg_flat_10_000000_40x100.png" />
+    <Content Include="wwwroot\lib\metronic\theme\assets\global\plugins\jquery-ui\images\ui-bg_glass_100_f6f6f6_1x400.png" />
+    <Content Include="wwwroot\lib\metronic\theme\assets\global\plugins\jquery-ui\images\ui-bg_glass_100_fdf5ce_1x400.png" />
+    <Content Include="wwwroot\lib\metronic\theme\assets\global\plugins\jquery-ui\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="wwwroot\lib\metronic\theme\assets\global\plugins\jquery-ui\images\ui-bg_gloss-wave_35_f6a828_500x100.png" />
+    <Content Include="wwwroot\lib\metronic\theme\assets\global\plugins\jquery-ui\images\ui-bg_highlight-soft_100_eeeeee_1x100.png" />
+    <Content Include="wwwroot\lib\metronic\theme\assets\global\plugins\jquery-ui\images\ui-bg_highlight-soft_75_ffe45c_1x100.png" />
+    <Content Include="wwwroot\lib\metronic\theme\assets\global\plugins\jquery-ui\images\ui-icons_222222_256x240.png" />
+    <Content Include="wwwroot\lib\metronic\theme\assets\global\plugins\jquery-ui\images\ui-icons_228ef1_256x240.png" />
+    <Content Include="wwwroot\lib\metronic\theme\assets\global\plugins\jquery-ui\images\ui-icons_ef8c08_256x240.png" />
+    <Content Include="wwwroot\lib\metronic\theme\assets\global\plugins\jquery-ui\images\ui-icons_ffd27a_256x240.png" />
+    <Content Include="wwwroot\lib\metronic\theme\assets\global\plugins\jquery-ui\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="wwwroot\lib\metronic\theme\assets\global\plugins\jquery-ui\jquery-ui.min.css" />
+    <Content Include="wwwroot\lib\metronic\theme\assets\global\plugins\jquery-ui\jquery-ui.min.js" />
     <Content Include="wwwroot\lib\metronic\theme\assets\global\plugins\jquery-validation\js\additional-methods.js" />
     <Content Include="wwwroot\lib\metronic\theme\assets\global\plugins\jquery-validation\js\additional-methods.min.js" />
     <Content Include="wwwroot\lib\metronic\theme\assets\global\plugins\jquery-validation\js\jquery.validate.js" />
@@ -1317,6 +1335,8 @@
     <Content Include="wwwroot\lib\metronic\theme\assets\global\plugins\jquery.blockui.min.js" />
     <Content Include="wwwroot\lib\metronic\theme\assets\global\plugins\jquery.cookie-1.4.1.min.js" />
     <Content Include="wwwroot\lib\metronic\theme\assets\global\plugins\jquery.cookie.js" />
+    <Content Include="wwwroot\lib\metronic\theme\assets\global\plugins\jquery.unobtrusive-ajax.js" />
+    <Content Include="wwwroot\lib\metronic\theme\assets\global\plugins\jquery.unobtrusive-ajax.min.js" />
     <Content Include="wwwroot\lib\metronic\theme\assets\global\plugins\jstree\dist\jstree.js" />
     <Content Include="wwwroot\lib\metronic\theme\assets\global\plugins\jstree\dist\jstree.min.js" />
     <Content Include="wwwroot\lib\metronic\theme\assets\global\plugins\jstree\dist\themes\default-dark\32px.png" />
@@ -1402,6 +1422,14 @@
     <Content Include="wwwroot\lib\metronic\theme\assets\global\plugins\plupload\js\plupload.full.min.js" />
     <Content Include="wwwroot\lib\metronic\theme\assets\global\plugins\plupload\js\plupload.min.js" />
     <Content Include="wwwroot\lib\metronic\theme\assets\global\plugins\plupload\license.txt" />
+    <Content Include="wwwroot\lib\metronic\theme\assets\global\plugins\react\react-dom-server.js" />
+    <Content Include="wwwroot\lib\metronic\theme\assets\global\plugins\react\react-dom-server.min.js" />
+    <Content Include="wwwroot\lib\metronic\theme\assets\global\plugins\react\react-dom.js" />
+    <Content Include="wwwroot\lib\metronic\theme\assets\global\plugins\react\react-dom.min.js" />
+    <Content Include="wwwroot\lib\metronic\theme\assets\global\plugins\react\react-with-addons.js" />
+    <Content Include="wwwroot\lib\metronic\theme\assets\global\plugins\react\react-with-addons.min.js" />
+    <Content Include="wwwroot\lib\metronic\theme\assets\global\plugins\react\react.js" />
+    <Content Include="wwwroot\lib\metronic\theme\assets\global\plugins\react\react.min.js" />
     <Content Include="wwwroot\lib\metronic\theme\assets\global\plugins\respond.js" />
     <Content Include="wwwroot\lib\metronic\theme\assets\global\plugins\respond.min.js" />
     <Content Include="wwwroot\lib\metronic\theme\assets\global\plugins\select2\css\select2-bootstrap.min.css" />
@@ -1757,6 +1785,7 @@
     <Content Include="wwwroot\lib\metronic\theme\assets\global\img\remove-icon-small.png" />
     <Content Include="wwwroot\lib\metronic\theme\assets\global\img\syncfusion-icons-white.png" />
     <Content Include="wwwroot\lib\metronic\theme\assets\global\img\syncfusion-icons.png" />
+    <Content Include="wwwroot\lib\metronic\theme\assets\global\scripts\startup.js" />
     <Content Include="wwwroot\lib\metronic\theme\assets\layouts\global\scripts\quick-sidebar.js" />
     <Content Include="wwwroot\lib\metronic\theme\assets\layouts\global\scripts\quick-sidebar.min.js" />
     <Content Include="wwwroot\lib\metronic\theme\assets\layouts\layout4\css\custom.css" />
@@ -1988,8 +2017,8 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Js\utils\EventEmitter.js" />
-    <Content Include="Js\utils\Guid.js" />
+    <Content Include="wwwroot\js\utils\EventEmitter.js" />
+    <Content Include="wwwroot\js\utils\Guid.js" />
     <Content Include="Js\utils\jquery.dialog.js" />
     <Content Include="Js\startup.js" />
     <Content Include="readme.txt" />
@@ -2465,7 +2494,6 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\noty\jquery.noty.js" />
     <Content Include="Scripts\noty\layouts\bottom.js" />
@@ -2543,6 +2571,8 @@
     <Content Include="wwwroot\lib\metronic\theme\assets\global\plugins\font-google\fonts\xozscpT2726on7jbcb_pAhJtnKITppOI_IvcXXDNrsc.woff2" />
     <Content Include="wwwroot\lib\metronic\theme\assets\global\plugins\bootstrap-summernote\README.md" />
     <Content Include="wwwroot\lib\metronic\theme\assets\global\plugins\flowchart\flowchart.min.map" />
+    <Content Include="wwwroot\js\src\inbound.jsx" />
+    <Content Include="wwwroot\js\src\warehouse.jsx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -2586,7 +2616,6 @@
     <Folder Include="Areas\Inbound\Models\" />
     <Folder Include="wwwroot\css\" />
     <Folder Include="wwwroot\images\" />
-    <Folder Include="wwwroot\js\" />
     <Folder Include="wwwroot\lib\metronic\theme\assets\apps\img\" />
     <Folder Include="wwwroot\lib\metronic\theme\assets\pages\media\" />
   </ItemGroup>
