@@ -17,24 +17,16 @@ namespace DotPlatform.Tests.AutoMapper
             var person = new Person_Test
             {
                 Name = "XiaoMing",
-                Age = 12,
-                Birthday = DateTime.Now.AddYears(-12),
-                Married = false
-            };
-
-            var person2 = new Person2_Test
-            {
-                Name = "XiaoFang",
+                Sex = Sex_Test.M,
                 Age = 12,
                 Birthday = DateTime.Now.AddYears(-12),
                 Married = false
             };
 
             var personDest = Mapper.Map<PersonDesitination_Test>(person);
-            var personDest2 = Mapper.Map<PersonDesitination_Test>(person);
 
             Assert.IsNotNull(personDest);
-            Assert.IsNotNull(personDest2);
+            Assert.IsTrue(personDest.Sex == SexDesitination_Test.M);
 
             var persons = new List<Person_Test>
             {

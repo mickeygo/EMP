@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-namespace WMS
+namespace WMS.Web
 {
     /// <summary>
     /// 筛选器配置，注册全局筛选器

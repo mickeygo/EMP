@@ -67,6 +67,7 @@
     <Compile Include="Application\IProductAppService.cs" />
     <Compile Include="Application\SampleProductAppService.cs" />
     <Compile Include="Clients\SampleProduct_Test.cs" />
+    <Compile Include="Clients\SapRfc_Tests.cs" />
     <Compile Include="EntityFramework\EntityConfigurarion\OrderEntityTypeConfuguration.cs" />
     <Compile Include="EntityFramework\EntityConfigurarion\OrderLineEntityTypeConfuguration.cs" />
     <Compile Include="EntityFramework\EntityConfigurarion\ProductEntityTypeConfuguration.cs" />
@@ -108,6 +109,10 @@
     <ProjectReference Include="..\DotPlatform\DotPlatform.csproj">
       <Project>{4964d0d8-492a-422a-ad2d-3eafae881c1a}</Project>
       <Name>DotPlatform</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WMS.Web.Client\WMS.Web.Client.csproj">
+      <Project>{9E3A2D2A-37BD-4DF3-A6E6-35DE60CF1EE2}</Project>
+      <Name>WMS.Web.Client</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

@@ -70,6 +70,7 @@
     <Compile Include="Application\Navigation\MenuItemDefinition.cs" />
     <Compile Include="Application\Navigation\NavigationProvider.cs" />
     <Compile Include="Application\Services\ApplicationService.cs" />
+    <Compile Include="Application\Services\Dto\IEntityDto.cs" />
     <Compile Include="Application\Services\IApplicationService.cs" />
     <Compile Include="Application\Services\Dto\IDto.cs" />
     <Compile Include="Auditing\AuditInfo.cs" />
@@ -195,9 +196,11 @@
     <Compile Include="Events\Storage\InDbDomainEventStorage.cs" />
     <Compile Include="Events\Storage\NullDomainEventStorage.cs" />
     <Compile Include="Extensions\CollectionExtensions.cs" />
+    <Compile Include="Extensions\DataTableExtensions.cs" />
     <Compile Include="Extensions\NullableExtensions.cs" />
     <Compile Include="Extensions\ObjectExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="Extensions\TypeExtensions.cs" />
     <Compile Include="Generators\IGuidGenerator.cs" />
     <Compile Include="Generators\RegularGuidGenerator.cs" />
     <Compile Include="Generators\SequentialGuidGenerator.cs" />
@@ -225,6 +228,7 @@
     <Compile Include="Net\Mail\Smtp\SmtpMailSender.cs" />
     <Compile Include="Net\Mail\Smtp\SmtpMailSenderConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reflection\AssemblyLoadHelper.cs" />
     <Compile Include="Reflection\CurrentDomainAssemblyFinder.cs" />
     <Compile Include="Reflection\CurrentDomainBinDirectoryFinder.cs" />
     <Compile Include="Reflection\IAssemblyFinder.cs" />
@@ -243,6 +247,7 @@
     <Compile Include="Runtime\Session\IOwnerSession.cs" />
     <Compile Include="Runtime\Session\NullSession.cs" />
     <Compile Include="Serialization\IObjectSerializer.cs" />
+    <Compile Include="Serialization\Json\JsonFormater.cs" />
     <Compile Include="Serialization\Json\JsonSerializationHelper.cs" />
     <Compile Include="Serialization\ObjectBinarySerializer.cs" />
     <Compile Include="Serialization\ObjectJsonSerializer.cs" />
@@ -270,7 +275,10 @@
     <Compile Include="Timing\Clock.cs" />
     <Compile Include="Timing\IClockProvider.cs" />
     <Compile Include="Timing\LocalClockProvider.cs" />
+    <Compile Include="Transactions\Extenstions\IsolationLevelExtensions.cs" />
+    <Compile Include="Utils\ConfigurationHelper.cs" />
     <Compile Include="Utils\PrivateReflectionDynamicObject.cs" />
+    <Compile Include="Utils\ReflectionHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="BackgroundJobs\" />
@@ -279,7 +287,6 @@
     <Folder Include="MultiTenancy\" />
     <Folder Include="Net\Mail\Extensions\" />
     <Folder Include="RealTime\" />
-    <Folder Include="Transactions\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

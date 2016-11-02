@@ -10,7 +10,7 @@ namespace WMS.DataTransferObject.Dtos
     /// 仓库 Dto 对象
     /// </summary>
     [AutoMapFrom(typeof(Warehouse))]
-    public class WarehouseDto : IDto
+    public class WarehouseDto : IEntityDto
     {
         /// <summary>
         /// 获取或设置仓库 Id
@@ -55,6 +55,11 @@ namespace WMS.DataTransferObject.Dtos
         /// </summary>
         [Range(0, 10)]
         public double Height { get; set; }
+
+        /// <summary>
+        /// 获取或设置隶属的租户
+        /// </summary>
+        public Guid TenantId { get; set; }
 
         /// <summary>
         /// 是否已删除

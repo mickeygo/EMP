@@ -11,7 +11,7 @@
         void Debug();
 
         /// <summary>
-        /// 记录信息
+        /// 记录普通信息
         /// </summary>
         void Info();
 

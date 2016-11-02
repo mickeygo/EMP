@@ -1,10 +1,8 @@
 ﻿using System;
+using System.Threading.Tasks;
 using DotPlatform.Algorithms.Cryptography;
 using DotPlatform.Web.Utility;
 using WMS.Web.Client.MembershipWebService;
-using WMS.DataTransferObject.Dtos;
-using DotPlatform.Dependency;
-using DotPlatform.RBAC.Authorization;
 
 namespace WMS.Web.Client.Membership
 {
@@ -25,14 +23,14 @@ namespace WMS.Web.Client.Membership
         #region Ctor
 
         /// <summary>
-        /// 创建一个新的<c>UserValidator</c>实例
+        /// 创建一个新的<see cref="UserValidator"/>实例
         /// </summary>
         /// <param name="userName">用户名</param>
         /// <param name="password">用户密码(原始密码)</param>
         public UserValidator(string userName, string password)
         {
-            this._userName = userName;
-            this._password = password;
+            _userName = userName;
+            _password = password;
         }
 
         #endregion
@@ -43,17 +41,34 @@ namespace WMS.Web.Client.Membership
         /// 用本地数据验证用户信息
         /// </summary>
         /// <returns>true 表示验证成功；false 表示验证失败</returns>
-        public bool ValidateInLocal()
+        public async Task<bool> ValidateInLocal()
         {
-            if (!this.CheckNotNullOfNameAndPwd())
+            if (!CheckNotNullOfNameAndPwd())
                 return false;
 
-            var userName = this._userName.ToLower();  // To lower
-            var user = GetUserInfo(userName);
+            var userInfo = new UserInfo(_userName);
+            var user = await userInfo.GetLocalUserInfo();
             if (user == null)
                 return false;
 
-            var encryptedPwd = this.EncryptPassword(userName, this._password);
+            var encryptedPwd = EncryptPassword(_userName.ToLower(), _password);
+            return encryptedPwd.Equals(user.Password, StringComparison.OrdinalIgnoreCase);
+        }
+
+        /// <summary>
+        /// 用本地数据验证用户信息(不含租户信息)
+        /// </summary>
+        public bool ValidateInLocalWithoutTenant()
+        {
+            if (!CheckNotNullOfNameAndPwd())
+                return false;
+
+            var userInfo = new UserInfo(_userName);
+            var user = userInfo.GetLocalUserInfoWithoutTenant();
+            if (user == null)
+                return false;
+
+            var encryptedPwd = EncryptPassword(_userName.ToLower(), _password);
             return encryptedPwd.Equals(user.Password, StringComparison.OrdinalIgnoreCase);
         }
 
@@ -66,25 +81,13 @@ namespace WMS.Web.Client.Membership
             if (!this.CheckNotNullOfNameAndPwd())
                 return false;
 
-            var userName = this._userName.ToLower();  // To lower
-            return this.ValidateUserMembershipRPC(userName, this._password, SiteId, WebHelper.GetClientIp());
+            var userName = _userName.ToLower();  // To lower
+            return this.ValidateUserMembershipRPC(userName, _password, SiteId, WebHelper.GetClientIp());
         }
 
         #endregion
 
         #region Private Methods
-
-        private UserDto GetUserInfo(string usernName)
-        {
-            using (var service = IocManager.Instance.Resolve<RbacUserManager>())
-            {
-                //return service.FindByNameAsync(usernName);
-
-                //return service.FindUser(usernName);
-
-                return null;
-            }
-        }
 
         private bool ValidateUserMembershipRPC(string userName, string password, string siteId, string localId)
         {
@@ -112,7 +115,7 @@ namespace WMS.Web.Client.Membership
 
         private bool CheckNotNullOfNameAndPwd()
         {
-            return !string.IsNullOrWhiteSpace(this._userName) && !string.IsNullOrWhiteSpace(this._password);
+            return !string.IsNullOrWhiteSpace(_userName) && !string.IsNullOrWhiteSpace(_password);
         }
 
         #endregion

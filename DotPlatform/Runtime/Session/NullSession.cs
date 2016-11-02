@@ -22,10 +22,17 @@ namespace DotPlatform.Runtime.Session
             get { return _instance; }
         }
 
+        public bool IsAuthenticated
+        {
+            get { return false;}
+        }
+
         public Guid? TenantId { get; private set; }
 
         public Guid? UserId { get; private set; }
 
         public int? TimeDifference { get; private set; }
+
+       
     }
 }

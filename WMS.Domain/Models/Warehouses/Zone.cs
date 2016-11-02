@@ -8,7 +8,7 @@ namespace WMS.Domain.Models.Warehouses
     /// <summary>
     /// 仓库区域
     /// </summary>
-    public class Zone : AggregateRoot, ISoftDelete, ICreationAudited, IModificationAudited
+    public class Zone : AggregateRoot, ISoftDelete, IMustHaveTenant, ICreationAudited, IModificationAudited
     {
         #region Properties
 
@@ -57,6 +57,11 @@ namespace WMS.Domain.Models.Warehouses
         public virtual Warehouse Warehouse { get; private set; }
 
         /// <summary>
+        /// 获取或设置租户
+        /// </summary>
+        public Guid TenantId { get; set; }
+
+        /// <summary>
         /// 是否已删除
         /// </summary>
         public bool IsDeleted { get; set; }
@@ -93,16 +98,23 @@ namespace WMS.Domain.Models.Warehouses
         /// <summary>
         /// 初始化一个新的<see cref="Zone"/>实例
         /// </summary>
+        /// <param name="warehouseId">隶属的仓储 Id</param>
         /// <param name="name">区域名</param>
         /// <param name="displayName">区域显示名</param>
         /// <param name="description">区域描述</param>
-        /// <param name="warehouseId">隶属的仓储 Id</param>
-        public Zone(string name, string displayName, string description, Guid warehouseId)
+        /// <param name="length">仓库区域长度</param>
+        /// <param name="width">仓库区域宽度</param>
+        /// <param name="height">仓库区域高度</param>
+        public Zone(Guid warehouseId, string name, string displayName, string description,
+            double length, double width, double height)
         {
             Name = name;
             DisplayName = displayName;
             Description = description;
             WarehouseId = warehouseId;
+            Length = length;
+            Width = width;
+            Height = height;
         }
 
         #endregion

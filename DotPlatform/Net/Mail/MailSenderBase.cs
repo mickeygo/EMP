@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Net.Mail;
 using System.Text;
@@ -22,22 +21,34 @@ namespace DotPlatform.Net.Mail
 
         public void Send(string[] to, string[] cc, string[] bcc, string subject, string body, string[] attachment, bool isBodyHtml = true)
         {
-            
+            var message = BuildMessage(to, cc, bcc, subject, body, isBodyHtml);
+            AddAttachmentToMessage(message, attachment);
+
+            Send(message);
         }
 
         public void Send(string[] to, string[] cc, string[] bcc, string subject, string body, IDictionary<string, Stream> attachment, bool isBodyHtml = true)
         {
-            
+            var message = BuildMessage(to, cc, bcc, subject, body, isBodyHtml);
+            AddAttachmentToMessage(message, attachment);
+
+            Send(message);
         }
 
-        public Task SendAsync(string[] to, string[] cc, string[] bcc, string subject, string body, IDictionary<string, Stream> attachment, bool isBodyHtml = true)
+        public async Task SendAsync(string[] to, string[] cc, string[] bcc, string subject, string body, string[] attachment, bool isBodyHtml = true)
         {
-            throw new NotImplementedException();
+            var message = BuildMessage(to, cc, bcc, subject, body, isBodyHtml);
+            AddAttachmentToMessage(message, attachment);
+
+            await SendAsync(message);
         }
 
-        public Task SendAsync(string[] to, string[] cc, string[] bcc, string subject, string body, string[] attachment, bool isBodyHtml = true)
+        public async Task SendAsync(string[] to, string[] cc, string[] bcc, string subject, string body, IDictionary<string, Stream> attachment, bool isBodyHtml = true)
         {
-            throw new NotImplementedException();
+            var message = BuildMessage(to, cc, bcc, subject, body, isBodyHtml);
+            AddAttachmentToMessage(message, attachment);
+
+            await SendAsync(message);
         }
 
         public void Send(string from, string to, string subject, string body, bool isBodyHtml = true)
@@ -58,8 +69,15 @@ namespace DotPlatform.Net.Mail
             await SendMailAsync(message);
         }
 
+        /// <summary>
+        /// 发送邮件
+        /// </summary>
         protected abstract void SendMail(MailMessage message);
 
+        /// <summary>
+        /// 发送邮件
+        /// </summary>
+        /// <param name="message"></param>
         protected abstract Task SendMailAsync(MailMessage message);
 
         /// <summary>
@@ -86,5 +104,51 @@ namespace DotPlatform.Net.Mail
             if (message.BodyEncoding == null)
                 message.BodyEncoding = Encoding.UTF8;
         }
+
+        #region Private Methods
+
+        private void AddAttachmentToMessage(MailMessage message, params string[] attachments)
+        {
+            if (attachments != null)
+            {
+                foreach (var attachment in attachments)
+                {
+                    message.Attachments.Add(new Attachment(attachment));
+                }
+            }
+        }
+
+        private void AddAttachmentToMessage(MailMessage message, IDictionary<string, Stream> attachments)
+        {
+            if (attachments != null)
+            {
+                foreach (var attachment in attachments)
+                {
+                    message.Attachments.Add(new Attachment(attachment.Value, attachment.Key));
+                }
+            }
+        }
+
+        private MailMessage BuildMessage(string[] to, string[] cc, string[] bcc, string subject, string body, bool isBodyHtml)
+        {
+            var message = new MailMessage
+            {
+                Subject = subject,
+                Body = body,
+                IsBodyHtml = isBodyHtml
+            };
+
+            message.To.Add(string.Join(",", to));
+
+            if (cc != null)
+                message.CC.Add(string.Join(",", cc));
+
+            if (bcc != null)
+                message.Bcc.Add(string.Join(",", bcc));
+
+            return message;
+        }
+
+        #endregion
     }
 }

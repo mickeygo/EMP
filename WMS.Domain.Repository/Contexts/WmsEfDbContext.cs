@@ -15,7 +15,6 @@ namespace WMS.Domain.Repository
         /// </summary>
         public WmsEfDbContext() : base(ConnectionName)
         {
-            this.OwnerSession = ClaimsSession.Instance;
         }
 
         protected override void CreateModel(DbModelBuilder modelBuilder)

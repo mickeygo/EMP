@@ -142,6 +142,10 @@
     <Compile Include="Authentication\IAuthenticationProvider.cs" />
     <Compile Include="Authentication\OwinAuthenticationProvider.cs" />
     <Compile Include="Authentication\CookieAuthenticationManager.cs" />
+    <Compile Include="Bundle\BundleContent.cs" />
+    <Compile Include="Bundle\BundleData.cs" />
+    <Compile Include="Bundle\BundleDirectory.cs" />
+    <Compile Include="Bundle\BundleManager.cs" />
     <Compile Include="Extensions\HtmlHelperExtensions\HtmlNavgationExtensions.cs" />
     <Compile Include="Extensions\JsonResultEx.cs" />
     <Compile Include="Mvc\Controllers\DotPlatformController.cs" />

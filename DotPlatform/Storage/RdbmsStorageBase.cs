@@ -13,8 +13,14 @@ namespace DotPlatform.Storage
         private IDbConnection _connection;
         private readonly IRdbmsStorageProvider _provider;
 
-        protected RdbmsStorageBase(IRdbmsStorageProvider provider)
+        /// <summary>
+        /// 初始化一个新的<see cref="RdbmsStorageBase"/>实例
+        /// </summary>
+        /// <param name="connectionName">连接名</param>
+        /// <param name="provider">数据存储提供者</param>
+        protected RdbmsStorageBase(string connectionName, IRdbmsStorageProvider provider)
         {
+            this.ConnectionName = connectionName;
             this._provider = provider;
         }
 
@@ -28,7 +34,7 @@ namespace DotPlatform.Storage
             }
         }
 
-        public string ConnectionName { get; set;  }
+        public string ConnectionName { get; private set; }
 
         #endregion
 

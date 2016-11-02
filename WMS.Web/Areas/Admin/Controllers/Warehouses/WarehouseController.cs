@@ -1,5 +1,4 @@
 ﻿using System.Web.Mvc;
-using DotPlatform.Dependency;
 using WMS.DataTransferObject.Dtos;
 using WMS.Application.Services;
 
@@ -12,6 +11,15 @@ namespace WMS.Web.Areas.Admin.Controllers
             return View();
         }
 
+        public ActionResult GetAll()
+        {
+            using (var service = IocResolver.Resolve<IWarehouseAppService>())
+            {
+                var warehouses = service.GetAllWarehouses();
+                return JsonEx(warehouses);
+            }
+        }
+
         public ActionResult Create()
         {
             return PartialView();
@@ -21,16 +29,19 @@ namespace WMS.Web.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(WarehouseDto model)
         {
+            if (!ModelState.IsValid)
+                return Json(false, "Input data is invalid.");
+
             try
             {
-                using (var service = IocManager.Instance.Resolve<IWarehouseAppService>())
+                using (var service = IocResolver.Resolve<IWarehouseAppService>())
                 {
                     service.CreateWarehouse(model);
                 }
 
                 return Json(true);
             }
-            catch (System.Exception)
+            catch
             {
                 return Json(false);
             }

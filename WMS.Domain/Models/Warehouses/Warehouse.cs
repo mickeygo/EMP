@@ -8,7 +8,7 @@ namespace WMS.Domain.Models.Warehouses
     /// <summary>
     /// 仓库聚合根
     /// </summary>
-    public class Warehouse : AggregateRoot, ISoftDelete, ICreationAudited, IModificationAudited
+    public class Warehouse : AggregateRoot, ISoftDelete, IMustHaveTenant, ICreationAudited, IModificationAudited
     {
         #region Properties
 
@@ -45,6 +45,11 @@ namespace WMS.Domain.Models.Warehouses
         /// 获取或设置仓库的高度(m)
         /// </summary>
         public double Height { get; set; }
+
+        /// <summary>
+        /// 获取或设置隶属的租户
+        /// </summary>
+        public Guid TenantId { get; set; }
 
         /// <summary>
         /// 是否已删除
