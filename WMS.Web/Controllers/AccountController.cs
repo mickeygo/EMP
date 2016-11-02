@@ -1,4 +1,6 @@
-﻿using System.Web.Mvc;
+﻿using System.Threading.Tasks;
+using System.Web.Mvc;
+using WMS.Web.Client.Account;
 using WMS.Web.Models;
 
 namespace WMS.Web.Controllers
@@ -24,16 +26,21 @@ namespace WMS.Web.Controllers
                 return View();
             }
 
-            //return Url.IsLocalUrl(returnUrl) ? Redirect(returnUrl) : this.RedirectToHome();
+            var manager = new AccountManager();
+            if (manager.Login(model.UserName, model.Password, model.RememberMe))
+                return Url.IsLocalUrl(returnUrl) ? Redirect(returnUrl) : RedirectToHome();
+
             ModelState.AddModelError("", "The user name and password is not matched.");
             ViewBag.ReturnUrl = returnUrl;
 
             return View();
         }
 
-        [HttpPost]
         public ActionResult Logout()
         {
+            var manager = new AccountManager();
+            manager.Logout();
+
             return RedirectToAction("Login");
         }
     }

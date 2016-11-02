@@ -31,6 +31,17 @@ namespace DotPlatform.Extensions
 
         /// <summary>
         /// 将 <see cref="string"/> 转换为 <see cref="int"/> 类型。
+        /// 若字符串为 Null 或 Empty，或是转换失败，将返回 Int32 默认值 0
+        /// </summary>
+        /// <param name="str">要转换的字符串</param>
+        /// <returns></returns>
+        public static int ToIntOrDefault(this string str)
+        {
+            return str.ToInt32().GetValueOrDefault();
+        }
+
+        /// <summary>
+        /// 将 <see cref="string"/> 转换为 <see cref="int"/> 类型。
         /// 若字符串为 Null 或 Empty，或是转换失败，将返回 默认值
         /// </summary>
         /// <param name="str">要转换的字符串</param>

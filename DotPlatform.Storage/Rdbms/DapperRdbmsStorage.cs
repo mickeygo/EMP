@@ -16,7 +16,7 @@ namespace DotPlatform.Storage.Rdbms
     /// </summary>
     public class DapperRdbmsStorage : RdbmsStorageBase
     {
-        public DapperRdbmsStorage(IRdbmsStorageProvider provider) : base(provider)
+        public DapperRdbmsStorage(string connectionName, IRdbmsStorageProvider provider) : base(connectionName, provider)
         {
         }
 

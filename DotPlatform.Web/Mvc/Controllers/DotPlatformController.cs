@@ -11,8 +11,10 @@ using DotPlatform.Extensions;
 using DotPlatform.Runtime.Session;
 using DotPlatform.Serialization.Json;
 using DotPlatform.Timing;
-using Newtonsoft.Json;
 using DotPlatform.Web.Extensions;
+using DotPlatform.Net.Mail;
+using DotPlatform.Dependency;
+using Newtonsoft.Json;
 
 namespace DotPlatform.Web.Mvc.Controllers
 {
@@ -33,6 +35,26 @@ namespace DotPlatform.Web.Mvc.Controllers
 
         #endregion
 
+        #region Protected Properties
+
+        /// <summary>
+        /// 获取 Ioc 解析器
+        /// </summary>
+        protected IIocResolver IocResolver
+        {
+            get { return IocManager.Instance; }
+        }
+
+        /// <summary>
+        /// 获取当前区域时间，根据区域的不同而设计的时间不同
+        /// </summary>
+        protected DateTime LocalDateTime
+        {
+            get { return Clock.Local; }
+        }
+
+        #endregion 
+
         #region Public Properties
 
         public IOwnerSession OwnerSession { get; set; }
@@ -40,6 +62,19 @@ namespace DotPlatform.Web.Mvc.Controllers
         public IAuditInfoProvider AuditInfoProvider { get; set; }
 
         public IAuditingStore AuditingStore { get; set; }
+
+        /// <summary>
+        /// Email 对象，用于发送邮件
+        /// </summary>
+        public IMailSender MailSender
+        {
+            get { return IocResolver.Resolve<IMailSender>(); }
+        }
+
+        #endregion
+
+        #region Public Methods
+
 
         #endregion
 
@@ -53,7 +88,7 @@ namespace DotPlatform.Web.Mvc.Controllers
         /// <returns>Json</returns>
         public JsonResult Json(bool isSuccess, string message = null)
         {
-            return Json(isSuccess, null, message, JsonRequestBehavior.DenyGet);
+            return Json(isSuccess, null, message, JsonRequestBehavior.AllowGet);
         }
 
         /// <summary>
@@ -65,7 +100,7 @@ namespace DotPlatform.Web.Mvc.Controllers
         /// <returns>Json</returns>
         public JsonResult Json(bool isSuccess, object data, string message = null)
         {
-            return Json(isSuccess, data, message, JsonRequestBehavior.DenyGet);
+            return Json(isSuccess, data, message, JsonRequestBehavior.AllowGet);
         }
 
         /// <summary>
@@ -79,6 +114,16 @@ namespace DotPlatform.Web.Mvc.Controllers
         public JsonResult Json(bool isSuccess, object data, string message, JsonRequestBehavior behavior)
         {
             return JsonEx(new { status = isSuccess, data, message }, null, null, behavior, null);
+        }
+
+        /// <summary>
+        /// Json 序列化，基于 Newtonsoft.Json 框架
+        /// </summary>
+        /// <param name="data">要序列化的数据</param>
+        /// <returns></returns>
+        protected JsonResult JsonEx(object data)
+        {
+            return JsonEx(data, null, null);
         }
 
         /// <summary>

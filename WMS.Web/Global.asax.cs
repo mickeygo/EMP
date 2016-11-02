@@ -19,6 +19,23 @@ namespace WMS.Web
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
 
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+#if DEBUG
+            StackExchange.Profiling.EntityFramework6.MiniProfilerEF6.Initialize(); // DB 之前初始化
+#endif
         }
+
+#if DEBUG
+        protected void Application_BeginRequest()
+        {
+            if (this.Request.IsLocal)
+                StackExchange.Profiling.MiniProfiler.Start();
+        }
+
+        protected void Application_EndRequest()
+        {
+            StackExchange.Profiling.MiniProfiler.Stop();
+        }
+#endif
     }
 }

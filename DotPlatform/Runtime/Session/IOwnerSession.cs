@@ -9,6 +9,11 @@ namespace DotPlatform.Runtime.Session
     public interface IOwnerSession<TKey>
     {
         /// <summary>
+        /// 是否已验证
+        /// </summary>
+        bool IsAuthenticated { get; }
+
+        /// <summary>
         /// 获取当前租户 Id 信息
         /// </summary>
         TKey TenantId { get; }

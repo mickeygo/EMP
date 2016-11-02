@@ -1,7 +1,6 @@
 using React;
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(WMS.Web.ReactConfig), "Configure")]
-
 namespace WMS.Web
 {
 	public static class ReactConfig

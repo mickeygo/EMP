@@ -12,7 +12,8 @@ namespace DotPlatform.Web.Authentication
         /// </summary>
         /// <param name="authenticationData">验证身份数据</param>
         /// <param name="ispersistent">是否持久化</param>
+        /// <param name="authenticationType">验证类型</param>
         /// <returns><see cref="AuthenticationTicket"/>验证票据</returns>
-        AuthenticationTicket CreateTicket(AuthenticationData authenticationData, bool IsPersistent);
+        AuthenticationTicket CreateTicket(AuthenticationData authenticationData, bool IsPersistent, string authenticationType);
     }
 }

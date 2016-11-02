@@ -43,6 +43,11 @@ namespace DotPlatform.Web.Authentication
         public string Email { get; private set; }
 
         /// <summary>
+        /// 获取其他自定义数据（需重写对象 ToString() 方法）
+        /// </summary>
+        public object CustomData { get; private set; }
+
+        /// <summary>
         /// 初始化新的<see cref="AuthenticationData"/>实例
         /// </summary>
         /// <param name="tenantId">租户 Id</param>
@@ -53,8 +58,9 @@ namespace DotPlatform.Web.Authentication
         /// <param name="userName">用户名</param>
         /// <param name="password">用户密码</param>
         /// <param name="email">用户邮件</param>
+        /// <param name="customData">其他自定义数据</param>
         public AuthenticationData(Guid? tenantId, string tenantName, string language, int? timeDifference,
-            Guid? userId, string userName, string email)
+            Guid? userId, string userName, string email, object customData = null)
         {
             TenantId = tenantId;
             TenantName = tenantName;
@@ -63,6 +69,7 @@ namespace DotPlatform.Web.Authentication
             UserId = userId;
             UserName = userName;
             Email = email;
+            CustomData = customData;
         }
     }
 }

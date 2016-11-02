@@ -11,9 +11,9 @@ namespace DotPlatform.Web.Authentication
     {
         private readonly DateTimeOffset expiresUtc = DateTimeOffset.UtcNow.AddDays(1);
 
-        public AuthenticationTicket CreateTicket(AuthenticationData authenticationData, bool IsPersistent)
+        public AuthenticationTicket CreateTicket(AuthenticationData authenticationData, bool IsPersistent, string authenticationType)
         {
-            var claimsIdentity = CreateClaimsIdentity(authenticationData);
+            var claimsIdentity = CreateClaimsIdentity(authenticationData, authenticationType);
             var properties = new AuthenticationProperties
             {
                 IsPersistent = IsPersistent,
@@ -25,9 +25,9 @@ namespace DotPlatform.Web.Authentication
 
         #region Private Methods
 
-        private ClaimsIdentity CreateClaimsIdentity(AuthenticationData data)
+        private ClaimsIdentity CreateClaimsIdentity(AuthenticationData data, string authenticationType)
         {
-            return AuthenticationHelper.CreateClaimsIdentity(data);
+            return AuthenticationHelper.CreateClaimsIdentity(data, authenticationType);
         }
 
         #endregion

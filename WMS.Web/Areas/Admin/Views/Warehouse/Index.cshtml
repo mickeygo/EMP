@@ -1,132 +1,141 @@
-﻿
-
-@{ 
+﻿@{
     ViewBag.Title = "Admin Warehouse";
+}
+
+@section scripts {
+    <script>
+        //ReactDOM.render(
+        //   React.createElement(WarehouseCollection),
+        //   document.getElementById('warehousecollection')
+        //);
+
+        //ReactDOM.render(
+        //  React.createElement(ZoneCollection),
+        //  document.getElementById('zonecollection')
+        //);
+
+        //ReactDOM.render(
+        //    React.createElement(ShelfCollection),
+        //    document.getElementById('shelfcollection')
+        //);
+
+        //ReactDOM.render(
+        //   React.createElement(ShelfDetail),
+        //   document.getElementById('shelfdetail')
+        //);
+
+        var IwTree = function () {
+
+            var $element = $("#iwtree");
+
+            var renderTree = function () {
+                $element.on('changed.jstree', function (e, data) {
+                    if (data.selected.length)
+                    {
+                        var id = data.selected[0];
+                        console.log(data);
+                        console.log(id);
+                        console.log(data.node.li_attr["content"]);
+                    }
+                }).jstree({
+                    "core": {
+                        "themes": {
+                            "responsive": false
+                        },
+                        "data": [
+                            {
+                                "id": 1, "parent": "#", "text": "Node 1", "state": { "opened": true }, "li_attr": { "content": "wh" }
+                            },
+                            { "id": 2, "parent":"#", "text": "Node 2" },
+                            { "id": 3, "parent":"#", "text": "Node 3" },
+                            { "id": 11, "parent": 1, "text": "Node 11" },
+                            { "id": 12, "parent": 1, "text": "Node 12" }
+                        ]
+                    },
+                    "types": {
+                        "default": {
+                            "icon": "fa fa-folder icon-state-warning icon-lg"
+                        },
+                        "file": {
+                            "icon": "fa fa-file icon-state-warning icon-lg"
+                        }
+                    },
+                    "plugins": ["state", "types"]
+                });
+            }
+
+            return {
+                init: function () {
+                    renderTree();
+                }
+            }
+        }();
+
+        $(function () {
+            IwTree.init();
+        });
+
+    </script>
 }
 
 <div>
     @Html.Navgation("Admin", "Warehouse")
 </div>
 
-@section scripts {
-    <script>
-       // ReactDOM.render(
-       //     React.createElement(HelloWorld),
-       //     document.getElementById('content')
-       // );
+@*<div id="warehousecollection"></div>
 
-       // ReactDOM.render(
-       //    React.createElement(HelloMessage, {name: "123"}),
-       //    document.getElementById('content2')
-       //);
-    </script>
-}
+<div style="margin-top:20px;">
+    <div class="row">
+        <div id="zonecollection" class="col-md-2"></div>
+        <div class="col-md-10">
+            <div id="shelfcollection"></div>
+            <div id="shelfdetail"></div>
+        </div>
+    </div>
+</div>*@
 
 <div class="row">
-    <div class="box col-md-12">
-        <div class="box-inner">
-            <div class="box-header well" data-original-title="">
-                <h2>Warehouse</h2>
-                <div class="box-icon">
-                    <a class="btn btn-round btn-default" data-dialog="true" data-ajax-form="true" 
-                       data-dialog-title="Create Warehouse" data-dialog-href="@Url.Action("Create", "Warehouse", new { area = "Admin" })"
-                       data-ajax-success="createGroupSuccess" data-ajax-failure="createGroupFailure">
-                        <i class="glyphicon glyphicon-plus"></i>
+    <div class="col-md-4 col-sm-4">
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption font-purple-plum">
+                    <i class="fa fa-cogs font-purple-plum"></i>
+                    <span class="caption-subject bold">WareHouse</span>
+                </div>
+                <div class="actions">
+                    <a class="btn btn-circle btn-icon-only btn-default tooltips" data-original-title="Add an new warehouse">
+                        <i class="fa fa-plus"></i>
                     </a>
-                    <a href="#" class="btn btn-minimize btn-round btn-default"></a>
                 </div>
             </div>
-            <div class="box-content">
-                <div class="box-inner">
-                    <div class="box-header well">
-                        <h2>AKM1</h2>
-                        <div class="box-icon">
-                            <a class="btn btn-round btn-default" data-dialog="true">
-                                <i class="glyphicon glyphicon-plus"></i>
-                            </a>
-                            <a class="btn btn-setting btn-round btn-default" data-dialog="true"></a>
-                            <a href="#" class="btn btn-minimize btn-round btn-default"></a>
-                            <a href="#" class="btn btn-round btn-default">
-                                <i class="glyphicon glyphicon-remove"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="box-content">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading" role="tab" id="headingOne">
-                                            <div class="panel-title">
-                                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                                   <i class="glyphicon glyphicon-th-list"></i> 1
-                                                </a>
-                                                <div class="box-icon">
-                                                    <a class="btn btn-round btn-default" data-dialog="true">
-                                                        <i class="glyphicon glyphicon-plus"></i>
-                                                    </a>
-                                                    <a class="btn btn-round btn-default" data-dialog="true">
-                                                        <i class="glyphicon glyphicon-cog"></i>
-                                                    </a>
-                                                    <a href="#" class="btn btn-round btn-default">
-                                                        <i class="glyphicon glyphicon-remove"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-                                            <div class="panel-body">
-                                                <div class="row">
-                                                   <div class="col-md-8">
-                                                       <div>
-                                                           Volume: 5 * 3 * 1.5
-                                                       </div>
-                                                       <div>
-                                                           Description: AKMC01-dd
-                                                       </div>
-                                                   </div>
-                                                </div>
-                                                <div style="margin-top: 10px;">
-                                                    <table class="table table-bordered table-striped table-condensed table-responsive datatable">
-                                                        <thead>
-                                                            <tr>
-                                                                <th>Shelf</th>
-                                                                <th>Location</th>
-                                                                <th>IsBonded</th>
-                                                                <th>Create Time</th>
-                                                                <th></th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr>
-                                                                <td>Shelf-A</td>
-                                                                <td>Location-1</td>
-                                                                <td>Y</td>
-                                                                <td>@DateTime.Now</td>
-                                                                <td>
-                                                                    <a herf="#" class="btn btn-info btn-xs">
-                                                                        <i class="glyphicon glyphicon-plus"></i>
-                                                                    </a>
-                                                                    <a herf="#" class="btn btn-primary btn-xs">
-                                                                        <i class="glyphicon glyphicon-edit"></i>
-                                                                    </a>
-                                                                    <a herf="#" class="btn btn-danger btn-xs">
-                                                                        <i class="glyphicon glyphicon-trash"></i>
-                                                                    </a>
-                                                                </td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            <div class="portlet-body">
+                <div id="iwtree"></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8 col-sm-8">
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption font-purple-plum">
+                    <i class="icon-speech font-purple-plum"></i>
+                    <span class="caption-subject bold">Detail</span>
                 </div>
+                <div class="actions">
+                    <a class="btn btn-circle btn-icon-only btn-default tooltips" data-original-title="Add an new child node">
+                        <i class="fa fa-plus"></i>
+                    </a>
+                    <a class="btn btn-circle btn-icon-only btn-default">
+                        <i class="fa fa-pencil"></i>
+                    </a>
+                    <a class="btn btn-circle btn-icon-only btn-default">
+                        <i class="icon-trash"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="portlet-body">
+
             </div>
         </div>
     </div>
 </div>
+

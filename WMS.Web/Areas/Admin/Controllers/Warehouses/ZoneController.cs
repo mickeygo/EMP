@@ -1,18 +1,24 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
+using WMS.Application.Services;
 using WMS.DataTransferObject.Dtos;
 
 namespace WMS.Web.Areas.Admin.Controllers
 {
     public class ZoneController : BaseController
     {
-        public ActionResult Index()
+        public ActionResult GetAll(Guid whId)
         {
-            return PartialView();
+            using (var service = IocResolver.Resolve<IWarehouseAppService>())
+            {
+                var zones = service.GetZones(whId);
+                return JsonEx(zones);
+            }
         }
 
-        public ActionResult Create()
+        public ActionResult Create(Guid whId)
         {
-            return PartialView();
+            return PartialView(new ZoneDto { WarehouseId = whId });
         }
 
         [HttpPost]
@@ -20,11 +26,21 @@ namespace WMS.Web.Areas.Admin.Controllers
         public ActionResult Create(ZoneDto model)
         {
             if (!ModelState.IsValid)
-            {
                 return Json(false, "Input data is invalid.");
-            }
 
-            return Json(true);
+            try
+            {
+                using (var service = IocResolver.Resolve<IWarehouseAppService>())
+                {
+                    service.CreateZone(model);
+                }
+
+                return Json(true);
+            }
+            catch
+            {
+                return Json(false);
+            }
         }
     }
 }

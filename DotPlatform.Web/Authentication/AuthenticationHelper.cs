@@ -14,10 +14,11 @@ namespace DotPlatform.Web.Authentication
         /// 创建基于声明的身份
         /// </summary>
         /// <param name="data">验证数据</param>
+        /// <param name="authenticationType">验证类型</param>
         /// <returns></returns>
-        public static ClaimsIdentity CreateClaimsIdentity(AuthenticationData data)
+        public static ClaimsIdentity CreateClaimsIdentity(AuthenticationData data, string authenticationType)
         {
-            var claimsIdentity = new ClaimsIdentity();
+            var claimsIdentity = new ClaimsIdentity(authenticationType);
             claimsIdentity.AddClaims(CreateClaims(data));
 
             return claimsIdentity;
@@ -28,7 +29,7 @@ namespace DotPlatform.Web.Authentication
         /// </summary>
         /// <param name="claimsIdentity"></param>
         /// <returns></returns>
-        public static AuthenticationData ReSolveClaimsIdentity(ClaimsIdentity claimsIdentity)
+        public static AuthenticationData ResolveClaimsIdentity(ClaimsIdentity claimsIdentity)
         {
             var tenantId = claimsIdentity.FindFirst(c => c.Type == OwnerClaimTypes.TenantId)?.Value.ToGuid();
             var tenantName = claimsIdentity.FindFirst(c => c.Type == OwnerClaimTypes.TenantName)?.Value;
@@ -46,14 +47,14 @@ namespace DotPlatform.Web.Authentication
 
         private static IEnumerable<Claim> CreateClaims(AuthenticationData data)
         {
-            yield return new Claim(OwnerClaimTypes.TenantId, data.TenantId?.ToString());
-            yield return new Claim(OwnerClaimTypes.TenantName, data.TenantName);
-            yield return new Claim(OwnerClaimTypes.Language, data.Language);
-            yield return new Claim(OwnerClaimTypes.TimeDifference, data.TimeDifference.ToString());
+            yield return new Claim(OwnerClaimTypes.TenantId, data.TenantId?.ToString() ?? string.Empty);
+            yield return new Claim(OwnerClaimTypes.TenantName, data.TenantName ?? string.Empty);
+            yield return new Claim(OwnerClaimTypes.Language, data.Language ?? string.Empty);
+            yield return new Claim(OwnerClaimTypes.TimeDifference, data.TimeDifference?.ToString() ?? string.Empty);
 
-            yield return new Claim(ClaimTypes.NameIdentifier, data.UserId?.ToString());
-            yield return new Claim(ClaimTypes.Name, data.UserName);
-            yield return new Claim(ClaimTypes.Email, data.Email);
+            yield return new Claim(ClaimTypes.NameIdentifier, data.UserId?.ToString() ?? string.Empty);
+            yield return new Claim(ClaimTypes.Name, data.UserName ?? string.Empty);
+            yield return new Claim(ClaimTypes.Email, data.Email ?? string.Empty);
         }
 
         #endregion

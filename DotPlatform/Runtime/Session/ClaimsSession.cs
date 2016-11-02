@@ -26,6 +26,22 @@ namespace DotPlatform.Runtime.Session
             get { return _instance; }
         }
 
+        public bool IsAuthenticated
+        {
+            get
+            {
+                var claimsPrincipal = Thread.CurrentPrincipal as ClaimsPrincipal;
+                if (claimsPrincipal == null)
+                    return false;
+
+                var claimsIdentity = claimsPrincipal.Identity as ClaimsIdentity;
+                if (claimsIdentity == null)
+                    return false;
+
+                return claimsIdentity.IsAuthenticated;
+            }
+        }
+
         public Guid? TenantId
         {
             get
@@ -65,7 +81,7 @@ namespace DotPlatform.Runtime.Session
                 var claimsPrincipal = Thread.CurrentPrincipal as ClaimsPrincipal;
                 if (claimsPrincipal == null)
                     return null;
-
+                
                 var timeDiffClaim = claimsPrincipal.FindFirst(OwnerClaimTypes.TimeDifference);
 
                 return timeDiffClaim?.Value.ToInt32();

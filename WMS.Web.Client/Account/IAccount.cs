@@ -1,4 +1,6 @@
-﻿namespace WMS.Web.Client.Account
+﻿using System.Threading.Tasks;
+
+namespace WMS.Web.Client.Account
 {
     public interface IAccount
     {

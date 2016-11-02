@@ -9,6 +9,8 @@ using DotPlatform.Events.Startup;
 using DotPlatform.Events.Storage;
 using DotPlatform.Localization;
 using DotPlatform.Modules;
+using DotPlatform.Net.Mail;
+using DotPlatform.Net.Mail.Smtp;
 using DotPlatform.Reflection;
 using DotPlatform.Timing;
 
@@ -54,9 +56,14 @@ namespace DotPlatform.Dependency.Installers
             _iocManager.Register<ILanguageProvider, DefaultLanguageProvider>();
             _iocManager.Register<ILanguageManager, LanguageManager>();
 
+            // Net
+            // Net - Mail
+            _iocManager.Register<IMailSender, SmtpMailSender>(IocLifeStyle.Singleton);
+
             // Configuration
             _iocManager.Register<AppStartupConfiguration>();
             _iocManager.Register<IStartupConfiguration, AppStartupConfiguration>();
+            _iocManager.Register<ISmtpMailSenderConfiguration, SmtpMailSenderConfiguration>(IocLifeStyle.Singleton);  // mail
 
             // InitializerManager
             _iocManager.Register<ApplicationInitializerManager>();
@@ -68,8 +75,8 @@ namespace DotPlatform.Dependency.Installers
 
             // Event & Bus
             _iocManager.Register<IEventHandlerFinder, EventHandlerFinder>();
-            _iocManager.Register<IEventAggregator, EventAggregator>();
-            _iocManager.Register<IDomainEventStorage, NullDomainEventStorage>(); // Todo: Change the event storage
+            _iocManager.Register<IEventAggregator, EventAggregator>(IocLifeStyle.Singleton);
+            _iocManager.Register<IDomainEventStorage, NullDomainEventStorage>(IocLifeStyle.Singleton); // Todo: Change the event storage
             
             _iocManager.Register<IEventBusProvider, EventBusProvider>();
             _iocManager.Register<IEventBus, EventBus>();

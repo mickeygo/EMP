@@ -1,7 +1,10 @@
 ﻿using System.Web.Optimization;
+using System.Runtime.CompilerServices;
+using DotPlatform.Extensions;
+using DotPlatform.Web.Bundle;
 using System.Web.Optimization.React;
 
-namespace WMS
+namespace WMS.Web
 {
     /// <summary>
     /// Bundle 配置，用于打包并优化 js 和 css .
@@ -13,83 +16,53 @@ namespace WMS
         /// </summary>
         public static void RegisterBundles(BundleCollection bundles)
         {
-            // Css
-            bundles.Add(RegisterMainCss());     // Main
-            bundles.Add(RegisterAddonCss());    // Addon
-            bundles.Add(RegisterCustomCss());    // Custom
+            RegisterBundlesFromConfigFile(bundles);
 
-            // Js
-            bundles.Add(RegisterMainJs());      // Main
-            bundles.Add(RegisterAddonJs());     // Addon
-            bundles.Add(RegisterCustomJs());    // Custom Js
-
-            bundles.Add(RegisterSrcJsx());      // jsx
+            bundles.Add(new BabelBundle("~/bundles/script/src")
+                .IncludeDirectory("~/wwwroot/js/src/", "*.js", false)
+                .IncludeDirectory("~/wwwroot/js/src/", "*.jsx", false));
         }
 
-        #region Private Methods
+        #region Metronic UI
 
-        // 主要 Css
-        private static Bundle RegisterMainCss()
+        // Core
+        [MethodImpl(MethodImplOptions.Synchronized)]
+        private static void RegisterBundlesFromConfigFile(BundleCollection bundles)
         {
-            return new StyleBundle("~/content/main").Include(
-                "~/Content/bootstrap.css");
+            var manager = new BundleManager();
+            var bundleData = manager.Resolve();
+
+             if (bundleData == null || bundleData.Bundles.IsNullOrEmpty())
+                return;
+
+            foreach (var bundle in bundleData.Bundles)
+            {
+                Bundle mBundle = null;
+                if (bundle.Type == "script")
+                    mBundle = new ScriptBundle(bundle.VirtualPath);
+                else if (bundle.Type == "style")
+                    mBundle = new StyleBundle(bundle.VirtualPath);
+
+                if (mBundle == null)
+                    continue;
+
+                if(!bundle.VirtualFilePaths.IsNullOrEmpty())
+                    mBundle.Include(bundle.VirtualFilePaths);
+
+                if (!bundle.Directories.IsNullOrEmpty())
+                {
+                    foreach (var dir in bundle.Directories)
+                    {
+                        mBundle.IncludeDirectory(dir.DirectoryVirtualPath, dir.SearchPattern, dir.SearchSubdirectories);
+                    }
+                }
+
+                bundles.Add(mBundle);
+            }
         }
 
-        // 插件 Css
-        private static Bundle RegisterAddonCss()
-        {
-            return new StyleBundle("~/content/addon").Include(
-                "~/Content/css/select2.css");
-        }
+        // Plugins
 
-        private static Bundle RegisterCustomCss()
-        {
-            return new StyleBundle("~/content/custom").Include(
-                "~/Content/site.custom.css",
-                "~/Content/component.custom.css");
-        }
-
-        // 主要 Js
-        private static Bundle RegisterMainJs()
-        {
-            return new ScriptBundle("~/bundles/main").Include(
-                "~/Scripts/jquery-{version}.js",
-                "~/Scripts/jquery.unobtrusive-ajax.js",
-                "~/Scripts/jquery.validate.js",
-                "~/Scripts/jquery.validate.unobtrusive.js",
-                "~/Scripts/bootstrap.js",
-                "~/Scripts/respond.js").Include(
-                "~/Scripts/react/react.js",
-                "~/Scripts/react/react-dom.js");
-        }
-
-        // 插件 Js
-        private static Bundle RegisterAddonJs()
-        {
-            return new ScriptBundle("~/bundles/addon").Include(
-                "~/Scripts/DataTables/jquery.dataTables.js",
-                "~/Scripts/jquery.form.js",
-                "~/Scripts/jquery.cookie.js",
-                "~/Scripts/jquery.blockUI.js").Include(
-                "~/Scripts/select2.js",
-                "~/Scripts/jquery.maskedinput.js",
-                "~/Scripts/noty/jquery.noty.js");
-        }
-
-        // 自定义脚本
-        private static Bundle RegisterCustomJs()
-        {
-            return new ScriptBundle("~/bundles/custom")
-                .IncludeDirectory("~/Js/utils", "*.js", false)
-                .Include("~/Js/startup.js");
-        }
-
-        private static Bundle RegisterSrcJsx()
-        {
-            return new BabelBundle("~/bundles/src")
-                 .IncludeDirectory("~/Js/src", "*.jsx", true);
-        }
-        
         #endregion
     }
 }

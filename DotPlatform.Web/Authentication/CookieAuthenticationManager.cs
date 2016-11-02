@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNet.Identity;
+using Microsoft.Owin.Security;
 
 namespace DotPlatform.Web.Authentication
 {
@@ -23,13 +24,13 @@ namespace DotPlatform.Web.Authentication
 
         public void SignIn(AuthenticationData data, bool ispersistent)
         {
-            var ticket = _authenticationTicket.CreateTicket(data, ispersistent);
+            var ticket = _authenticationTicket.CreateTicket(data, ispersistent, AuthenticationType);
             this._authenticationProvider.SignIn(ticket);
         }
 
         public void SignOut()
         {
-            _authenticationProvider.SignOut(null, new[] { AuthenticationType });
+            _authenticationProvider.SignOut(new AuthenticationProperties(), new[] { AuthenticationType });
         }
     }
 }

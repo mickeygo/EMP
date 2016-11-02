@@ -43,6 +43,9 @@
   <ItemGroup>
     <Compile Include="Dtos\LocationDto.cs" />
     <Compile Include="Dtos\ShelfDto.cs" />
+    <Compile Include="Dtos\StockInDto.cs" />
+    <Compile Include="Dtos\StockInLineDto.cs" />
+    <Compile Include="Dtos\StockInStatusDto.cs" />
     <Compile Include="Dtos\TenantDto.cs" />
     <Compile Include="Dtos\UserDto.cs" />
     <Compile Include="Dtos\WarehouseDto.cs" />

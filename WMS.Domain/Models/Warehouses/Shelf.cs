@@ -8,7 +8,7 @@ namespace WMS.Domain.Models.Warehouses
     /// <summary>
     /// 仓库货架
     /// </summary>
-    public class Shelf : AggregateRoot, ISoftDelete, ICreationAudited, IModificationAudited
+    public class Shelf : AggregateRoot, ISoftDelete, IMustHaveTenant, ICreationAudited, IModificationAudited
     {
         #region Properties
 
@@ -43,6 +43,11 @@ namespace WMS.Domain.Models.Warehouses
         /// 获取区域信息
         /// </summary>
         public virtual Zone Zone { get; private set; }
+
+        /// <summary>
+        /// 获取或设置租户
+        /// </summary>
+        public Guid TenantId { get; set; }
 
         /// <summary>
         /// 是否已删除
@@ -82,10 +87,16 @@ namespace WMS.Domain.Models.Warehouses
         /// </summary>
         /// <param name="name">货架名</param>
         /// <param name="zoneId">隶属的区域 Id</param>
-        public Shelf(string name, Guid zoneId)
+        /// <param name="length">货架长度</param>
+        /// <param name="width">货架宽度</param>
+        /// <param name="height">货架高度</param>
+        public Shelf(Guid zoneId, string name, double length, double width, double height)
         {
             Name = name;
             ZoneId = zoneId;
+            Length = length;
+            Width = width;
+            Height = height;
         }
 
         #endregion

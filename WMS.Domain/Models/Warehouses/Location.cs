@@ -8,7 +8,7 @@ namespace WMS.Domain.Models.Warehouses
     /// <summary>
     /// 仓库储位
     /// </summary>
-    public class Location : AggregateRoot, ISoftDelete, ICreationAudited, IModificationAudited
+    public class Location : AggregateRoot, ISoftDelete, IMustHaveTenant, ICreationAudited, IModificationAudited
     {
         #region Properties
 
@@ -50,6 +50,11 @@ namespace WMS.Domain.Models.Warehouses
         public virtual Shelf Shelf { get; }
 
         /// <summary>
+        /// 获取或设置租户
+        /// </summary>
+        public Guid TenantId { get; set; }
+
+        /// <summary>
         /// 是否已删除
         /// </summary>
         public bool IsDeleted { get; set; }
@@ -88,11 +93,17 @@ namespace WMS.Domain.Models.Warehouses
         /// <param name="name">储位名</param>
         /// <param name="shelfId">隶属的货架 Id</param>
         /// <param name="isBonded">是否是保税储位</param>
-        public Location(string name, Guid shelfId, bool isBonded)
+        /// <param name="length">储位长度</param>
+        /// <param name="width">储位宽度</param>
+        /// <param name="height">储位高度</param>
+        public Location(Guid shelfId, string name, bool isBonded, double length, double width, double height)
         {
             Name = name;
             ShelfId = shelfId;
             IsBonded = isBonded;
+            Length = length;
+            Width = width;
+            Height = height;
         }
 
         #endregion

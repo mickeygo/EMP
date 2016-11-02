@@ -41,6 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EventHandlers\Inbounds\StockInPostedEventHandler.cs" />
+    <Compile Include="EventHandlers\Inbounds\StockInCreatedEventHandler.cs" />
+    <Compile Include="Events\Inbounds\StockInPostedEvent.cs" />
+    <Compile Include="Events\Inbounds\StockInCreatedEvent.cs" />
     <Compile Include="EventHandlers\Warehouses\LocationCreatedEventHandler.cs" />
     <Compile Include="EventHandlers\Warehouses\ShelfCreatedEventHandler.cs" />
     <Compile Include="EventHandlers\Warehouses\WarehouseCreatedEventHandler.cs" />
@@ -49,20 +53,28 @@
     <Compile Include="Events\Warehouses\ShelfCreatedEvent.cs" />
     <Compile Include="Events\Warehouses\WarehouseCreatedEvent.cs" />
     <Compile Include="Events\Warehouses\ZoneCreatedEvent.cs" />
+    <Compile Include="Models\Inbounds\StockIn.cs" />
+    <Compile Include="Models\Inbounds\StockInLine.cs" />
+    <Compile Include="Models\Inbounds\StockInStatus.cs" />
+    <Compile Include="Models\Stocks\SnStatus.cs" />
+    <Compile Include="Models\Stocks\Stock.cs" />
+    <Compile Include="Models\Stocks\StockLine.cs" />
     <Compile Include="Models\Warehouses\Location.cs" />
     <Compile Include="Models\Warehouses\Shelf.cs" />
     <Compile Include="Models\Warehouses\TickSetting.cs" />
     <Compile Include="Models\Warehouses\Warehouse.cs" />
     <Compile Include="Models\Warehouses\Zone.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QueryRepositories\IStockInQueryRepository.cs" />
     <Compile Include="Repositories\ILocationRepository.cs" />
+    <Compile Include="Repositories\IStockInRepository.cs" />
     <Compile Include="Repositories\IWarehouseRepository.cs" />
     <Compile Include="Repositories\IZoneRepository.cs" />
-    <Compile Include="Repositories\Query\ILocationQueryRepository.cs" />
-    <Compile Include="Repositories\Query\IShelfQueryRepository.cs" />
+    <Compile Include="QueryRepositories\ILocationQueryRepository.cs" />
+    <Compile Include="QueryRepositories\IShelfQueryRepository.cs" />
     <Compile Include="Repositories\IShelfRepository.cs" />
-    <Compile Include="Repositories\Query\IWarehouseQueryRepository.cs" />
-    <Compile Include="Repositories\Query\IZoneQueryRepository.cs" />
+    <Compile Include="QueryRepositories\IWarehouseQueryRepository.cs" />
+    <Compile Include="QueryRepositories\IZoneQueryRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Factories\" />

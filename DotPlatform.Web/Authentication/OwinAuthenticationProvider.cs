@@ -15,19 +15,19 @@ namespace DotPlatform.Web.Authentication
 
         public void SignIn(AuthenticationTicket authenticationTicket)
         {
-            this.Provider.SignIn(authenticationTicket.Properties, authenticationTicket.Identity);
+            Provider.SignIn(authenticationTicket.Properties, authenticationTicket.Identity);
         }
 
         public void SignOut(AuthenticationProperties options, string[] authenticationTypes)
         {
-            this.Provider.SignOut(options, authenticationTypes);
+            Provider.SignOut(options, authenticationTypes);
         }
 
         #region Private Methods
 
         private IAuthenticationManager GetAuthentication()
         {
-            var owinContext = HttpContext.Current.GetOwinContext();
+            var owinContext = HttpContext.Current.Request.GetOwinContext();
             return owinContext.Authentication;
         }
 

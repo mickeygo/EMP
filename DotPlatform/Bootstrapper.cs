@@ -23,6 +23,16 @@ namespace DotPlatform
         protected bool IsDisposed;
 
         /// <summary>
+        /// 应用程序在初始化前处理事件
+        /// </summary>
+        public event EventHandler PreInitializeEvent;
+
+        /// <summary>
+        /// 应用程序已初始化后处理事件
+        /// </summary>
+        public event EventHandler PostInitializeEvent;
+
+        /// <summary>
         /// 初始化一个新的<see cref="Bootstrapper"/>实例
         /// </summary>
         public Bootstrapper()
@@ -31,18 +41,12 @@ namespace DotPlatform
         }
 
         /// <summary>
-        /// 初始化之前处理
-        /// </summary>
-        public virtual void OnPreInitialize()
-        {
-
-        }
-
-        /// <summary>
         /// 初始化程序。查询启动会执行该方法
         /// </summary>
-        public virtual void OnInitialize()
+        public void OnInitialize()
         {
+            PreInitializeEvent?.Invoke(this, null);
+
             lock (sync)
             {
                 // 安装组件
@@ -54,25 +58,13 @@ namespace DotPlatform
                 // Module
                 _moduleManager = _iocManager.Resolve<IModuleManager>();
                 _moduleManager.Initialize();
+
+                // 实现了 IApplicationInitializer 接口的对象初始化
+                var initManger = _iocManager.Resolve<ApplicationInitializerManager>();
+                initManger.Init();
             }
-        }
 
-        /// <summary>
-        /// 初始化后事件处理
-        /// </summary>
-        public virtual void OnPostInitialize()
-        {
-            var initManger = _iocManager.Resolve<ApplicationInitializerManager>();
-            initManger.Init();
-        }
-
-        /// <summary>
-        /// 加载所有的程序集
-        /// </summary>
-        public virtual void LoadAllAssemblies()
-        {
-            // Todo： 如何将 IAssemblyFinder 对象在此重写
-
+            PostInitializeEvent?.Invoke(this, null);
         }
 
         /// <summary>

@@ -7,6 +7,8 @@ namespace DotPlatform.Tests.AutoMapper.Dto
     {
         public string Name { get; set; }
 
+        public Sex_Test Sex { get; set; }
+
         public int Age { get; set; }
 
         public DateTime Birthday { get; set; }
@@ -19,10 +21,25 @@ namespace DotPlatform.Tests.AutoMapper.Dto
     {
         public string Name { get; set; }
 
+        public SexDesitination_Test Sex { get; set; }
+
         public int Age { get; set; }
 
         public DateTime Birthday { get; set; }
 
         public bool Married { get; set; }
+    }
+
+    public enum Sex_Test
+    {
+        F,
+        M
+    }
+
+    [AutoMapFrom(typeof(Sex_Test))]
+    public enum SexDesitination_Test
+    {
+        F,
+        M
     }
 }

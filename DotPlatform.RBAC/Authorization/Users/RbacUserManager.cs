@@ -11,8 +11,8 @@ namespace DotPlatform.RBAC.Authorization
         /// <summary>
         /// 初始化一个新的<see cref="RbacUserManager"/>实例
         /// </summary>
-        /// <param name="store"></param>
-        public RbacUserManager(IUserStore<RbacUser, Guid> store) : base(store)
+        /// <param name="store">用户存储对象</param>
+        public RbacUserManager(IUserStore store) : base(store)
         {
             
         }

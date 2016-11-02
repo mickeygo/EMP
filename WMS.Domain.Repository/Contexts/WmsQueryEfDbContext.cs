@@ -13,7 +13,6 @@ namespace WMS.Domain.Repository
     {
         public WmsQueryEfDbContext() : base(ConnectionName)
         {
-            this.OwnerSession = ClaimsSession.Instance;
         }
 
         protected override void CreateModel(DbModelBuilder modelBuilder)

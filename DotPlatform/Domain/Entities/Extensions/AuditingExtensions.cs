@@ -10,7 +10,8 @@ namespace DotPlatform.Domain.Entities.Extensions
     public static class AuditingExtensions
     {
         /// <summary>
-        /// 设置实体创建人信息
+        /// 设置实体创建人信息.
+        /// 注：创建、修改 和 删除 的时间都会使用系统时间
         /// </summary>
         /// <param name="entity">实体</param>
         /// <param name="session">会话信息</param>

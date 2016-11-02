@@ -40,8 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Services\Impl\WarehouseAppService.cs" />
+    <Compile Include="ImplServices\InboundAppService.cs" />
+    <Compile Include="ImplServices\WarehouseAppService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\IInboundAppService.cs" />
     <Compile Include="Services\IWarehouseAppService.cs" />
     <Compile Include="WmsApplicationBootstrapper.cs" />
   </ItemGroup>
@@ -74,9 +76,7 @@
   <ItemGroup>
     <None Include="app.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ImplServices\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

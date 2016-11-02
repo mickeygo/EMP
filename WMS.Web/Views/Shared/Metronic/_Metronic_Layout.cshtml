@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
+<!-- BEGIN HEAD -->
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title - WMS</title>
+    <meta name="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="wms, advantech">
+    <meta name="author" content="advantech web team">
+
+    @Styles.Render("~/bundles/style/core")
+    @Styles.Render("~/bundles/style/plugins")
+    @Styles.Render("~/bundles/style/global")
+    @Styles.Render("~/bundles/style/layout")
+
+    @RenderSection("styles", false)
+</head>
+<body class="page-container-bg-solid page-header-fixed page-sidebar-closed-hide-logo">
+    <!-- BEGIN HEADER -->
+    @Html.Partial("Metronic/_Metronic_Layout_Header")
+    <!-- END HEADER -->
+
+    <!-- BEGIN HEADER & CONTENT DIVIDER -->
+    <div class="clearfix"> </div>
+    <!-- END HEADER & CONTENT DIVIDER -->
+
+    <!-- BEGIN CONTAINER -->
+    <div class="page-container">
+        <!-- BEGIN SIDEBAR -->
+        @Html.Partial("Metronic/_Metronic_Sidebar")
+        <!-- END SIDEBAR -->
+        <!-- BEGIN CONTENT -->
+        <div class="page-content-wrapper">
+            <!-- BEGIN CONTENT BODY -->
+            <div class="page-content">
+                @RenderBody()
+            </div>
+            <!-- END CONTENT BODY -->
+        </div>
+        <!-- END CONTENT -->
+    </div>
+    <!-- BEGINEND CONTAINER -->
+
+    <!-- BEGIN FOOTER -->
+    @Html.Partial("Metronic/_Metronic_Layout_Footer")
+    <!-- END FOOTER -->
+
+    <!--[if lt IE 9]>
+    <script src="~/wwwroot/lib/metronic/theme/assets/global/plugins/respond.min.js"></script>
+    <script src="~/wwwroot/lib/metronic/theme/assets/global/plugins/excanvas.min.js"></script>
+    <![endif]-->
+
+    @Scripts.Render("~/bundles/script/core")
+    @Scripts.Render("~/bundles/script/plugins")
+    @Scripts.Render("~/bundles/script/global")
+    @Scripts.Render("~/bundles/script/layout")
+    @Scripts.Render("~/bundles/script/react")
+    @Scripts.Render("~/bundles/script/utils")
+    @Scripts.Render("~/bundles/script/src")
+
+    @RenderSection("scripts", false)
+</body>
+</html>

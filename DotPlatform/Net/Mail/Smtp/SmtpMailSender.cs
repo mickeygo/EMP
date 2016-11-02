@@ -25,7 +25,7 @@ namespace DotPlatform.Net.Mail.Smtp
         /// 建置 <see cref="SmtpClient"/>
         /// </summary>
         /// <returns></returns>
-        public SmtpClient BuildClient()
+        private SmtpClient BuildClient()
         {
             SmtpClient smtpClient = null;
 

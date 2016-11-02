@@ -1,0 +1,115 @@
+﻿{
+    "bundles": [
+        {
+            "type": "script",
+            "virtualPath": "~/bundles/script/core",
+            "virtualFilePaths": [
+                "~/wwwroot/lib/metronic/theme/assets/global/plugins/jquery-{version}.js",
+                "~/wwwroot/lib/metronic/theme/assets/global/plugins/jquery.unobtrusive-ajax.js",
+                "~/wwwroot/lib/metronic/theme/assets/global/plugins/bootstrap/js/bootstrap.js",
+                "~/wwwroot/lib/metronic/theme/assets/global/plugins/jquery.cookie.js",
+                "~/wwwroot/lib/metronic/theme/assets/global/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.js",
+                "~/wwwroot/lib/metronic/theme/assets/global/plugins/jquery-slimscroll/jquery.slimscroll.js",
+                "~/wwwroot/lib/metronic/theme/assets/global/plugins/jquery.blockui.js",
+                "~/wwwroot/lib/metronic/theme/assets/global/plugins/uniform/jquery.uniform.js",
+                "~/wwwroot/lib/metronic/theme/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.js"
+            ]
+        },
+        {
+            "type": "script",
+            "virtualPath": "~/bundles/script/plugins",
+            "virtualFilePaths": [
+                "~/wwwroot/lib/metronic/theme/assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js",
+                "~/wwwroot/lib/metronic/theme/assets/global/plugins/jquery-form/jquery.form.js",
+                "~/wwwroot/lib/metronic/theme/assets/global/plugins/jquery-validation/js/jquery.validate.js",
+                "~/wwwroot/lib/metronic/theme/assets/global/plugins/jquery-validation/js/additional-methods.js",
+                "~/wwwroot/lib/metronic/theme/assets/global/plugins/jquery-validation/js/jquery.validate.unobtrusive.js",
+                "~/wwwroot/lib/metronic/theme/assets/global/plugins/bootstrap-modal/js/bootstrap-modalmanager.js",
+                "~/wwwroot/lib/metronic/theme/assets/global/plugins/bootstrap-modal/js/bootstrap-modal.js",
+                "~/wwwroot/lib/metronic/theme/assets/global/plugins/bootstrap-toastr/toastr.js",
+                "~/wwwroot/lib/metronic/theme/assets/global/plugins/datatables/datatables.js",
+                "~/wwwroot/lib/metronic/theme/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js",
+                "~/wwwroot/lib/metronic/theme/assets/global/plugins/jquery-inputmask/jquery.inputmask.bundle.js",
+                "~/wwwroot/lib/metronic/theme/assets/global/plugins/bootbox/bootbox.js",
+                "~/wwwroot/lib/metronic/theme/assets/global/plugins/jstree/dist/jstree.js"
+            ]
+        },
+        {
+            "type": "script",
+            "virtualPath": "~/bundles/script/global",
+            "virtualFilePaths": [
+                "~/wwwroot/lib/metronic/theme/assets/global/scripts/app.js",
+                "~/wwwroot/lib/metronic/theme/assets/global/scripts/startup.js"
+            ]
+        },
+        {
+            "type": "script",
+            "virtualPath": "~/bundles/script/layout",
+            "virtualFilePaths": [
+                "~/wwwroot/lib/metronic/theme/assets/layouts/layout4/scripts/layout.js"
+            ]
+        },
+        {
+            "type": "script",
+            "virtualPath": "~/bundles/script/react",
+            "virtualFilePaths": [
+                "~/wwwroot/lib/metronic/theme/assets/global/plugins/react/react.js",
+                "~/wwwroot/lib/metronic/theme/assets/global/plugins/react/react-with-addons.js",
+                "~/wwwroot/lib/metronic/theme/assets/global/plugins/react/react-dom.js"
+            ]
+        },
+        {
+            "type": "script",
+            "virtualPath": "~/bundles/script/utils",
+            "directories": [
+                {
+                    "directoryVirtualPath": "~/wwwroot/js/utils/",
+                    "searchPattern": "*.js",
+                    "SearchSubdirectories": false
+                }
+            ]
+        },
+        {
+            "type": "style",
+            "virtualPath": "~/bundles/style/core",
+            "virtualFilePaths": [
+                "~/wwwroot/lib/metronic/theme/assets/global/plugins/font-google/css/font-google.css",
+                "~/wwwroot/lib/metronic/theme/assets/global/plugins/font-awesome/css/font-awesome.css",
+                "~/wwwroot/lib/metronic/theme/assets/global/plugins/simple-line-icons/simple-line-icons.css",
+                "~/wwwroot/lib/metronic/theme/assets/global/plugins/bootstrap/css/bootstrap.css",
+                "~/wwwroot/lib/metronic/theme/assets/global/plugins/uniform/css/uniform.default.css",
+                "~/wwwroot/lib/metronic/theme/assets/global/plugins/bootstrap-switch/css/bootstrap-switch.css"
+            ]
+        },
+        {
+            "type": "style",
+            "virtualPath": "~/bundles/style/plugins",
+            "virtualFilePaths": [
+                "~/wwwroot/lib/metronic/theme/assets/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.css",
+                "~/wwwroot/lib/metronic/theme/assets/global/plugins/bootstrap-modal/css/bootstrap-modal-bs3patch.css",
+                "~/wwwroot/lib/metronic/theme/assets/global/plugins/bootstrap-modal/css/bootstrap-modal.css",
+                "~/wwwroot/lib/metronic/theme/assets/global/plugins/datatables/datatables.css",
+                "~/wwwroot/lib/metronic/theme/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css",
+                "~/wwwroot/lib/metronic/theme/assets/global/plugins/bootstrap-toastr/toastr.css",
+                "~/wwwroot/lib/metronic/theme/assets/global/plugins/jstree/dist/themes/default/style.css"
+            ]
+        },
+        {
+            "type": "style",
+            "virtualPath": "~/bundles/style/global",
+            "virtualFilePaths": [
+                "~/wwwroot/lib/metronic/theme/assets/global/css/components.css",
+                "~/wwwroot/lib/metronic/theme/assets/global/css/plugins.css"
+            ]
+        },
+        {
+            "type": "style",
+            "virtualPath": "~/bundles/style/layout",
+            "virtualFilePaths": [
+                "~/wwwroot/lib/metronic/theme/assets/layouts/layout4/css/layout.css",
+                "~/wwwroot/lib/metronic/theme/assets/layouts/layout4/css/themes/light.css",
+                "~/wwwroot/lib/metronic/theme/assets/layouts/layout4/css/custom.css"
+            ]
+        }
+    ]
+}

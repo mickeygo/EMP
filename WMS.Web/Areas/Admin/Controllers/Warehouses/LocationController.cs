@@ -1,25 +1,46 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
+using WMS.Application.Services;
 using WMS.DataTransferObject.Dtos;
 
 namespace WMS.Web.Areas.Admin.Controllers
 {
     public class LocationController : BaseController
     {
-        public ActionResult Index()
+        public ActionResult GetAll(Guid shelfId)
         {
-            return PartialView();
+            using (var service = IocResolver.Resolve<IWarehouseAppService>())
+            {
+                var locations = service.GetLocations(shelfId);
+                return JsonEx(locations);
+            }
         }
 
-        public ActionResult Create()
+        public ActionResult Create(Guid shelfId)
         {
-            return PartialView();
+            return PartialView(new LocationDto { ShelfId = shelfId });
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(LocationDto model)
         {
-            return Json(true);
+            if (!ModelState.IsValid)
+                return Json(false, "Input data is invalid.");
+
+            try
+            {
+                using (var service = IocResolver.Resolve<IWarehouseAppService>())
+                {
+                    service.CreateLocation(model);
+                }
+
+                return Json(true);
+            }
+            catch
+            {
+                return Json(false);
+            }
         }
     }
 }
