@@ -2,35 +2,27 @@
     ViewBag.Title = "Admin Warehouse";
 }
 
-<div>
-    @Html.Navgation2("Admin", "Warehouse")
-</div>
-
 @section scripts {
-    <script src="~/wwwroot/js/utils/Guid.js"></script>
-    <script src="~/wwwroot/js/utils/EventEmitter.js"></script>
-    <script src="~/wwwroot/js/src/warehouse.jsx"></script>
-
     <script>
-        ReactDOM.render(
-           React.createElement(WarehouseCollection),
-           document.getElementById('warehousecollection')
-        );
+        //ReactDOM.render(
+        //   React.createElement(WarehouseCollection),
+        //   document.getElementById('warehousecollection')
+        //);
 
-        ReactDOM.render(
-          React.createElement(ZoneCollection),
-          document.getElementById('zonecollection')
-        );
+        //ReactDOM.render(
+        //  React.createElement(ZoneCollection),
+        //  document.getElementById('zonecollection')
+        //);
 
-        ReactDOM.render(
-            React.createElement(ShelfCollection),
-            document.getElementById('shelfcollection')
-        );
+        //ReactDOM.render(
+        //    React.createElement(ShelfCollection),
+        //    document.getElementById('shelfcollection')
+        //);
 
-        ReactDOM.render(
-           React.createElement(ShelfDetail),
-           document.getElementById('shelfdetail')
-        );
+        //ReactDOM.render(
+        //   React.createElement(ShelfDetail),
+        //   document.getElementById('shelfdetail')
+        //);
 
         var IwTree = function () {
 
@@ -86,7 +78,11 @@
     </script>
 }
 
-<div id="warehousecollection"></div>
+<div>
+    @Html.Navgation("Admin", "Warehouse")
+</div>
+
+@*<div id="warehousecollection"></div>
 
 <div style="margin-top:20px;">
     <div class="row">
@@ -96,7 +92,7 @@
             <div id="shelfdetail"></div>
         </div>
     </div>
-</div>
+</div>*@
 
 <div class="row">
     <div class="col-md-4 col-sm-4">

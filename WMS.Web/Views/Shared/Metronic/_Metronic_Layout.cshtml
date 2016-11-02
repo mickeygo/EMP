@@ -14,32 +14,10 @@
     <meta name="description" content="wms, advantech">
     <meta name="author" content="advantech web team">
 
-    <!-- BEGIN GLOBAL MANDATORY STYLES -->
-    <link href="~/wwwroot/lib/metronic/theme/assets/global/plugins/font-google/css/font-google.css" rel="stylesheet" />
-    <link href="~/wwwroot/lib/metronic/theme/assets/global/plugins/font-awesome/css/font-awesome.css" rel="stylesheet" />
-    <link href="~/wwwroot/lib/metronic/theme/assets/global/plugins/simple-line-icons/simple-line-icons.css" rel="stylesheet" />
-    <link href="~/wwwroot/lib/metronic/theme/assets/global/plugins/bootstrap/css/bootstrap.css" rel="stylesheet" />
-    <link href="~/wwwroot/lib/metronic/theme/assets/global/plugins/uniform/css/uniform.default.css" rel="stylesheet" />
-    <link href="~/wwwroot/lib/metronic/theme/assets/global/plugins/bootstrap-switch/css/bootstrap-switch.css" rel="stylesheet" />
-    <!-- END GLOBAL MANDATORY STYLES -->
-    <!-- BEGIN PLUGINS STYLES -->
-    <link href="~/wwwroot/lib/metronic/theme/assets/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.css" rel="stylesheet" />
-    <link href="~/wwwroot/lib/metronic/theme/assets/global/plugins/bootstrap-modal/css/bootstrap-modal-bs3patch.css" rel="stylesheet" />
-    <link href="~/wwwroot/lib/metronic/theme/assets/global/plugins/bootstrap-modal/css/bootstrap-modal.css" rel="stylesheet" />
-    <link href="~/wwwroot/lib/metronic/theme/assets/global/plugins/datatables/datatables.css" rel="stylesheet" />
-    <link href="~/wwwroot/lib/metronic/theme/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css" rel="stylesheet" />
-    <link href="~/wwwroot/lib/metronic/theme/assets/global/plugins/bootstrap-toastr/toastr.css" rel="stylesheet" />
-    <link href="~/wwwroot/lib/metronic/theme/assets/global/plugins/jstree/dist/themes/default/style.css" rel="stylesheet" />
-    <!-- END PLUGINS STYLES -->
-    <!-- BEGIN THEME GLOBAL STYLES -->
-    <link href="~/wwwroot/lib/metronic/theme/assets/global/css/components.css" rel="stylesheet" id="style_components" />
-    <link href="~/wwwroot/lib/metronic/theme/assets/global/css/plugins.css" rel="stylesheet" />
-    <!-- END THEME GLOBAL STYLES -->
-    <!-- BEGIN THEME LAYOUT STYLES -->
-    <link href="~/wwwroot/lib/metronic/theme/assets/layouts/layout4/css/layout.css" rel="stylesheet" />
-    <link href="~/wwwroot/lib/metronic/theme/assets/layouts/layout4/css/themes/light.css" rel="stylesheet" id="style_color" />
-    <link href="~/wwwroot/lib/metronic/theme/assets/layouts/layout4/css/custom.css" rel="stylesheet" />
-    <!-- END THEME LAYOUT STYLES -->
+    @Styles.Render("~/bundles/style/core")
+    @Styles.Render("~/bundles/style/plugins")
+    @Styles.Render("~/bundles/style/global")
+    @Styles.Render("~/bundles/style/layout")
 
     @RenderSection("styles", false)
 </head>
@@ -78,42 +56,13 @@
     <script src="~/wwwroot/lib/metronic/theme/assets/global/plugins/excanvas.min.js"></script>
     <![endif]-->
 
-    <!-- BEGIN CORE PLUGINS -->
-    <script src="~/wwwroot/lib/metronic/theme/assets/global/plugins/jquery-1.12.4.js"></script>
-    <script src="~/wwwroot/lib/metronic/theme/assets/global/plugins/bootstrap/js/bootstrap.js"></script>
-    <script src="~/wwwroot/lib/metronic/theme/assets/global/plugins/jquery.cookie.js"></script>
-    <script src="~/wwwroot/lib/metronic/theme/assets/global/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.js"></script>
-    <script src="~/wwwroot/lib/metronic/theme/assets/global/plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
-    <script src="~/wwwroot/lib/metronic/theme/assets/global/plugins/jquery.blockui.js"></script>
-    <script src="~/wwwroot/lib/metronic/theme/assets/global/plugins/uniform/jquery.uniform.js"></script>
-    <script src="~/wwwroot/lib/metronic/theme/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.js"></script>
-    <!-- END CORE PLUGINS -->
-    <!-- BEGIN PLUGINS SCRIPTS -->
-    <script src="~/wwwroot/lib/metronic/theme/assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
-    <script src="~/wwwroot/lib/metronic/theme/assets/global/plugins/bootstrap-modal/js/bootstrap-modalmanager.js"></script>
-    <script src="~/wwwroot/lib/metronic/theme/assets/global/plugins/bootstrap-modal/js/bootstrap-modal.js"></script>
-    <script src="~/wwwroot/lib/metronic/theme/assets/global/plugins/jquery-inputmask/jquery.inputmask.bundle.js"></script>
-    <script src="~/wwwroot/lib/metronic/theme/assets/global/plugins/jquery-validation/js/jquery.validate.js"></script>
-    <script src="~/wwwroot/lib/metronic/theme/assets/global/plugins/jquery-validation/js/additional-methods.js"></script>
-    <script src="~/wwwroot/lib/metronic/theme/assets/global/plugins/jquery-form/jquery.form.js"></script>
-    <script src="~/wwwroot/lib/metronic/theme/assets/global/plugins/bootbox/bootbox.js"></script>
-    <script src="~/wwwroot/lib/metronic/theme/assets/global/plugins/bootstrap-toastr/toastr.js"></script>
-    <script src="~/wwwroot/lib/metronic/theme/assets/global/plugins/jstree/dist/jstree.js"></script>
-    <script src="~/wwwroot/lib/metronic/theme/assets/global/plugins/datatables/datatables.js"></script>
-    <script src="~/wwwroot/lib/metronic/theme/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js"></script>
-    <!-- END PLUGINS SCRIPTS -->
-    <!-- BEGIN THEME GLOBAL SCRIPTS -->
-    <script src="~/wwwroot/lib/metronic/theme/assets/global/scripts/app.js"></script>
-    <script src="~/wwwroot/lib/metronic/theme/assets/global/scripts/startup.js"></script>
-    <!-- END THEME GLOBAL SCRIPTS -->
-    <!-- BEGIN THEME LAYOUT SCRIPTS -->
-    <script src="~/wwwroot/lib/metronic/theme/assets/layouts/layout4/scripts/layout.js"></script>
-    <!-- END THEME LAYOUT SCRIPTS -->
-    <!-- BEGIN REACT SCRIPTS -->
-    <script src="~/wwwroot/lib/metronic/theme/assets/global/plugins/react/react.js"></script>
-    <script src="~/wwwroot/lib/metronic/theme/assets/global/plugins/react/react-with-addons.js"></script>
-    <script src="~/wwwroot/lib/metronic/theme/assets/global/plugins/react/react-dom.js"></script>
-    <!-- END REACT SCRIPTS -->
+    @Scripts.Render("~/bundles/script/core")
+    @Scripts.Render("~/bundles/script/plugins")
+    @Scripts.Render("~/bundles/script/global")
+    @Scripts.Render("~/bundles/script/layout")
+    @Scripts.Render("~/bundles/script/react")
+    @Scripts.Render("~/bundles/script/utils")
+    @Scripts.Render("~/bundles/script/src")
 
     @RenderSection("scripts", false)
 </body>

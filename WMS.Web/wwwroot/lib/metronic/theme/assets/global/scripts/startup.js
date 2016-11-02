@@ -52,7 +52,7 @@ var Startup = function () {
             return;
         }
 
-        $('table.datatable').dataTable({
+        var options = {
             dom: "<'row'<'col-md-8 col-sm-12'pli><'col-md-4 col-sm-12'<'table-group-actions pull-right'>>r><'table-responsive't><'row'<'col-md-8 col-sm-12'pli><'col-md-4 col-sm-12'>>",
             paginationType: "bootstrap",
             info: true,
@@ -67,7 +67,9 @@ var Startup = function () {
             paging: true,
             pageLength: 20,
             paginationType: "full_numbers"
-        });
+        };
+
+        $('table.datatable').dataTable(options);
     }
 
     // tree
@@ -105,7 +107,7 @@ var Startup = function () {
         toastr.options = {
             "closeButton": true,
             "debug": false,
-            "positionClass": "toast-top-right",
+            "positionClass": "toast-top-center",  // toast-top-right,toast-top-full-width
             "onclick": null,
             "showDuration": "1000",
             "hideDuration": "1000",
@@ -150,6 +152,17 @@ var Startup = function () {
         });
     }
 
+    // inputMask
+    var handleInputMask = function () {
+        if ($().inputmask) {
+            $(":input").inputmask();
+
+            //$(document).on("focusin", ":input", function () {
+            //    $(this).inputmask();
+            //});
+        }
+    }
+
     return {
         //main function to initiate the module
         init: function () {
@@ -159,6 +172,7 @@ var Startup = function () {
             handleTree();
             handleNotice();
             handleFormValidation();
+            handleInputMask();
         }
     };
 }();

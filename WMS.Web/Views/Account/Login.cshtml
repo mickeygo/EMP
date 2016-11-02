@@ -21,28 +21,14 @@
     <meta name="description" content="wms, advantech">
     <meta name="author" content="advantech web team">
 
-    <!-- BEGIN GLOBAL MANDATORY STYLES -->
-    <link href="~/wwwroot/lib/metronic/theme/assets/global/plugins/font-google/css/font-google.css" rel="stylesheet" />
-    <link href="~/wwwroot/lib/metronic/theme/assets/global/plugins/font-awesome/css/font-awesome.css" rel="stylesheet" />
-    <link href="~/wwwroot/lib/metronic/theme/assets/global/plugins/simple-line-icons/simple-line-icons.css" rel="stylesheet" />
-    <link href="~/wwwroot/lib/metronic/theme/assets/global/plugins/bootstrap/css/bootstrap.css" rel="stylesheet" />
-    <link href="~/wwwroot/lib/metronic/theme/assets/global/plugins/uniform/css/uniform.default.css" rel="stylesheet" />
-    <link href="~/wwwroot/lib/metronic/theme/assets/global/plugins/bootstrap-switch/css/bootstrap-switch.css" rel="stylesheet" />
-    <!-- END GLOBAL MANDATORY STYLES -->
-    <!-- BEGIN THEME GLOBAL STYLES -->
-    <link href="~/wwwroot/lib/metronic/theme/assets/global/css/components.css" rel="stylesheet" id="style_components" />
-    <link href="~/wwwroot/lib/metronic/theme/assets/global/css/plugins.css" rel="stylesheet" />
-    <!-- END THEME GLOBAL STYLES -->
-    <!-- BEGIN PAGE LEVEL STYLES -->
+    @Styles.Render("~/bundles/style/core")
+    @Styles.Render("~/bundles/style/global")
     <link href="~/wwwroot/lib/metronic/theme/assets/pages/css/login-3.min.css" rel="stylesheet" />
-    <!-- END PAGE LEVEL STYLES -->
 </head>
 <body class="login">
     <!-- BEGIN LOGO -->
     <div class="logo">
-        <a href="index.html">
-            <img src="../assets/pages/img/logo-big.png" alt="" />
-        </a>
+        <h3 class="caption-subject font-green-sharp sbold">Advantech WMS</h3>
     </div>
     <!-- END LOGO -->
     <!-- BEGIN LOGIN -->
@@ -86,25 +72,10 @@
     <script src="~/wwwroot/lib/metronic/theme/assets/global/plugins/respond.min.js"></script>
     <script src="~/wwwroot/lib/metronic/theme/assets/global/plugins/excanvas.min.js"></script>
     <![endif]-->
-    <!-- BEGIN CORE PLUGINS -->
-    <script src="~/wwwroot/lib/metronic/theme/assets/global/plugins/jquery-1.12.4.js"></script>
-    <script src="~/wwwroot/lib/metronic/theme/assets/global/plugins/bootstrap/js/bootstrap.js"></script>
-    <script src="~/wwwroot/lib/metronic/theme/assets/global/plugins/jquery.cookie.js"></script>
-    <script src="~/wwwroot/lib/metronic/theme/assets/global/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.js"></script>
-    <script src="~/wwwroot/lib/metronic/theme/assets/global/plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
-    <script src="~/wwwroot/lib/metronic/theme/assets/global/plugins/jquery.blockui.js"></script>
-    <script src="~/wwwroot/lib/metronic/theme/assets/global/plugins/uniform/jquery.uniform.js"></script>
-    <script src="~/wwwroot/lib/metronic/theme/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.js"></script>
-    <!-- END CORE PLUGINS -->
-    <!-- BEGIN PAGE LEVEL PLUGINS -->
-    <script src="~/wwwroot/lib/metronic/theme/assets/global/plugins/jquery-validation/js/jquery.validate.min.js"></script>
-    <script src="~/wwwroot/lib/metronic/theme/assets/global/plugins/jquery-validation/js/additional-methods.min.js"></script>
-    <!-- END PAGE LEVEL PLUGINS -->
-    <!-- BEGIN THEME GLOBAL SCRIPTS -->
-    <script src="~/wwwroot/lib/metronic/theme/assets/global/scripts/app.js"></script>
-    <!-- END THEME GLOBAL SCRIPTS -->
-    <!-- BEGIN PAGE LEVEL SCRIPTS -->
+
+    @Scripts.Render("~/bundles/script/core")
+    @Scripts.Render("~/bundles/script/plugins")
+    @Scripts.Render("~/bundles/script/global")
     <script src="~/wwwroot/lib/metronic/theme/assets/pages/scripts/login.js"></script>
-    <!-- END PAGE LEVEL SCRIPTS -->
 </body>
 </html>

@@ -3,8 +3,6 @@
 }
 
 @section scripts {
-    <script src="~/wwwroot/js/src/inbound.jsx"></script>
-
     <script>
         // SN 页面初始化自动聚焦
         $(function () {
@@ -37,7 +35,7 @@
             getInboundInfo: function () {
                 var qrcode = $(this.inputElement).val();
                 var url = '@Url.Action("GetInboundInfo", "Receiving", new { area = "Inbound" })';
-                $.getJSON(url, { qrcode }, function (data) {
+                $.getJSON(url, { qrcode: qrcode }, function (data) {
                     if (!data.status) {
                         $.notice.error(data.message);
                         return false;
@@ -50,7 +48,7 @@
                 var qrcode = $(this.inputElement).val();
                 var inboundDate = $(this.inputDateElement).val();
                 var url = '@Url.Action("Receive", "Receiving", new { area = "Inbound" })';
-                $.post(url, { qrcode, inboundDate }, function (data) {
+                $.post(url, { qrcode: qrcode, inboundDate: inboundDate }, function (data) {
                     if (!data.status) {
                         $.notice.error(data.message);
                         return false;
@@ -67,6 +65,8 @@
                     React.createElement(Inbound, data),
                     document.getElementById('inbound')
                 );
+
+                //$("#inbound table").dataTable(); // dataTable Todo: after paged, update error
             },
             clearInfo: function () {
                 $(this.inputElement).val("");
@@ -89,7 +89,7 @@
     </script>
 }
 
-@Html.Navgation2("Inbound", "Intelligent Receiving")
+@Html.Navgation("Inbound", "Intelligent Receiving")
 
 <div class="portlet light bordered">
     <div class="portlet-title">

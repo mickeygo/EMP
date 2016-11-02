@@ -1,7 +1,7 @@
-﻿using DotPlatform.Extensions;
-using DotPlatform.Web.Bundle;
+﻿using System.Web.Optimization;
 using System.Runtime.CompilerServices;
-using System.Web.Optimization;
+using DotPlatform.Extensions;
+using DotPlatform.Web.Bundle;
 using System.Web.Optimization.React;
 
 namespace WMS.Web
@@ -16,118 +16,23 @@ namespace WMS.Web
         /// </summary>
         public static void RegisterBundles(BundleCollection bundles)
         {
-            // Css
-            bundles.Add(RegisterMainCss());     // Main
-            bundles.Add(RegisterAddonCss());    // Addon
-            bundles.Add(RegisterCustomCss());    // Custom
+            RegisterBundlesFromConfigFile(bundles);
 
-            // Js
-            bundles.Add(RegisterMainJs());      // Main
-            bundles.Add(RegisterAddonJs());     // Addon
-            bundles.Add(RegisterCustomJs());    // Custom Js
-
-            bundles.Add(RegisterReactJs());     // React Js
-            bundles.Add(RegisterSrcJsx());      // jsx
+            bundles.Add(new BabelBundle("~/bundles/script/src")
+                .IncludeDirectory("~/wwwroot/js/src/", "*.js", false)
+                .IncludeDirectory("~/wwwroot/js/src/", "*.jsx", false));
         }
-
-        #region Private Methods
-
-        // 主要 Css
-        private static Bundle RegisterMainCss()
-        {
-            return new StyleBundle("~/content/main").Include(
-                "~/Content/bootstrap.css");
-        }
-
-        // 插件 Css
-        private static Bundle RegisterAddonCss()
-        {
-            return new StyleBundle("~/content/addon").Include(
-                "~/Content/jquery-ui-{version}.custom.css",  // ~/Content/themes/base/jquery.ui.all.css
-                "~/Content/jquery-ui-timepicker-addon.css",
-                "~/Content/css/select2.css");
-        }
-
-        private static Bundle RegisterCustomCss()
-        {
-            return new StyleBundle("~/content/custom").Include(
-                "~/Content/site.custom.css",
-                "~/Content/component.custom.css");
-        }
-
-        // 主要 Js
-        private static Bundle RegisterMainJs()
-        {
-            return new ScriptBundle("~/bundles/main").Include(
-                "~/Scripts/jquery-{version}.js",
-                "~/Scripts/jquery.unobtrusive-ajax.js",
-                "~/Scripts/jquery.validate.js",
-                "~/Scripts/jquery.validate.unobtrusive.js",
-                "~/Scripts/bootstrap.js",
-                "~/Scripts/respond.js");
-        }
-
-        private static Bundle RegisterReactJs()
-        {
-            return new ScriptBundle("~/bundles/react").Include(
-                "~/Scripts/react/react.js",
-                "~/Scripts/react/react-with-addons.js",
-                "~/Scripts/react/react-dom.js");
-        }
-
-        // 插件 Js
-        private static Bundle RegisterAddonJs()
-        {
-            return new ScriptBundle("~/bundles/addon").Include(
-                "~/Scripts/jquery-ui-{version}.js",
-                 "~/Scripts/jquery-ui-timepicker-addon.js",
-                "~/Scripts/DataTables/jquery.dataTables.js",
-                "~/Scripts/jquery.form.js",
-                "~/Scripts/jquery.cookie.js",
-                "~/Scripts/jquery.blockUI.js").Include(
-                "~/Scripts/select2.js",
-                "~/Scripts/jquery.maskedinput.js",
-                "~/Scripts/noty/packaged/jquery.noty.packaged.js");
-        }
-
-        // 自定义脚本
-        private static Bundle RegisterCustomJs()
-        {
-            return new ScriptBundle("~/bundles/custom")
-                .IncludeDirectory("~/Js/utils", "*.js", false)
-                .Include("~/Js/startup.js");
-        }
-
-        private static Bundle RegisterSrcJsx()
-        {
-            return new BabelBundle("~/bundles/src")
-                 .IncludeDirectory("~/Js/src", "*.jsx", true);
-        }
-
-        #endregion
 
         #region Metronic UI
 
-        public const string RelativePathPrefix = "~/wwwroot/lib/metronic/theme/assets/";
-
         // Core
-
-        private static void RegisterMetronicCoreJs(BundleCollection bundles)
-        {
-            bundles.Add(new ScriptBundle("~/bundles/core").Include(
-                "~/wwwroot/lib/metronic/theme/assets/global/plugins/jquery-{version}.js",
-                "~/wwwroot/lib/metronic/theme/assets/global/plugins/bootstrap/js/bootstrap.js"
-                ));
-        }
-
-
         [MethodImpl(MethodImplOptions.Synchronized)]
         private static void RegisterBundlesFromConfigFile(BundleCollection bundles)
         {
             var manager = new BundleManager();
             var bundleData = manager.Resolve();
 
-            if (bundleData.Bundles.IsNullOrEmpty())
+             if (bundleData == null || bundleData.Bundles.IsNullOrEmpty())
                 return;
 
             foreach (var bundle in bundleData.Bundles)
@@ -151,6 +56,8 @@ namespace WMS.Web
                         mBundle.IncludeDirectory(dir.DirectoryVirtualPath, dir.SearchPattern, dir.SearchSubdirectories);
                     }
                 }
+
+                bundles.Add(mBundle);
             }
         }
 

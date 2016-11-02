@@ -37,8 +37,30 @@ namespace DotPlatform.Web.Bundle
 
         private string GetBundleConfigFilePath()
         {
-            var baseDir = AppDomain.CurrentDomain.BaseDirectory;
-            return Path.Combine(baseDir, BundleConfigFile);
+            var dirPath = AppDomain.CurrentDomain.BaseDirectory;
+
+            // web app
+            if (dirPath.IndexOf("\\bin", StringComparison.OrdinalIgnoreCase) == -1)
+                return Path.Combine(dirPath, BundleConfigFile);
+
+            // app
+            while (true)
+            {
+                var dir = Directory.GetParent(dirPath);
+
+                if (dir.FullName == dir.Root.FullName)
+                    break;
+
+                if (dirPath.EndsWith("\\bin", StringComparison.OrdinalIgnoreCase))
+                {
+                    dirPath = dir.FullName;
+                    break;
+                }
+
+                dirPath = dir.FullName;
+            }
+
+            return Path.Combine(dirPath, BundleConfigFile);
         }
     }
 }

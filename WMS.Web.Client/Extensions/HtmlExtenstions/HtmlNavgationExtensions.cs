@@ -25,14 +25,6 @@ namespace WMS.Web.Client
             return CreateNavgation(helper, "Home", navs);
         }
 
-        public static IHtmlString Navgation2(this HtmlHelper helper, params string[] navgations)
-        {
-            var navs = navgations != null
-             ? navgations.ToDictionary(k => k, v => "")
-             : new Dictionary<string, string>();
-            return CreateNavgation2(helper, "Home", navs);
-        }
-
         /// <summary>
         /// 导航标签
         /// </summary>
@@ -44,50 +36,7 @@ namespace WMS.Web.Client
             return CreateNavgation(helper, "Home", navgations);
         }
 
-        public static IHtmlString Navgation2(this HtmlHelper helper, Dictionary<string, string> navgations)
-        {
-            return CreateNavgation2(helper, "Home", navgations);
-        }
-
         private static IHtmlString CreateNavgation(this HtmlHelper helper, string home, Dictionary<string, string> navgations)
-        {
-            //<div>
-            //    <ul class="breadcrumb">
-            //        <li>
-            //            <a href = "#" > Home </ a >
-            //        </ li >
-            //        < li >
-            //            < a href="#">Dashboard</a>
-            //        </li>
-            //    </ul>
-            //</div>
-
-            var itemBuilder = new StringBuilder();
-            itemBuilder.Append(CreateHomeNav(home));
-
-            foreach (var navgation in navgations)
-            {
-                TagBuilder valTag = new TagBuilder("a");
-                valTag.MergeAttribute("href", string.IsNullOrWhiteSpace(navgation.Value) ? "javascript:void(0)" : navgation.Value);
-                valTag.SetInnerText(navgation.Key);
-
-                TagBuilder liTag = new TagBuilder("li");
-                liTag.InnerHtml = valTag.ToString();
-
-                itemBuilder.Append(liTag.ToString());
-            }
-
-            TagBuilder ulTag = new TagBuilder("ul");
-            ulTag.AddCssClass("breadcrumb");
-            ulTag.InnerHtml = itemBuilder.ToString();
-
-            TagBuilder menuTag = new TagBuilder("div");
-            menuTag.InnerHtml = ulTag.ToString();
-
-            return MvcHtmlString.Create(menuTag.ToString());
-        }
-
-        private static IHtmlString CreateNavgation2(this HtmlHelper helper, string home, Dictionary<string, string> navgations)
         {
             //<ul class="page-breadcrumb breadcrumb">
             //    <li>
@@ -110,13 +59,13 @@ namespace WMS.Web.Client
             foreach (var navgation in navgations)
             {
                 var barTag = new TagBuilder("i");
-                barTag.AddCssClass("fa fa-circle");
+                barTag.AddCssClass("fa fa-angle-right");
 
                 TagBuilder valTag;
                 if (++navIndex < navgations.Count)
                 {
                     valTag = new TagBuilder("a");
-                    valTag.MergeAttribute("href", string.IsNullOrWhiteSpace(navgation.Value) ? "javascript:void(0)" : navgation.Value);
+                    valTag.MergeAttribute("href", string.IsNullOrWhiteSpace(navgation.Value) ? "javascript:void(0);" : navgation.Value);
                     valTag.SetInnerText(navgation.Key);
                 }
                 else
