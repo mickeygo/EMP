@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{09B41815-54BA-4AFA-973C-0488FB1F578F}</ProjectGuid>
+    <ProjectGuid>{F6838D7A-09A1-4B3E-AE0D-0B944AA2358E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DotPlatform.EntityFramework</RootNamespace>
-    <AssemblyName>DotPlatform.EntityFramework</AssemblyName>
+    <RootNamespace>DotPlatform.Zero.Client</RootNamespace>
+    <AssemblyName>DotPlatform.Zero.Client</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,49 +30,43 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="EntityFramework.DynamicFilters, Version=2.4.0.0, Culture=neutral, PublicKeyToken=146423a1b8d60775, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.DynamicFilters.2.4.0\lib\net40\EntityFramework.DynamicFilters.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EfDbContext.cs" />
-    <Compile Include="EntityFrameworkModule.cs" />
-    <Compile Include="IDbContextProvider.cs" />
-    <Compile Include="ISimpleDbContextProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="DbCommandCounter.cs" />
-    <Compile Include="Repositories\EfRepository.cs" />
-    <Compile Include="SimpleDbContextProvider.cs" />
-    <Compile Include="Uow\EfUnitOfWork.cs" />
-    <Compile Include="Uow\UnitOfWorkDbContextProvider.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DotPlatform.RedisCache\DotPlatform.RedisCache.csproj">
+      <Project>{097272c4-ca67-4ae4-994b-c9a0119342f3}</Project>
+      <Name>DotPlatform.RedisCache</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DotPlatform.Web\DotPlatform.Web.csproj">
+      <Project>{a52150d2-3b42-4a48-ae98-ec4e0f8e2531}</Project>
+      <Name>DotPlatform.Web</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DotPlatform.Zero.Repository\DotPlatform.Zero.Repository.csproj">
+      <Project>{c63dc8d7-eb2d-49fb-a89b-f3896c91b32d}</Project>
+      <Name>DotPlatform.Zero.Repository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DotPlatform.Zero\DotPlatform.Zero.csproj">
+      <Project>{769d5025-70ee-4a57-bfc9-34cd23ddae2e}</Project>
+      <Name>DotPlatform.Zero</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DotPlatform\DotPlatform.csproj">
       <Project>{4964d0d8-492a-422a-ad2d-3eafae881c1a}</Project>
       <Name>DotPlatform</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
+    <Folder Include="Authorization\" />
+    <Folder Include="Runtime\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm10="http://schemas.microsoft.com/dsltools/UseCaseModel" dslVersion="1.0.0.0" Id="e62f4586-68fc-4af1-ad99-7a5e2452c9aa" name="RBAC" linkedPackageId="6e6c30dd-219b-400d-bc51-cc3deeca1681" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
+<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm10="http://schemas.microsoft.com/dsltools/UseCaseModel" dslVersion="1.0.0.0" Id="e62f4586-68fc-4af1-ad99-7a5e2452c9aa" name="Zero(RBAC)" linkedPackageId="6e6c30dd-219b-400d-bc51-cc3deeca1681" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
   <packagedElements>
     <logicalClassDesignerModelHasTypes>
       <class Id="49e91374-de7d-481e-a031-332cfecbb35c" name="User" isAbstract="false" isLeaf="false" isActiveClass="false">
@@ -94,62 +94,6 @@
           </property>
           <property Id="358b8f56-bbfb-407b-9386-d46aa4696eac" name="PermissionId" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <elementDefinition Id="9adf7c39-79e5-4977-975e-95a81fbdbd99" />
-          </property>
-        </ownedAttributesInternal>
-      </class>
-    </logicalClassDesignerModelHasTypes>
-    <logicalClassDesignerModelHasTypes>
-      <class Id="0ad57bb9-39be-4d65-9df6-9915c4fef613" name="UserGroup" isAbstract="false" isLeaf="false" isActiveClass="false">
-        <elementDefinition Id="a0d190d8-c5a4-4106-ac50-6c0807c69bc6" />
-        <ownedAttributesInternal>
-          <property Id="c29208e4-a40b-4555-8317-ac511cb8de0c" name="UserGroupId" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
-            <elementDefinition Id="d70776b7-9daf-44c0-a5a6-eb57c0a9fba2" />
-          </property>
-        </ownedAttributesInternal>
-      </class>
-    </logicalClassDesignerModelHasTypes>
-    <logicalClassDesignerModelHasTypes>
-      <class Id="2fadfc89-1eb3-42e2-a7bc-debe2a309cc7" name="UserInUserGroup" isAbstract="false" isLeaf="false" isActiveClass="false">
-        <elementDefinition Id="54d7ac5f-8149-4b66-8165-d5001f681810" />
-        <suppliersInternal>
-          <dependency Id="43dd9513-9956-40f3-8fd8-55aed307c48a">
-            <classMoniker Id="49e91374-de7d-481e-a031-332cfecbb35c" LastKnownName="User" />
-            <elementDefinition Id="b35dd3e6-712d-4a73-a6f4-3a578b0e16ae" />
-          </dependency>
-          <dependency Id="a24a5112-651d-4757-8f36-16680bb0c838">
-            <classMoniker Id="0ad57bb9-39be-4d65-9df6-9915c4fef613" LastKnownName="UserGroup" />
-            <elementDefinition Id="95f27b4e-bb9e-434e-9a5e-1bf41b03824a" />
-          </dependency>
-        </suppliersInternal>
-        <ownedAttributesInternal>
-          <property Id="163103a8-bb35-4e42-b143-8982de04b6a7" name="UserGroupId" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
-            <elementDefinition Id="9e1eacdd-769a-4ef9-abcd-f9bf975cceda" />
-          </property>
-          <property Id="12c09570-01b2-4b4f-ae9f-5c511b52c44f" name="UserId" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
-            <elementDefinition Id="ac1d50e8-dedf-4f99-865f-3544bb092139" />
-          </property>
-        </ownedAttributesInternal>
-      </class>
-    </logicalClassDesignerModelHasTypes>
-    <logicalClassDesignerModelHasTypes>
-      <class Id="13d57521-36e9-47ec-8bb5-1808781744bb" name="UserGroupInRole" isAbstract="false" isLeaf="false" isActiveClass="false">
-        <elementDefinition Id="7500eb11-3930-45f0-9962-1d2312cc6d54" />
-        <suppliersInternal>
-          <dependency Id="ce73b8b1-f424-424c-8fc2-4ac6d9281159">
-            <classMoniker Id="0ad57bb9-39be-4d65-9df6-9915c4fef613" LastKnownName="UserGroup" />
-            <elementDefinition Id="37f3d3a5-52f8-4bc2-a04d-d9196f983f3c" />
-          </dependency>
-          <dependency Id="68abb855-bb4c-44e5-bba0-e94b49193cd7">
-            <classMoniker Id="d82b0d77-c7a6-44b2-b188-30c0ff3b5a54" LastKnownName="Role" />
-            <elementDefinition Id="7203d9dd-9b69-4672-b35f-eaca2bdb3a9a" />
-          </dependency>
-        </suppliersInternal>
-        <ownedAttributesInternal>
-          <property Id="29d29f59-adfc-4f1a-88a9-11d15f44be93" name="UserGroupId" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
-            <elementDefinition Id="331ab216-0425-4fd3-8b22-a00521ef9169" />
-          </property>
-          <property Id="1a5b3174-7122-450b-9989-c3f7e7c9a981" name="RoleId" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
-            <elementDefinition Id="7ec07f8b-d29a-4544-852f-629681fe93ff" />
           </property>
         </ownedAttributesInternal>
       </class>

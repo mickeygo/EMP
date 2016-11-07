@@ -21,6 +21,7 @@ namespace DotPlatform.EntityFramework.Repositories
          where TAggregateRoot : class, IAggregateRoot<TKey>
          where TDbContext : DbContext
     {
+        private readonly DbCommandCounter _counter = new DbCommandCounter();
         private readonly IDbContextProvider<TDbContext> _dbContextProvider;
         private bool isDisposed;
 
@@ -28,6 +29,14 @@ namespace DotPlatform.EntityFramework.Repositories
         /// 是否追踪对象, 默认为 true.
         /// </summary>
         public bool Tracking { get; protected set; } = true;
+        
+        /// <summary>
+        /// Command 命令计数器
+        /// </summary>
+        public DbCommandCounter CommandCounter
+        {
+            get { return _counter; }
+        }
 
         /// <summary>
         /// 获取Db上下文对象
@@ -96,11 +105,15 @@ namespace DotPlatform.EntityFramework.Repositories
 
         public override TAggregateRoot Add(TAggregateRoot aggregateRoot)
         {
+            _counter.AddIncrease();
+
             return AggregateRootContext.Add(aggregateRoot); // 等同于将实体设为 EntityState.Added 状态
         }
 
         public override TAggregateRoot Update(TAggregateRoot aggregateRoot)
         {
+            _counter.UpdateIncrease();
+
             this.AttachIfNot(aggregateRoot);
             Context.Entry(aggregateRoot).State = EntityState.Modified;
             return aggregateRoot;
@@ -113,9 +126,7 @@ namespace DotPlatform.EntityFramework.Repositories
             {
                 aggregateRoot = this.FirstOrDefault(id);
                 if (aggregateRoot == null)
-                {
                     return;
-                }
             }
 
             Delete(aggregateRoot);
@@ -127,10 +138,12 @@ namespace DotPlatform.EntityFramework.Repositories
             if (aggregateRoot is ISoftDelete)
             {
                 (aggregateRoot as ISoftDelete).IsDeleted = true;
+                _counter.UpdateIncrease();
             }
             else
             {
                 AggregateRootContext.Remove(aggregateRoot);
+                _counter.DeleteIncrease();
             }
         }
 
@@ -155,6 +168,7 @@ namespace DotPlatform.EntityFramework.Repositories
             {
                 Context.Dispose();
                 isDisposed = true;
+                _counter.Reset();
             }
         }
 
