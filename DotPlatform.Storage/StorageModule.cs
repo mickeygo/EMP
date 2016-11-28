@@ -1,5 +1,4 @@
-﻿using DotPlatform.Dependency;
-using DotPlatform.Modules;
+﻿using DotPlatform.Modules;
 using DotPlatform.Storage.Rdbms;
 
 namespace DotPlatform.Storage
@@ -14,7 +13,7 @@ namespace DotPlatform.Storage
         {
             IocManager.Register<IRdbmsStorageProvider, RdbmsStorageProvider>();
 
-            IocManager.Build();
+            base.PreInitialize();
         }
     }
 }

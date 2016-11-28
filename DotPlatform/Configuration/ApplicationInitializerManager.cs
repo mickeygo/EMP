@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using DotPlatform.Reflection;
-using System.Linq;
 
 namespace DotPlatform.Configuration
 {

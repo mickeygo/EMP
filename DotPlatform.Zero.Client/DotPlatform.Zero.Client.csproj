@@ -31,6 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -40,9 +41,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppServices\Impl\UserAppService.cs" />
+    <Compile Include="AppServices\IUserAppService.cs" />
+    <Compile Include="Authorization\UserManager.cs" />
+    <Compile Include="Dto\UserDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DotPlatform.AutoMapper\DotPlatform.AutoMapper.csproj">
+      <Project>{1df11c0a-781d-4137-81de-c915c8fba88d}</Project>
+      <Name>DotPlatform.AutoMapper</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DotPlatform.RedisCache\DotPlatform.RedisCache.csproj">
       <Project>{097272c4-ca67-4ae4-994b-c9a0119342f3}</Project>
       <Name>DotPlatform.RedisCache</Name>
@@ -65,7 +74,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Authorization\" />
     <Folder Include="Runtime\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

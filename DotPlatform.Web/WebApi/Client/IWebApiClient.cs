@@ -22,17 +22,17 @@ namespace DotPlatform.Web.WebApi.Client
         TimeSpan Timeout { get; set; }
 
         /// <summary>
-        /// 获取获取用于请求的 Cookies
+        /// 获取或设置用于请求的 Cookies
         /// </summary>
         Collection<Cookie> Cookies { get; set; }
 
         /// <summary>
-        /// 获取获取请求头参数
+        /// 获取或设置请求头参数
         /// </summary>
         ICollection<NameValue> RequestHeaders { get; set; }
 
         /// <summary>
-        /// 获取获取相应头参数
+        /// 获取响应头参数
         /// </summary>
         ICollection<NameValue> ResponseHeaders { get; }
 
@@ -40,30 +40,30 @@ namespace DotPlatform.Web.WebApi.Client
         /// 基于 Post 方式的请求
         /// </summary>
         /// <param name="url">请求地址</param>
-        /// <param name="timeout">超时时间</param>
+        /// <param name="timeout">请求超时时间</param>
         Task PostAsync(string url, int? timeout = null);
 
         /// <summary>
         /// 基于 Post 方式的请求
         /// </summary>
         /// <param name="url">请求地址</param>
-        /// <param name="input">请求地址</param>
-        /// <param name="timeout">超时时间</param>
+        /// <param name="input">请求参数</param>
+        /// <param name="timeout">请求超时时间</param>
         Task PostAsync(string url, object input, int? timeout = null);
 
         /// <summary>
         /// 基于 Post 方式的请求
         /// </summary>
         /// <param name="url">请求地址</param>
-        /// <param name="timeout">超时时间</param>
+        /// <param name="timeout">请求超时时间</param>
         Task<TResult> PostAsync<TResult>(string url, int? timeout = null) where TResult : class;
 
         /// <summary>
         /// 基于 Post 方式的请求
         /// </summary>
         /// <param name="url">请求地址</param>
-        /// <param name="input">请求内容</param>
-        /// <param name="timeout">超时时间</param>
+        /// <param name="input">请求参数</param>
+        /// <param name="timeout">请求超时时间</param>
         Task<TResult> PostAsync<TResult>(string url, object input, int? timeout = null) where TResult : class;
     }
 }

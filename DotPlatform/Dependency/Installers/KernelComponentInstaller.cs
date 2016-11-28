@@ -66,6 +66,7 @@ namespace DotPlatform.Dependency.Installers
             _iocManager.Register<ISmtpMailSenderConfiguration, SmtpMailSenderConfiguration>(IocLifeStyle.Singleton);  // mail
 
             // InitializerManager
+            _iocManager.Register<DependencyRegisterInstaller>();
             _iocManager.Register<ApplicationInitializerManager>();
 
             // Uow

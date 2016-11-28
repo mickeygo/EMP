@@ -22,11 +22,12 @@ namespace DotPlatform.Modules
         }
 
         /// <summary>
-        /// 该方法在应用程序启动时调用
+        /// 该方法在应用程序启动时调用。
+        /// 用于 Ioc 组件注册
         /// </summary>
         public virtual void PreInitialize()
         {
-
+            IocManager.Build();
         }
 
         /// <summary>

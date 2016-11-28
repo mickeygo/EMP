@@ -1,13 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using DotPlatform.Domain.Entities;
+using DotPlatform.Domain.Entities.Auditing;
 
 namespace DotPlatform.Zero.Domain.Models.Core
 {
     /// <summary>
     /// 基于 Zero 模块的权限
     /// </summary>
-    public class Permission : AggregateRoot, ISoftDelete
+    public class Permission : AggregateRoot, ISoftDelete, ICreationAudited
     {
         #region Properties
 
@@ -17,13 +19,6 @@ namespace DotPlatform.Zero.Domain.Models.Core
         [Required]
         [StringLength(32)]
         public string Name { get; set; }
-
-        /// <summary>
-        /// 权限显示名称
-        /// </summary>
-        [Required]
-        [StringLength(128)]
-        public string DisplayName { get; set; }
 
         /// <summary>
         /// 权限描述
@@ -38,15 +33,19 @@ namespace DotPlatform.Zero.Domain.Models.Core
 
         public bool IsDeleted { get; set; }
 
+        public Guid CreatorUserId { get; set; }
+
+        public DateTime CreationTime { get; set; }
+
         /// <summary>
         /// 权限包含的角色集合
         /// </summary>
-        public virtual ICollection<Role> Roles { get; set; }
+        public virtual List<Role> Roles { get; set; }
 
         /// <summary>
         /// 权限包含的菜单集合
         /// </summary>
-        public virtual ICollection<Menu> Menus { get; set; }
+        public virtual List<Menu> Menus { get; set; }
       
         #endregion
 

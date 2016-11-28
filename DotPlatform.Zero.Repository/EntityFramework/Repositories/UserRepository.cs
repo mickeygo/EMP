@@ -5,20 +5,24 @@ using DotPlatform.EntityFramework;
 
 namespace DotPlatform.Zero.Repository.EntityFramework.Repositories
 {
+    /// <summary>
+    /// 用户仓储
+    /// </summary>
+    /// <typeparam name="TUser"></typeparam>
     internal class UserRepository : ZeroRepository<User>, IUserRepository
     {
         public UserRepository(ISimpleDbContextProvider<ZeroDbContext> dbContextProvider) : base(dbContextProvider)
         {
         }
 
-        public bool Exist(string userName)
+        public bool Exist(string name)
         {
-            return Count(u => u.UserName == userName) > 0;
+            return Count(u => u.UserName == name) > 0;
         }
 
-        public async Task<bool> ExistAsync(string userName)
+        public async Task<bool> ExistAsync(string name)
         {
-            return (await CountAsync(u => u.UserName == userName) > 0);
+            return (await CountAsync(u => u.UserName == name) > 0);
         }
     }
 }

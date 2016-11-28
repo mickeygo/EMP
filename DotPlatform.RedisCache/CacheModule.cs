@@ -16,7 +16,7 @@ namespace DotPlatform.RedisCache
             IocManager.Register<IRedisCacheDatabaseProvider, RedisCacheDatabaseProvider>();
             IocManager.Register<ICacheManager, RedisCacheManager>();
 
-            IocManager.Build();
+            base.PreInitialize();
         }
     }
 }

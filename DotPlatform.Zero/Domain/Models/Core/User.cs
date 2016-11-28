@@ -50,12 +50,12 @@ namespace DotPlatform.Zero.Domain.Models.Core
         /// </summary>
         public DateTime? LastLoginTime { get; private set; }
 
+        public bool IsDeleted { get; set; }
+
         /// <summary>
         /// 用户拥有的权限集合
         /// </summary>
-        public virtual ICollection<Role> Roles { get; set; }
-
-        public bool IsDeleted { get; set; }
+        public virtual List<Role> Roles { get; private set; }
 
         #endregion
 
@@ -63,7 +63,6 @@ namespace DotPlatform.Zero.Domain.Models.Core
 
         public User()
         {
-
         }
 
         /// <summary>
@@ -106,9 +105,24 @@ namespace DotPlatform.Zero.Domain.Models.Core
             Password = password;
         }
 
+        /// <summary>
+        /// 登录，设置最后一次登录时间
+        /// </summary>
         public void Login()
         {
             LastLoginTime = Clock.Local;
+        }
+
+        /// <summary>
+        /// 附加到角色
+        /// </summary>
+        /// <param name="roles">角色集</param>
+        public void AttachRole(params Role[] roles)
+        {
+            if (roles != null)
+            {
+                Roles.AddRange(roles);
+            }
         }
 
         #endregion

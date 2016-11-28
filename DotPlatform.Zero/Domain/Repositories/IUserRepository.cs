@@ -12,15 +12,15 @@ namespace DotPlatform.Zero.Domain.Repositories
         /// <summary>
         /// 是否已存在此用户
         /// </summary>
-        /// <param name="userName">用户名</param>
+        /// <param name="name">用户名</param>
         /// <returns></returns>
-        bool Exist(string userName);
+        bool Exist(string name);
 
         /// <summary>
         /// 是否已存在此用户
         /// </summary>
-        /// <param name="userName">用户名</param>
+        /// <param name="name">用户名</param>
         /// <returns></returns>
-        Task<bool> ExistAsync(string userName);
+        Task<bool> ExistAsync(string name);
     }
 }

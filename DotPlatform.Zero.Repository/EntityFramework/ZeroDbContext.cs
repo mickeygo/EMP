@@ -1,6 +1,8 @@
 ﻿using System.Data.Entity;
 using System.Reflection;
+using System.Threading.Tasks;
 using DotPlatform.EntityFramework;
+using DotPlatform.Zero.Domain.Models.Core;
 
 namespace DotPlatform.Zero.Repository.EntityFramework
 {
@@ -11,7 +13,8 @@ namespace DotPlatform.Zero.Repository.EntityFramework
     {
         public ZeroDbContext() : base(DbConnectionHelper.ConnectionName("Zero"))
         {
-
+            //Configuration.AutoDetectChangesEnabled = false;
+            //Configuration.LazyLoadingEnabled = false;
         }
 
         protected override void CreateModel(DbModelBuilder modelBuilder)

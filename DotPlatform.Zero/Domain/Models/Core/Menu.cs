@@ -1,14 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using DotPlatform.Domain.Entities;
-using System.Collections.Generic;
+using DotPlatform.Domain.Entities.Auditing;
 
 namespace DotPlatform.Zero.Domain.Models.Core
 {
     /// <summary>
     /// 基于 Zero 模块的菜单
     /// </summary>
-    public class Menu : AggregateRoot, ISoftDelete
+    public class Menu : AggregateRoot, ISoftDelete, ICreationAudited
     {
         #region Properties
 
@@ -20,13 +21,6 @@ namespace DotPlatform.Zero.Domain.Models.Core
         public string Name { get; }
 
         /// <summary>
-        /// 获取菜单的显示名称
-        /// </summary>
-        [Required]
-        [StringLength(128)]
-        public string DisplayName { get; private set; }
-
-        /// <summary>
         /// 菜单描述
         /// </summary>
         [StringLength(256)]
@@ -35,6 +29,7 @@ namespace DotPlatform.Zero.Domain.Models.Core
         /// <summary>
         /// 菜单图标（字体样式），可设置为 null.
         /// </summary>
+        [StringLength(32)]
         public string Icon { get; set; }
 
         /// <summary>
@@ -60,10 +55,14 @@ namespace DotPlatform.Zero.Domain.Models.Core
 
         public bool IsDeleted { get; set; }
 
+        public Guid CreatorUserId { get; set; }
+
+        public DateTime CreationTime { get; set; }
+
         /// <summary>
         /// 菜单隶属的权限集合
         /// </summary>
-        public virtual ICollection<Permission> Permissions { get; set; }
+        public virtual List<Permission> Permissions { get; set; }
 
         #endregion
 
@@ -78,16 +77,14 @@ namespace DotPlatform.Zero.Domain.Models.Core
         /// 初始化一个新的<see cref="Menu"/>实例
         /// </summary>
         /// <param name="name">菜单名</param>
-        /// <param name="displayName">菜单显示名</param>
         /// <param name="description">菜单描述</param>
         /// <param name="icon">菜单图标</param>
         /// <param name="url">菜单 Url</param>
         /// <param name="sort">菜单排序</param>
         /// <param name="parentId">父菜单的 Id</param>
-        public Menu(string name, string displayName, string description, string icon, string url, int sort, Guid? parentId = null)
+        public Menu(string name, string description, string icon, string url, int sort, Guid? parentId = null)
         {
             Name = name;
-            DisplayName = displayName;
             Description = description;
             Icon = icon;
             Url = url;

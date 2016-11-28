@@ -63,6 +63,7 @@
     <Compile Include="Reflection\Dynamic\RelectionDynamic_Test.cs" />
     <Compile Include="Serialization\EventSerialization_Test.cs" />
     <Compile Include="Utils\Enum_Tests.cs" />
+    <Compile Include="Utils\GenericType_Tests.cs" />
     <Compile Include="Utils\TypeDescriptor_Tests.cs" />
   </ItemGroup>
   <ItemGroup>

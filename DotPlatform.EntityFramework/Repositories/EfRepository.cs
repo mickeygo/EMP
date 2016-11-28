@@ -177,13 +177,13 @@ namespace DotPlatform.EntityFramework.Repositories
         #region Protected Methods
 
         /// <summary>
-        /// 检查是否附加了实体，若没有附加实体，则将实体附加
+        /// 检查当前聚合上下文是否附加了实体，若没有附加实体，则将实体附加到当前上下文
         /// </summary>
         protected virtual void AttachIfNot(TAggregateRoot aggregateRoot)
         {
             if (!AggregateRootContext.Local.Contains(aggregateRoot))
             {
-                AggregateRootContext.Attach(aggregateRoot);     // 等同于将实体设为 EntityState.Unchanged 状态
+                AggregateRootContext.Attach(aggregateRoot);     // equal to 'EntityState.Unchanged' state
             }
         }
 

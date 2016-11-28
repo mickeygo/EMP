@@ -56,6 +56,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositores\IProductRepository.cs" />
     <Compile Include="Repositores\Query\IProductQueryRepository.cs" />
+    <Compile Include="TestIdentity.cs" />
     <Compile Include="UnitTestBase.cs" />
   </ItemGroup>
   <ItemGroup>

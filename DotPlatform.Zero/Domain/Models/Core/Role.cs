@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using DotPlatform.Domain.Entities;
+using DotPlatform.Domain.Entities.Auditing;
 
 namespace DotPlatform.Zero.Domain.Models.Core
 {
     /// <summary>
     /// 基于 Zero 模块的角色
     /// </summary>
-    public class Role : AggregateRoot, IMayHaveTenant, ISoftDelete
+    public class Role : AggregateRoot, IMayHaveTenant, ISoftDelete, ICreationAudited
     {
         #region Properties
 
@@ -30,13 +31,6 @@ namespace DotPlatform.Zero.Domain.Models.Core
         public string Name { get; set; }
 
         /// <summary>
-        /// 角色的显示名称
-        /// </summary>
-        [Required]
-        [StringLength(128)]
-        public string DisplayName { get; set; }
-
-        /// <summary>
         /// 角色描述
         /// </summary>
         [StringLength(256)]
@@ -47,17 +41,21 @@ namespace DotPlatform.Zero.Domain.Models.Core
         /// </summary>
         public bool IsActive { get; set; }
 
+        public bool IsDeleted { get; set; }
+
+        public Guid CreatorUserId { get; set; }
+
+        public DateTime CreationTime { get; set; }
+
         /// <summary>
         /// 角色所包含的用户集合
         /// </summary>
-        public virtual ICollection<User> Users { get; set; }
+        public virtual List<User> Users { get; private set; }
 
         /// <summary>
         /// 角色拥有的权限集合
         /// </summary>
-        public virtual ICollection<Permission> Permissions { get; set; }
-
-        public bool IsDeleted { get; set; }
+        public virtual List<Permission> Permissions { get; private set; }
 
         #endregion
 
@@ -65,7 +63,6 @@ namespace DotPlatform.Zero.Domain.Models.Core
 
         public Role()
         {
-
         }
 
         /// <summary>
@@ -73,12 +70,11 @@ namespace DotPlatform.Zero.Domain.Models.Core
         /// </summary>
         /// <param name="tenantId">角色所在的租户 Id， null 表示没有租户</param>
         /// <param name="name">唯一的角色名称</param>
-        /// <param name="displayName">角色的显示名</param>
-        public Role(Guid? tenantId, string name, string displayName)
+        /// <param name="description">角色描述</param>
+        public Role(Guid? tenantId, string name, string description)
         {
             TenantId = tenantId;
             Name = name;
-            DisplayName = displayName;
 
             Activate();
         }
@@ -87,12 +83,11 @@ namespace DotPlatform.Zero.Domain.Models.Core
         /// 初始化一个新的<see cref="Role"/>对象
         /// </summary>
         /// <param name="name">唯一的角色名称</param>
-        /// <param name="displayName">角色的显示名</param>
         /// <param name="description">角色描述</param>
-        public Role(string name, string displayName, string description)
-            : this((Guid?)null, name, displayName)
+        public Role(string name, string description)
+            : this(null, name, description)
         {
-            Description = description;
+            
         }
 
         #endregion

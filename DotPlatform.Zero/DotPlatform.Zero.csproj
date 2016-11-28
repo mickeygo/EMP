@@ -41,24 +41,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Authorization\Permissions\IPermissionStore.cs" />
-    <Compile Include="Authorization\Permissions\PermissionStore.cs" />
-    <Compile Include="Authorization\Roles\IRoleStore.cs" />
-    <Compile Include="Authorization\Roles\RoleManager.cs" />
-    <Compile Include="Authorization\Roles\RoleStore.cs" />
-    <Compile Include="Authorization\Users\IUserStore.cs" />
-    <Compile Include="Authorization\Users\UserManager.cs" />
-    <Compile Include="Authorization\Users\UserStore.cs" />
+    <Compile Include="BootStrapper.cs" />
     <Compile Include="Domain\Models\Core\Menu.cs" />
     <Compile Include="Domain\Models\Core\Permission.cs" />
     <Compile Include="Domain\Models\Core\Role.cs" />
+    <Compile Include="Domain\Models\Core\RolePermission.cs" />
     <Compile Include="Domain\Models\Core\Tenant.cs" />
     <Compile Include="Domain\Models\Core\User.cs" />
+    <Compile Include="Domain\Models\Core\UserRole.cs" />
     <Compile Include="Domain\Repositories\IMenuRepository.cs" />
     <Compile Include="Domain\Repositories\IPermissionRepository.cs" />
+    <Compile Include="Domain\Repositories\IRolePermissionRepository.cs" />
     <Compile Include="Domain\Repositories\IRoleRepository.cs" />
     <Compile Include="Domain\Repositories\ITenantRepository.cs" />
     <Compile Include="Domain\Repositories\IUserRepository.cs" />
+    <Compile Include="Domain\Repositories\IUserRoleRepository.cs" />
+    <Compile Include="Domain\Services\Impl\UserDomainService.cs" />
+    <Compile Include="Domain\Services\IUserDomainService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -67,9 +66,7 @@
       <Name>DotPlatform</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Domain\Services\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -1,7 +1,7 @@
 ﻿/* Created by gang.yang, at 2016-09-20 */
-// 生成 Guid, 利用随机数生成 36 位格式的伪 Guid.
-// newGuid() 产生新的 Guid.
-// empty() 产生空的 Guid.
+/* Description: 生成 Guid, 利用随机数生成 36 位格式的伪 Guid. */
+/* newGuid() 产生新的 Guid. */
+/* empty() 产生空的 Guid. */
 
 var Guid = {
     newGuid: function () {

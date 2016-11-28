@@ -9,13 +9,14 @@ namespace DotPlatform.Zero.Repository.EntityFramework.ModelConfigurations
         {
             Property(p => p.Id).HasColumnName("RoleId");
 
+            // many to many
             //HasMany(p => p.Users)
             //    .WithMany(p => p.Roles)
             //    .Map(m =>
             //    {
-            //        m.MapLeftKey("UserId");
-            //        m.MapRightKey("RoleId");
-            //        m.ToTable("Zero_User_Role");
+            //        m.MapLeftKey("RoleId");     // HasMany ==> FK
+            //        m.MapRightKey("UserId");    // WithMany ==> FK
+            //        m.ToTable("Zero_UserRole");
             //    });
 
             ToTable("Zero_Role");
