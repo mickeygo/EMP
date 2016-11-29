@@ -9,11 +9,12 @@ using DotPlatform.Loggers;
 namespace DotPlatform.Web.SignalR.Notifications
 {
     /// <summary>
-    /// 
+    /// SignalR 即时通讯
     /// </summary>
     public class SignalRRealTimeNotifier : IRealTimeNotifier
     {
         private readonly IOnlineClientManager _onlineClientManager;
+        private readonly ILogger _logger;
 
         /// <summary>
         /// 初始化一个新的<see cref="IOnlineClientManager"/>实例
@@ -22,8 +23,16 @@ namespace DotPlatform.Web.SignalR.Notifications
         public SignalRRealTimeNotifier(IOnlineClientManager onlineClientManager)
         {
             _onlineClientManager = onlineClientManager;
+
+            _logger = LoggerFactory.Logger;
         }
 
+        /// <summary>
+        /// 发送通知给指定的在线用户。
+        /// 这里只将信息发送给指定的在线用户。
+        /// </summary>
+        /// <param name="userNotifications">用户通知信息集合</param>
+        /// <returns></returns>
         public Task SendNotificationsAsync(UserNotification[] userNotifications)
         {
             foreach (var userNotification in userNotifications)
@@ -35,21 +44,20 @@ namespace DotPlatform.Web.SignalR.Notifications
                     if (onlineClient == null)
                         continue;
 
-
                     var signalRClient = CommonHub.Clients.Client(onlineClient.ConnectionId);
                     if (signalRClient == null)
                     {
-                        LoggerFactory.Logger.Debug("Can not get user " + userNotification.UserId + " from SignalR hub!");
+                        _logger.Debug("Can not get user " + userNotification.UserId + " from SignalR hub!");
                         continue;
                     }
 
                     // TODO: await call or not?
-                    signalRClient.getNotification(userNotification);
+                    signalRClient.getNotification(userNotification);  // "getNotification" to client proxy call
                 }
                 catch (Exception ex)
                 {
-                    LoggerFactory.Logger.Warn("Could not send notification to userId: " + userNotification.UserId);
-                    LoggerFactory.Logger.Warn(ex.ToString(), ex);
+                    _logger.Warn("Could not send notification to userId: " + userNotification.UserId);
+                    _logger.Warn(ex.ToString(), ex);
                 }
             }
 

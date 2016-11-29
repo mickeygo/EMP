@@ -15,7 +15,7 @@ namespace DotPlatform.Tests.Logger.NLog
 
             log.Debug("Debug");
 
-            log.Trace("Trace");
+            //log.Trace("Trace");
 
             log.Error("Error");
         }

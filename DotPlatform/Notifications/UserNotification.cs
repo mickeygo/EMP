@@ -4,7 +4,7 @@ using DotPlatform.Domain.Entities;
 namespace DotPlatform.Notifications
 {
     /// <summary>
-    /// 用户通知信息
+    /// 用户通知信息。消息给指定的用户。
     /// </summary>
     public class UserNotification : Entity
     {

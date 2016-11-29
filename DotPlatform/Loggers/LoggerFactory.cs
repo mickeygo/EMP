@@ -10,6 +10,6 @@ namespace DotPlatform.Loggers
         /// <summary>
         /// 系统日志记录者
         /// </summary>
-        public static ILogger Logger = NullLogger.Instance; // IocManager.Instance.Resolve<ILogger>();
+        public static ILogger Logger = IocManager.Instance.Resolve<ILogger>(); // NullLogger.Instance
     }
 }

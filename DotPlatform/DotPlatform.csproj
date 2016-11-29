@@ -232,6 +232,7 @@
     <Compile Include="Net\Mail\Smtp\SmtpMailSender.cs" />
     <Compile Include="Net\Mail\Smtp\SmtpMailSenderConfiguration.cs" />
     <Compile Include="Notifications\IRealTimeNotifier.cs" />
+    <Compile Include="Notifications\MessageNotification.cs" />
     <Compile Include="Notifications\Notification.cs" />
     <Compile Include="Notifications\NotificationData.cs" />
     <Compile Include="Notifications\NotificationSeverity.cs" />

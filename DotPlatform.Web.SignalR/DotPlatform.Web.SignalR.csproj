@@ -63,6 +63,8 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Web\SignalR\DotPlatformSignalRContractResolver.cs" />
+    <Compile Include="Web\SignalR\Extensions\SignalRExtensions.cs" />
+    <Compile Include="Web\SignalR\Extensions\RealTimeExtensions.cs" />
     <Compile Include="Web\SignalR\Hubs\DotPlatformCommonHub.cs" />
     <Compile Include="Web\SignalR\Notifications\SignalRRealTimeNotifier.cs" />
     <Compile Include="Web\SignalR\WebSignalRModule.cs" />
