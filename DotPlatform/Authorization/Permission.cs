@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 
-
 namespace DotPlatform.Authorization
 {
     public sealed class Permission
@@ -61,7 +60,7 @@ namespace DotPlatform.Authorization
         {
             if (name == null)
             {
-                throw new ArgumentNullException("name");
+                throw new ArgumentNullException(nameof(name));
             }
 
             Name = name;

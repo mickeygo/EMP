@@ -1,4 +1,4 @@
-﻿namespace DotPlatform.Logger
+﻿namespace DotPlatform.Loggers
 {
     /// <summary>
     /// 日志严重性级别

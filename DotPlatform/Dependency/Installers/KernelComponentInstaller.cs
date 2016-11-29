@@ -11,6 +11,7 @@ using DotPlatform.Localization;
 using DotPlatform.Modules;
 using DotPlatform.Net.Mail;
 using DotPlatform.Net.Mail.Smtp;
+using DotPlatform.RealTime;
 using DotPlatform.Reflection;
 using DotPlatform.Timing;
 
@@ -56,6 +57,9 @@ namespace DotPlatform.Dependency.Installers
             _iocManager.Register<ILanguageProvider, DefaultLanguageProvider>();
             _iocManager.Register<ILanguageManager, LanguageManager>();
 
+            // RealTime
+            _iocManager.Register<IOnlineClientManager, OnlineClientManager>(IocLifeStyle.Singleton);
+
             // Net
             // Net - Mail
             _iocManager.Register<IMailSender, SmtpMailSender>(IocLifeStyle.Singleton);
@@ -66,6 +70,7 @@ namespace DotPlatform.Dependency.Installers
             _iocManager.Register<ISmtpMailSenderConfiguration, SmtpMailSenderConfiguration>(IocLifeStyle.Singleton);  // mail
 
             // InitializerManager
+            _iocManager.Register<DependencyRegisterInstaller>();
             _iocManager.Register<ApplicationInitializerManager>();
 
             // Uow

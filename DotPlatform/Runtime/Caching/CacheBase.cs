@@ -58,7 +58,7 @@ namespace DotPlatform.Runtime.Caching
 
         public virtual Task ClearAsync()
         {
-            ClearAsync();
+            Clear();
             return Task.FromResult(0);
         }
 

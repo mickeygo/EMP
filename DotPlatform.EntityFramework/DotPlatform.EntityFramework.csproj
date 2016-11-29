@@ -58,6 +58,7 @@
     <Compile Include="IDbContextProvider.cs" />
     <Compile Include="ISimpleDbContextProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="DbCommandCounter.cs" />
     <Compile Include="Repositories\EfRepository.cs" />
     <Compile Include="SimpleDbContextProvider.cs" />
     <Compile Include="Uow\EfUnitOfWork.cs" />

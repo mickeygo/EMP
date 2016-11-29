@@ -1,5 +1,5 @@
 ﻿/* Created by gang.yang, at 2016-09-20 */
-// 简单的事件总线，基于 发布/订阅 模式.
+/* Description: 简单的事件总线，基于 发布/订阅 模式. */
 
 var EventEmitter = {
     _events: {},

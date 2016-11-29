@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C63DC8D7-EB2D-49FB-A89B-F3896C91B32D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DotPlatform.Zero.Repository</RootNamespace>
+    <AssemblyName>DotPlatform.Zero.Repository</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BootStrapper.cs" />
+    <Compile Include="DbConnectionHelper.cs" />
+    <Compile Include="EntityFramework\ModelConfigurations\MenuEntityTypeConfiguration.cs" />
+    <Compile Include="EntityFramework\ModelConfigurations\PermissionEntityTypeConfiguration.cs" />
+    <Compile Include="EntityFramework\ModelConfigurations\RoleEntityTypeConfiguration.cs" />
+    <Compile Include="EntityFramework\ModelConfigurations\RolePermissionEntityTypeConfiguration.cs" />
+    <Compile Include="EntityFramework\ModelConfigurations\TenantEntityTypeConfiguration.cs" />
+    <Compile Include="EntityFramework\ModelConfigurations\UserEntityTypeConfiguration.cs" />
+    <Compile Include="EntityFramework\ModelConfigurations\UserRoleEntityTypeConfiguration.cs" />
+    <Compile Include="EntityFramework\Repositories\MenuRepository.cs" />
+    <Compile Include="EntityFramework\Repositories\PermissionRepository.cs" />
+    <Compile Include="EntityFramework\Repositories\RolePermissionRepository.cs" />
+    <Compile Include="EntityFramework\Repositories\RoleRepository.cs" />
+    <Compile Include="EntityFramework\Repositories\TenantRepository.cs" />
+    <Compile Include="EntityFramework\Repositories\UserRepository.cs" />
+    <Compile Include="EntityFramework\Repositories\UserRoleRepository.cs" />
+    <Compile Include="EntityFramework\ZeroDbContext.cs" />
+    <Compile Include="EntityFramework\ZeroRepository.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DotPlatform.EntityFramework\DotPlatform.EntityFramework.csproj">
+      <Project>{09b41815-54ba-4afa-973c-0488fb1f578f}</Project>
+      <Name>DotPlatform.EntityFramework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DotPlatform.Storage\DotPlatform.Storage.csproj">
+      <Project>{0abbb274-cb90-4e0e-beb4-addc58f116a3}</Project>
+      <Name>DotPlatform.Storage</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DotPlatform.Zero\DotPlatform.Zero.csproj">
+      <Project>{769d5025-70ee-4a57-bfc9-34cd23ddae2e}</Project>
+      <Name>DotPlatform.Zero</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DotPlatform\DotPlatform.csproj">
+      <Project>{4964d0d8-492a-422a-ad2d-3eafae881c1a}</Project>
+      <Name>DotPlatform</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

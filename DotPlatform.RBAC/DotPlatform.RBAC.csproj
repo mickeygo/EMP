@@ -46,6 +46,8 @@
     <Compile Include="Authorization\Users\UserStore.cs" />
     <Compile Include="Authorization\Users\UserManager.cs" />
     <Compile Include="Domain\Models\Actors\RbacActor.cs" />
+    <Compile Include="Domain\Models\ApplicationLanguage.cs" />
+    <Compile Include="Domain\Models\ApplicationLanguageText.cs" />
     <Compile Include="Domain\Models\Menus\RbacMenu.cs" />
     <Compile Include="Domain\Models\Permissions\RbacPermission.cs" />
     <Compile Include="Domain\Models\Permissions\PermissionActor.cs" />

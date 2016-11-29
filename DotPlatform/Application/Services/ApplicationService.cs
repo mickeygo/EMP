@@ -8,7 +8,7 @@
         private bool isDisposed;
 
         /// <summary>
-        /// 关闭连接并释放资源
+        /// 在此设置，可用于关闭与 DB 的连接并释放资源
         /// </summary>
         protected virtual void Close()
         {

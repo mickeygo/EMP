@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using DotPlatform.Domain.Entities;
 using DotPlatform.RBAC.Domain.Models.Tenants;
+using DotPlatform.Timing;
 
 namespace DotPlatform.RBAC.Domain.Models.Users
 {
@@ -132,7 +133,7 @@ namespace DotPlatform.RBAC.Domain.Models.Users
             Tel = tel;
             Extension = extension;
 
-            this.LastLoginTime = DateTime.Now;
+            this.LastLoginTime = Clock.System;
         }
 
         #endregion
@@ -182,7 +183,7 @@ namespace DotPlatform.RBAC.Domain.Models.Users
             Tel = tel;
             Extension = extension;
 
-            this.LastLoginTime = DateTime.Now;
+            this.LastLoginTime = Clock.System;
         }
 
         #endregion

@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using WMS.Web.Client.Account;
 using WMS.Web.Models;
 
@@ -14,9 +13,9 @@ namespace WMS.Web.Controllers
             return View();
         }
 
+        [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        [HttpPost]
         public ActionResult Login(LoginViewModel model, string returnUrl)
         {
             if (!ModelState.IsValid)

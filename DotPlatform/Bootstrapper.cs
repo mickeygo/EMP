@@ -59,9 +59,11 @@ namespace DotPlatform
                 _moduleManager = _iocManager.Resolve<IModuleManager>();
                 _moduleManager.Initialize();
 
+                // Ioc 依赖对象注册
+                _iocManager.Resolve<DependencyRegisterInstaller>().Install();
+
                 // 实现了 IApplicationInitializer 接口的对象初始化
-                var initManger = _iocManager.Resolve<ApplicationInitializerManager>();
-                initManger.Init();
+                _iocManager.Resolve<ApplicationInitializerManager>().Init();
             }
 
             PostInitializeEvent?.Invoke(this, null);
@@ -73,9 +75,7 @@ namespace DotPlatform
         public virtual void Dispose()
         {
             if (IsDisposed)
-            {
                 return;
-            }
 
             _moduleManager.Shutdown();
             IsDisposed = true;

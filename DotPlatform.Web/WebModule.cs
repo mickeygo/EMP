@@ -19,7 +19,7 @@ namespace DotPlatform.Web
             IocManager.Register<IAuthenticationProvider, OwinAuthenticationProvider>();
             IocManager.Register<IWebAuthenticationManager, CookieAuthenticationManager>();
 
-            IocManager.Build();
+            base.PreInitialize();
         }
 
         public override void PostInitialize()
