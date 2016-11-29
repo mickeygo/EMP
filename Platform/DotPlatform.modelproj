@@ -50,12 +50,12 @@
       <SubType>Content</SubType>
       <DependentUpon>Core\Uow.classdiagram</DependentUpon>
     </Content>
-    <Content Include="Module\RBAC.classdiagram">
+    <Content Include="Module\Zero.classdiagram">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Module\RBAC.classdiagram.layout">
+    <Content Include="Module\Zero.classdiagram.layout">
       <SubType>Content</SubType>
-      <DependentUpon>Module\RBAC.classdiagram</DependentUpon>
+      <DependentUpon>Module\Zero.classdiagram</DependentUpon>
     </Content>
     <Content Include="WMS\Warehouse.classdiagram">
       <SubType>Content</SubType>

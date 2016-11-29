@@ -6,6 +6,7 @@ using System.Reflection;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
+using Newtonsoft.Json;
 using DotPlatform.Auditing;
 using DotPlatform.Extensions;
 using DotPlatform.Runtime.Session;
@@ -14,7 +15,7 @@ using DotPlatform.Timing;
 using DotPlatform.Web.Extensions;
 using DotPlatform.Net.Mail;
 using DotPlatform.Dependency;
-using Newtonsoft.Json;
+using DotPlatform.Notifications;
 
 namespace DotPlatform.Web.Mvc.Controllers
 {
@@ -40,10 +41,7 @@ namespace DotPlatform.Web.Mvc.Controllers
         /// <summary>
         /// 获取 Ioc 解析器
         /// </summary>
-        protected IIocResolver IocResolver
-        {
-            get { return IocManager.Instance; }
-        }
+        protected IIocResolver IocResolver { get; }
 
         /// <summary>
         /// 获取当前区域时间，根据区域的不同而设计的时间不同
@@ -53,15 +51,26 @@ namespace DotPlatform.Web.Mvc.Controllers
             get { return Clock.Local; }
         }
 
-        #endregion 
+        #endregion
 
         #region Public Properties
 
-        public IOwnerSession OwnerSession { get; set; }
+        /// <summary>
+        /// 基于 Claim 的 Session 对象
+        /// </summary>
+        public IOwnerSession OwnerSession { get; }
 
         public IAuditInfoProvider AuditInfoProvider { get; set; }
 
         public IAuditingStore AuditingStore { get; set; }
+
+        /// <summary>
+        /// 实时消息通知对象。可用于发送实时消息
+        /// </summary>
+        public IRealTimeNotifier RealTimeNotifier
+        {
+            get { return IocResolver.Resolve<IRealTimeNotifier>(); }
+        }
 
         /// <summary>
         /// Email 对象，用于发送邮件
@@ -69,6 +78,16 @@ namespace DotPlatform.Web.Mvc.Controllers
         public IMailSender MailSender
         {
             get { return IocResolver.Resolve<IMailSender>(); }
+        }
+
+        #endregion
+
+        #region Ctor
+
+        protected DotPlatformController()
+        {
+            IocResolver = IocManager.Instance;
+            OwnerSession = ClaimsSession.Instance;
         }
 
         #endregion

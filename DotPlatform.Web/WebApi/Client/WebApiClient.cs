@@ -20,7 +20,7 @@ namespace DotPlatform.Web.WebApi.Client
         #region Properties
 
         /// <summary>
-        /// 默认的请求超时时间
+        /// 默认的请求超时时间, 默认为 90s
         /// </summary>
         public static TimeSpan DefaultTimeout { get; }
 
@@ -38,6 +38,9 @@ namespace DotPlatform.Web.WebApi.Client
 
         #region Ctor
 
+        /// <summary>
+        /// 初始化一个新的<see cref="WebApiClient"/>实例
+        /// </summary>
         public WebApiClient()
         {
             Timeout = DefaultTimeout;
@@ -83,7 +86,7 @@ namespace DotPlatform.Web.WebApi.Client
                 else
                     cookieContainer.Add(cookie);
             }
-
+            
             using (var handler = new HttpClientHandler { CookieContainer = cookieContainer })
             {
                 using (var client = new HttpClient(handler))
