@@ -43,6 +43,13 @@
       <SubType>Content</SubType>
       <DependentUpon>Core\Navigation.classdiagram</DependentUpon>
     </Content>
+    <Content Include="Core\RealTime.classdiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Core\RealTime.classdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>Core\RealTime.classdiagram</DependentUpon>
+    </Content>
     <Content Include="Core\Uow.classdiagram">
       <SubType>Content</SubType>
     </Content>

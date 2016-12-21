@@ -207,6 +207,7 @@
     <Compile Include="Generators\IGuidGenerator.cs" />
     <Compile Include="Generators\RegularGuidGenerator.cs" />
     <Compile Include="Generators\SequentialGuidGenerator.cs" />
+    <Compile Include="IBootstrapper.cs" />
     <Compile Include="Localization\DefaultLanguageProvider.cs" />
     <Compile Include="Localization\ILanguageManager.cs" />
     <Compile Include="Localization\ILanguageProvider.cs" />

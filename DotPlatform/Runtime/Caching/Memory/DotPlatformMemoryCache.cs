@@ -16,7 +16,7 @@ namespace DotPlatform.Runtime.Caching.Memory
         /// <param name="name">缓存的唯一名称</param>
         public DotPlatformMemoryCache(string name) : base(name)
         {
-            _memoryCache = new MemoryCache(name);
+            _memoryCache = new MemoryCache(name);  // instead of "MemoryCache.Default", because of it's name is "Default".
         }
 
         public override T Get<T>(string key)

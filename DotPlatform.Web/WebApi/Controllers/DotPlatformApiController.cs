@@ -8,6 +8,6 @@ namespace DotPlatform.Web.WebApi.Controllers
     public abstract class DotPlatformApiController : ApiController
     {
         // Todo: Web API Controller
-        
+         
     }
 }

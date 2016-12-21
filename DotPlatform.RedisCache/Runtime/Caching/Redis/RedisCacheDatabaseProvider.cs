@@ -3,7 +3,7 @@ using System.Configuration;
 using StackExchange.Redis;
 using DotPlatform.Extensions;
 
-namespace DotPlatform.RedisCache.Runtime.Caching.Redis
+namespace DotPlatform.Runtime.Caching.Redis
 {
     /// <summary>
     /// Redis 缓存数据库提供者
@@ -12,14 +12,31 @@ namespace DotPlatform.RedisCache.Runtime.Caching.Redis
     {
         #region Fields
 
-        private const string ConnectionStringKey = "DotPlatform.Redis.Cache";
-        private const string DatabaseIdSettingKey = "DotPlatform.Redis.Cache.DatabaseId";
+        /// <summary>
+        /// Redis Cache ConnectionStrings 配置节点 Key， Redis 缓存服务器地址
+        /// </summary>
+        public const string ConnectionStringKey =
+#if DEBUG
+         "DotPlatform.Redis.Cache.Debug";
+#else
+         "DotPlatform.Redis.Cache";
+#endif
+
+        /// <summary>
+        /// Redis Cache AppSettings 配置节点 Key， Redis 缓存 Database
+        /// </summary>
+        public const string DatabaseIdSettingKey =
+#if DEBUG
+         "DotPlatform.Redis.Cache.DatabaseId.Debug";
+#else
+         "DotPlatform.Redis.Cache.DatabaseId";
+#endif
 
         private readonly Lazy<ConnectionMultiplexer> _connectionMultiplexer;
 
-        #endregion
+#endregion
 
-        #region Ctor
+#region Ctor
 
         /// <summary>
         /// 初始化一个新的<see cref="RedisCacheDatabaseProvider"/>实例
@@ -29,14 +46,18 @@ namespace DotPlatform.RedisCache.Runtime.Caching.Redis
             _connectionMultiplexer = new Lazy<ConnectionMultiplexer>(CreateConnectionMultiplexer);
         }
 
-        #endregion
+#endregion
+
+#region Public Methods
 
         public IDatabase GetDatabase()
         {
             return _connectionMultiplexer.Value.GetDatabase(GetDatabaseId());
         }
 
-        #region Private Methods
+#endregion
+
+#region Private Methods
 
         private static ConnectionMultiplexer CreateConnectionMultiplexer()
         {
@@ -60,6 +81,6 @@ namespace DotPlatform.RedisCache.Runtime.Caching.Redis
             return connStr.ConnectionString;
         }
 
-        #endregion
+#endregion
     }
 }

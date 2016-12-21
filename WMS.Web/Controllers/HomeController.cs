@@ -1,7 +1,5 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Web.Mvc;
-using DotPlatform.Notifications;
 
 namespace WMS.Web.Controllers
 {
@@ -15,16 +13,16 @@ namespace WMS.Web.Controllers
 
         public async Task<JsonResult> SignalRTest(string message)
         {
-            var notification = new UserNotification
+               var notification = new DotPlatform.Notifications.UserNotification
             {
-                Id = Guid.NewGuid(),
-                UserId = OwnerSession.UserId.GetValueOrDefault(),
-                Notification = new Notification { Data = new NotificationData { Properties = { { "msg", message } } } }
+                Notification = new DotPlatform.Notifications.Notification {
+                    Data = new DotPlatform.Notifications.NotificationData { Properties = new System.Collections.Generic.Dictionary<string, object> { { "msg", message } } }
+                }
             };
 
-            await RealTimeNotifier.SendNotificationsAsync(new UserNotification[] { notification });
+            await RealTimeNotifier.SendNotificationsAsync(new DotPlatform.Notifications.UserNotification[] { notification });
 
-            return Json($"OK -- {OwnerSession.UserId}");
+            return Json(message);
         }
 
         public ActionResult Metronic()

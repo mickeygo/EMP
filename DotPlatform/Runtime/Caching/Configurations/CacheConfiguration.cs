@@ -4,7 +4,8 @@ using System.Collections.Generic;
 namespace DotPlatform.Runtime.Caching.Configurations
 {
     /// <summary>
-    /// 缓存配置类
+    /// 缓存配置类。
+    /// 其中包含多个<see cref="ICacheConfigurator"/>缓存配置程序
     /// </summary>
     internal class CacheConfiguration : ICacheConfiguration
     {

@@ -38,7 +38,7 @@ namespace DotPlatform.TestBase
             bootstrapper.PreInitializeEvent += (o, s) => PreInitialize();
             bootstrapper.PostInitializeEvent += (o, s) => PostInitialize();
 
-            bootstrapper.OnInitialize();
+            bootstrapper.Start();
         }
 
         private void SetSession()

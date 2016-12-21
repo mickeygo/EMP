@@ -58,11 +58,17 @@
 
     @Scripts.Render("~/bundles/script/core")
     @Scripts.Render("~/bundles/script/plugins")
+
+    <!-- SignalR -->
+    <!-- reference the jquery.signalR.js -->
+    <script src="@Url.Content("~/signalr/hubs")"></script>
+
     @Scripts.Render("~/bundles/script/global")
     @Scripts.Render("~/bundles/script/layout")
     @Scripts.Render("~/bundles/script/react")
     @Scripts.Render("~/bundles/script/utils")
     @Scripts.Render("~/bundles/script/src")
+
 
     @RenderSection("scripts", false)
 </body>

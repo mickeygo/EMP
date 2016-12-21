@@ -7,6 +7,9 @@ namespace DotPlatform.Runtime.Caching.Configurations
     /// </summary>
     public interface ICacheConfiguration
     {
+        /// <summary>
+        /// 获取 Cache 的配置程序
+        /// </summary>
         IReadOnlyList<ICacheConfigurator> Configurators { get; }
     }
 }

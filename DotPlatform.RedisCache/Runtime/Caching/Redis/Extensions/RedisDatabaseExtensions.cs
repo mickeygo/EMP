@@ -1,7 +1,7 @@
 ﻿using System;
 using StackExchange.Redis;
 
-namespace DotPlatform.RedisCache.Runtime.Caching.Redis.Extensions
+namespace DotPlatform.Runtime.Caching.Redis
 {
     /// <summary>
     /// Redis Database 的扩展类

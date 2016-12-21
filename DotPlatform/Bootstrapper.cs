@@ -1,16 +1,16 @@
 ﻿using System;
 using DotPlatform.Dependency.Installers;
 using DotPlatform.Dependency;
-using DotPlatform.Configuration.Startup.Impl;
 using DotPlatform.Modules;
 using DotPlatform.Configuration;
+using DotPlatform.Configuration.Startup;
 
 namespace DotPlatform
 {
     /// <summary>
     /// 系统引导程序。在系统启动时执行，是进入系统的入口。
     /// </summary>
-    public class Bootstrapper : IDisposable
+    public class Bootstrapper : IBootstrapper
     {
         private IModuleManager _moduleManager;
         private readonly IIocManager _iocManager;
@@ -40,20 +40,52 @@ namespace DotPlatform
             _iocManager = IocManager.Instance;
         }
 
+        #region Public Methods
+
         /// <summary>
-        /// 初始化程序。查询启动会执行该方法
+        /// Ioc 注册器
         /// </summary>
-        public void OnInitialize()
+        public IIocRegistrar IocRegistrar
+        {
+            get { return _iocManager; }
+        }
+
+        /// <summary>
+        /// 启动应用程序配置
+        /// </summary>
+        public void Start()
+        {
+            Init();
+        }
+
+        /// <summary>
+        /// Dispose
+        /// </summary>
+        public virtual void Dispose()
+        {
+            if (IsDisposed)
+                return;
+
+            _moduleManager.Shutdown();
+            IsDisposed = true;
+        }
+
+        #endregion
+
+        #region Private Methods
+
+        private void Init()
         {
             PreInitializeEvent?.Invoke(this, null);
 
             lock (sync)
             {
+                // note: exec by follow order.
                 // 安装组件
                 KernelComponentInstaller.Instance.Install();
 
                 // Configuration
-                _iocManager.Resolve<AppStartupConfiguration>().Initialize();
+                _iocManager.Resolve<IStartupConfiguration>().Initialize();
 
                 // Module
                 _moduleManager = _iocManager.Resolve<IModuleManager>();
@@ -69,16 +101,6 @@ namespace DotPlatform
             PostInitializeEvent?.Invoke(this, null);
         }
 
-        /// <summary>
-        /// Dispose
-        /// </summary>
-        public virtual void Dispose()
-        {
-            if (IsDisposed)
-                return;
-
-            _moduleManager.Shutdown();
-            IsDisposed = true;
-        }
+        #endregion
     }
 }

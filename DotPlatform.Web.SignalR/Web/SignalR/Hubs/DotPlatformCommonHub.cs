@@ -14,9 +14,9 @@ namespace DotPlatform.Web.SignalR.Hubs
     public class DotPlatformCommonHub : Hub
     {
         private readonly IOnlineClientManager _onlineClientManager;
+        protected ILogger Logger { get; }
 
         public IOwnerSession OwnerSession { get; }
-        public ILogger Logger { get; }
 
         public DotPlatformCommonHub()
         {

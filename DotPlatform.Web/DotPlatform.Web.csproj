@@ -157,6 +157,7 @@
     <Compile Include="WebApi\Dynamic\DynamicApiActionInfo.cs" />
     <Compile Include="WebApi\Dynamic\DynamicApiControllerInfo.cs" />
     <Compile Include="WebApi\Dynamic\Formatters\PlainTextFormatter.cs" />
+    <Compile Include="WebApi\OData\Controllers\DotPlatformODataEntityController.cs" />
     <Compile Include="WebAssemblyFinder.cs" />
     <Compile Include="WebModule.cs" />
     <Compile Include="Web\Models\AjaxReponse.cs" />

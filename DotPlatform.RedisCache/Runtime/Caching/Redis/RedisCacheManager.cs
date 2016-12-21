@@ -1,8 +1,7 @@
 ﻿using DotPlatform.Dependency;
-using DotPlatform.Runtime.Caching;
 using DotPlatform.Runtime.Caching.Configurations;
 
-namespace DotPlatform.RedisCache.Runtime.Caching.Redis
+namespace DotPlatform.Runtime.Caching.Redis
 {
     /// <summary>
     ///  Redis 缓存管理类

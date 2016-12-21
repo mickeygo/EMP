@@ -5,6 +5,9 @@
     /// </summary>
     public interface IStartupConfiguration
     {
-
+        /// <summary>
+        /// 配置信息初始化
+        /// </summary>
+        void Initialize();
     }
 }

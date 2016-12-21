@@ -1,10 +1,8 @@
 ﻿using System;
-using DotPlatform.RedisCache.Runtime.Caching.Redis.Extensions;
-using DotPlatform.Runtime.Caching;
 using StackExchange.Redis;
 using DotPlatform.Serialization.Json;
 
-namespace DotPlatform.RedisCache.Runtime.Caching.Redis
+namespace DotPlatform.Runtime.Caching.Redis
 {
     /// <summary>
     /// Redis 缓存。用于管理 Redis 缓存

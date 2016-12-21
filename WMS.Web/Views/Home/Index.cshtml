@@ -3,35 +3,24 @@
 }
 
 @section scripts {
-    <script src="~/Scripts/jquery.signalR-2.2.1.min.js"></script>
-    <script src="~/signalr/hubs"></script>
-
     <script>
-
         $(function () {
-            // Reference the auto-generated proxy for the hub.  
-            var chat = $.connection.dotPlatformCommonHub;
-
-            // Create a function that the hub can call back to display messages.
-            chat.client.getNotification = function (data) {
-                console.log(data);
-            };
-
-            // Start the connection.  -- $.connection.hub.start()
-            $.connection.hub.start().done(function () {
+            $.hub.send(function () {
                 $('#doSignalR').click(function () {
                     console.log("doSignalR");
                     $.post("@Url.Action("SignalRTest", "Home")", { message: $("#singalr").val() }, function (data) {
                         console.log(data);
                     });
                 });
+            }).done(function (data) {
+                console.log(data);
             });
         });
     </script>
 
 }
 
-<div>
+@*<div>
     <input type="text" id="singalr" />
     <button type="button" id="doSignalR">SignalR</button>
-</div>
+</div>*@

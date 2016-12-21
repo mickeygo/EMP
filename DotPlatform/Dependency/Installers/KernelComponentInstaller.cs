@@ -13,6 +13,7 @@ using DotPlatform.Net.Mail;
 using DotPlatform.Net.Mail.Smtp;
 using DotPlatform.RealTime;
 using DotPlatform.Reflection;
+using DotPlatform.Runtime.Caching.Configurations;
 using DotPlatform.Timing;
 
 namespace DotPlatform.Dependency.Installers
@@ -60,18 +61,8 @@ namespace DotPlatform.Dependency.Installers
             // RealTime
             _iocManager.Register<IOnlineClientManager, OnlineClientManager>(IocLifeStyle.Singleton);
 
-            // Net
             // Net - Mail
             _iocManager.Register<IMailSender, SmtpMailSender>(IocLifeStyle.Singleton);
-
-            // Configuration
-            _iocManager.Register<AppStartupConfiguration>();
-            _iocManager.Register<IStartupConfiguration, AppStartupConfiguration>();
-            _iocManager.Register<ISmtpMailSenderConfiguration, SmtpMailSenderConfiguration>(IocLifeStyle.Singleton);  // mail
-
-            // InitializerManager
-            _iocManager.Register<DependencyRegisterInstaller>();
-            _iocManager.Register<ApplicationInitializerManager>();
 
             // Uow
             _iocManager.Register<IUnitOfWorkDefaultOptions, UnitOfWorkDefaultOptions>();
@@ -86,6 +77,13 @@ namespace DotPlatform.Dependency.Installers
             _iocManager.Register<IEventBusProvider, EventBusProvider>();
             _iocManager.Register<IEventBus, EventBus>();
             _iocManager.Register<IBus, DirectBus>();
+
+            // Initializer Manager
+            _iocManager.Register<DependencyRegisterInstaller>();
+            _iocManager.Register<ApplicationInitializerManager>();
+
+            // Configuration
+            _iocManager.Register<IStartupConfiguration, AppStartupConfiguration>();
 
             // Build
             _iocManager.Build();

@@ -16,7 +16,7 @@ namespace WMS.Web
                 AssemblyLoadHelper.LoadAssembly("WMS");
             };
 
-            bootstrapper.OnInitialize();
+            bootstrapper.Start();
         }
 
         public static void Shutdown()

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Configuration;
+using DotPlatform.Loggers;
 
 namespace DotPlatform.Configuration.Fluent
 {
@@ -34,9 +35,10 @@ namespace DotPlatform.Configuration.Fluent
                 var sectionName = $"{SectionGroupName}/{this._setion}";
                 return (T)ConfigurationManager.GetSection(sectionName);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 // Suppress error
+                LoggerFactory.Logger.Error($"Get the [{SectionGroupName}/{this._setion}] configuration section error.", ex);
             }
 
             return default(T);

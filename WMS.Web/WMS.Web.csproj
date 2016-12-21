@@ -1337,6 +1337,8 @@
     <Content Include="wwwroot\lib\metronic\theme\assets\global\plugins\jquery.blockui.min.js" />
     <Content Include="wwwroot\lib\metronic\theme\assets\global\plugins\jquery.cookie-1.4.1.min.js" />
     <Content Include="wwwroot\lib\metronic\theme\assets\global\plugins\jquery.cookie.js" />
+    <Content Include="wwwroot\lib\metronic\theme\assets\global\plugins\jquery.signalR-2.2.1.js" />
+    <Content Include="wwwroot\lib\metronic\theme\assets\global\plugins\jquery.signalR-2.2.1.min.js" />
     <Content Include="wwwroot\lib\metronic\theme\assets\global\plugins\jquery.unobtrusive-ajax.js" />
     <Content Include="wwwroot\lib\metronic\theme\assets\global\plugins\jquery.unobtrusive-ajax.min.js" />
     <Content Include="wwwroot\lib\metronic\theme\assets\global\plugins\jstree\dist\jstree.js" />

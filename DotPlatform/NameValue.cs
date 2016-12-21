@@ -35,6 +35,11 @@ namespace DotPlatform
 
         }
 
+        /// <summary>
+        /// 初始化一个<see cref="NameValue"/>实例
+        /// </summary>
+        /// <param name="name">Name 值</param>
+        /// <param name="value">Value 值</param>
         public NameValue(string name, string value) 
             : base(name, value)
         {

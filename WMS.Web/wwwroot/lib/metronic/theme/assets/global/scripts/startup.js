@@ -163,6 +163,40 @@ var Startup = function () {
         }
     }
 
+    // SignalR Hub
+    var handleSignalRHub = function () {
+        if (!$.connection.dotPlatformCommonHub) {
+            return null;
+        }
+        
+        $.extend({
+            hub: {
+                send: function (fn) {
+                    // Start the connection.
+                    $.connection.hub.start().done(function () {
+                        fn();
+                    });
+                    return this;
+                },
+                done: function (fn) {
+                    // Reference the auto-generated proxy for the hub.  
+                    var hub = $.connection.dotPlatformCommonHub;
+                    // Create a function that the hub can call back to handle messages.
+                    hub.client.getNotification = function (data) {
+                        fn(data);
+                    };
+                    return this;
+                },
+                error: function (fn) {
+                    $.connection.hub.error(function (error) {
+                        fn(error);
+                    });
+                    return this;
+                }
+            }
+        });
+    }
+
     return {
         //main function to initiate the module
         init: function () {
@@ -173,6 +207,7 @@ var Startup = function () {
             handleNotice();
             handleFormValidation();
             handleInputMask();
+            handleSignalRHub();
         }
     };
 }();
